@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yi.mapper.QuestionMapper">
+
+	<select id="selectByAll" resultType="QuestionVO">
+		SELECT *
+		FROM question
+	</select>
+	
+	<select id="selectByNO" resultType="QuestionVO">
+		SELECT *
+		FROM question
+		where question_code = #{questionCode}
+	</select>
+	
+	<insert id="insert">
+		INSERT INTO question
+		(question_code, question_title, choice1, choice2, choice3, choice4, correct, state, correct_rate, picture, subject)
+		VALUES(#{questionCode}, #{questionTitle}, #{choice1}, #{choice2}, #{choice3}, #{choice4}, #{correct}, #{state}, #{correctRate}, #{picture}, #{subject})
+	</insert>
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
