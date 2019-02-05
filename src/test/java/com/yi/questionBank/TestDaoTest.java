@@ -2,7 +2,6 @@ package com.yi.questionBank;
 
 import java.util.List;
 
-import org.apache.ibatis.reflection.SystemMetaObject;
 import org.junit.Assert;
 import org.junit.FixMethodOrder;
 import org.junit.Test;
@@ -23,15 +22,15 @@ public class TestDaoTest {
 	
 	@Autowired
 	private TestService testService;
-
 	
 	@Test
 	public void test01insertTest() {
 		TestVO vo = new TestVO();
 		vo.setTestCode("T001");
 		vo.setTestTime(150);
-		vo.setRound(1);
-		vo.setYear(2017);
+		vo.setRound(2);
+		vo.setYear(2018);
+		System.out.println(vo);
 		testService.insertTest(vo);
 	}
 	
@@ -43,9 +42,9 @@ public class TestDaoTest {
 	}
 	
 	@Test
-	public void test03selectByNO() {
+	public void test03selectByNo() {
 		TestVO vo = new TestVO();
-		vo.setTestCode("T001");
+		vo.setTestCode("T002");
 		TestVO newVO = testService.selectByNo(vo);
 		Assert.assertNotNull(newVO);
 		System.out.println(newVO);
@@ -59,7 +58,7 @@ public class TestDaoTest {
 		testService.updateTest(vo);
 	}
 	
-	@Test
+	//Test
 	public void test05delete() {
 		TestVO vo = new TestVO();
 		vo.setTestCode("T001");
