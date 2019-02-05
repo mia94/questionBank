@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yi.mapper.SubjectMapper">
+
+	<select id="selectByAll" resultType="SubjectVO">
+		SELECT *
+		FROM subject
+	</select>
+	
+	<select id="selectByNo" resultType="SubjectVO">
+		SELECT *
+		FROM subject
+		where subject_code=#{subjectCode}
+	</select>
+	
+	<insert id="insertSubject">
+		INSERT INTO subject
+		(subject_code, subject_name, test)
+		VALUES(#{subjectCode}, #{subjectName}, #{test.testCode})
+	</insert>
+	
+	<update id="updateSubject">
+		UPDATE subject
+		SET subject_name=#{subjectName}, test=#{test.testCode}
+		WHERE subject_code=#{subjectCode}
+	</update>
+	
+	<delete id="deleteSubject">
+		DELETE FROM subject
+		WHERE subject_code=#{subjectCode}
+	</delete>
+	
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
