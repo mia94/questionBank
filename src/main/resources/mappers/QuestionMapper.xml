@@ -20,6 +20,17 @@
 		(question_code, question_title, choice1, choice2, choice3, choice4, correct, state, correct_rate, picture, subject)
 		VALUES(#{questionCode}, #{questionTitle}, #{choice1}, #{choice2}, #{choice3}, #{choice4}, #{correct}, #{state}, #{correctRate}, #{picture}, #{subject})
 	</insert>
+	
+	<delete id="delete">
+		DELETE FROM question
+		WHERE question_code=#{questionCode}
+	</delete>
+	
+	<update id="update">
+		UPDATE question
+		SET question_title=#{questionTitle}, choice1=#{choice1}, choice2=#{choice2}, choice3=#{choice3}, choice4=#{choice4}, correct=#{correct}, state=#{state}, correct_rate=#{correctRate}, picture=#{picture}, subject=#{subject}
+		WHERE question_code=#{questionCode}
+	</update>
 </mapper>
 
 
