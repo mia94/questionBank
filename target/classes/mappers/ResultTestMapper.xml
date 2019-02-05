@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yi.mapper.MyMapper">
+
+	<select id="selectByAll" resultType="ResultTestVO">
+		SELECT *
+		FROM resulttest
+	</select>
+	
+	<select id="selectByNo" resultType="ResultTestVO">
+		SELECT *
+		FROM resulttest
+		where resulttest_code=#{resultTestCode}
+	</select>
+	
+	<select id="selectByCustomerCode" resultType="ResultTestVO">
+		SELECT *
+		FROM resulttest
+		where customer=#{customer.customerCode}
+	</select>
+	
+	<insert id="insertResultTest">
+		INSERT INTO resulttest
+		(customer, score, pass, test)
+		VALUES(#{customer.customerCode}, #{score}, #{pass}, #{test.testCode})
+	</insert>
+	
+	<delete id="deleteResultTest">
+		DELETE FROM resulttest
+		WHERE resultTest_code=#{resultTestCode}
+	</delete>
+	
+	<update id="updateResultTest">
+		UPDATE resulttest
+		SET customer=#{customer.customerCode}, score=#{score}, pass=#{pass}, test=#{test.testCode}
+		WHERE resultTest_code=#{resultTestCode}
+	</update>
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

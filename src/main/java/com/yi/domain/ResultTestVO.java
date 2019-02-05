@@ -1,11 +1,19 @@
 package com.yi.domain;
 
 public class ResultTestVO {
+	private String resultTestCode;
 	private CustomerVO customer;
 	private int score;
 	private boolean pass;
 	private TestVO test;
+
 	
+	public String getResultTestCode() {
+		return resultTestCode;
+	}
+	public void setResultTestCode(String resultTestCode) {
+		this.resultTestCode = resultTestCode;
+	}
 	public CustomerVO getCustomer() {
 		return customer;
 	}
