@@ -11,66 +11,65 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import com.yi.domain.BoardVO;
 import com.yi.domain.CustomerVO;
+import com.yi.service.BoardService;
 import com.yi.service.CustomerService;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations= {"file:src/main/webapp/WEB-INF/spring/root-context.xml"})
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
-public class CustomerDaoTest {
+public class BoardDaoTest {
 	
 	@Autowired
-	private CustomerService service;
+	private BoardService service;
+	@Autowired
+	private CustomerService cService;
 	
 	@Test
 	public void test01insert() {
-		CustomerVO vo = new CustomerVO();
-		vo.setCustomerCode("C001");
-		vo.setCustomerName("홍길동");
-		vo.setEmail("hong@test.com");
-		vo.setEmployee(false);
-		vo.setId("hong3");
-		vo.setPassword("11112222");
-		service.insertCustomer(vo);
+		BoardVO vo = new BoardVO();
+		vo.setBoardTitle("테스트");
+		vo.setContent("성공해라 얍");
+		
+		CustomerVO cVo = new CustomerVO();
+		cVo.setCustomerCode("C001");
+		cVo = cService.selectByNo(cVo);
+		vo.setWriter(cVo);
+		
+		service.insertBoard(vo);
 	}
 	
 	@Test
 	public void test02selectByAll() {
-		List<CustomerVO> list = service.selectByAll();
+		List<BoardVO> list = service.selectByAll();
 		Assert.assertNotNull(list);
 	}
 	
 	@Test
 	public void test03selectByNo() {
-		CustomerVO vo = new CustomerVO();
-		vo.setCustomerCode("C001");
-		CustomerVO newVo = service.selectByNo(vo);
-		Assert.assertNotNull(newVo);
+		BoardVO vo = new BoardVO();
+		vo.setBoardCode(1);
+		vo = service.selectByNo(vo);
+		Assert.assertNotNull(vo);
 	}
 	
-	//@Test
+	@Test
 	public void test04update() {
-		CustomerVO vo = new CustomerVO();
-		vo.setCustomerName("수정홍");
-		vo.setCustomerCode("C002");
-		vo.setEmail("hong@test.com");
-		vo.setEmployee(false);
-		vo.setId("hong3");
-		vo.setPassword("11112222");
-		service.updateCustomer(vo);
+		BoardVO vo = new BoardVO();
+		vo.setBoardCode(2);
+		vo = service.selectByNo(vo);
+		vo.setBoardTitle("수정");
+		service.updateBoard(vo);
 	}
 	
-	//@Test
+	@Test
 	public void test05delete() {
-		CustomerVO vo = new CustomerVO();
-		vo.setCustomerCode("C002");
-		service.deleteCustomer(vo);
+		BoardVO vo = new BoardVO();
+		vo.setBoardCode(1);
+		service.deleteBoard(vo);
 	}
-	
 }
-
-
-
 
 
 

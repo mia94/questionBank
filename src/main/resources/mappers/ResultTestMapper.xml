@@ -23,8 +23,8 @@
 	
 	<insert id="insertResultTest">
 		INSERT INTO resulttest
-		(customer, score, pass, test)
-		VALUES(#{customer.customerCode}, #{score}, #{pass}, #{test.testCode})
+		(resulttest_code,customer, score, pass, test)
+		VALUES(#{resultTestCode},#{customer.customerCode}, #{score}, #{pass}, #{test.testCode})
 	</insert>
 	
 	<delete id="deleteResultTest">
@@ -37,6 +37,7 @@
 		SET customer=#{customer.customerCode}, score=#{score}, pass=#{pass}, test=#{test.testCode}
 		WHERE resultTest_code=#{resultTestCode}
 	</update>
+
 </mapper>
 
 

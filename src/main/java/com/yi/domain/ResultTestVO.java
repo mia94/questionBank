@@ -41,8 +41,11 @@ public class ResultTestVO {
 	
 	@Override
 	public String toString() {
-		return "ResultTestVO [customer=" + customer + ", score=" + score + ", pass=" + pass + ", test=" + test + "]";
+		return "ResultTestVO [resultTestCode=" + resultTestCode + ", customer=" + customer + ", score=" + score
+				+ ", pass=" + pass + ", test=" + test + "]";
 	}
+	
+	
 	
 	
 }

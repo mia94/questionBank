@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yi.mapper.BoardMapper">
+
+	<select id="selectByAll" resultType="BoardVO">
+		SELECT *
+		FROM board
+	</select>
+	
+	<select id="selectByNo" resultType="BoardVO">
+		SELECT *
+		FROM board
+		where board_code=#{boardCode}
+	</select>
+	
+	<insert id="insertBoard">
+		INSERT INTO board
+		(board_title, content,writer)
+		VALUES(#{boardTitle}, #{content},#{writer.customerCode})
+	</insert>
+	
+	<update id="updateBoard">
+		UPDATE board
+		SET board_title=#{boardTitle}, content=#{content}, moddate=now()
+		WHERE board_code=#{boardCode}
+	</update>
+	
+	<delete id="deleteBoard">
+		DELETE FROM board
+		WHERE board_code=#{boardCode}
+	</delete>
+	
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
