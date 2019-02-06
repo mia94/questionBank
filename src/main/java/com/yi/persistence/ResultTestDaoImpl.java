@@ -34,20 +34,18 @@ public class ResultTestDaoImpl implements ResultTestDao{
 
 	@Override
 	public void insertResultTest(ResultTestVO resultTestVo) {
-		// TODO Auto-generated method stub
+		sqlSession.insert(namespace+".insertResultTest", resultTestVo);
 		
 	}
 
 	@Override
 	public void deleteResultTest(ResultTestVO resultTestVo) {
-		// TODO Auto-generated method stub
-		
+		sqlSession.delete(namespace+".deleteResultTest", resultTestVo);
 	}
 
 	@Override
 	public void updateResultTest(ResultTestVO resultTestVo) {
-		// TODO Auto-generated method stub
-		
+		sqlSession.update(namespace+".updateResultTest", resultTestVo);
 	}
 
 	
