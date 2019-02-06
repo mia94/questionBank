@@ -78,12 +78,23 @@ ALTER TABLE `questionBank`.`customer`
 
 -- 답
 CREATE TABLE `questionBank`.`solution` (
-	`question` CHAR(10) NOT NULL COMMENT '문제코드', -- 문제코드
-	`answer`   INT(1)   NULL     COMMENT '입력한 답', -- 입력한 답
-	`correct`  TINYINT  NULL     COMMENT '정답여부', -- 정답여부
-	`customer` CHAR(4)  NOT NULL COMMENT '회원코드' -- 회원코드
+	`solution_code` INT      NOT NULL COMMENT '답 코드', -- 답 코드
+	`question`      CHAR(10) NOT NULL COMMENT '문제코드', -- 문제코드
+	`answer`        INT(1)   NULL     COMMENT '입력한 답', -- 입력한 답
+	`correct`       TINYINT  NULL     COMMENT '정답여부', -- 정답여부
+	`customer`      CHAR(4)  NOT NULL COMMENT '회원코드' -- 회원코드
 )
 COMMENT '답';
+
+-- 답
+ALTER TABLE `questionBank`.`solution`
+	ADD CONSTRAINT `PK_solution` -- 답 기본키
+		PRIMARY KEY (
+			`solution_code` -- 답 코드
+		);
+
+ALTER TABLE `questionBank`.`solution`
+	MODIFY COLUMN `solution_code` INT NOT NULL AUTO_INCREMENT COMMENT '답 코드';
 
 -- 응시시험
 CREATE TABLE `questionBank`.`resultTest` (
