@@ -17,19 +17,19 @@
 	
 	<insert id="insertSubject">
 		INSERT INTO subject
-		(subject_code, subject_name, test)
-		VALUES(#{subjectCode}, #{subjectName}, #{test.testCode})
+		(question, test, subject_code, subject_name)
+		VALUES(#{question}, #{test}, #{subjectCode}, #{subjectName})
 	</insert>
 	
 	<update id="updateSubject">
 		UPDATE subject
-		SET subject_name=#{subjectName}, test=#{test.testCode}
-		WHERE subject_code=#{subjectCode}
+		SET subject_code=#{subjectCode}, subject_name=#{subjectName}
+		WHERE question=#{question} AND test=#{test}
 	</update>
 	
 	<delete id="deleteSubject">
 		DELETE FROM subject
-		WHERE subject_code=#{subjectCode}
+		WHERE question=#{question} AND test=#{test}
 	</delete>
 	
 </mapper>

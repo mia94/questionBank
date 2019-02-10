@@ -28,10 +28,10 @@ ALTER TABLE `questionBank`.`question`
 
 -- 과목(5과목 20문제)
 CREATE TABLE `questionBank`.`subject` (
-	`question_code` CHAR(10)    NOT NULL COMMENT '문제코드', -- 문제코드
-	`test`          CHAR(4)     NOT NULL COMMENT '시험코드', -- 시험코드
-	`subject_code`  CHAR(1)     NOT NULL COMMENT '과목', -- 과목
-	`subject_name`  VARCHAR(20) NOT NULL COMMENT '과목이름' -- 과목이름
+	`question`     CHAR(10)    NOT NULL COMMENT '문제코드', -- 문제코드
+	`test`         CHAR(4)     NOT NULL COMMENT '시험코드', -- 시험코드
+	`subject_code` CHAR(1)     NOT NULL COMMENT '과목', -- 과목
+	`subject_name` VARCHAR(20) NOT NULL COMMENT '과목이름' -- 과목이름
 )
 COMMENT '과목(5과목 20문제)';
 
@@ -39,8 +39,8 @@ COMMENT '과목(5과목 20문제)';
 ALTER TABLE `questionBank`.`subject`
 	ADD CONSTRAINT `PK_subject` -- 과목(5과목 20문제) 기본키
 		PRIMARY KEY (
-			`question_code`, -- 문제코드
-			`test`           -- 시험코드
+			`question`, -- 문제코드
+			`test`      -- 시험코드
 		);
 
 -- 출제시험(100문제)
@@ -83,7 +83,7 @@ CREATE TABLE `questionBank`.`unitTest` (
 	`answer`        INT(1)   NULL     COMMENT '입력한 답(20개)', -- 입력한 답(20개)
 	`correct`       TINYINT  NULL     COMMENT '정답(20개)', -- 정답(20개)
 	`customer`      CHAR(4)  NOT NULL COMMENT '회원코드', -- 회원코드
-	`question_code` CHAR(10) NULL     COMMENT '문제코드', -- 문제코드
+	`question`      CHAR(10) NULL     COMMENT '문제코드', -- 문제코드
 	`test`          CHAR(4)  NULL     COMMENT '시험코드' -- 시험코드
 )
 COMMENT '과목별(20문제) 응시시험';
@@ -178,7 +178,7 @@ ALTER TABLE `questionBank`.`subject`
 ALTER TABLE `questionBank`.`subject`
 	ADD CONSTRAINT `FK_question_TO_subject` -- 문제(1) -> 과목(5과목 20문제)
 		FOREIGN KEY (
-			`question_code` -- 문제코드
+			`question` -- 문제코드
 		)
 		REFERENCES `questionBank`.`question` ( -- 문제(1)
 			`question_code` -- 문제코드
@@ -198,12 +198,12 @@ ALTER TABLE `questionBank`.`unitTest`
 ALTER TABLE `questionBank`.`unitTest`
 	ADD CONSTRAINT `FK_subject_TO_unitTest` -- 과목(5과목 20문제) -> 과목별(20문제) 응시시험
 		FOREIGN KEY (
-			`question_code`, -- 문제코드
-			`test`           -- 시험코드
+			`question`, -- 문제코드
+			`test`      -- 시험코드
 		)
 		REFERENCES `questionBank`.`subject` ( -- 과목(5과목 20문제)
-			`question_code`, -- 문제코드
-			`test`           -- 시험코드
+			`question`, -- 문제코드
+			`test`      -- 시험코드
 		);
 
 -- 시험 결과

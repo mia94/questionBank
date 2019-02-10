@@ -1,16 +1,17 @@
 package com.yi.domain;
 
-public class SolutionVO {
-	private QuestionVO question;
+public class UnitTestVO {
+	private int unitTestCode;
 	private int answer;
 	private boolean correct;
 	private CustomerVO customer;
-	
-	public QuestionVO getQuestion() {
-		return question;
+	private QuestionVO question;
+	private TestVO test;
+	public int getUnitTestCode() {
+		return unitTestCode;
 	}
-	public void setQuestion(QuestionVO question) {
-		this.question = question;
+	public void setUnitTestCode(int unitTestCode) {
+		this.unitTestCode = unitTestCode;
 	}
 	public int getAnswer() {
 		return answer;
@@ -30,12 +31,26 @@ public class SolutionVO {
 	public void setCustomer(CustomerVO customer) {
 		this.customer = customer;
 	}
+	public QuestionVO getQuestion() {
+		return question;
+	}
+	public void setQuestion(QuestionVO question) {
+		this.question = question;
+	}
+	public TestVO getTest() {
+		return test;
+	}
+	public void setTest(TestVO test) {
+		this.test = test;
+	}
 	
 	@Override
 	public String toString() {
-		return "Solution [question=" + question + ", answer=" + answer + ", correct=" + correct + ", customer="
-				+ customer + "]";
+		return "UnitTestVO [unitTestCode=" + unitTestCode + ", answer=" + answer + ", correct=" + correct
+				+ ", customer=" + customer + ", question=" + question + ", test=" + test + "]";
 	}
+	
+
 	
 	
 }

@@ -49,7 +49,7 @@ public class BoardDaoTest {
 	@Test
 	public void test03selectByNo() {
 		BoardVO vo = new BoardVO();
-		vo.setBoardCode(1);
+		vo.setBoardCode(2);
 		vo = service.selectByNo(vo);
 		Assert.assertNotNull(vo);
 	}

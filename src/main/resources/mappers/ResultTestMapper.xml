@@ -22,9 +22,7 @@
 	</select>
 	
 	<insert id="insertResultTest">
-		INSERT INTO resulttest
-		(resulttest_code,customer, score, pass, test)
-		VALUES(#{resultTestCode},#{customer.customerCode}, #{score}, #{pass}, #{test.testCode})
+		
 	</insert>
 	
 	<delete id="deleteResultTest">
@@ -33,9 +31,7 @@
 	</delete>
 	
 	<update id="updateResultTest">
-		UPDATE resulttest
-		SET customer=#{customer.customerCode}, score=#{score}, pass=#{pass}, test=#{test.testCode}
-		WHERE resultTest_code=#{resultTestCode}
+		
 	</update>
 
 </mapper>

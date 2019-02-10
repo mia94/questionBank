@@ -11,8 +11,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import com.yi.domain.QuestionVO;
 import com.yi.domain.SubjectVO;
 import com.yi.domain.TestVO;
+import com.yi.service.QuestionService;
 import com.yi.service.SubjectService;
 import com.yi.service.TestService;
 
@@ -25,6 +27,8 @@ public class SubjectDaoTest {
 	private SubjectService subjectService;
 	@Autowired
 	private TestService testService;
+	@Autowired
+	private QuestionService questionService;
 	
 	@Test
 	public void test01insert() {
@@ -36,6 +40,9 @@ public class SubjectDaoTest {
 		tVo.setTestCode("T002");
 		tVo = testService.selectByNo(tVo);
 		vo.setTest(tVo);
+		//qusetion insert아직없어서 불가능ㅠㅠ
+		QuestionVO qvo = new QuestionVO();
+		qvo.setQuestionCode("QA20180301");
 		
 		subjectService.insertSubject(vo);
 	}

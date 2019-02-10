@@ -44,7 +44,7 @@ public class TestDaoTest {
 	@Test
 	public void test03selectByNo() {
 		TestVO vo = new TestVO();
-		vo.setTestCode("T002");
+		vo.setTestCode("T001");
 		TestVO newVO = testService.selectByNo(vo);
 		Assert.assertNotNull(newVO);
 		System.out.println(newVO);
@@ -58,7 +58,7 @@ public class TestDaoTest {
 		testService.updateTest(vo);
 	}
 	
-	//Test
+	@Test
 	public void test05delete() {
 		TestVO vo = new TestVO();
 		vo.setTestCode("T001");
