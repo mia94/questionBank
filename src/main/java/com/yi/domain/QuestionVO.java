@@ -11,7 +11,6 @@ public class QuestionVO {
 	private String state;
 	private int correctRate;
 	private String picture;
-	private SubjectVO subject;
 	
 	public String getQuestionCode() {
 		return questionCode;
@@ -73,19 +72,14 @@ public class QuestionVO {
 	public void setPicture(String picture) {
 		this.picture = picture;
 	}
-	public SubjectVO getSubject() {
-		return subject;
-	}
-	public void setSubject(SubjectVO subject) {
-		this.subject = subject;
-	}
 	@Override
 	public String toString() {
 		return "QuestionVO [questionCode=" + questionCode + ", questionTitle=" + questionTitle + ", choice1=" + choice1
 				+ ", choice2=" + choice2 + ", choice3=" + choice3 + ", choice4=" + choice4 + ", correct=" + correct
-				+ ", state=" + state + ", correctRate=" + correctRate + ", picture=" + picture + ", subject=" + subject
-				+ "]";
+				+ ", state=" + state + ", correctRate=" + correctRate + ", picture=" + picture + "]";
 	}
+
+	
 	
 	
 	
