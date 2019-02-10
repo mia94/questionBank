@@ -1,7 +1,7 @@
 package com.yi.domain;
 
 public class ResultTestVO {
-	private String resultTestCode;
+	private int resultTestCode;
 	private CustomerVO customer;
 	private int answer;
 	private int correct;
@@ -9,10 +9,11 @@ public class ResultTestVO {
 	private int score;
 	private boolean pass;
 	private TestVO test;
-	public String getResultTestCode() {
+	
+	public int getResultTestCode() {
 		return resultTestCode;
 	}
-	public void setResultTestCode(String resultTestCode) {
+	public void setResultTestCode(int resultTestCode) {
 		this.resultTestCode = resultTestCode;
 	}
 	public CustomerVO getCustomer() {
@@ -57,7 +58,9 @@ public class ResultTestVO {
 	public void setTest(TestVO test) {
 		this.test = test;
 	}
-	
+
+
+
 	@Override
 	public String toString() {
 		return "ResultTestVO [resultTestCode=" + resultTestCode + ", customer=" + customer + ", answer=" + answer

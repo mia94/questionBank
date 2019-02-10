@@ -34,15 +34,18 @@ public class ResultTestDaoTest {
 	@Test
 	public void test01insert() {
 		ResultTestVO vo = new ResultTestVO();
-		vo.setResultTestCode("R002");
+		vo.setResultTestCode(0);
 		
 		CustomerVO cVo = new CustomerVO();
 		cVo.setCustomerCode("C001");
 		cVo = cService.selectByNo(cVo);
 		
 		vo.setCustomer(cVo);
+		vo.setAnswer(1);
+		vo.setCorrect(1);
+		vo.setSpendTime(120);
 		vo.setPass(true);
-		vo.setScore(99);
+		vo.setScore(100);
 		
 		TestVO tVo = new TestVO();
 		tVo.setTestCode("T001");
@@ -61,7 +64,7 @@ public class ResultTestDaoTest {
 	@Test
 	public void test03selectByNo() {
 		ResultTestVO vo = new ResultTestVO();
-		vo.setResultTestCode("R001");
+		vo.setResultTestCode(1);
 		vo = service.selectByNo(vo);
 		System.out.println(vo);
 		Assert.assertNotNull(vo);
@@ -74,24 +77,24 @@ public class ResultTestDaoTest {
 		cVo = cService.selectByNo(cVo);
 		System.err.println(cVo); //CustomerVO [customerCode=C001, customerName=홍길동, id=hong3, password=11112222, email=hong@test.com, employee=false] 출력
 		List<ResultTestVO> list = service.selectByCustomerCode(cVo);
-		System.err.println(list);//ResultTestVO [resultTestCode=R001, customer=null, score=99, pass=true, test=null]
+		System.err.println("확인용"+list);//ResultTestVO [resultTestCode=R001, customer=null, score=99, pass=true, test=null]
 		Assert.assertNotNull(list);
 	}
 	
 	@Test
 	public void test05update() { /////////////////////////////////////?머야 왜안돼
 		ResultTestVO vo = new ResultTestVO();
-		vo.setResultTestCode("R001");
+		vo.setResultTestCode(1);
 		vo = service.selectByNo(vo);
-		System.err.println(vo);
-		vo.setScore(100);
+		System.err.println("업데이트 vo"+vo);//test와 customer null
+		vo.setScore(90);
 		service.updateResultTest(vo);
 	}
 	
-	@Test
+	//@Test
 	public void test06delete() {
 		ResultTestVO vo = new ResultTestVO();
-		vo.setResultTestCode("R002");
+		vo.setResultTestCode(2);
 		service.deleteResultTest(vo);
 	}
 }

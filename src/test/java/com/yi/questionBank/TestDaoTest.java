@@ -58,7 +58,7 @@ public class TestDaoTest {
 		testService.updateTest(vo);
 	}
 	
-	@Test
+	//@Test
 	public void test05delete() {
 		TestVO vo = new TestVO();
 		vo.setTestCode("T001");
