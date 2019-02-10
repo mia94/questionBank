@@ -3,30 +3,36 @@ package com.yi.domain;
 import java.util.Date;
 
 public class ReplyVO {
-	private String replyCode;
-	private BoardVO vo;
+	private int replyCode;
+	private BoardVO board;
 	private String replyText;
+	private CustomerVO writer;
 	private Date regdate;
 	private Date moddate;
-	private CustomerVO writer;
 	
-	public String getReplyCode() {
+	public int getReplyCode() {
 		return replyCode;
 	}
-	public void setReplyCode(String replyCode) {
+	public void setReplyCode(int replyCode) {
 		this.replyCode = replyCode;
 	}
-	public BoardVO getVo() {
-		return vo;
+	public BoardVO getBoardCode() {
+		return board;
 	}
-	public void setVo(BoardVO vo) {
-		this.vo = vo;
+	public void setBoardCode(BoardVO boardCode) {
+		this.board = boardCode;
 	}
 	public String getReplyText() {
 		return replyText;
 	}
 	public void setReplyText(String replyText) {
 		this.replyText = replyText;
+	}
+	public CustomerVO getReplyer() {
+		return writer;
+	}
+	public void setReplyer(CustomerVO replyer) {
+		this.writer = replyer;
 	}
 	public Date getRegdate() {
 		return regdate;
@@ -40,18 +46,15 @@ public class ReplyVO {
 	public void setModdate(Date moddate) {
 		this.moddate = moddate;
 	}
-	public CustomerVO getWriter() {
-		return writer;
-	}
-	public void setWriter(CustomerVO writer) {
-		this.writer = writer;
-	}
 	
 	@Override
 	public String toString() {
-		return "ReplyVO [replyCode=" + replyCode + ", vo=" + vo + ", replyText=" + replyText + ", regdate=" + regdate
-				+ ", moddate=" + moddate + ", writer=" + writer + "]";
+		return "ReplyVO [replyCode=" + replyCode + ", boardCode=" + board + ", replyText=" + replyText
+				+ ", replyer=" + writer + ", regdate=" + regdate + ", moddate=" + moddate + "]";
 	}
+	
+
+
 	
 	
 }
