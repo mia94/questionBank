@@ -3,11 +3,12 @@ package com.yi.domain;
 public class ResultTestVO {
 	private String resultTestCode;
 	private CustomerVO customer;
+	private int answer;
+	private int correct;
+	private int spendTime;
 	private int score;
 	private boolean pass;
 	private TestVO test;
-
-	
 	public String getResultTestCode() {
 		return resultTestCode;
 	}
@@ -19,6 +20,24 @@ public class ResultTestVO {
 	}
 	public void setCustomer(CustomerVO customer) {
 		this.customer = customer;
+	}
+	public int getAnswer() {
+		return answer;
+	}
+	public void setAnswer(int answer) {
+		this.answer = answer;
+	}
+	public int getCorrect() {
+		return correct;
+	}
+	public void setCorrect(int correct) {
+		this.correct = correct;
+	}
+	public int getSpendTime() {
+		return spendTime;
+	}
+	public void setSpendTime(int spendTime) {
+		this.spendTime = spendTime;
 	}
 	public int getScore() {
 		return score;
@@ -41,11 +60,12 @@ public class ResultTestVO {
 	
 	@Override
 	public String toString() {
-		return "ResultTestVO [resultTestCode=" + resultTestCode + ", customer=" + customer + ", score=" + score
-				+ ", pass=" + pass + ", test=" + test + "]";
+		return "ResultTestVO [resultTestCode=" + resultTestCode + ", customer=" + customer + ", answer=" + answer
+				+ ", correct=" + correct + ", spendTime=" + spendTime + ", score=" + score + ", pass=" + pass
+				+ ", test=" + test + "]";
 	}
+
 	
-	
-	
+
 	
 }

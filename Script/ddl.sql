@@ -101,7 +101,7 @@ ALTER TABLE `questionBank`.`unitTest`
 -- 시험 결과
 CREATE TABLE `questionBank`.`resultTest` (
 	`resultTest_code` INT     NOT NULL COMMENT '결과시험코드', -- 결과시험코드
-	`customer_code`   CHAR(4) NOT NULL COMMENT '회원코드', -- 회원코드
+	`customer`        CHAR(4) NOT NULL COMMENT '회원코드', -- 회원코드
 	`answer`          INT     NULL     COMMENT '입력한 답(100)', -- 입력한 답(100)
 	`correct`         INT     NULL     COMMENT '답(100)', -- 답(100)
 	`spendTime`       INT     NULL     COMMENT '걸린 시간', -- 걸린 시간
@@ -210,7 +210,7 @@ ALTER TABLE `questionBank`.`unitTest`
 ALTER TABLE `questionBank`.`resultTest`
 	ADD CONSTRAINT `FK_customer_TO_resultTest` -- 회원 -> 시험 결과
 		FOREIGN KEY (
-			`customer_code` -- 회원코드
+			`customer` -- 회원코드
 		)
 		REFERENCES `questionBank`.`customer` ( -- 회원
 			`customer_code` -- 회원코드
