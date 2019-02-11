@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -57,4 +58,60 @@ public class CustomerController {
 	}
 
 	
+	@RequestMapping(value="{customerCode}", method=RequestMethod.PUT)
+	public ResponseEntity<String> update(@PathVariable("customerCode") String customerCode,@RequestBody CustomerVO vo){
+		ResponseEntity<String> entity = null;
+		try {
+			vo.setCustomerCode(customerCode);
+			service.updateCustomer(vo);
+			entity = new ResponseEntity<String>("success", HttpStatus.OK);
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+			entity = new ResponseEntity<String>(e.getMessage(), HttpStatus.BAD_REQUEST);
+		}
+		return entity;
+	}
+	
+	@RequestMapping(value="{customerCode}", method=RequestMethod.DELETE)
+	public ResponseEntity<String> remove(@PathVariable("customerCode") String customerCode){
+		ResponseEntity<String> entity = null;
+		
+		try {
+			CustomerVO vo = new CustomerVO();
+			vo.setCustomerCode(customerCode);
+			service.deleteCustomer(vo);
+			entity = new ResponseEntity<String>("success", HttpStatus.OK);
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+			entity = new ResponseEntity<String>(e.getMessage(),HttpStatus.BAD_REQUEST);
+		}
+		return entity;
+	}
+	
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
