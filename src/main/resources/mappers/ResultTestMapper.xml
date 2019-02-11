@@ -15,7 +15,19 @@
 		where resulttest_code=#{resultTestCode}
 	</select>
 	
-	<select id="selectByCustomerCode" resultType="ResultTestVO">
+	<resultMap type="ResultTestVO" id="resultTestVO">
+	<id column="resultTest_code" property="resultTestCode"/>
+		<result column="customer" property="customer.customerCode"/>
+		<result column="resultTest_code" property="resultTestCode"/>
+		<result column="answer" property="answer"/>
+		<result column="correct" property="correct"/>
+		<result column="spendTime" property="spendTime"/>
+		<result column="score" property="score"/>
+		<result column="pass" property="pass"/>
+		<result column="test" property="test.testCode"/>
+	</resultMap>
+	
+	<select id="selectByCustomerCode" resultType="ResultTestVO" resultMap="resultTestVO">
 		SELECT *
 		FROM resulttest
 		where customer=#{customer.customerCode}
