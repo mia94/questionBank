@@ -31,7 +31,7 @@ public class ReplyDaoTest {
 	public void test01create() {
 		ReplyVO vo = new ReplyVO();
 		BoardVO board = new BoardVO();
-		board.setBoardCode(2);
+		board.setBoardCode(1);
 		board = boardService.selectByNo(board);
 		System.err.println(board);
 		vo.setBoardCode(board);

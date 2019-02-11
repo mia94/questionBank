@@ -26,7 +26,7 @@ public class TestDaoTest {
 	@Test
 	public void test01insertTest() {
 		TestVO vo = new TestVO();
-		vo.setTestCode("T001");
+		vo.setTestCode("T002");
 		vo.setTestTime(150);
 		vo.setRound(2);
 		vo.setYear(2018);

@@ -11,7 +11,7 @@
 	 
 	 <insert id="create">
 	 	insert into reply (board, writer, replytext)
-	 	values(#{board.boardCode}, #{writer}, #{replytext})
+	 	values(#{board.boardCode}, #{writer.customerCode}, #{replytext})
 	 </insert>
 	 
 	 <update id="update">
