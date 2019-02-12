@@ -5,7 +5,7 @@ public class SubjectVO {
 	private String subjectName;
 	private TestVO test; //복합키
 	private QuestionVO question;//복합키
-	
+	 
 	public String getSubjectCode() {
 		return subjectCode;
 	}
