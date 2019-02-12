@@ -9,14 +9,14 @@
 		FROM resulttest
 	</select>
 	
-	<select id="selectByNo" resultType="ResultTestVO">
+	<select id="selectByNo" resultMap="mapResultTestVO">
 		SELECT *
 		FROM resulttest
 		where resulttest_code=#{resultTestCode}
 	</select>
 	
-	<resultMap type="ResultTestVO" id="resultTestVO">
-	<id column="resultTest_code" property="resultTestCode"/>
+	<resultMap type="ResultTestVO" id="mapResultTestVO">
+		<id column="resultTest_code" property="resultTestCode"/>
 		<result column="customer" property="customer.customerCode"/>
 		<result column="resultTest_code" property="resultTestCode"/>
 		<result column="answer" property="answer"/>
@@ -27,10 +27,16 @@
 		<result column="test" property="test.testCode"/>
 	</resultMap>
 	
-	<select id="selectByCustomerCode" resultType="ResultTestVO" resultMap="resultTestVO">
-		SELECT *
+	<!-- <select id="selectByCustomerCode" parameterType="CustomerVO" resultMap="mapResultTestVO">
+		SELECT resultTest_code ,customer, answer, correct, spendTime, score, pass, test
 		FROM resulttest
-		where customer=#{customer.customerCode}
+		where customer=#{customerCode}
+	</select> -->
+	
+	<select id="selectByCustomerCode" resultMap="mapResultTestVO">
+		SELECT resultTest_code ,customer, answer, correct, spendTime, score, pass, test
+		FROM resulttest
+		where customer=#{customerCode}
 	</select>
 	
 	<insert id="insertResultTest">
