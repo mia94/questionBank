@@ -29,7 +29,7 @@ public class TestDaoTest {
 		vo.setTestCode("T002");
 		vo.setTestTime(150);
 		vo.setRound(2);
-		vo.setYear(2018);
+		vo.setYear(2018); 
 		System.out.println(vo);
 		testService.insertTest(vo);
 	}

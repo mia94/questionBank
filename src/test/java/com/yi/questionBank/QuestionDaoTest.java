@@ -30,7 +30,7 @@ public class QuestionDaoTest {
 	}
 	
 	@Test
-	public void test02selectByNo() {
+	public void test02selectByNo() { 
 		QuestionVO vo = new QuestionVO();
 		vo.setQuestionCode("QA20183001");
 		vo = service.selectByNO(vo);

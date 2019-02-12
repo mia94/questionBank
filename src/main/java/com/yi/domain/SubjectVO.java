@@ -1,7 +1,7 @@
 package com.yi.domain;
 
 public class SubjectVO {
-	private String subjectCode;
+	private String subjectCode; 
 	private String subjectName;
 	private TestVO test; //복합키
 	private QuestionVO question;//복합키

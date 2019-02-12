@@ -36,7 +36,7 @@ public class SubjectDaoTest {
 		vo.setSubjectCode("C");
 		vo.setSubjectName("Ελ½Ε");
 		
-		TestVO tVo = new TestVO();
+		TestVO tVo = new TestVO(); 
 		tVo.setTestCode("T002");
 		tVo = testService.selectByNo(tVo);
 		vo.setTest(tVo);
