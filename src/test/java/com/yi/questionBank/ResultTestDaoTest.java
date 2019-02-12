@@ -31,7 +31,7 @@ public class ResultTestDaoTest {
 	@Autowired
 	private TestService tService;
 	
-	@Test
+	//@Test
 	public void test01insert() {
 		ResultTestVO vo = new ResultTestVO();
 		vo.setResultTestCode(0);
@@ -55,13 +55,13 @@ public class ResultTestDaoTest {
 		service.insertResultTest(vo);
 	}
 	
-	@Test
+	//@Test
 	public void test02selectByAll() {
 		List<ResultTestVO> list = service.selectByAll();
 		Assert.assertNotNull(list);
 	}
 	
-	@Test
+	//@Test
 	public void test03selectByNo() {
 		ResultTestVO vo = new ResultTestVO();
 		vo.setResultTestCode(1);
