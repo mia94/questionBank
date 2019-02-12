@@ -6,8 +6,8 @@ import com.yi.domain.QuestionVO;
 
 public interface QuestionDao {
 	public List<QuestionVO> selectByAll();
-	public QuestionVO selectByNO();
-	public void insert();
-	public void delete();
-	public void update();
+	public QuestionVO selectByNO(QuestionVO questionVo);
+	public void insert(QuestionVO questionVo);
+	public void delete(QuestionVO questionVo);
+	public void update(QuestionVO questionVo);
 }
