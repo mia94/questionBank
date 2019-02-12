@@ -8,7 +8,7 @@ public class QuestionVO {
 	private String choice3;
 	private String choice4;
 	private int correct;
-	private String state;
+	private String state; 
 	private int correctRate;
 	private String picture;
 	

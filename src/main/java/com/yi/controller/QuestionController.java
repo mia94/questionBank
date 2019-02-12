@@ -13,26 +13,26 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.yi.domain.TestVO;
-import com.yi.service.TestService;
-
+import com.yi.domain.CustomerVO;
+import com.yi.domain.QuestionVO;
+import com.yi.service.QuestionService;
 
 @Controller
-@RequestMapping("/test/*")
-public class TestController {
+@RequestMapping("/question/*")
+public class QuestionController {
 	
-	private static final Logger logger = LoggerFactory.getLogger(TestController.class);
+private static final Logger logger = LoggerFactory.getLogger(QuestionController.class);
 	
 	@Autowired
-	private TestService service;
+	private QuestionService service;
 	
 	@RequestMapping(value="", method=RequestMethod.POST)
-	public ResponseEntity<String> register(@RequestBody TestVO vo){
+	public ResponseEntity<String> register(@RequestBody QuestionVO vo){
 		ResponseEntity<String> entity = null;
-		logger.info("testVO create------------"+vo);
+		logger.info("QuestionVO create------------"+vo);
 		
 		try {
-			service.insertTest(vo);
+			service.insert(vo);
 			entity = new ResponseEntity<String>("success", HttpStatus.OK);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -43,27 +43,27 @@ public class TestController {
 	}
 	
 	@RequestMapping(value="", method=RequestMethod.GET)
-	public ResponseEntity<List<TestVO>>  list(){
-		ResponseEntity<List<TestVO>> entity = null;
+	public ResponseEntity<List<QuestionVO>>  list(){
+		ResponseEntity<List<QuestionVO>> entity = null;
 		
 		try {
-			List<TestVO> list = service.selectByAll();
+			List<QuestionVO> list = service.selectByAll();
 			entity = new ResponseEntity<>(list, HttpStatus.OK);
 		} catch (Exception e) {
-			// TODO: handle exception
+			// TODO: handle exception 
 			e.printStackTrace();
-			entity = new ResponseEntity<>(HttpStatus.BAD_REQUEST);//List<TestVO>로 보내야 하나, 보낼수없을때는HttpStatus만 보냄
+			entity = new ResponseEntity<>(HttpStatus.BAD_REQUEST);//List<QuestionVO>로 보내야 하나, 보낼수없을때는HttpStatus만 보냄
 		}
 		
 		return entity;
 	}
 	
-	@RequestMapping(value="{testCode}", method=RequestMethod.PUT)
-	public ResponseEntity<String> update(@PathVariable("testCode") String testCode,@RequestBody TestVO vo){
+	@RequestMapping(value="{questionCode}", method=RequestMethod.PUT)
+	public ResponseEntity<String> update(@PathVariable("questionCode") String questionCode,@RequestBody QuestionVO vo){
 		ResponseEntity<String> entity = null;
 		try {
-			vo.setTestCode(testCode);
-			service.updateTest(vo);
+			vo.setQuestionCode(questionCode);
+			service.update(vo);
 			entity = new ResponseEntity<String>("success", HttpStatus.OK);
 		} catch (Exception e) {
 			// TODO: handle exception
@@ -73,14 +73,14 @@ public class TestController {
 		return entity;
 	}
 	
-	@RequestMapping(value="{testCode}", method=RequestMethod.DELETE)
-	public ResponseEntity<String> remove(@PathVariable("testCode") String testCode){
+	@RequestMapping(value="{questionCode}", method=RequestMethod.DELETE)
+	public ResponseEntity<String> remove(@PathVariable("questionCode") String questionCode){
 		ResponseEntity<String> entity = null;
 		
 		try {
-			TestVO vo = new TestVO();
-			vo.setTestCode(testCode);
-			service.deleteTest(vo);
+			QuestionVO vo = new QuestionVO();
+			vo.setQuestionCode(questionCode);
+			service.delete(vo);
 			entity = new ResponseEntity<String>("success", HttpStatus.OK);
 		} catch (Exception e) {
 			// TODO: handle exception
@@ -91,8 +91,6 @@ public class TestController {
 	}
 
 }
-
-
 
 
 

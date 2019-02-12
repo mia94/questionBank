@@ -1,6 +1,6 @@
 package com.yi.domain;
 
-public class UnitTestVO {
+public class UnitTestVO { 
 	private int unitTestCode;
 	private int answer;
 	private boolean correct;

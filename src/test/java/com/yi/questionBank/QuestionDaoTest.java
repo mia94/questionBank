@@ -36,7 +36,7 @@ public class QuestionDaoTest {
 		vo = service.selectByNO(vo);
 		System.out.println(vo);
 		Assert.assertNotNull(vo);
-	}
+	} 
 	
 	//@Test
 	public void test03insert() {
