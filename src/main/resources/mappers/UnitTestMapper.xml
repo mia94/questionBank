@@ -18,12 +18,12 @@
 	<insert id="insert">
 		INSERT INTO questionbank.unittest
 		(answer, correct, customer, question, test)
-		VALUES(#{answer}, #{correct}, #{customer}, #{question}, #{test})
+		VALUES(#{answer}, #{correct}, #{customer.customerCode}, #{question.questionCode}, #{test.testCode})
 	</insert>
 	
 	<update id="update">
 		UPDATE unittest
-		SET answer=#{answer}, correct=#{correct}, customer=#{customer}, question=#{question}, test=#{test}
+		SET answer=#{answer}, correct=#{correct}, customer=#{customer.customerCode}, question=#{question.questionCode}, test=#{test.testCode}
 		WHERE unitTest_code=#{unitTestCode}
 	</update>
 	
