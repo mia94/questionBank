@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yi.mapper.unitTestMapper">
+	
+	<select id="selectByAll" resultType="UnitTestVO">
+		SELECT *
+		FROM unittest
+	</select>
+	
+	<select id="selectByNo" resultType="UnitTestVO">
+		SELECT *
+		FROM unittest
+		where unitTest_code=#{unitTestCode}
+	</select>
+	
+	<insert id="insert">
+		INSERT INTO questionbank.unittest
+		(answer, correct, customer, question, test)
+		VALUES(#{answer}, #{correct}, #{customer}, #{question}, #{test})
+	</insert>
+	
+	<update id="update">
+		UPDATE unittest
+		SET answer=#{answer}, correct=#{correct}, customer=#{customer}, question=#{question}, test=#{test}
+		WHERE unitTest_code=#{unitTestCode}
+	</update>
+	
+	<delete id="delete">
+		DELETE FROM unittest
+		WHERE unitTest_code=#{unitTestCode}
+	</delete>
+	
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
