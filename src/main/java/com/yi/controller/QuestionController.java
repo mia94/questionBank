@@ -55,7 +55,7 @@ private static final Logger logger = LoggerFactory.getLogger(QuestionController.
 			entity = new ResponseEntity<>(HttpStatus.BAD_REQUEST);//List<QuestionVO>로 보내야 하나, 보낼수없을때는HttpStatus만 보냄
 		}
 		
-		//return "/question/list";
+		//return entity;
 	}
 	
 	@RequestMapping(value="{questionCode}", method=RequestMethod.PUT)

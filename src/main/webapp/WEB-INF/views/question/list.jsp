@@ -16,30 +16,32 @@
 </head>
 <body>
 	<div class="container">
+		<p>Test</p>
 	</div>
 	
 	 <script>
 
   
 	  function getPageList(){
+		  alert("test3");
 		  $.ajax({
 				url:"${pageContext.request.contextPath}/question/list",
 				type:"get",
 				dataType:"json",
 				success:function(json){
 					console.log(json);
-					$("#container").empty();//안에만 비우기
-					
+					$(".container").remove();//안에만 비우기
 					var source = $("#template1").html();
 					var f = Handlebars.compile(source);
-					var result = f(json);
-					$("#container").append(result);
+					var result = f(json.list);
+					$(".container").append(result);
 				}
 			})
 	  }
 	  
 	  
 	  $(function(){
+		  alert("test2");
 		  getPageList();
 	  })
   </script>
