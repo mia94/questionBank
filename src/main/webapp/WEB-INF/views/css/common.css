@@ -1,0 +1,27 @@
+@charset "UTF-8";
+
+@media all and (min-width:768px){
+	div#wsm_total_wrap{
+		width:1024px;
+	}
+	header{
+		width:100%;
+	}
+	section{
+		width:100%;
+		min-height: 600px;
+	}
+}
+
+@media all and (max-width:767px){
+	div#wsm_total_wrap{
+		width:100%;
+	}
+	header{
+		width:100%;
+	}
+	section{
+		width:100%;
+		min-height: 200px;
+	}
+}

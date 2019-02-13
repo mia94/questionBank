@@ -15,13 +15,13 @@
 </style>
 </head>
 <body>
+	<jsp:include page="../include/header.jsp"></jsp:include>
 	<div class="container">
 		<p>Test</p>
 	</div>
+	<jsp:include page="../include/footer.jsp"></jsp:include>
 	
 	 <script>
-
-  
 	  function getPageList(){
 		  alert("test3");
 		  $.ajax({
