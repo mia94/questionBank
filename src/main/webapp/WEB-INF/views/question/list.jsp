@@ -5,6 +5,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.1/handlebars.js"></script>
 <title>Insert title here</title>
 <style>
 	.question_wrap{
@@ -44,6 +45,7 @@
   </script>
 	
 	<script id="template1" type="text/x-handlebars-template"> 
+	{{#each.}}
 		<div class="question_wrap">
 			<p>{{questionTitle}}</p>
 			<p>{{choice1}}</p>
@@ -51,6 +53,7 @@
 			<p>{{choice3}}</p>
 			<p>{{choice4}}</p>
 		</div>
+	{{/each}}
   	</script>
 </body>
 </html>
