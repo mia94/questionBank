@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -11,6 +12,7 @@
 <title>Insert title here</title>
 </head>
 <body>
+	<jsp:include page="../include/header.jsp"></jsp:include>
 		<div class="container">
 		  <h2>Customer List</h2>
 		  <p>고객 추가/수정/삭제 기능</p>            
@@ -26,16 +28,19 @@
 		      </tr>
 		    </thead>
 		    <tbody>
-		     	<tr>
-		     		<td></td>
-		     		<td></td>
-		     		<td></td>
-		     		<td></td>
-		     		<td></td>
-		     		<td></td>
-		     	</tr>
+		     	<c:forEach var="item" items="${list }">
+					<tr>
+						<td>${item.customerCode }</td>
+						<td>${item.customerName }</td>
+						<td>${item.id }</td>
+						<td>${item.password }</td>
+						<td>${item.email }</td>
+						<td>${item.employee }</td>
+					</tr>
+				</c:forEach>
 		    </tbody>
 		  </table>
 		</div>
+	<jsp:include page="../include/footer.jsp"></jsp:include>
 </body>
 </html>

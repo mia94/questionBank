@@ -17,8 +17,8 @@
 	
 	<insert id="insert">
 		INSERT INTO question
-		(question_code, question_title, choice1, choice2, choice3, choice4, correct, state, correct_rate)
-		VALUES(#{questionCode}, #{questionTitle}, #{choice1}, #{choice2}, #{choice3}, #{choice4}, #{correct}, #{state}, #{correctRate})
+		(question_code, question_title, choice1, choice2, choice3, choice4, correct, state, correct_rate, picture)
+		VALUES(#{questionCode}, #{questionTitle}, #{choice1}, #{choice2}, #{choice3}, #{choice4}, #{correct}, #{state}, #{correctRate}, #{picture})
 	</insert>
 	
 	<delete id="delete">

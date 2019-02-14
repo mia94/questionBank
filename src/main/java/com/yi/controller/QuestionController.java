@@ -2,6 +2,8 @@ package com.yi.controller;
 
 import java.util.List;
 
+import javax.annotation.Resource;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,8 +14,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.multipart.MultipartFile;
 
-import com.yi.domain.CustomerVO;
 import com.yi.domain.QuestionVO;
 import com.yi.service.QuestionService;
 
@@ -25,21 +27,37 @@ private static final Logger logger = LoggerFactory.getLogger(QuestionController.
 	
 	@Autowired
 	private QuestionService service;
+	//기본형은 주입받으려면 servlet-context에 등록된 이름으로 주입
+	@Resource(name="uploadPath")
+	private String uploadPath;
 	
-	@RequestMapping(value="", method=RequestMethod.POST)
-	public ResponseEntity<String> register(@RequestBody QuestionVO vo){
+	@RequestMapping(value="register", method=RequestMethod.GET)
+	public void registerGet(){
+		logger.info("QuestionVO create------------GET");
+	}
+	
+	@RequestMapping(value="register", method=RequestMethod.POST)
+	public String registerPost(QuestionVO vo, MultipartFile pictureFile){
+		logger.info("QuestionVO create------------POST");
 		ResponseEntity<String> entity = null;
-		logger.info("QuestionVO create------------"+vo);
 		
+			String picture = pictureFile.getOriginalFilename();
+		if(picture.equals("")==false) {
+			System.out.println("=============pictureFile.getOriginalFilename()"+picture);
+			vo.setPicture(uploadPath+"/"+picture);
+			logger.info("QuestionVO create------------"+vo);
+		}
 		try {
 			service.insert(vo);
+			System.out.println(vo);
 			entity = new ResponseEntity<String>("success", HttpStatus.OK);
 		} catch (Exception e) {
 			e.printStackTrace();
 			entity = new ResponseEntity<String>(e.getMessage(),HttpStatus.BAD_REQUEST);//400에러
 		}
 		
-		return entity;
+		return "redirect:/question/register";
+		
 	}
 	
 	@RequestMapping(value="list", method=RequestMethod.GET)

@@ -41,8 +41,8 @@ public class CustomerController {
 		return entity; 
 	}
 	
-	@RequestMapping(value="", method=RequestMethod.GET)
-	public ResponseEntity<List<CustomerVO>>  list(){
+	@RequestMapping(value="list", method=RequestMethod.GET)
+	public void list(){
 		ResponseEntity<List<CustomerVO>> entity = null;
 		
 		try {
@@ -54,7 +54,7 @@ public class CustomerController {
 			entity = new ResponseEntity<>(HttpStatus.BAD_REQUEST);//List<MemberVO>로 보내야 하나, 보낼수없을때는HttpStatus만 보냄
 		}
 		
-		return entity;
+		//return entity;
 	}
 
 	
