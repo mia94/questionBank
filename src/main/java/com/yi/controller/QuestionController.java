@@ -1,5 +1,6 @@
 package com.yi.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -65,7 +66,13 @@ private static final Logger logger = LoggerFactory.getLogger(QuestionController.
 	@RequestMapping(value="list", method=RequestMethod.GET)
 	public void list(Model model){
 		List<QuestionVO> list = service.selectByAll();
+		List<String> numList = new ArrayList<>();
+		for(int i=0;i<list.size();i++) {
+			String num = list.get(i).getQuestionCode().substring(7);
+			numList.add(num);
+		}
 		model.addAttribute("list", list);
+		model.addAttribute("numList", numList);
 	}
 	
 	//json을 보내는 메소드

@@ -5,8 +5,9 @@
 <mapper namespace="com.yi.mapper.QuestionMapper">
 
 	<select id="selectByAll" resultType="QuestionVO">
-		SELECT *
-		FROM question
+		select *
+		from question
+		order by substring(question_code from 7 for 3)
 	</select>
 	
 	<select id="selectByNO" resultType="QuestionVO">

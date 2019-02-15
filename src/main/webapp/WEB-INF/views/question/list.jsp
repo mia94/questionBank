@@ -16,9 +16,13 @@
 </head>
 <body>
 	<jsp:include page="../include/header.jsp"></jsp:include>
-	<div class="container">
-		<p>Test</p>
-	</div>
+	
+	<form action="" method="post" id="wsm_testForm">
+		<div class="container">
+		</div>
+		<button type="submit">제출</button>
+	</form>
+	
 	<jsp:include page="../include/footer.jsp"></jsp:include>
 	
 	 <script>
@@ -38,7 +42,6 @@
 			})
 	  }
 	  
-	  
 	  $(function(){
 		  getPageList();
 	  })
@@ -47,11 +50,15 @@
 	<script id="template1" type="text/x-handlebars-template"> 
 	{{#each.}}
 		<div class="question_wrap">
+			<p>{{questionCode}}</p>
 			<p>{{questionTitle}}</p>
-			<p><input type="radio" name='{{questionCode}}' value='1'> {{choice1}}</p>
-			<p><input type="radio" name='{{questionCode}}' value='2'> {{choice2}}</p>
-			<p><input type="radio" name='{{questionCode}}' value='3'> {{choice3}}</p>
-			<p><input type="radio" name='{{questionCode}}' value='4'> {{choice4}}</p>
+			<p><input type="radio" name='answer' value='1'> {{choice1}}</p>
+			<p><input type="radio" name='answer' value='2'> {{choice2}}</p>
+			<p><input type="radio" name='answer' value='3'> {{choice3}}</p>
+			<p><input type="radio" name='answer' value='4'> {{choice4}}</p>
+			<p><input type="hidden" name='correct'> {{correct}}</p>
+			<p><input type="hidden" name='customer'></p>
+			<p><input type="hidden" name='test'>{{test}}</p>
 		</div>
 	{{/each}}
   	</script>

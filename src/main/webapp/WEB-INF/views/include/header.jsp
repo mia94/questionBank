@@ -23,25 +23,25 @@
 		<nav class="navbar navbar-inverse">
 		  <div class="container-fluid">
 		    <div class="navbar-header">
-		      <a class="navbar-brand" href="#">QB</a>
+		      <a class="navbar-brand" href="#">QuestionBank</a>
 		    </div>
 		    <ul class="nav navbar-nav">
 		      <li class="active"><a href="#">Home</a></li>
 		      <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Question<span class="caret"></span></a>
 		        <ul class="dropdown-menu">
-		          <li><a href="#">List</a></li>
+		          <li><a href="question/list">Test</a></li>
 		          <li><a href="#">Menu2</a></li>
 		          <li><a href="#">Menu3</a></li>
 		        </ul>
 		      </li>
 		      <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Customer<span class="caret"></span></a>
 		        <ul class="dropdown-menu">
-		          <li><a href="#">List</a></li>
+		          <li><a href="customer/list">List</a></li>
 		          <li><a href="#">Menu2</a></li>
 		          <li><a href="#">Menu3</a></li>
 		        </ul>
 		      </li>
-		      <li><a href="#">Board</a></li>
+		      <li><a href="board/list">Board</a></li>
 		    </ul>
 		    <ul class="nav navbar-nav navbar-right">
 		      <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
