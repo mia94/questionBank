@@ -25,23 +25,12 @@ public class SubjectDaoTest {
 	
 	@Autowired
 	private SubjectService subjectService;
-	@Autowired
-	private TestService testService;
-	@Autowired
-	private QuestionService questionService;
 	
 	@Test
 	public void test01insert() {
 		SubjectVO vo = new SubjectVO();
-		vo.setSubjectCode("C");
+		vo.setSubjectCode("Z");
 		vo.setSubjectName("통신");
-		
-		TestVO tVo = new TestVO(); 
-		tVo.setTestCode("T002");
-		tVo = testService.selectByNo(tVo);
-		//qusetion insert아직없어서 불가능ㅠㅠ
-		QuestionVO qvo = new QuestionVO();
-		qvo.setQuestionCode("QA20180301");
 		
 		subjectService.insertSubject(vo);
 	}
@@ -63,20 +52,16 @@ public class SubjectDaoTest {
 	@Test
 	public void test04update() {
 		SubjectVO vo = new SubjectVO();
-		vo.setSubjectCode("C");
+		vo.setSubjectCode("Z");
 		vo.setSubjectName("수정완료");
-		
-		TestVO tVo = new TestVO();
-		tVo.setTestCode("T001");
-		tVo = testService.selectByNo(tVo);
-		
+
 		subjectService.updateSubject(vo);
 	}
 	
 	@Test
 	public void test05delete() {
 		SubjectVO vo = new SubjectVO();
-		vo.setSubjectCode("C");
+		vo.setSubjectCode("Z");
 		subjectService.deleteSubject(vo);
 	}
 }
