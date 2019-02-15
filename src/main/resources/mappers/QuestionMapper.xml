@@ -18,8 +18,8 @@
 	
 	<insert id="insert">
 		INSERT INTO question
-		(question_code, question_title, choice1, choice2, choice3, choice4, correct, state, correct_rate, picture)
-		VALUES(#{questionCode}, #{questionTitle}, #{choice1}, #{choice2}, #{choice3}, #{choice4}, #{correct}, #{state}, #{correctRate}, #{picture})
+		(question_code, question_title, choice1, choice2, choice3, choice4, correct, state, correct_rate, picture, subject, `year`, round)
+		VALUES(#{questionCode}, #{questionTitle}, #{choice1}, #{choice2}, #{choice3}, #{choice4}, #{correct}, #{state}, #{correctRate}, #{picture},#{subject},#{year},#{round})
 	</insert>
 	
 	<delete id="delete">
@@ -29,7 +29,7 @@
 	
 	<update id="update">
 		UPDATE question
-		SET question_title=#{questionTitle}, choice1=#{choice1}, choice2=#{choice2}, choice3=#{choice3}, choice4=#{choice4}, correct=#{correct}, state=#{state}, correct_rate=#{correctRate}, picture=#{picture}
+		SET question_title=#{questionTitle}, choice1=#{choice1}, choice2=#{choice2}, choice3=#{choice3}, choice4=#{choice4}, correct=#{correct}, state=#{state}, correct_rate=#{correctRate}, picture=#{picture},,#{subject},#{year},#{round}
 		WHERE question_code=#{questionCode}
 	</update>
 </mapper>
