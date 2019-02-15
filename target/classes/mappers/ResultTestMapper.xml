@@ -24,7 +24,7 @@
 		<result column="spendTime" property="spendTime"/>
 		<result column="score" property="score"/>
 		<result column="pass" property="pass"/>
-		<result column="test" property="test.testCode"/>
+		<result column="question" property="question.questionCode"/>
 	</resultMap>
 	
 	<!-- <select id="selectByCustomerCode" parameterType="CustomerVO" resultMap="mapResultTestVO">
@@ -34,15 +34,15 @@
 	</select> -->
 	
 	<select id="selectByCustomerCode" resultMap="mapResultTestVO">
-		SELECT resultTest_code ,customer, answer, correct, spendTime, score, pass, test
+		SELECT resultTest_code ,customer, answer, correct, spendTime, pass, question
 		FROM resulttest
 		where customer=#{customerCode}
 	</select>
 	
 	<insert id="insertResultTest">
 		INSERT INTO resulttest
-		(customer, answer, correct, spendTime, score, pass, test)
-		VALUES(#{customer.customerCode}, #{answer}, #{correct}, #{spendTime}, #{score}, #{pass}, #{test.testCode})
+		(customer, answer, correct, spendTime, pass, question)
+		VALUES(#{customer.customerCode}, #{answer}, #{correct}, #{spendTime}, #{pass}, #{question.questionCode})
 	</insert>
 	
 	<delete id="deleteResultTest">
@@ -52,7 +52,7 @@
 	
 	<update id="updateResultTest">
 		UPDATE resulttest
-		SET customer=#{customer.customerCode}, answer=#{answer}, correct=#{correct}, spendTime=#{spendTime}, score=#{score}, pass=#{pass}, test=#{test.testCode}
+		SET customer=#{customer.customerCode}, answer=#{answer}, correct=#{correct}, spendTime=#{spendTime}, pass=#{pass}, question=#{question.questionCode}
 		WHERE resultTest_code=#{resultTestCode}
 	</update>
 

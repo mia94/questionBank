@@ -29,7 +29,7 @@
 	
 	<update id="update">
 		UPDATE question
-		SET question_title=#{questionTitle}, choice1=#{choice1}, choice2=#{choice2}, choice3=#{choice3}, choice4=#{choice4}, correct=#{correct}, state=#{state}, correct_rate=#{correctRate}, picture=#{picture},,#{subject},#{year},#{round}
+		SET question_title=#{questionTitle}, choice1=#{choice1}, choice2=#{choice2}, choice3=#{choice3}, choice4=#{choice4}, correct=#{correct}, state=#{state}, correct_rate=#{correctRate}, picture=#{picture}, subject=#{subject}, year=#{year} ,round=#{round}
 		WHERE question_code=#{questionCode}
 	</update>
 </mapper>

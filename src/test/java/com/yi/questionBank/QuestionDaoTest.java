@@ -65,10 +65,13 @@ public class QuestionDaoTest {
 		vo.setCorrectRate(0);
 		vo.setState("Á¤»ó");
 		vo.setCorrect(4);
+		vo.setRound(3);
+		vo.setYear(2018);
+		vo.setSubject("D");
 		service.update(vo);
 	}
 	
-	@Test
+	//@Test
 	public void test05delete() {
 		QuestionVO vo = new QuestionVO();
 		vo.setQuestionCode("QA20183002");

@@ -45,13 +45,11 @@ public class ResultTestDaoTest {
 		vo.setCorrect(1);
 		vo.setSpendTime(120);
 		vo.setPass(true);
-		vo.setScore(100);
 		
 		TestVO tVo = new TestVO();
 		tVo.setTestCode("T001");
 		tVo = tService.selectByNo(tVo);
 		
-		vo.setTest(tVo);
 		service.insertResultTest(vo);
 	}
 	
@@ -87,7 +85,6 @@ public class ResultTestDaoTest {
 		vo.setResultTestCode(1);
 		vo = service.selectByNo(vo);
 		System.err.println("업데이트 vo"+vo);//test와 customer null
-		vo.setScore(90);
 		service.updateResultTest(vo);
 	}
 	

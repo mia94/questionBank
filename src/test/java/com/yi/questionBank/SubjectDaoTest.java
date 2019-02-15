@@ -39,7 +39,6 @@ public class SubjectDaoTest {
 		TestVO tVo = new TestVO(); 
 		tVo.setTestCode("T002");
 		tVo = testService.selectByNo(tVo);
-		vo.setTest(tVo);
 		//qusetion insert아직없어서 불가능ㅠㅠ
 		QuestionVO qvo = new QuestionVO();
 		qvo.setQuestionCode("QA20180301");
@@ -70,7 +69,6 @@ public class SubjectDaoTest {
 		TestVO tVo = new TestVO();
 		tVo.setTestCode("T001");
 		tVo = testService.selectByNo(tVo);
-		vo.setTest(tVo);
 		
 		subjectService.updateSubject(vo);
 	}
