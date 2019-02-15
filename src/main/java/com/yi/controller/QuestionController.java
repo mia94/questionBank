@@ -40,16 +40,24 @@ private static final Logger logger = LoggerFactory.getLogger(QuestionController.
 	}
 	
 	@RequestMapping(value="register", method=RequestMethod.POST)
-	public String registerPost(QuestionVO vo, MultipartFile pictureFile){
+	public String registerPost(QuestionVO vo, String number,MultipartFile pictureFile){
 		logger.info("QuestionVO create------------POST");
 		ResponseEntity<String> entity = null;
 		
-			String picture = pictureFile.getOriginalFilename();
+		//사진파일 경로 저장
+		String picture = pictureFile.getOriginalFilename();
 		if(picture.equals("")==false) {
 			System.out.println("=============pictureFile.getOriginalFilename()"+picture);
 			vo.setPicture(uploadPath+"/"+picture);
 			logger.info("QuestionVO create------------"+vo);
 		}
+		//연도/회차/번호를 이용하여 Code입력하기
+		//vo.setQuestionCode(Q+vo.getSubject()+vo.getYear()+vo.getRound()+number);
+		
+		String threeNum = String.format("%03d",Integer.parseInt(number));
+		System.out.println("Q"+vo.getSubject()+vo.getYear()+vo.getRound()+threeNum);
+		vo.setQuestionCode("Q"+vo.getSubject()+vo.getYear()+vo.getRound()+threeNum);
+		//insert수행
 		try {
 			service.insert(vo);
 			System.out.println(vo);

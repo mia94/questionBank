@@ -19,9 +19,13 @@
 	<div class="container">
 	  <h2>Question form</h2>
 	  <form  action="register" method="post" enctype="multipart/form-data">
-	  	<p class="wsm_questionreg">
+	  	<!-- <p class="wsm_questionreg">
 	  		<label>questionCode</label>
 	  		<input type="text" name="questionCode">
+	  	</p> -->
+	  	<p class="wsm_questionreg">
+	  		<label>questionNumber</label>
+	  		<input type="text" name="number">
 	  	</p>
 	  	<p class="wsm_questionreg">
 	  		<label>questionTitle</label>
@@ -54,6 +58,18 @@
 	  	<p class="wsm_questionreg">
 	  		<label>correctRate</label>
 	  		<input type="text" name="correctRate">
+	  	</p>
+	  	<p class="wsm_questionreg">
+	  		<label>Subject</label>
+	  		<input type="text" name="subject">
+	  	</p>
+	  	<p class="wsm_questionreg">
+	  		<label>Year</label>
+	  		<input type="text" name="year">
+	  	</p>
+	  	<p class="wsm_questionreg">
+	  		<label>Round</label>
+	  		<input type="text" name="round">
 	  	</p>
 	  	<p class="wsm_questionreg">
 	  		<label>picture</label>
