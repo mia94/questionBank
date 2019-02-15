@@ -34,9 +34,6 @@
 	<form action="result" method="post" id="wsm_testForm">
 		<div class="container">
 		</div>
-		<!-- <div class="answerSheet">
-		
-		</div> -->
 		<button type="submit">제출</button>
 	</form>
 	
@@ -69,10 +66,10 @@
 		<div class="question_wrap">
 			<p>{{questionCode}}</p>
 			<p>{{questionTitle}}</p>
-			<p><input type="radio" name='{{questionCode}}' value='1'> <!--①--> {{choice1}}</p>
-			<p><input type="radio" name='{{questionCode}}' value='1'> <!--②--> {{choice2}}</p>
-			<p><input type="radio" name='{{questionCode}}' value='1'> <!--③--> {{choice3}}</p>
-			<p><input type="radio" name='{{questionCode}}' value='1'> <!--④--> {{choice4}}</p>
+			<p><input type="radio" name='answer' value='1'> <!--①--> {{choice1}}</p>
+			<p><input type="radio" name='answer' value='1'> <!--②--> {{choice2}}</p>
+			<p><input type="radio" name='answer' value='1'> <!--③--> {{choice3}}</p>
+			<p><input type="radio" name='answer' value='1'> <!--④--> {{choice4}}</p>
 			<p><input type="hidden" name='correct' value='{{correct}}'></p>
 		</div>
 	{{/each}}
