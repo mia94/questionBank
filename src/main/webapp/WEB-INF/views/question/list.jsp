@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,17 +10,33 @@
 <title>Insert title here</title>
 <style>
 	div.question_wrap{
-		border:1px solid gray;
-		padding: 10px;
+		width:800px;
+		float:left;
+		border:1px solid #ccc;
+		padding: 30px 10px;
+	}
+	section{
+		position: relative;
+	}
+	div.answerSheet{
+		width: 200px;
+		height:400px;
+		background-color: #eee;
+		position: fixed;
+		top: 50px; 
+		right: 50px; 
 	}
 </style>
 </head>
 <body>
 	<jsp:include page="../include/header.jsp"></jsp:include>
 	
-	<form action="" method="post" id="wsm_testForm">
+	<form action="result" method="post" id="wsm_testForm">
 		<div class="container">
 		</div>
+		<!-- <div class="answerSheet">
+		
+		</div> -->
 		<button type="submit">제출</button>
 	</form>
 	
@@ -47,22 +64,23 @@
 	  })
   </script>
 	
-	<script id="template1" type="text/x-handlebars-template"> 
+	<script id="template1" type="text/x-handlebars-template">   
 	{{#each.}}
 		<div class="question_wrap">
 			<p>{{questionCode}}</p>
 			<p>{{questionTitle}}</p>
-			<p><input type="radio" name='answer' value='1'> {{choice1}}</p>
-			<p><input type="radio" name='answer' value='2'> {{choice2}}</p>
-			<p><input type="radio" name='answer' value='3'> {{choice3}}</p>
-			<p><input type="radio" name='answer' value='4'> {{choice4}}</p>
-			<p><input type="hidden" name='correct'> {{correct}}</p>
-			<p><input type="hidden" name='customer'></p>
-			<p><input type="hidden" name='test'>{{test}}</p>
+			<p><input type="radio" name='{{questionCode}}' value='1'> <!--①--> {{choice1}}</p>
+			<p><input type="radio" name='{{questionCode}}' value='1'> <!--②--> {{choice2}}</p>
+			<p><input type="radio" name='{{questionCode}}' value='1'> <!--③--> {{choice3}}</p>
+			<p><input type="radio" name='{{questionCode}}' value='1'> <!--④--> {{choice4}}</p>
+			<p><input type="hidden" name='correct' value='{{correct}}'></p>
 		</div>
 	{{/each}}
   	</script>
+
+  	<c:if test="${picture!=null}">
   	
+  	</c:if>
   	
   	
 </body>
