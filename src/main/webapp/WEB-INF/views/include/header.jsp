@@ -12,34 +12,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
-<!-- <style>
-	*{
-		margin: 0;
-		padding: 0;
-	}
-	div#wsm_total_wrap{
-		width:1200px;
-		margin: 0 auto;
-	}
-	header{
-		width:100%;
-		height: 140px;
-		background-color: #eee;
-	}
-	header #wsm_header{
-		width:100%;
-		height: 90px;
-	}
-	section{
-		width:100%;
-		min-height: 600px;
-	}
-	footer{
-		width:100%;
-		height:160px;
-		background-color: #bbb;
-	}
-</style> -->
 </head>
 <body>
 

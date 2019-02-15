@@ -8,7 +8,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.1/handlebars.js"></script>
 <title>Insert title here</title>
 <style>
-	.question_wrap{
+	div.question_wrap{
 		border:1px solid gray;
 		padding: 10px;
 	}
@@ -23,17 +23,16 @@
 	
 	 <script>
 	  function getPageList(){
-		  alert("test3");
 		  $.ajax({
-				url:"${pageContext.request.contextPath}/question/list",
+				url:"${pageContext.request.contextPath}/question/listJson",
 				type:"get",
 				dataType:"json",
 				success:function(json){
 					console.log(json);
-					$(".container").remove();//안에만 비우기
+					$(".container").empty();//안에만 비우기
 					var source = $("#template1").html();
-					var f = Handlebars.compile(source);
-					var result = f(json.list);
+					var f = Handlebars.compile(source);  
+					var result = f(json);
 					$(".container").append(result);
 				}
 			})
@@ -41,7 +40,6 @@
 	  
 	  
 	  $(function(){
-		  alert("test2");
 		  getPageList();
 	  })
   </script>
@@ -50,12 +48,15 @@
 	{{#each.}}
 		<div class="question_wrap">
 			<p>{{questionTitle}}</p>
-			<p>{{choice1}}</p>
-			<p>{{choice2}}</p>
-			<p>{{choice3}}</p>
-			<p>{{choice4}}</p>
+			<p><input type="radio" name='{{questionCode}}' value='1'> {{choice1}}</p>
+			<p><input type="radio" name='{{questionCode}}' value='2'> {{choice2}}</p>
+			<p><input type="radio" name='{{questionCode}}' value='3'> {{choice3}}</p>
+			<p><input type="radio" name='{{questionCode}}' value='4'> {{choice4}}</p>
 		</div>
 	{{/each}}
   	</script>
+  	
+  	
+  	
 </body>
 </html>

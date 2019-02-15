@@ -10,10 +10,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.yi.domain.QuestionVO;
@@ -59,9 +61,17 @@ private static final Logger logger = LoggerFactory.getLogger(QuestionController.
 		return "redirect:/question/register";
 		
 	}
-	
+	//jsp로 가는 메소드
 	@RequestMapping(value="list", method=RequestMethod.GET)
-	public void list(){
+	public void list(Model model){
+		List<QuestionVO> list = service.selectByAll();
+		model.addAttribute("list", list);
+	}
+	
+	//json을 보내는 메소드
+	@ResponseBody
+	@RequestMapping(value="listJson", method=RequestMethod.GET)
+	public ResponseEntity<List<QuestionVO>> listJson(){
 		ResponseEntity<List<QuestionVO>> entity = null;
 		
 		try {
@@ -73,7 +83,7 @@ private static final Logger logger = LoggerFactory.getLogger(QuestionController.
 			entity = new ResponseEntity<>(HttpStatus.BAD_REQUEST);//List<QuestionVO>로 보내야 하나, 보낼수없을때는HttpStatus만 보냄
 		}
 		
-		//return entity;
+		return entity;
 	}
 	
 	@RequestMapping(value="{questionCode}", method=RequestMethod.PUT)
