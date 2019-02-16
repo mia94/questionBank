@@ -18,7 +18,7 @@
 <div id="wsm_total_wrap">
 	<header>
 		<div id="wsm_header">
-			<h1>Wooooo's<br>QuestionBank</h1>
+			<h1><a href="${pageContext.request.contextPath}">Wooooo's<br>QuestionBank</a></h1>
 		</div>
 		<nav class="navbar">
 		  <div class="container-fluid">
@@ -41,7 +41,7 @@
 		          <li><a href="#">Menu3</a></li>
 		        </ul>
 		      </li>
-		      <li><a href="board/list" class="wsm_nav_a">Board</a></li>
+		      <li><a href="${pageContext.request.contextPath}/board/list" class="wsm_nav_a">Board</a></li>
 		    </ul>
 		    <ul class="nav navbar-nav navbar-right">
 		      <li><a href="${pageContext.request.contextPath}/customer/signup"><span class="glyphicon glyphicon-user" id="wsm_signUp"></span> <span id="wsm_signUp_text">Sign Up</span></span></a></li>

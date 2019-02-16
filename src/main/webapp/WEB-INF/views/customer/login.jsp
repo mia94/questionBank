@@ -18,6 +18,10 @@
 		text-align: right;
 		padding-right: 20px;
 	}
+	.login_container input{
+		border-radius: 5px;
+		border:1px #A3918F solid;
+	}
 	.login_container button{
 		border: none;
 		background: white;

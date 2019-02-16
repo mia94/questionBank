@@ -20,8 +20,12 @@
 		text-align:center;
 		height:180px;
 		padding-top:50px;
+		color:#5B4149;
+	}
+	header h1 a, header h1 a:hover{
 		font-family: 'Luckiest Guy', cursive;
 		color:#5B4149;
+		text-decoration: none;
 	}
 	header #wsm_header{
 		width:100%;
@@ -30,8 +34,12 @@
 	.navbar{
 		background-color: #f4efec;
 	}
-	.navbar .wsm_nav_a, .navbar .navbar-brand{
-		color:A3918F;
+	.navbar .navbar-brand{
+		color:#F28683;
+		font-family: 'Righteous', cursive;
+	}
+	.navbar .wsm_nav_a{
+		color:#A3918F;
 		font-family: 'Righteous', cursive;
 	}
 	.navbar .dropdown-menu{

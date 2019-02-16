@@ -8,5 +8,13 @@
 </head>
 <body>
 
+	<jsp:include page="../include/header.jsp"></jsp:include>
+	
+	<div class="board_container">
+	
+	</div>
+	
+	<jsp:include page="../include/footer.jsp"></jsp:include>
+
 </body>
 </html>

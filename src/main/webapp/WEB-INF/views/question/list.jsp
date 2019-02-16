@@ -9,6 +9,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.1/handlebars.js"></script>
 <title>Insert title here</title>
 <style>
+@import url('https://fonts.googleapis.com/css?family=Jua');
 	div.question_wrap{
 		width:800px;
 		float:left;
@@ -26,6 +27,13 @@
 		top: 50px; 
 		right: 50px; 
 	}
+	form #test_submit{
+		border: none;
+		background: white;
+		font-size: 20px;
+		font-family: 'Jua', sans-serif;
+		color:#A3918F;
+	}
 </style>
 </head>
 <body>
@@ -34,7 +42,7 @@
 	<form action="result" method="post" id="wsm_testForm">
 		<div class="container">
 		</div>
-		<button type="submit">제출</button>
+		<button type="submit" id="test_submit">제출하기</button>
 	</form>
 	
 	<jsp:include page="../include/footer.jsp"></jsp:include>
