@@ -1,5 +1,7 @@
 @charset "UTF-8";
 
+@import url('https://fonts.googleapis.com/css?family=Luckiest+Guy');
+
 @media all and (min-width:768px){
 	*{
 		margin: 0;
@@ -11,12 +13,31 @@
 	}
 	header{
 		width:100%;
-		height: 200px;
-		background-color: #eee;
+		height: 190px;
+	}
+	header h1{
+		width:100%;
+		text-align:center;
+		height:180px;
+		padding-top:50px;
+		font-family: 'Luckiest Guy', cursive;
+		color:#5B4149;
 	}
 	header #wsm_header{
 		width:100%;
 		height: 140px;
+	}
+	.navbar{
+		background-color: #f4efec;
+	}
+	.navbar .wsm_nav_a, .navbar .navbar-brand{
+		color:A3918F;
+	}
+	.nav>li>a:focus, .nav>li>a:hover{
+		font-weight: bold;
+	}
+	.nav #wsm_signUp, .nav #wsm_Login, .nav #wsm_signUp_text, .nav #wsm_Login_text{
+		color:#A3918F;
 	}
 	section{
 		width:100%;
@@ -24,8 +45,31 @@
 	}
 	footer{
 		width:100%;
-		height:160px;
-		background-color: #bbb;
+		height:180px;
+		border-top: 3px solid #ccc;
+		background-color: #f4efec;
+	}
+	footer div.footer_div{
+		width:1200px;
+		margin: 0 auto;
+	}
+	footer div.footer_div:first-child {
+		height: 110px;
+	}
+	footer div.footer_div:first-child article.footer_article{
+		width:300px;
+		float: left;
+		border:1px solid black;
+	}
+	footer div.footer_div:first-child article.footer_article:first-child img{
+		width:30px;
+	}
+	footer div.footer_div:last-child {
+		text-align: center;
+		border-top: 1px solid #A3918F; 
+	}
+	footer div.footer_div:last-child p{
+		padding-top: 30px;
 	}
 }
 
@@ -39,5 +83,10 @@
 	section{
 		width:100%;
 		min-height: 200px;
+	}
+	footer{
+		width:100%;
+		height:60px;
+		background-color: #bbb;
 	}
 }
