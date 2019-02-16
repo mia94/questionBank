@@ -2,7 +2,7 @@
 <%@ page session="false" %>
 <html>
 <head>
-	<title>Home</title>
+<title>Wooooo's QuestionBank</title> 
 </head>
 <body>
 	<jsp:include page="include/header.jsp"></jsp:include>

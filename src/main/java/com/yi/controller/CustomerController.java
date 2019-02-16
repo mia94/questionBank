@@ -27,6 +27,16 @@ public class CustomerController {
 	@Autowired
 	private CustomerService service;
 	
+	@RequestMapping(value="login", method=RequestMethod.GET)
+	public void loginGet(){
+		logger.info("loginGet ------------");
+	}
+	
+	@RequestMapping(value="signup", method=RequestMethod.GET)
+	public void signupGet(){
+		logger.info("signupGet ------------");
+	}
+	
 	@RequestMapping(value="", method=RequestMethod.POST)
 	public ResponseEntity<String> register(@RequestBody CustomerVO vo){
 		ResponseEntity<String> entity = null;
