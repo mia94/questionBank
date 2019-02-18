@@ -22,7 +22,7 @@
 			<c:if test="${login != null }">
 				<p class="welcome_text">${login.id},${login.customerName},${login.employee }</p>
 			</c:if> 
-			<h1 id="wsm_logo"><a href="${pageContext.request.contextPath}">Wooooo's<br>QuestionBank</a></h1>
+			<h1 id="wsm_logo"><a href="${pageContext.request.contextPath}">Wooooo's QuestionBank</a></h1>  
 		</div>
 		<nav class="navbar">
 		  <div class="container-fluid">

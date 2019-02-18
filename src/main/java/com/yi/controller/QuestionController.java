@@ -1,9 +1,7 @@
 package com.yi.controller;
 
-import java.awt.Dialog.ModalExclusionType;
 import java.io.FileInputStream;
 import java.io.InputStream;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -25,6 +23,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.yi.domain.Criteria;
 import com.yi.domain.PageMaker;
 import com.yi.domain.QuestionVO;
 import com.yi.domain.SearchCriteria;
@@ -81,9 +80,9 @@ private static final Logger logger = LoggerFactory.getLogger(QuestionController.
 	}
 	//jsp로 가는 메소드
 	@RequestMapping(value="list", method=RequestMethod.GET)
-	public void list(SearchCriteria cri,Model model){
-		
-		List<QuestionVO> list = service.selectByYearAndRound(2018, 3, cri.getPage()-1);///////연도와 회차 외부에서 받기!!!!
+	public void list(Criteria cri,Model model){
+		System.out.println("cri===========:"+cri);
+		List<QuestionVO> list = service.selectByYearAndRound(2018, 3, cri);///////연도와 회차 외부에서 받기!!!!
 		model.addAttribute("list", list);
 		
 		PageMaker pageMaker = new PageMaker();

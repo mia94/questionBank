@@ -39,7 +39,7 @@
 		from question
 		where year=#{year} and round=#{round}
 		order by substring(question_code from 7 for 3)
-		limit #{page}, 1
+		limit #{cri.pageStart}, #{cri.perPageNum}
 	</select>
 	
 	<select id="listCriteria" resultType="QuestionVO">

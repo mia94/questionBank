@@ -51,12 +51,12 @@ public class QuestionDaoImpl implements QuestionDao {
 	}
 
 	@Override
-	public List<QuestionVO> selectByYearAndRound(int year, int round, int page) {
+	public List<QuestionVO> selectByYearAndRound(int year, int round, Criteria cri) {
 		// TODO Auto-generated method stub
-		Map<String, Integer> map = new HashMap<>();
+		Map<String, Object> map = new HashMap<>();
 		map.put("year", year);
 		map.put("round", round);
-		map.put("page", page);
+		map.put("cri", cri);
 		return sqlSession.selectList(namespace+".selectByYearAndRound", map);
 	}
 

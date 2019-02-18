@@ -12,7 +12,7 @@ public interface QuestionService {
 	public void delete(QuestionVO questionVo);
 	public void update(QuestionVO questionVo);
 	//∆‰¿Ã¬°
-	public List<QuestionVO> selectByYearAndRound(int year, int round, int page);
+	public List<QuestionVO> selectByYearAndRound(int year, int round, Criteria cri);
 	public List<QuestionVO> listCriteria(int year, int round, Criteria cri);
 	public int totalCount(int year, int round);
 }

@@ -12,9 +12,9 @@
 @import url('https://fonts.googleapis.com/css?family=Jua');
 	div.question_wrap{
 		width:800px;
-		margin:50px auto;
+		margin:0px auto;
 		border:1px solid #ccc;
-		padding: 30px 20px;
+		padding: 5px 20px;  
 	}
 	section{
 		position: relative;
@@ -33,6 +33,8 @@
 		font-size: 16px;
 		font-family: 'Jua', sans-serif;
 		color:#A3918F;
+		float: right;
+		padding-right: 200px;
 	}
 	.pagination>.active>.wsm_active_a{
 		background-color: #A3918F;
@@ -60,10 +62,10 @@
 					<p><input type="radio" name='answer' value='1'> <!--③--> ${item.choice3}</p>
 					<p><input type="radio" name='answer' value='1'> <!--④--> ${item.choice4}</p>
 					<p><input type="hidden" name='correct' value='${item.correct}'></p>
-					<button type="submit" id="test_submit">제출하기</button>
 				</div>
 			</c:forEach>
 		</div>
+		<button type="submit" id="test_submit">제출하기</button>
 	</form>
 		<div class="text-center">
 			<ul class="pagination">

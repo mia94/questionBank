@@ -46,9 +46,9 @@ public class QuestionServiceImpl implements QuestionService {
 	}
 
 	@Override
-	public List<QuestionVO> selectByYearAndRound(int year, int round, int page) {
+	public List<QuestionVO> selectByYearAndRound(int year, int round, Criteria cri) {
 		// TODO Auto-generated method stub
-		return dao.selectByYearAndRound(year, round, page);
+		return dao.selectByYearAndRound(year, round, cri);
 	}
 
 	@Override
