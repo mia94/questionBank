@@ -32,6 +32,12 @@
 		WHERE customer_code=#{customerCode}
 	</update>
 	
+	<select id="read" resultType="CustomerVO">
+		SELECT *
+		FROM customer
+		where id=#{id} AND password=#{password}
+	</select>
+	
 </mapper>
 
 

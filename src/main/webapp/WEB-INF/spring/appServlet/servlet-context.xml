@@ -33,5 +33,22 @@
 		<beans:constructor-arg value="c:/test"></beans:constructor-arg>
 	</beans:bean>
 	
+	<beans:bean id="loginInterceptor" class="com.yi.interceptor.LoginInterceptor"></beans:bean>
+	<beans:bean id="AuthInterceptor" class="com.yi.interceptor.AuthInterceptor"></beans:bean>
+	
+	<interceptors>
+		<interceptor>
+			<mapping path="/user/loginPost"/>
+			<beans:ref bean="loginInterceptor"/>
+		</interceptor>
+		
+		<!-- <interceptor>
+			<mapping path="/sboard/register"/>
+			<mapping path="/sboard/readPage"/>
+			<mapping path="/sboard/removePage"/>
+			<mapping path="/sboard/modifyPage"/>
+			<beans:ref bean="AuthInterceptor"/>
+		</interceptor> -->
+	</interceptors>
 	
 </beans:beans>

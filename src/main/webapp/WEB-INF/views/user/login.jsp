@@ -39,7 +39,7 @@
 <body>
 	<jsp:include page="../include/header.jsp"></jsp:include>
 	
-	<form action="login" method="post" id="wsm_loginForm">
+	<form action="loginPost" method="post" id="wsm_loginForm">
 		<div class="login_container">
 			<p>
 				<label>ID</label>

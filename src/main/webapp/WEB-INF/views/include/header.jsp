@@ -45,7 +45,7 @@
 		    </ul>
 		    <ul class="nav navbar-nav navbar-right">
 		      <li><a href="${pageContext.request.contextPath}/customer/signup"><span class="glyphicon glyphicon-user" id="wsm_signUp"></span> <span id="wsm_signUp_text">Sign Up</span></span></a></li>
-		      <li><a href="${pageContext.request.contextPath}/customer/login"><span class="glyphicon glyphicon-log-in" id="wsm_Login"></span> <span id="wsm_Login_text">Login</span></a></li>
+		      <li><a href="${pageContext.request.contextPath}/user/login"><span class="glyphicon glyphicon-log-in" id="wsm_Login"></span> <span id="wsm_Login_text">Login</span></a></li>
 		    </ul>
 		  </div>
 		</nav>
