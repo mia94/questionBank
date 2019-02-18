@@ -32,6 +32,30 @@
 		SET question_title=#{questionTitle}, choice1=#{choice1}, choice2=#{choice2}, choice3=#{choice3}, choice4=#{choice4}, correct=#{correct}, state=#{state}, correct_rate=#{correctRate}, picture=#{picture}, subject=#{subject}, year=#{year} ,round=#{round}
 		WHERE question_code=#{questionCode}
 	</update>
+	
+	<!-- 연도/회차로 문제 select -->
+	<select id="selectByYearAndRound" resultType="QuestionVO">
+		select *
+		from question
+		where year=#{year} and round=#{round}
+		order by substring(question_code from 7 for 3)
+		limit #{page}, 1
+	</select>
+	
+	<select id="listCriteria" resultType="QuestionVO">
+	 	SELECT *
+		FROM question
+		where year=#{year} and round=#{round}
+		order by substring(question_code from 7 for 3)
+		limit #{pageStart}, #{perPageNum}
+	 </select>
+	 
+	 <!--  page용 question 총 갯수  -->
+	<select id="totalCount" resultType="int">
+		select count(question_code) 
+		from question
+		where year=#{year} and round=#{round}
+	</select>
 </mapper>
 
 

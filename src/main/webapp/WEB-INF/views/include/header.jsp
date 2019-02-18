@@ -9,7 +9,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.1/handlebars.js"></script>
 <title>Wooooo's QuestionBank</title>
-<link href="${pageContext.request.contextPath}/resources/css/common.css" rel="stylesheet"  type="text/css">
+<link href="${pageContext.request.contextPath}/resources/css/common.css?aa" rel="stylesheet"  type="text/css">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
@@ -19,7 +19,10 @@
 <div id="wsm_total_wrap">
 	<header>
 		<div id="wsm_header">
-			<h1><a href="${pageContext.request.contextPath}">Wooooo's<br>QuestionBank</a></h1>
+			<c:if test="${login != null }">
+				<p class="welcome_text">${login.id},${login.customerName},${login.employee }</p>
+			</c:if> 
+			<h1 id="wsm_logo"><a href="${pageContext.request.contextPath}">Wooooo's<br>QuestionBank</a></h1>
 		</div>
 		<nav class="navbar">
 		  <div class="container-fluid">
@@ -45,13 +48,14 @@
 		      <li><a href="${pageContext.request.contextPath}/board/list" class="wsm_nav_a">Board</a></li>
 		    </ul>
 		    <ul class="nav navbar-nav navbar-right">
-		      <li><a href="${pageContext.request.contextPath}/customer/signup"><span class="glyphicon glyphicon-user" id="wsm_signUp"></span> <span id="wsm_signUp_text">Sign Up</span></span></a></li>
+		      
 		       <!-- 로그인 c:if쓰기 -->
 	              <c:if test="${login == null }">
-	                  <li><a href="${pageContext.request.contextPath}/user/login"><span class="glyphicon glyphicon-log-in" id="wsm_Login"></span> <span id="wsm_Login_text">Login</span></a></li>
+	             	<li><a href="${pageContext.request.contextPath}/customer/signup"><span class="glyphicon glyphicon-user" id="wsm_signUp"></span> <span id="wsm_signUp_text">Sign Up</span></span></a></li>
+	                <li><a href="${pageContext.request.contextPath}/user/login"><span class="glyphicon glyphicon-log-in" id="wsm_Login"></span> <span id="wsm_Login_text">Login</span></a></li>
 	              </c:if>
 	              <c:if test="${login != null }">
-	                  <li><a href="${pageContext.request.contextPath}/user/logout"><span class="glyphicon glyphicon-log-in" id="wsm_Login"></span> <span id="wsm_Login_text">LogOut</span></a></li>
+	                 <li><a href="${pageContext.request.contextPath}/user/logout"><span class="glyphicon glyphicon-log-in" id="wsm_Login"></span> <span id="wsm_Login_text">LogOut</span></a></li>
 	              </c:if> 
 		    </ul>
 		  </div>

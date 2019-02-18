@@ -19,7 +19,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.yi.domain.PageMaker;
 import com.yi.domain.QuestionVO;
+import com.yi.domain.SearchCriteria;
 import com.yi.service.QuestionService;
 
 @Controller
@@ -72,15 +74,18 @@ private static final Logger logger = LoggerFactory.getLogger(QuestionController.
 	}
 	//jsp로 가는 메소드
 	@RequestMapping(value="list", method=RequestMethod.GET)
-	public void list(Model model){
-		List<QuestionVO> list = service.selectByAll();
-		List<String> numList = new ArrayList<>();
-		for(int i=0;i<list.size();i++) {
-			String num = list.get(i).getQuestionCode().substring(7);
-			numList.add(num);
-		}
+	public void list(SearchCriteria cri,Model model){
+		
+		List<QuestionVO> list = service.selectByYearAndRound(2018, 3, cri.getPage()-1);///////연도와 회차 외부에서 받기!!!!
 		model.addAttribute("list", list);
-		model.addAttribute("numList", numList);
+		
+		PageMaker pageMaker = new PageMaker();
+		pageMaker.setCri(cri);
+		pageMaker.setTotalCount(service.totalCount(2018,3));
+		
+		model.addAttribute("list", list);
+		model.addAttribute("pageMaker", pageMaker);
+		model.addAttribute("cri", cri);
 	}
 	
 	//json을 보내는 메소드

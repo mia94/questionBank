@@ -14,6 +14,7 @@ public class QuestionVO {
 	private String subject;
 	private int year;
 	private int round;
+	private int num;
 	
 	public String getQuestionCode() {
 		return questionCode;
@@ -93,7 +94,12 @@ public class QuestionVO {
 	public void setRound(int round) {
 		this.round = round;
 	}
-	
+	public int getNum() {
+		return num;
+	}
+	public void setNum(int num) {
+		this.num = num;
+	}
 	@Override
 	public String toString() {
 		return "QuestionVO [questionCode=" + questionCode + ", questionTitle=" + questionTitle + ", choice1=" + choice1

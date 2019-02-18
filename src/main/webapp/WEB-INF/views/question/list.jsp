@@ -12,9 +12,9 @@
 @import url('https://fonts.googleapis.com/css?family=Jua');
 	div.question_wrap{
 		width:800px;
-		float:left;
+		margin:50px auto;
 		border:1px solid #ccc;
-		padding: 30px 10px;
+		padding: 30px 20px;
 	}
 	section{
 		position: relative;
@@ -30,8 +30,15 @@
 	form #test_submit{
 		border: none;
 		background: white;
-		font-size: 20px;
+		font-size: 16px;
 		font-family: 'Jua', sans-serif;
+		color:#A3918F;
+	}
+	.pagination>.active>.wsm_active_a{
+		background-color: #A3918F;
+		border:1px solid #A3918F;
+	}
+	.pagination .wsm_active_a{
 		color:#A3918F;
 	}
 </style>
@@ -41,51 +48,40 @@
 	
 	<form action="result" method="post" id="wsm_testForm">
 		<div class="container">
+			<c:forEach var="item" items="${list }">
+				<div class="question_wrap">
+					<p>${item.questionCode}</p>
+					<p>${item.questionTitle}</p>
+					<c:if test="${item.picture!=null}">
+  						<img src="${item.picture }">
+  					</c:if>
+					<p><input type="radio" name='answer' value='1'> <!--①--> ${item.choice1}</p>
+					<p><input type="radio" name='answer' value='1'> <!--②--> ${item.choice2}</p>
+					<p><input type="radio" name='answer' value='1'> <!--③--> ${item.choice3}</p>
+					<p><input type="radio" name='answer' value='1'> <!--④--> ${item.choice4}</p>
+					<p><input type="hidden" name='correct' value='${item.correct}'></p>
+					<button type="submit" id="test_submit">제출하기</button>
+				</div>
+			</c:forEach>
 		</div>
-		<button type="submit" id="test_submit">제출하기</button>
 	</form>
+		<div class="text-center">
+			<ul class="pagination">
+				<c:if test="${pageMaker.prev }">
+					<li><a href="${pageContext.request.contextPath}/question/list?page=${pageMaker.startPage-1}">&laquo;</a></li>
+				</c:if>
+				<c:forEach begin="${pageMaker.startPage }" end="${pageMaker.endPage }" var="idx">
+					<li ${pageMaker.cri.page == idx ? 'class="active"': ''} ><a href="${pageContext.request.contextPath}/question/list?page=${idx}" class="wsm_active_a">${idx}</a></li>
+				</c:forEach>
+				<c:if test="${pageMaker.next }">
+					<li><a href="${pageContext.request.contextPath}/question/list?page=${pageMaker.endPage+1}">&raquo;</a></li>
+				</c:if>
+			</ul>
+		</div>
+	
 	
 	<jsp:include page="../include/footer.jsp"></jsp:include>
-	
-	 <script>
-	  function getPageList(){
-		  $.ajax({
-				url:"${pageContext.request.contextPath}/question/listJson",
-				type:"get",
-				dataType:"json",
-				success:function(json){
-					console.log(json);
-					$(".container").empty();//안에만 비우기
-					var source = $("#template1").html();
-					var f = Handlebars.compile(source);  
-					var result = f(json);
-					$(".container").append(result);
-				}
-			})
-	  }
-	  
-	  $(function(){
-		  getPageList();
-	  })
-  </script>
-	
-	<script id="template1" type="text/x-handlebars-template">   
-	{{#each.}}
-		<div class="question_wrap">
-			<p>{{questionCode}}</p>
-			<p>{{questionTitle}}</p>
-			<p><input type="radio" name='answer' value='1'> <!--①--> {{choice1}}</p>
-			<p><input type="radio" name='answer' value='1'> <!--②--> {{choice2}}</p>
-			<p><input type="radio" name='answer' value='1'> <!--③--> {{choice3}}</p>
-			<p><input type="radio" name='answer' value='1'> <!--④--> {{choice4}}</p>
-			<p><input type="hidden" name='correct' value='{{correct}}'></p>
-		</div>
-	{{/each}}
-  	</script>
 
-  	<c:if test="${picture!=null}">
-  	
-  	</c:if>
   	
   	
 </body>
