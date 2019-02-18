@@ -63,4 +63,10 @@ public class QuestionServiceImpl implements QuestionService {
 		return dao.totalCount(year, round);
 	}
 
+	@Override
+	public List<QuestionVO> selectByRandom(int year, int round) {
+		// TODO Auto-generated method stub
+		return dao.selectByRandom(year, round);
+	}
+
 }

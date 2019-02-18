@@ -14,10 +14,13 @@
 		width:800px;
 		margin:0px auto;
 		border:1px solid #ccc;
-		padding: 5px 20px;  
+		padding: 15px 20px;  
 	}
 	section{
 		position: relative;
+	}
+	.container{
+		margin-top: 40px;
 	}
 	div.answerSheet{
 		width: 200px;
@@ -57,10 +60,10 @@
 					<c:if test="${item.picture.equals('')==false}">
   						<img src="displayFile?filename=${item.picture }">
   					</c:if>
-					<p><input type="radio" name='answer' value='1'> <!--①--> ${item.choice1}</p>
-					<p><input type="radio" name='answer' value='1'> <!--②--> ${item.choice2}</p>
-					<p><input type="radio" name='answer' value='1'> <!--③--> ${item.choice3}</p>
-					<p><input type="radio" name='answer' value='1'> <!--④--> ${item.choice4}</p>
+					<p><input type="radio" name='answer' value='1'> <!--①--> ${item.choice1} </p>
+					<p><input type="radio" name='answer' value='1'> <!--②--> ${item.choice2} </p>
+					<p><input type="radio" name='answer' value='1'> <!--③--> ${item.choice3} </p>
+					<p><input type="radio" name='answer' value='1'> <!--④--> ${item.choice4} </p>
 					<p><input type="hidden" name='correct' value='${item.correct}'></p>
 				</div>
 			</c:forEach>

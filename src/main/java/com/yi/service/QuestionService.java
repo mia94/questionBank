@@ -15,4 +15,6 @@ public interface QuestionService {
 	public List<QuestionVO> selectByYearAndRound(int year, int round, Criteria cri);
 	public List<QuestionVO> listCriteria(int year, int round, Criteria cri);
 	public int totalCount(int year, int round);
+	//·£´ý
+	public List<QuestionVO> selectByRandom(int year, int round);
 }

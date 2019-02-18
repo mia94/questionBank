@@ -42,6 +42,7 @@
 		limit #{cri.pageStart}, #{cri.perPageNum}
 	</select>
 	
+	<!-- #{perPageNum}조절하여 갯수 지정하기 -->
 	<select id="listCriteria" resultType="QuestionVO">
 	 	SELECT *
 		FROM question
@@ -55,6 +56,14 @@
 		select count(question_code) 
 		from question
 		where year=#{year} and round=#{round}
+	</select>
+	
+	<!-- 랜덤으로 한문제씩 출력 -->
+	<select id="selectByRandom" resultType="QuestionVO">
+		select *
+		from question 
+		where year=#{year} and round=#{round}
+		order by rand()
 	</select>
 </mapper>
 
