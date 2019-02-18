@@ -30,9 +30,9 @@ public class UserController {
 	}
 	
 	@RequestMapping(value="loginPost", method=RequestMethod.POST)
-	public void loginPost(String userid, String userpw, Model model) {
+	public void loginPost(String id, String password, Model model) {
 		logger.info("loginPost  -------------- ");
-		CustomerVO vo = service.read(userid, userpw);
+		CustomerVO vo = service.read(id, password);
 		logger.info("loginPost  -------------- " +vo);
 		if(vo == null) {//회원이 없으면 로그인 화면으로 돌아가게
 			logger.info("loginPost return -------------- ");
@@ -42,14 +42,15 @@ public class UserController {
 		dto.setCustomerName(vo.getCustomerName());
 		dto.setId(vo.getId());
 		dto.setEmployee(vo.isEmployee());
-		model.addAttribute("memberVO", dto);
+		System.out.println("========dto확인용 : "+dto);
+		model.addAttribute("customerVO", dto);
 	}
 	
 	@RequestMapping(value="logout", method=RequestMethod.GET)
 	public String logOutGET(HttpSession session) {
 		logger.info("logout GET ------------");
 		session.invalidate();//세션날리면 로그아웃 완료
-		return "redirect:/sboard/list";
+		return "redirect:/";
 	}
 }
 

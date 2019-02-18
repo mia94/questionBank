@@ -29,7 +29,7 @@ public class LoginInterceptor implements HandlerInterceptor {
 			ModelAndView modelAndView) throws Exception {
 		logger.info("------------login postHandler");
 		
-		LoginDTO vo = (LoginDTO)modelAndView.getModel().get("memberVO");
+		LoginDTO vo = (LoginDTO)modelAndView.getModel().get("customerVO");
 		
 		if(vo != null) {
 			HttpSession session = request.getSession();
