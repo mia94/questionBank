@@ -1,14 +1,20 @@
 package com.yi.controller;
 
+import java.awt.Dialog.ModalExclusionType;
+import java.io.FileInputStream;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.Resource;
 
+import org.apache.commons.io.IOUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -23,6 +29,7 @@ import com.yi.domain.PageMaker;
 import com.yi.domain.QuestionVO;
 import com.yi.domain.SearchCriteria;
 import com.yi.service.QuestionService;
+import com.yi.util.MediaUtils;
 
 @Controller
 @RequestMapping("/question/*")
@@ -136,6 +143,36 @@ private static final Logger logger = LoggerFactory.getLogger(QuestionController.
 			entity = new ResponseEntity<String>(e.getMessage(),HttpStatus.BAD_REQUEST);
 		}
 		return entity;
+	}
+	
+	@ResponseBody
+	@RequestMapping("/displayFile")
+	public ResponseEntity<byte[]> displayFile(String filename, Model model){
+		 ResponseEntity<byte[]> entity = null;
+		 logger.info("displayFile : "+ filename);
+		 try {
+			 try {
+				 String format = filename.substring(filename.lastIndexOf(".")+1);
+					String picture = filename.substring(filename.lastIndexOf("/"));
+					MediaType mType = MediaUtils.getMediaType(format);
+					
+					HttpHeaders headers = new HttpHeaders();
+					InputStream in = null;
+					in = new FileInputStream(uploadPath+"/"+picture);
+					headers.setContentType(mType);
+					
+					entity = new ResponseEntity<byte[]>(IOUtils.toByteArray(in), headers, HttpStatus.CREATED);
+					in.close();
+			} catch (StringIndexOutOfBoundsException e) {
+				return null;
+			}
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+			entity = new ResponseEntity<byte[]>(HttpStatus.BAD_REQUEST);
+		}
+		 return entity;
 	}
 
 }

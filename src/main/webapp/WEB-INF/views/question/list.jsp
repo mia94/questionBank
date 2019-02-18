@@ -52,8 +52,8 @@
 				<div class="question_wrap">
 					<p>${item.questionCode}</p>
 					<p>${item.questionTitle}</p>
-					<c:if test="${item.picture!=null}">
-  						<img src="${item.picture }">
+					<c:if test="${item.picture.equals('')==false}">
+  						<img src="displayFile?filename=${item.picture }">
   					</c:if>
 					<p><input type="radio" name='answer' value='1'> <!--①--> ${item.choice1}</p>
 					<p><input type="radio" name='answer' value='1'> <!--②--> ${item.choice2}</p>
