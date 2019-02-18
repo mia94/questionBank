@@ -22,7 +22,12 @@ private static final Logger logger = LoggerFactory.getLogger(BoardController.cla
 	@Autowired
 	private BoardService service;
 	
-	@RequestMapping(value="", method=RequestMethod.POST)
+	@RequestMapping(value="list", method=RequestMethod.GET)
+	public void list(){
+		logger.info("BoardVO list------------");
+	}
+	
+	@RequestMapping(value="register", method=RequestMethod.POST)
 	public ResponseEntity<String> register(@RequestBody BoardVO vo){
 		ResponseEntity<String> entity = null;
 		logger.info("BoardVO create------------"+vo);

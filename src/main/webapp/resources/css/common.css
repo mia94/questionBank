@@ -1,5 +1,7 @@
 @charset "UTF-8";
 
+@import url('https://fonts.googleapis.com/css?family=Luckiest+Guy|Righteous');
+
 @media all and (min-width:768px){
 	*{
 		margin: 0;
@@ -11,21 +13,96 @@
 	}
 	header{
 		width:100%;
-		height: 200px;
-		background-color: #eee;
+		height: 190px;
+	}
+	header h1{
+		width:100%;
+		text-align:center;
+		height:180px;
+		padding-top:50px;
+		color:#5B4149;
+	}
+	header h1 a, header h1 a:hover{
+		font-family: 'Luckiest Guy', cursive;
+		color:#5B4149;
+		text-decoration: none;
 	}
 	header #wsm_header{
 		width:100%;
 		height: 140px;
 	}
+	.navbar{
+		background-color: #f4efec;
+	}
+	.navbar .navbar-brand{
+		color:#F28683;
+		font-family: 'Righteous', cursive;
+	}
+	.navbar .wsm_nav_a{
+		color:#A3918F;
+		font-family: 'Righteous', cursive;
+	}
+	.navbar .dropdown-menu{
+		font-family: 'Righteous', cursive;
+		font-size: 13px;
+	}
+	.nav>li>a:focus, .nav>li>a:hover{
+		color:#5B4149;
+	}
+	.nav #wsm_signUp, .nav #wsm_Login, .nav #wsm_signUp_text, .nav #wsm_Login_text{
+		color:#A3918F;
+	}
 	section{
 		width:100%;
 		min-height: 600px;
 	}
+	section .container{
+		width:100%;
+	}
 	footer{
 		width:100%;
-		height:160px;
-		background-color: #bbb;
+		height:220px;
+		border-top: 3px solid #ccc;
+		background-color: #f4efec;
+	}
+	footer h4{
+		font-family: 'Luckiest Guy', cursive;
+		color:#5B4149;
+	}
+	footer div.footer_div{
+		width:1200px;
+		margin: 0 auto;
+	}
+	footer div.footer_div:first-child {
+		height: 150px;
+		padding-top: 30px;
+		padding-left: 50px;
+	}
+	footer div.footer_div:first-child article.footer_article{
+		width:270px;
+		float: left;
+	}
+	footer div.footer_div:first-child article.footer_article:first-child{
+		text-align: right;
+	}
+	footer div.footer_div:first-child article.footer_article p{
+		font-size: 12px;
+		color:#A3918F;
+		text-align: right;
+		height: 15px;
+		line-height: 15px;
+		padding-top: 10px;
+	}
+	footer div.footer_div:first-child article.footer_article:first-child img{
+		width:30px;
+	}
+	footer div.footer_div:last-child {
+		text-align: center;
+		border-top: 1px solid #A3918F; 
+	}
+	footer div.footer_div:last-child p{
+		padding-top: 15px;
+		color:#A3918F;
 	}
 }
 
@@ -36,8 +113,39 @@
 	header{
 		width:100%;
 	}
+	header h1{
+		width:100%;
+		text-align:center;
+		font-family: 'Luckiest Guy', cursive;
+		color:#5B4149;
+	}
+	.navbar{
+		background-color: #f4efec;
+	}
 	section{
 		width:100%;
 		min-height: 200px;
+	}
+	footer{
+		width:100%;
+		height:110px;
+		background-color: #bbb;
+		text-align: center;
+	}
+	footer h4{
+		padding-top:5px;
+		font-family: 'Luckiest Guy', cursive;
+		color:#5B4149;
+	}
+	footer div.footer_div:first-child article.footer_article:first-child img{
+		width:30px;
+	}
+	footer div.footer_div:first-child article.footer_article p{
+		display: none;
+	}
+	footer div.footer_div:last-child p{
+	padding-top:5px;
+		font-size:12px;
+		color:#A3918F;
 	}
 }

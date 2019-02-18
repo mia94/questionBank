@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, user-scalable=no">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.1/handlebars.js"></script>
-<title>Insert title here</title>
+<title>Wooooo's QuestionBank</title>
 <link href="${pageContext.request.contextPath}/resources/css/common.css" rel="stylesheet"  type="text/css">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
@@ -18,34 +18,34 @@
 <div id="wsm_total_wrap">
 	<header>
 		<div id="wsm_header">
-			
+			<h1><a href="${pageContext.request.contextPath}">Wooooo's<br>QuestionBank</a></h1>
 		</div>
-		<nav class="navbar navbar-inverse">
+		<nav class="navbar">
 		  <div class="container-fluid">
 		    <div class="navbar-header">
-		      <a class="navbar-brand" href="#">QuestionBank</a>
+		      <a class="navbar-brand" href="${pageContext.request.contextPath}">Wooooo's Home</a>
 		    </div>
 		    <ul class="nav navbar-nav">
-		      <li class="active"><a href="#">Home</a></li>
-		      <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Question<span class="caret"></span></a>
+		      <li><a href="#"></a></li>
+		      <li class="dropdown"><a class="dropdown-toggle wsm_nav_a" data-toggle="dropdown" href="#">Question<span class="caret"></span></a>
 		        <ul class="dropdown-menu">
-		          <li><a href="question/list">Test</a></li>
+		          <li><a href="${pageContext.request.contextPath}/question/list">Test</a></li>
 		          <li><a href="#">Menu2</a></li>
 		          <li><a href="#">Menu3</a></li>
 		        </ul>
 		      </li>
-		      <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Customer<span class="caret"></span></a>
+		      <li class="dropdown"><a class="dropdown-toggle wsm_nav_a" data-toggle="dropdown" href="#">Customer<span class="caret"></span></a>
 		        <ul class="dropdown-menu">
-		          <li><a href="customer/list">List</a></li>
+		          <li><a href="${pageContext.request.contextPath}/customer/list">List</a></li>
 		          <li><a href="#">Menu2</a></li>
 		          <li><a href="#">Menu3</a></li>
 		        </ul>
 		      </li>
-		      <li><a href="board/list">Board</a></li>
+		      <li><a href="${pageContext.request.contextPath}/board/list" class="wsm_nav_a">Board</a></li>
 		    </ul>
 		    <ul class="nav navbar-nav navbar-right">
-		      <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-		      <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+		      <li><a href="${pageContext.request.contextPath}/customer/signup"><span class="glyphicon glyphicon-user" id="wsm_signUp"></span> <span id="wsm_signUp_text">Sign Up</span></span></a></li>
+		      <li><a href="${pageContext.request.contextPath}/customer/login"><span class="glyphicon glyphicon-log-in" id="wsm_Login"></span> <span id="wsm_Login_text">Login</span></a></li>
 		    </ul>
 		  </div>
 		</nav>

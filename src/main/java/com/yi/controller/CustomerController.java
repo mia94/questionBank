@@ -27,10 +27,22 @@ public class CustomerController {
 	@Autowired
 	private CustomerService service;
 	
-	@RequestMapping(value="", method=RequestMethod.POST)
+	@RequestMapping(value="login", method=RequestMethod.GET)
+	public void loginGet(){
+		logger.info("loginGet ------------");
+	}
+	
+	@RequestMapping(value="signup", method=RequestMethod.GET)
+	public void signupGet(){
+		logger.info("signupGet ------------");
+	}
+	
+	@RequestMapping(value="signup", method=RequestMethod.POST)
 	public ResponseEntity<String> register(@RequestBody CustomerVO vo){
 		ResponseEntity<String> entity = null;
 		logger.info("CustomerVO create------------"+vo);
+		//고객코드 마지막 + 1하여 자동부여
+		//관리자 자동 false설정
 		
 		try {
 			service.insertCustomer(vo);
