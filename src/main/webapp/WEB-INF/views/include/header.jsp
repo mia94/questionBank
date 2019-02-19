@@ -13,6 +13,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script> 
 </head>
 <body>
 
@@ -34,7 +35,7 @@
 		      <li class="dropdown"><a class="dropdown-toggle wsm_nav_a" data-toggle="dropdown" href="#">Question<span class="caret"></span></a>
 		        <ul class="dropdown-menu">
 		          <li><a href="${pageContext.request.contextPath}/question/list">100 Question</a></li>
-		          <li><a href="#">Menu2</a></li>
+		          <li><a href="${pageContext.request.contextPath}/question/subjecttest">20 Question</a></li>
 		          <li><a href="${pageContext.request.contextPath}/question/singletest">1 Question</a></li>
 		        </ul>
 		      </li>

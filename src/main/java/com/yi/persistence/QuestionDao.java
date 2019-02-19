@@ -18,6 +18,6 @@ public interface QuestionDao {
 	public int totalCount(int year, int round);
 	
 	//·£´ý
-	public List<QuestionVO> selectByRandom(int year, int round);
+	public List<QuestionVO> selectByRandom();
 	
 }

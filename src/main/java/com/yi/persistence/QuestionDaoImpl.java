@@ -78,12 +78,9 @@ public class QuestionDaoImpl implements QuestionDao {
 	}
 
 	@Override
-	public List<QuestionVO> selectByRandom(int year, int round) {
+	public List<QuestionVO> selectByRandom() {
 		// TODO Auto-generated method stub
-		Map<String, Integer> map = new HashMap<>();
-		map.put("year", year);
-		map.put("round", round);
-		return sqlSession.selectList(namespace+".selectByRandom", map);
+		return sqlSession.selectList(namespace+".selectByRandom");
 	}
 
 }

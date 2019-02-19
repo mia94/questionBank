@@ -61,10 +61,11 @@
 	<!-- 랜덤으로 한문제씩 출력 -->
 	<select id="selectByRandom" resultType="QuestionVO">
 		select *
-		from question 
-		where year=#{year} and round=#{round}
+		from question
 		order by rand()
 	</select>
+	
+	<!-- 과목별로 20문제씩 풀기??몇문제씩 할것인가 -->
 </mapper>
 
 

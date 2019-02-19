@@ -99,11 +99,17 @@ private static final Logger logger = LoggerFactory.getLogger(QuestionController.
 	public void singleTest(Criteria cri,Model model){
 			System.out.println("cri===========:"+cri);
 			cri.setPerPageNum(1);
-			List<QuestionVO> list = service.selectByRandom(2018, 3);///////연도와 회차 외부에서 받기!!!!
+			List<QuestionVO> list = service.selectByRandom();
 			model.addAttribute("list", list);
 			
 			model.addAttribute("list", list);
 			model.addAttribute("cri", cri);
+	}
+	
+	//과목별 문제
+	@RequestMapping(value="subjecttest", method=RequestMethod.GET)//
+	public void subjecttest(){
+		logger.info("subjecttest get------------");
 	}
 		
 	//json을 보내는 메소드 - 사용X
