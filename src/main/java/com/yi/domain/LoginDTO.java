@@ -1,10 +1,18 @@
 package com.yi.domain;
 
 public class LoginDTO {
+	private String customerCode;
 	private String customerName;
 	private String id;
 	private boolean employee;
 	
+	
+	public String getCustomerCode() {
+		return customerCode;
+	}
+	public void setCustomerCode(String customerCode) {
+		this.customerCode = customerCode;
+	}
 	public String getCustomerName() {
 		return customerName;
 	}
@@ -26,8 +34,11 @@ public class LoginDTO {
 	
 	@Override
 	public String toString() {
-		return "LoginDTO [customerName=" + customerName + ", id=" + id + ", employee=" + employee + "]";
+		return "LoginDTO [customerCode=" + customerCode + ", customerName=" + customerName + ", id=" + id
+				+ ", employee=" + employee + "]";
 	}
+	
+	
 	
 
 }

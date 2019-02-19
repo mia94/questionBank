@@ -20,7 +20,7 @@
 	<header>
 		<div id="wsm_header">
 			<c:if test="${login != null }">
-				<p class="welcome_text">${login.id},${login.customerName},${login.employee }</p>
+				<p class="welcome_text">${login.customerName} ( ${login.id} )님, 반갑습니다.</p><!-- ${login.id},${login.customerName},${login.employee }불러오기 가능 -->
 			</c:if> 
 			<h1 id="wsm_logo"><a href="${pageContext.request.contextPath}">Wooooo's QuestionBank</a></h1>  
 		</div>
@@ -33,9 +33,9 @@
 		      <li><a href="#"></a></li>
 		      <li class="dropdown"><a class="dropdown-toggle wsm_nav_a" data-toggle="dropdown" href="#">Question<span class="caret"></span></a>
 		        <ul class="dropdown-menu">
-		          <li><a href="${pageContext.request.contextPath}/question/list">Test</a></li>
+		          <li><a href="${pageContext.request.contextPath}/question/list">100 Question</a></li>
 		          <li><a href="#">Menu2</a></li>
-		          <li><a href="#">Menu3</a></li>
+		          <li><a href="${pageContext.request.contextPath}/question/singletest">1 Question</a></li>
 		        </ul>
 		      </li>
 		      <li class="dropdown"><a class="dropdown-toggle wsm_nav_a" data-toggle="dropdown" href="#">Customer<span class="caret"></span></a>

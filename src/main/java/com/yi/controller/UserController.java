@@ -42,6 +42,7 @@ public class UserController {
 		dto.setCustomerName(vo.getCustomerName());
 		dto.setId(vo.getId());
 		dto.setEmployee(vo.isEmployee());
+		dto.setCustomerCode(vo.getCustomerCode());
 		System.out.println("========dtoÈ®ÀÎ¿ë : "+dto);
 		model.addAttribute("customerVO", dto);
 	}

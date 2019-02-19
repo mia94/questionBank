@@ -95,8 +95,8 @@ private static final Logger logger = LoggerFactory.getLogger(QuestionController.
 	}
 	
 	//랜덤으로 한문제씩
-		@RequestMapping(value="singletest", method=RequestMethod.GET)
-		public void singleTest(Criteria cri,Model model){
+	@RequestMapping(value="singletest", method=RequestMethod.GET)
+	public void singleTest(Criteria cri,Model model){
 			System.out.println("cri===========:"+cri);
 			cri.setPerPageNum(1);
 			List<QuestionVO> list = service.selectByRandom(2018, 3);///////연도와 회차 외부에서 받기!!!!
@@ -104,8 +104,8 @@ private static final Logger logger = LoggerFactory.getLogger(QuestionController.
 			
 			model.addAttribute("list", list);
 			model.addAttribute("cri", cri);
-		}
-	
+	}
+		
 	//json을 보내는 메소드 - 사용X
 	@ResponseBody
 	@RequestMapping(value="listJson", method=RequestMethod.GET)

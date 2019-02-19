@@ -61,9 +61,9 @@
   						<img src="displayFile?filename=${item.picture }">
   					</c:if>
 					<p><input type="radio" name='answer' value='1'> <!--①--> ${item.choice1} </p>
-					<p><input type="radio" name='answer' value='1'> <!--②--> ${item.choice2} </p>
-					<p><input type="radio" name='answer' value='1'> <!--③--> ${item.choice3} </p>
-					<p><input type="radio" name='answer' value='1'> <!--④--> ${item.choice4} </p>
+					<p><input type="radio" name='answer' value='2'> <!--②--> ${item.choice2} </p>
+					<p><input type="radio" name='answer' value='3'> <!--③--> ${item.choice3} </p>
+					<p><input type="radio" name='answer' value='4'> <!--④--> ${item.choice4} </p>
 					<p><input type="hidden" name='correct' value='${item.correct}'></p>
 				</div>
 			</c:forEach>
