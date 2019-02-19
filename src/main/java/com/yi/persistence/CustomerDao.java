@@ -11,4 +11,7 @@ public interface CustomerDao {
 	public void insertCustomer(CustomerVO customervo);
 	public void deleteCustomer(CustomerVO customervo);
 	public void updateCustomer(CustomerVO customervo);
+	
+	public CustomerVO read(String id, String password);
+	public String selectMaxCustomerCode();
 }

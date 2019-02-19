@@ -27,32 +27,23 @@ public class CustomerController {
 	@Autowired
 	private CustomerService service;
 	
-	@RequestMapping(value="login", method=RequestMethod.GET)
-	public void loginGet(){
-		logger.info("loginGet ------------");
-	}
-	
 	@RequestMapping(value="signup", method=RequestMethod.GET)
 	public void signupGet(){
 		logger.info("signupGet ------------");
 	}
 	
 	@RequestMapping(value="signup", method=RequestMethod.POST)
-	public ResponseEntity<String> register(@RequestBody CustomerVO vo){
-		ResponseEntity<String> entity = null;
+	public String register(CustomerVO vo){
 		logger.info("CustomerVO create------------"+vo);
 		//고객코드 마지막 + 1하여 자동부여
+		String maxCode = service.selectMaxCustomerCode();
+		String newCode = String.format("C%03d",Integer.parseInt(maxCode.substring(1))+1);
+		System.out.println("====새코드====="+newCode);
+		vo.setCustomerCode(newCode);
 		//관리자 자동 false설정
-		
-		try {
-			service.insertCustomer(vo);
-			entity = new ResponseEntity<String>("success", HttpStatus.OK);
-		} catch (Exception e) {
-			e.printStackTrace();
-			entity = new ResponseEntity<String>(e.getMessage(),HttpStatus.BAD_REQUEST);//400에러
-		}
-		
-		return entity; 
+		vo.setEmployee(false);
+		service.insertCustomer(vo);
+		return "redirect:/user/login";
 	}
 	
 	@RequestMapping(value="list", method=RequestMethod.GET)

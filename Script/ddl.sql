@@ -255,3 +255,6 @@ ALTER TABLE `questionBank`.`reply`
 		REFERENCES `questionBank`.`customer` ( -- 회원
 			`customer_code` -- 회원코드
 		);
+		
+-- auto_increment추가
+alter table resulttest modify resulttest_code int not null auto_increment;

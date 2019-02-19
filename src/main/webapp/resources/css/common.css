@@ -1,6 +1,7 @@
 @charset "UTF-8";
 
 @import url('https://fonts.googleapis.com/css?family=Luckiest+Guy|Righteous');
+@import url('https://fonts.googleapis.com/css?family=Jua');
 
 @media all and (min-width:768px){
 	*{
@@ -13,23 +14,29 @@
 	}
 	header{
 		width:100%;
-		height: 190px;
+		height: 160px;
 	}
-	header h1{
+	header #wsm_header{
 		width:100%;
-		text-align:center;
-		height:180px;
-		padding-top:50px;
+		height: 120px;
+		position: relative;
+	}
+	header .welcome_text{
+		position: absolute;
+		top:5px;
+		right: 10px;
+	}
+	header h1#wsm_logo{
+		width:100%;
+		text-align:center; 
 		color:#5B4149;
+		position: absolute;
+		top:30px;
 	}
 	header h1 a, header h1 a:hover{
 		font-family: 'Luckiest Guy', cursive;
 		color:#5B4149;
 		text-decoration: none;
-	}
-	header #wsm_header{
-		width:100%;
-		height: 140px;
 	}
 	.navbar{
 		background-color: #f4efec;

@@ -1,15 +1,16 @@
 package com.yi.controller;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.yi.domain.CustomerVO;
+import com.yi.domain.QuestionVO;
+import com.yi.domain.ResultTestVO;
 import com.yi.service.ResultTestService;
 
 @Controller
@@ -21,15 +22,20 @@ public class ResultTestController {
 	private ResultTestService service;
 	
 	@RequestMapping(value="result", method=RequestMethod.POST)
-	public String addAnswer(String answer, String correct) {
+	public String addAnswer(ResultTestVO vo) {
 		logger.info("registerResultTest create------------POST");
-		logger.info("registerResultTest create------------answer" + answer);
-		logger.info("registerResultTest create------------correct" + correct);
-		/*List<Integer> answerList = new ArrayList<>();
-		int answerInt = Integer.parseInt(answer);
-		answerList.add(answerInt);*/
 		
 		return "redirect:/resultTest/list"; 
 	}
+	
+	//랜덤으로 한문제씩 post용, insert시키기
+	@RequestMapping(value="singletest", method=RequestMethod.POST)
+	public String singletestresult(ResultTestVO vo, CustomerVO customerCode, QuestionVO questionCode , Model model){
+		logger.info("singletestresult===========:"+vo);
+		vo.setCustomer(customerCode);
+		vo.setQuestion(questionCode);
+		service.insertResultTest(vo);
+		return "redirect:/question/singletest";
+	}	
 
 }

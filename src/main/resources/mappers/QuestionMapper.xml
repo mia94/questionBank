@@ -32,6 +32,46 @@
 		SET question_title=#{questionTitle}, choice1=#{choice1}, choice2=#{choice2}, choice3=#{choice3}, choice4=#{choice4}, correct=#{correct}, state=#{state}, correct_rate=#{correctRate}, picture=#{picture}, subject=#{subject}, year=#{year} ,round=#{round}
 		WHERE question_code=#{questionCode}
 	</update>
+	
+	<!-- 연도/회차로 문제 select -->
+	<select id="selectByYearAndRound" resultType="QuestionVO">
+		select *
+		from question
+		where year=#{year} and round=#{round}
+		order by substring(question_code from 7 for 3)
+		limit #{cri.pageStart}, #{cri.perPageNum}
+	</select>
+	
+	<!-- #{perPageNum}조절하여 갯수 지정하기 -->
+	<select id="listCriteria" resultType="QuestionVO">
+	 	SELECT *
+		FROM question
+		where year=#{year} and round=#{round}
+		order by substring(question_code from 7 for 3)
+		limit #{pageStart}, #{perPageNum}
+	 </select>
+	 
+	 <!--  page용 question 총 갯수  -->
+	<select id="totalCount" resultType="int">
+		select count(question_code) 
+		from question
+		where year=#{year} and round=#{round}
+	</select>
+	
+	<!-- 랜덤으로 한문제씩 출력 -->
+	<select id="selectByRandom" resultType="QuestionVO">
+		select *
+		from question
+		order by rand()
+	</select>
+	
+	<!-- 과목별로 20문제씩 풀기??몇문제씩 할것인가 -->
+	<select id="selectBySubject" resultType="QuestionVO">
+		select *
+		from question
+		where subject=#{subject}
+		order by rand()
+	</select>
 </mapper>
 
 

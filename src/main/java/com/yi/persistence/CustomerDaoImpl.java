@@ -1,6 +1,8 @@
 package com.yi.persistence;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,6 +41,21 @@ public class CustomerDaoImpl implements CustomerDao {
 	@Override
 	public void updateCustomer(CustomerVO customervo) {
 		sqlSession.update(namespace+".updateCustomer", customervo);
+	}
+
+	@Override
+	public CustomerVO read(String id, String password) {
+		// TODO Auto-generated method stub
+		Map<String, String> map = new HashMap<>();
+		map.put("id", id);
+		map.put("password", password);
+		return sqlSession.selectOne(namespace+".read", map);
+	}
+
+	@Override
+	public String selectMaxCustomerCode() {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne(namespace+".selectMaxCustomerCode");
 	}
 
 }

@@ -39,4 +39,16 @@ public class CustomerServiceImpl implements CustomerService {
 		customerDao.updateCustomer(customervo);
 	}
 
+	@Override
+	public CustomerVO read(String id, String password) {
+		// TODO Auto-generated method stub
+		return customerDao.read(id, password);
+	}
+
+	@Override
+	public String selectMaxCustomerCode() {
+		// TODO Auto-generated method stub
+		return customerDao.selectMaxCustomerCode();
+	}
+
 }
