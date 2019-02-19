@@ -93,16 +93,16 @@
 	</div>
 	<div class="home_container2">
 		<article>
-			<img src="${pageContext.request.contextPath}/resources/images/solve.png">
+			<img src="${pageContext.request.contextPath}/resources/upload/solve.png">
 		</article>
 		<article>
-			<img src="${pageContext.request.contextPath}/resources/images/phone.png">
+			<img src="${pageContext.request.contextPath}/resources/upload/phone.png">
 		</article>
 		<article>
-			<img src="${pageContext.request.contextPath}/resources/images/incorrect.png">
+			<img src="${pageContext.request.contextPath}/resources/upload/incorrect.png">
 		</article>
 		<article>
-			<img src="${pageContext.request.contextPath}/resources/images/timer.png">
+			<img src="${pageContext.request.contextPath}/resources/upload/timer.png">
 		</article>
 	</div>
 	
