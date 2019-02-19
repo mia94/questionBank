@@ -48,7 +48,7 @@
 			</p>
 			<p>
 				<label>EMAIL</label>
-				<input type="text" name="email" value=""> 
+				<input type="text" name="email" value="${login.email}"> 
 			</p>
 			<p>
 				<label>ID</label>
