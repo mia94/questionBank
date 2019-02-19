@@ -42,7 +42,7 @@
 	/*홈 화면 파트*/
 	.home_container2{
 		width:100%;
-		height: 590px;
+		height: 330px;
 		margin:20px auto;
 	}
 	.home_container2 article{
@@ -56,6 +56,12 @@
 		width:80px;
 		margin-left: 75px;
 		margin-top: 40px;
+	}
+	.home_container3{
+		width:100%;
+		height:400px;
+		background-color: #F3C2BA; /* 연핑크 */
+		margin-bottom: 40px;
 	}
 	.home_container>div#color1{
 		background-color:#5B4149;/* 진갈색  */
@@ -104,6 +110,10 @@
 		<article>
 			<img src="${pageContext.request.contextPath}/resources/upload/timer.png">
 		</article>
+	</div>
+	
+	<div class="home_container3">
+	
 	</div>
 	
 	<script>

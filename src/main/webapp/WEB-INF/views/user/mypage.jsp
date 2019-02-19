@@ -44,7 +44,7 @@
 		<div class="mypage_container">
 			<p>
 				<label>NAME</label>
-				<input type="text" name="id" value="${login.customerName}" readonly>
+				<input type="text" name="id" value="${login.customerName}">
 			</p>
 			<p>
 				<label>EMAIL</label>
