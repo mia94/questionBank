@@ -11,20 +11,21 @@
 	$(function(){
 		
 		$("#test_submit").click(function(){
-			var answer = $("input[name=answer]").val();
+			var answer = $("input[name=answer]:checked").val();
 			var correct = $("input[name=correct]").val();
 			if(answer==correct){
 				alert("정답입니당");
 				$("input[name=answer]").attr("readonly","readonly");
+				$("input[name=pass]").val(true);
 			}else{
 				alert("틀렸습니당ㅠㅠ");
-				$("input[name=correct]").attr("readonly","readonly");
+				$("input[name=answer]").attr("readonly","readonly");
+				$("input[name=pass]").val(false);
 			}
-			return false;
 		})
 		
 		$("img[alt*=next]").click(function(){
-			$("#test_submit").submit();
+			$("#wsm_testForm").submit();
 		})
 		
 		//카운트용
@@ -85,15 +86,15 @@
 	form{
 		position: relative;
 	}
-	form>img{
+	form img[alt*=before], form img[alt*=next]{
 		width:50px;
 	}
-	form>img[alt*=before]{
+	form img[alt*=before]{
 		position: absolute;
 		left: 70px;
 		top:120px;
 	}
-	form>img[alt*=next]{
+	form img[alt*=next]{
 		position: absolute;
 		right: 75px;
 		top:120px;
@@ -115,6 +116,9 @@
 		float: right;
 		padding-right: 200px;
 	}
+	#correct_true, #correct_false{
+		display: none;
+	}
 	.pagination>.active>.wsm_active_a{
 		background-color: #A3918F;
 		border:1px solid #A3918F;
@@ -135,20 +139,24 @@
 					<c:if test="${item.picture.equals('')==false}">
   						<img src="displayFile?filename=${list.get(1).picture }">
   					</c:if>
-					<p><input type="radio" name='answer' value='1'> <!--①--> ${list.get(1).choice1} </p>
-					<p><input type="radio" name='answer' value='2'> <!--②--> ${list.get(1).choice2} </p>
-					<p><input type="radio" name='answer' value='3'> <!--③--> ${list.get(1).choice3} </p>
-					<p><input type="radio" name='answer' value='4'> <!--④--> ${list.get(1).choice4} </p>
+					<p><input type="radio" name='answer' value='1' class="answer"> <!--①--> ${list.get(1).choice1} </p>
+					<p><input type="radio" name='answer' value='2' class="answer"> <!--②--> ${list.get(1).choice2} </p>
+					<p><input type="radio" name='answer' value='3' class="answer"> <!--③--> ${list.get(1).choice3} </p>
+					<p><input type="radio" name='answer' value='4' class="answer"> <!--④--> ${list.get(1).choice4} </p>
+					<!-- 히든으로 보내는 값들모음 -->
 					<input type="hidden" name='correct' value='${list.get(1).correct}'>
-					<input type="hidden" name='customer' value='${login.customerCode}'>
+					<input type="hidden" name='pass' value='' id="pass">
+					<input type="hidden" name='questionCode' value='${list.get(1).questionCode}'>
+					<input type="hidden" name='customerCode' value='${login.customerCode}'>
 					<input type="hidden" name='spendTime' value='' id="spendTime">
 					<br>
-					<p>정답입니다</p>
+					<p id="correct_true">정답입니다</p>
+					<p id="correct_false">정답입니다</p>
 				</div>
 		</div>
-		<button type="submit" id="test_submit">정답확인</button>
+		<button type="button" id="test_submit">정답확인</button>
 		<img src="${pageContext.request.contextPath}/resources/images/before.png" alt="before">
-		<img src="${pageContext.request.contextPath}/resources/images/next.png" alt="next">
+		<a href="#"><img src="${pageContext.request.contextPath}/resources/images/next.png" alt="next"></a>
 	</form>
 	
 	
