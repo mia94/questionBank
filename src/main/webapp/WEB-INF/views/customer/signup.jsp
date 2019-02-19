@@ -55,8 +55,12 @@
 				<input type="password" name="password">
 			</p>
 			<p>
+				<label>PW CHECK</label>
+				<input type="password" name="password_check">
+			</p>
+			<p>
 				<label>EMAIL</label>
-				<input type="text" name="email">
+				<input type="text" name="email"> 
 			</p>
 			<button type="submit"><span>Sign Up</span></button>
 		</div>		

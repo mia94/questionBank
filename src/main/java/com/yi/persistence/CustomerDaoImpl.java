@@ -52,4 +52,10 @@ public class CustomerDaoImpl implements CustomerDao {
 		return sqlSession.selectOne(namespace+".read", map);
 	}
 
+	@Override
+	public String selectMaxCustomerCode() {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne(namespace+".selectMaxCustomerCode");
+	}
+
 }

@@ -32,8 +32,6 @@ public class ResultTestController {
 	@RequestMapping(value="singletest", method=RequestMethod.POST)
 	public String singletestresult(ResultTestVO vo, CustomerVO customerCode, QuestionVO questionCode , Model model){
 		logger.info("singletestresult===========:"+vo);
-		logger.info("singletestresult===========:"+customerCode);
-		logger.info("singletestresult===========:"+questionCode);
 		vo.setCustomer(customerCode);
 		vo.setQuestion(questionCode);
 		service.insertResultTest(vo);

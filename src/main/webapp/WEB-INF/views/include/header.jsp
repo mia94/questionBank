@@ -55,6 +55,7 @@
 	                <li><a href="${pageContext.request.contextPath}/user/login"><span class="glyphicon glyphicon-log-in" id="wsm_Login"></span> <span id="wsm_Login_text">Login</span></a></li>
 	              </c:if>
 	              <c:if test="${login != null }">
+	              	 <li><a href="${pageContext.request.contextPath}/user/mypage"><span class="glyphicon glyphicon-user" id="wsm_signUp"></span> <span id="wsm_Login_text"> My Page</span></a></li>
 	                 <li><a href="${pageContext.request.contextPath}/user/logout"><span class="glyphicon glyphicon-log-in" id="wsm_Login"></span> <span id="wsm_Login_text">LogOut</span></a></li>
 	              </c:if> 
 		    </ul>

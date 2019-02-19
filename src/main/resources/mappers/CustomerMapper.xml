@@ -38,6 +38,11 @@
 		where id=#{id} AND password=#{password}
 	</select>
 	
+	<!-- 가장 큰 customerCode가져오기 -->
+	<select id="selectMaxCustomerCode" resultType="String">
+		select max(customer_code)
+		from customer
+	</select>
 </mapper>
 
 

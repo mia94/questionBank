@@ -53,6 +53,11 @@ public class UserController {
 		session.invalidate();//세션날리면 로그아웃 완료
 		return "redirect:/";
 	}
+	
+	@RequestMapping(value="mypage", method=RequestMethod.GET)
+	public void mypageGET(HttpSession session) {
+		logger.info("mypageGET GET ------------");
+	}
 }
 
 

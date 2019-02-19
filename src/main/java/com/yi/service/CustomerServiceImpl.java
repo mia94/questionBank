@@ -45,4 +45,10 @@ public class CustomerServiceImpl implements CustomerService {
 		return customerDao.read(id, password);
 	}
 
+	@Override
+	public String selectMaxCustomerCode() {
+		// TODO Auto-generated method stub
+		return customerDao.selectMaxCustomerCode();
+	}
+
 }

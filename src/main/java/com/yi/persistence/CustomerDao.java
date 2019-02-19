@@ -13,4 +13,5 @@ public interface CustomerDao {
 	public void updateCustomer(CustomerVO customervo);
 	
 	public CustomerVO read(String id, String password);
+	public String selectMaxCustomerCode();
 }

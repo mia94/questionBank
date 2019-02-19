@@ -14,11 +14,13 @@
 			var answer = $("input[name=answer]:checked").val();
 			var correct = $("input[name=correct]").val();
 			if(answer==correct){
-				alert("정답입니당");
+				$("#correct_true").show();
+				$(".question_wrap").css("background-color","#DAE9FF")
 				$("input[name=answer]").attr("readonly","readonly");
 				$("input[name=pass]").val(true);
 			}else{
-				alert("틀렸습니당ㅠㅠ");
+				$("#correct_false").show();
+				$(".question_wrap").css("background-color","#FFEDED")
 				$("input[name=answer]").attr("readonly","readonly");
 				$("input[name=pass]").val(false);
 			}
@@ -118,6 +120,10 @@
 	}
 	#correct_true, #correct_false{
 		display: none;
+		position: absolute;
+		right: 230px;
+		bottom: 20px;
+		font-family: 'Jua', sans-serif;
 	}
 	.pagination>.active>.wsm_active_a{
 		background-color: #A3918F;
