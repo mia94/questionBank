@@ -142,7 +142,7 @@
 				<div class="question_wrap">
 					<p>${list.get(1).questionCode}</p>
 					<p>${list.get(1).questionTitle}</p>
-					<c:if test="${item.picture.equals('')==false}">
+					<c:if test="${list.get(1).picture.equals('')==false}">
   						<img src="displayFile?filename=${list.get(1).picture }">
   					</c:if>
 					<p><input type="radio" name='answer' value='1' class="answer"> <!--①--> ${list.get(1).choice1} </p>
@@ -157,7 +157,7 @@
 					<input type="hidden" name='spendTime' value='' id="spendTime">
 					<br>
 					<p id="correct_true">정답입니다</p>
-					<p id="correct_false">정답입니다</p>
+					<p id="correct_false">오답입니다</p>
 				</div>
 		</div>
 		<button type="button" id="test_submit">정답확인</button>
