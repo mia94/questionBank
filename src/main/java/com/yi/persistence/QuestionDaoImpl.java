@@ -83,4 +83,10 @@ public class QuestionDaoImpl implements QuestionDao {
 		return sqlSession.selectList(namespace+".selectByRandom");
 	}
 
+	@Override
+	public List<QuestionVO> selectBySubject(String subject) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList(namespace+".selectBySubject",subject);
+	}
+
 }

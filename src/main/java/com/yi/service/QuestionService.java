@@ -17,4 +17,6 @@ public interface QuestionService {
 	public int totalCount(int year, int round);
 	//·£´ý
 	public List<QuestionVO> selectByRandom();
+	//°ú¸ñ
+	public List<QuestionVO> selectBySubject(String subject);
 }

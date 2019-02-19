@@ -66,6 +66,12 @@
 	</select>
 	
 	<!-- 과목별로 20문제씩 풀기??몇문제씩 할것인가 -->
+	<select id="selectBySubject" resultType="QuestionVO">
+		select *
+		from question
+		where subject=#{subject}
+		order by rand()
+	</select>
 </mapper>
 
 

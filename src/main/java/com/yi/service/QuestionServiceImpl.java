@@ -69,4 +69,10 @@ public class QuestionServiceImpl implements QuestionService {
 		return dao.selectByRandom();
 	}
 
+	@Override
+	public List<QuestionVO> selectBySubject(String subject) {
+		// TODO Auto-generated method stub
+		return dao.selectBySubject(subject);
+	}
+
 }

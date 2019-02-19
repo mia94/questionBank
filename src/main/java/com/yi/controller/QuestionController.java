@@ -101,15 +101,16 @@ private static final Logger logger = LoggerFactory.getLogger(QuestionController.
 			cri.setPerPageNum(1);
 			List<QuestionVO> list = service.selectByRandom();
 			model.addAttribute("list", list);
-			
-			model.addAttribute("list", list);
 			model.addAttribute("cri", cri);
 	}
 	
 	//과목별 문제
-	@RequestMapping(value="subjecttest", method=RequestMethod.GET)//
-	public void subjecttest(){
+	@RequestMapping(value="subjecttest", method=RequestMethod.GET)
+	public void subjecttest(Criteria cri,Model model){
 		logger.info("subjecttest get------------");
+		List<QuestionVO> list = service.selectBySubject("D");//외부에서 값 받기!
+		model.addAttribute("list", list);
+		model.addAttribute("cri", cri);
 	}
 		
 	//json을 보내는 메소드 - 사용X

@@ -66,7 +66,6 @@
 </script>
 <title>Insert title here</title>
 <style>
-@import url('https://fonts.googleapis.com/css?family=Jua');
 	div.question_wrap{
 		width:800px;
 		margin:20px auto;

@@ -19,5 +19,6 @@ public interface QuestionDao {
 	
 	//·£´ý
 	public List<QuestionVO> selectByRandom();
-	
+	//°ú¸ñ
+	public List<QuestionVO> selectBySubject(String subject);
 }
