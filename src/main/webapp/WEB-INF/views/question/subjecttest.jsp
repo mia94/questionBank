@@ -71,19 +71,19 @@
 					<c:if test="${item.picture.equals('')==false}">
   						<img src="displayFile?filename=${item.picture }">
   					</c:if>
-					<label class="container"> &nbsp; ${list.get(1).choice1}
+					<label class="container"> &nbsp; ${item.choice1}
 					  <input type="radio" name="answer" value='1'>
 					  <span class="checkmark"></span>
 					</label>
-					<label class="container"> &nbsp; ${list.get(1).choice2}
+					<label class="container"> &nbsp; ${item.choice2}
 					  <input type="radio" name="answer" value='2'>
 					  <span class="checkmark"></span>
 					</label>
-					<label class="container"> &nbsp; ${list.get(1).choice3}
+					<label class="container"> &nbsp; ${item.choice3} 
 					  <input type="radio" name="answer" value='3' >
 					  <span class="checkmark"></span>
 					</label>
-					<label class="container"> &nbsp; ${list.get(1).choice4}
+					<label class="container"> &nbsp; ${item.choice4}
 					  <input type="radio" name="answer" value='4' >
 					  <span class="checkmark"></span>
 					</label>
@@ -93,6 +93,20 @@
 		</div>
 		<button type="submit" id="test_submit">제출하기</button>
 	</form>
+	
+	<div class="text-center">
+		<ul class="pagination">
+			<c:if test="${pageMaker.prev }">
+				<li><a href="${pageContext.request.contextPath}/question/subjectlist?page=${pageMaker.startPage-1}">&laquo;</a></li>
+			</c:if>
+			<c:forEach begin="${pageMaker.startPage }" end="${pageMaker.endPage }" var="idx">
+				<li ${pageMaker.cri.page == idx ? 'class="active"': ''} ><a href="${pageContext.request.contextPath}/question/subjectlist?page=${idx}" class="wsm_active_a">${idx}</a></li>
+			</c:forEach>
+			<c:if test="${pageMaker.next }">
+				<li><a href="${pageContext.request.contextPath}/question/subjectlist?page=${pageMaker.endPage+1}">&raquo;</a></li>
+			</c:if>
+		</ul>
+	</div>
 	
 	<script id="template1" type="text/x-handlebars-template"> 
 	{{#each.}}

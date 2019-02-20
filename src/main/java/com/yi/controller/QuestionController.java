@@ -73,7 +73,6 @@ private static final Logger logger = LoggerFactory.getLogger(QuestionController.
 	public void list(Criteria cri,Model model){
 		System.out.println("cri===========:"+cri);
 		List<QuestionVO> list = service.selectByYearAndRound(2018, 3, cri);///////연도와 회차 외부에서 받기!!!!
-		model.addAttribute("list", list);
 		
 		PageMaker pageMaker = new PageMaker();
 		pageMaker.setCri(cri);
@@ -99,7 +98,13 @@ private static final Logger logger = LoggerFactory.getLogger(QuestionController.
 	public void subjecttest(Criteria cri,Model model){
 		logger.info("subjecttest get------------");
 		List<QuestionVO> list = service.selectBySubject("D");//외부에서 값 받기!
+		
+		PageMaker pageMaker = new PageMaker();
+		pageMaker.setCri(cri);
+		pageMaker.setTotalCount(service.totalCount(2018,3));
+		
 		model.addAttribute("list", list);
+		model.addAttribute("pageMaker", pageMaker);
 		model.addAttribute("cri", cri);
 	}
 		
