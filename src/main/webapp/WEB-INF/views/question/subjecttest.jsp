@@ -19,6 +19,9 @@
 	section{
 		position: relative;
 	}
+	.custom-select {
+	  float: right;
+	}
 	.container_wrap{
 		margin-top: 40px;
 	}

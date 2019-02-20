@@ -108,17 +108,16 @@ private static final Logger logger = LoggerFactory.getLogger(QuestionController.
 		model.addAttribute("cri", cri);
 	}
 		
-	//json을 보내는 메소드 - 사용X
+	//json을 보내는 메소드 - list.jsp에서 사용
 	@ResponseBody
-	@RequestMapping(value="listJson", method=RequestMethod.GET)
-	public ResponseEntity<List<QuestionVO>> listJson(){
+	@RequestMapping(value="listJson/{year}/{round}", method=RequestMethod.GET)
+	public ResponseEntity<List<QuestionVO>> listJson(Criteria cri,@PathVariable("year") int year, @PathVariable("round") int round){
 		ResponseEntity<List<QuestionVO>> entity = null;
 		
 		try {
-			List<QuestionVO> list = service.selectByAll();
+			List<QuestionVO> list = service.selectByYearAndRound(year, round, cri);
 			entity = new ResponseEntity<>(list, HttpStatus.OK);
 		} catch (Exception e) {
-			// TODO: handle exception 
 			e.printStackTrace();
 			entity = new ResponseEntity<>(HttpStatus.BAD_REQUEST);//List<QuestionVO>로 보내야 하나, 보낼수없을때는HttpStatus만 보냄
 		}
@@ -126,7 +125,7 @@ private static final Logger logger = LoggerFactory.getLogger(QuestionController.
 		return entity;
 	}
 	
-	//json으로 과목별 문제select 보내는 메소드 - 사용 할 거임
+	//json으로 과목별 문제select 보내는 메소드 - subjecttest.jsp에서 사용
 	@ResponseBody
 	@RequestMapping(value="subjecttest/{subject}", method=RequestMethod.GET)
 	public ResponseEntity<List<QuestionVO>> listBySubjectJson(@PathVariable("subject") String subject){

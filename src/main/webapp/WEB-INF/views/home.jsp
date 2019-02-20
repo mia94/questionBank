@@ -65,7 +65,7 @@
 	}
 	.home_container>div#color1{
 		background-color:#5B4149;/* 진갈색  */
-		background-color: F6EFEC; /* 연베이지 */
+		background-color:#F6EFEC; /* 연베이지 */
 		background-color:#A3918F;/* 코코아 */
 		background-color:#F3C2BA; /* 연핑크 */
 		background-color:#F28683; /* 진핑크 */
