@@ -13,9 +13,7 @@
 </head>
 <body>
 	<jsp:include page="../include/header.jsp"></jsp:include>
-		<div class="container">
-		  <h2>Customer List</h2>
-		  <p>고객 추가/수정/삭제 기능</p>            
+		<div class="container">     
 		  <table class="table table-hover">
 		    <thead>
 		      <tr>

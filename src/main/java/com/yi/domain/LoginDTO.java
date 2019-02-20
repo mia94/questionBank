@@ -4,6 +4,7 @@ public class LoginDTO {
 	private String customerCode;
 	private String customerName;
 	private String id;
+	private String email;
 	private boolean employee;
 	
 	
@@ -30,6 +31,12 @@ public class LoginDTO {
 	}
 	public void setEmployee(boolean employee) {
 		this.employee = employee;
+	}
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
 	}
 	
 	@Override
