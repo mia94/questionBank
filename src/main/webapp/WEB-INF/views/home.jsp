@@ -18,6 +18,7 @@
 	}
 	#main_banner img{
 		width: 1200px;
+		height: 447px;
 	}
 	#main_banner h1{
 		position: absolute;
@@ -82,15 +83,15 @@
 		<div id="main_banner">
 			<!-- bx슬라이더, section은 main.js에 넣어야함, css는 필요없음 -->
 			<div>
-				<a href="#"><img src="${pageContext.request.contextPath}/resources/images/main.jpg" alt=""></a>
+				<a href="#"><img src="${pageContext.request.contextPath}/resources/upload/main.jpg" alt=""></a>
 				<h1>1 Page</h1>
 			</div>
 			<div>
-				<a href="#"><img src="${pageContext.request.contextPath}/resources/images/main.jpg" alt=""></a>
+				<a href="#"><img src="${pageContext.request.contextPath}/resources/upload/main2.png" alt=""></a>
 				<h1>2 Page</h1>
 			</div>
 			<div>
-				<a href="#"><img src="${pageContext.request.contextPath}/resources/images/main.jpg" alt=""></a>
+				<a href="#"><img src="${pageContext.request.contextPath}/resources/upload/main3.png" alt=""></a>
 				<h1>3 Page</h1> 
 			</div>
 		</div>

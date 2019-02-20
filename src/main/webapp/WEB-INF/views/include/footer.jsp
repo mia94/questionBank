@@ -7,10 +7,10 @@
    		<div class="footer_div">
    			<article class="footer_article">
    				<h4>Wooooo's<br>QuestionBank</h4>
-   				<img alt="logo1" src="${pageContext.request.contextPath}/resources/images/logo2_cocoa.png">
-   				<img alt="logo2" src="${pageContext.request.contextPath}/resources/images/logo_cocoa.png">
-   				<img alt="logo3" src="${pageContext.request.contextPath}/resources/images/logo3_cocoa.png">
-   				<img alt="logo4" src="${pageContext.request.contextPath}/resources/images/logo5_cocoa.png">
+   				<img alt="logo1" src="${pageContext.request.contextPath}/resources/upload/logo2_cocoa.png">
+   				<img alt="logo2" src="${pageContext.request.contextPath}/resources/upload/logo_cocoa.png">
+   				<img alt="logo3" src="${pageContext.request.contextPath}/resources/upload/logo3_cocoa.png">
+   				<img alt="logo4" src="${pageContext.request.contextPath}/resources/upload/logo5_cocoa.png">
    			</article>
    			<article class="footer_article">
    				<p>Company</p>

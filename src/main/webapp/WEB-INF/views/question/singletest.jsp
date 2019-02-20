@@ -206,8 +206,8 @@
 				</div>
 		</div>
 		<button type="button" id="test_submit">정답확인</button>
-		<img src="${pageContext.request.contextPath}/resources/images/before.png" alt="before">
-		<a href="#"><img src="${pageContext.request.contextPath}/resources/images/next.png" alt="next"></a>
+		<img src="${pageContext.request.contextPath}/resources/upload/before.png" alt="before">
+		<a href="#"><img src="${pageContext.request.contextPath}/resources/upload/next.png" alt="next"></a>
 	</form>
 	
 	
