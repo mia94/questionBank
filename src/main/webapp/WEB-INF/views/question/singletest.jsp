@@ -75,7 +75,7 @@
 	section{
 		position: relative;
 	}
-	.container{
+	.container_wrap{
 		margin-top: 40px;
 	}
 	#counter{
@@ -131,23 +131,92 @@
 	.pagination .wsm_active_a{
 		color:#A3918F;
 	}
+	/*라디오버튼 css*/
+	.container {
+	  display: block;
+	  position: relative;
+	  padding-left: 35px;
+	  margin-bottom: 12px;
+	  cursor: pointer;
+	  font-size: 12px;
+	  -webkit-user-select: none;
+	  -moz-user-select: none;
+	  -ms-user-select: none;
+	  user-select: none;
+	}
+	
+	.container input {
+	  position: absolute;
+	  opacity: 0;
+	  cursor: pointer;
+	}
+	.checkmark {
+	  position: absolute;
+	  top: 0;
+	  left: 0;
+	  height: 15px;
+	  width: 15px;
+	  background-color: #eee;
+	  border-radius: 50%;
+	}
+	.container:hover input ~ .checkmark {
+	  background-color: #ccc;
+	}
+	.container input:checked ~ .checkmark {
+	  background-color: #F28683;  
+	}
+	.checkmark:after {
+	  content: "";
+	  position: absolute;
+	  display: none;
+	}
+	.container input:checked ~ .checkmark:after {
+	  display: block;
+	}
+	.container .checkmark:after {
+	 	top: 4.5px;
+		left: 4.5px;
+		width: 6px;
+		height: 6px; 
+		border-radius: 50%;
+		background: white;
+	}
 </style>
 </head>
 <body>
 	<jsp:include page="../include/header.jsp"></jsp:include>
 	<div id="counter" style='font-size:12pt'></div>
 	<form action="singletest" method="post" id="wsm_testForm">
-		<div class="container">
+		<div class="container_wrap">
 				<div class="question_wrap">
 					<p>${list.get(1).questionCode}</p>
 					<p>${list.get(1).questionTitle}</p>
 					<c:if test="${list.get(1).picture.equals('')==false}">
   						<img src="displayFile?filename=${list.get(1).picture }">
   					</c:if>
-					<p><input type="radio" name='answer' value='1' class="answer"> <!--①--> ${list.get(1).choice1} </p>
-					<p><input type="radio" name='answer' value='2' class="answer"> <!--②--> ${list.get(1).choice2} </p>
-					<p><input type="radio" name='answer' value='3' class="answer"> <!--③--> ${list.get(1).choice3} </p>
-					<p><input type="radio" name='answer' value='4' class="answer"> <!--④--> ${list.get(1).choice4} </p>
+					<%-- <p><input type="radio" name='answer' value='1' class="answer"> <label> ${list.get(1).choice1} </label></p>
+					<p><input type="radio" name='answer' value='2' class="answer"> <label> ${list.get(1).choice2} </label></p>
+					<p><input type="radio" name='answer' value='3' class="answer"> <label> ${list.get(1).choice3} </label></p>
+					<p><input type="radio" name='answer' value='4' class="answer"> <label> ${list.get(1).choice4} </label></p> --%>
+					<!-- 라디오22 -->
+					
+					<label class="container"> &nbsp; ${list.get(1).choice1}
+					  <input type="radio" name="answer" value='1'>
+					  <span class="checkmark"></span>
+					</label>
+					<label class="container"> &nbsp; ${list.get(1).choice2}
+					  <input type="radio" name="answer" value='2'>
+					  <span class="checkmark"></span>
+					</label>
+					<label class="container"> &nbsp; ${list.get(1).choice3}
+					  <input type="radio" name="answer" value='3' >
+					  <span class="checkmark"></span>
+					</label>
+					<label class="container"> &nbsp; ${list.get(1).choice4}
+					  <input type="radio" name="answer" value='4' >
+					  <span class="checkmark"></span>
+					</label>
+					
 					<!-- 히든으로 보내는 값들모음 -->
 					<input type="hidden" name='correct' value='${list.get(1).correct}'>
 					<input type="hidden" name='pass' value='' id="pass">
@@ -165,6 +234,22 @@
 	</form>
 	
 	
+	
 	<jsp:include page="../include/footer.jsp"></jsp:include>
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

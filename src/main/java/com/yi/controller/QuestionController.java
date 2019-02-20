@@ -26,7 +26,6 @@ import org.springframework.web.multipart.MultipartFile;
 import com.yi.domain.Criteria;
 import com.yi.domain.PageMaker;
 import com.yi.domain.QuestionVO;
-import com.yi.domain.SearchCriteria;
 import com.yi.service.QuestionService;
 import com.yi.util.MediaUtils;
 
@@ -50,7 +49,6 @@ private static final Logger logger = LoggerFactory.getLogger(QuestionController.
 	@RequestMapping(value="register", method=RequestMethod.POST)
 	public String registerPost(QuestionVO vo, String number,MultipartFile pictureFile){
 		logger.info("QuestionVO create------------POST");
-		ResponseEntity<String> entity = null;
 		
 		//사진파일 경로 저장
 		String picture = pictureFile.getOriginalFilename();
@@ -59,21 +57,13 @@ private static final Logger logger = LoggerFactory.getLogger(QuestionController.
 			vo.setPicture(uploadPath+"/"+picture);
 			logger.info("QuestionVO create------------"+vo);
 		}
-		//연도/회차/번호를 이용하여 Code입력하기
-		//vo.setQuestionCode(Q+vo.getSubject()+vo.getYear()+vo.getRound()+number);
-		
+		//연도/회차/번호를 이용하여 Code입력하기		
 		String threeNum = String.format("%03d",Integer.parseInt(number));
 		System.out.println("Q"+vo.getSubject()+vo.getYear()+vo.getRound()+threeNum);
 		vo.setQuestionCode("Q"+vo.getSubject()+vo.getYear()+vo.getRound()+threeNum);
 		//insert수행
-		try {
-			service.insert(vo);
-			System.out.println(vo);
-			entity = new ResponseEntity<String>("success", HttpStatus.OK);
-		} catch (Exception e) {
-			e.printStackTrace();
-			entity = new ResponseEntity<String>(e.getMessage(),HttpStatus.BAD_REQUEST);//400에러
-		}
+		service.insert(vo);
+		System.out.println(vo);
 		
 		return "redirect:/question/register";
 		
@@ -130,6 +120,24 @@ private static final Logger logger = LoggerFactory.getLogger(QuestionController.
 		
 		return entity;
 	}
+	
+	//json으로 과목별 문제select 보내는 메소드 - 사용 할 거임
+		@ResponseBody
+		@RequestMapping(value="listBySubjectJson", method=RequestMethod.GET)
+		public ResponseEntity<List<QuestionVO>> listBySubjectJson(String subject){
+			ResponseEntity<List<QuestionVO>> entity = null;
+			
+			try {
+				List<QuestionVO> list = service.selectBySubject(subject);
+				entity = new ResponseEntity<>(list, HttpStatus.OK);
+			} catch (Exception e) {
+				// TODO: handle exception 
+				e.printStackTrace();
+				entity = new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+			}
+			
+			return entity;
+		}
 	
 	@RequestMapping(value="{questionCode}", method=RequestMethod.PUT)
 	public ResponseEntity<String> update(@PathVariable("questionCode") String questionCode,@RequestBody QuestionVO vo){

@@ -79,9 +79,9 @@
 	var reg = /^[가-힣]{2,5}$/;
 	var nameResult = reg.test(email);
 	if(nameResult){
-		document.write(name+"은 가능한 이름 입니다.<br>")
+		
 	}else{
-		document.write("한글 2-5자리로 입력하세요.")
+		
 	}
 	//아이디 중복확인
 	//비밀번호 확인 (특수문자, 문자, 숫자 포함 형태의 8-15자리)
@@ -89,9 +89,9 @@
 	var reg = /^.*(?=^.{8,15}$)(?=.*\d)(?=.*[a-zA-Z])(?=.*[!@#$%^&+=]).*$/;
 	var pwResult = reg.test(email);
 	if(pwResult){
-		document.write("사용가능한 비밀번호입니다.")
+		
 	}else{
-		document.write("사용 불가능한 비밀번호 입니다.")
+		
 	}
 	//이메일 규격 확인
 	var email = $("input[name=email]").val();
@@ -100,9 +100,9 @@
 	var emailResult = reg.test(email);
 	
 	if(emailResult){
-		document.write(email+"은 유효한 이메일 입니다.<br>")
+		
 	}else{
-		document.write(email+"은 유효하지 않은 이메일 입니다.<br>")
+		
 	}
 	</script>
 	<jsp:include page="../include/footer.jsp"></jsp:include>

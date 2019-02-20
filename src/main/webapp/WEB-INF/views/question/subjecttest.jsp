@@ -51,6 +51,16 @@
 	<jsp:include page="../include/header.jsp"></jsp:include>
 	
 	<form action="result" method="post" id="wsm_testForm">
+		<div class="input_wrap">
+			<select name="subject">
+				<option value=""> </option>
+				<option value="D">데이터베이스</option>
+				<option value="A">전자계산기 구조</option>
+				<option value="O">운영체제</option>
+				<option value="S">소프트웨어 공학</option>
+				<option value="C">데이터통신</option>
+			</select>
+		</div>
 		<div class="container">
 			<c:forEach var="item" items="${list }">
 				<div class="question_wrap">
@@ -69,6 +79,45 @@
 		</div>
 		<button type="submit" id="test_submit">제출하기</button>
 	</form>
+	
+	<script id="template1" type="text/x-handlebars-template"> 
+	{{#each.}}
+		<div class="question_wrap">
+			<p>${item.questionCode}</p>
+			<p>${item.questionTitle}</p>
+				<c:if test="${item.picture.equals('')==false}">
+		  			<img src="displayFile?filename=${item.picture }">
+		  		</c:if>
+			<p><input type="radio" name='answer' value='1'> <!--①--> ${item.choice1} </p>
+			<p><input type="radio" name='answer' value='2'> <!--②--> ${item.choice2} </p>
+			<p><input type="radio" name='answer' value='3'> <!--③--> ${item.choice3} </p>
+			<p><input type="radio" name='answer' value='4'> <!--④--> ${item.choice4} </p>
+			<p><input type="hidden" name='correct' value='${item.correct}'></p>
+		</div>
+	{{/each}}
+	</script>
+	
+	<script>
+	
+	function getList(){
+		$.ajax({
+			url:"${pageContext.request.contextPath}/question/subjecttest/",
+			type:"get",
+			dataType:"json",
+			success:function(json){
+				console.log(json);
+				$(".container").empty();
+			
+			var source = $("#template1").html();
+			var f = Handlebars.compile(source);
+			var result = f(json);
+			$(".container").append(result);
+
+			}
+		})
+	}
+	</script>
+
 	
 	
 	<jsp:include page="../include/footer.jsp"></jsp:include>
