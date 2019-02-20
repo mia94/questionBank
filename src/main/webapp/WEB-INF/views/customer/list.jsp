@@ -10,17 +10,37 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 <title>Insert title here</title>
+<style>
+	.list_container{
+		width:900px;
+		margin: 0 auto;
+	}
+	table{
+		width:700px;
+		margin-left: 100px;
+		margin-top: 70px;
+	}
+	table tr{
+		border: 0.5px solid #ddd;
+	}
+	table td, table th{
+		padding: 5px 10px;
+		text-align: right;
+	}
+</style>
 </head>
 <body>
 	<jsp:include page="../include/header.jsp"></jsp:include>
-		<div class="container">     
-		  <table class="table table-hover">
+		<div class="list_container">
+		
+		<!-- 추가/수정/삭제/검색 버튼 달기 -->
+		
+		  <table class="">
 		    <thead>
 		      <tr>
 		        <th>CustomerCode</th>
 		        <th>CustomerName</th>
 		        <th>id</th>
-		        <th>password</th>
 		        <th>email</th>
 		        <th>employee</th>
 		      </tr>
@@ -31,7 +51,6 @@
 						<td>${item.customerCode }</td>
 						<td>${item.customerName }</td>
 						<td>${item.id }</td>
-						<td>${item.password }</td>
 						<td>${item.email }</td>
 						<td>${item.employee }</td>
 					</tr>

@@ -95,8 +95,8 @@
 				<h1>3 Page</h1> 
 			</div>
 		</div>
-		<img src="${pageContext.request.contextPath}/resources/images/visual_btn_left.png" alt="이전배너" class="touch_left_btn"> 
-		<img src="${pageContext.request.contextPath}/resources/images/visual_btn_right.png" alt="이후배너" class="touch_right_btn">
+		<img src="${pageContext.request.contextPath}/resources/upload/cocoa_btn_left.png" alt="이전배너" class="touch_left_btn"> 
+		<img src="${pageContext.request.contextPath}/resources/upload/cocoa_btn_right.png" alt="이후배너" class="touch_right_btn">
 	</div>
 	<div class="home_container2">
 		<article>
