@@ -99,8 +99,8 @@
 		<div class="question_wrap">
 			<p>{{questionCode}}</p>
 			<p>{{questionTitle}}</p>
-				{{#ifCond v1 v2}}
-    				
+				{{#ifCond picture}}
+
 				{{else}}
     				<img src="displayFile?filename={{picture}}">
 				{{/ifCond}}
@@ -131,8 +131,8 @@
 	function getList(){
 		var subject = $("select[name*=subject]").val();
 		
-		Handlebars.registerHelper('ifCond', function(v1, v2, options) {
-			if(v1 === v2) {
+		Handlebars.registerHelper('ifCond', function(v1, options) {
+			if(v1 === "") {
 			   return options.fn(this);
 			}
 			return options.inverse(this);
