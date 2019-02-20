@@ -132,7 +132,7 @@
 		var subject = $("select[name*=subject]").val();
 		
 		Handlebars.registerHelper('ifCond', function(v1, options) {
-			if(v1 === "") {
+			if(v1 === "" || v1 === null) {
 			   return options.fn(this);
 			}
 			return options.inverse(this);
