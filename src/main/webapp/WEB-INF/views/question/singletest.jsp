@@ -11,6 +11,27 @@
 <script>
 	$(function(){
 		
+		//번호, 과목 display용
+		var code = $(".code").text();
+		var numCode = code.substring(7,10);
+		var subject = code.substr(1,1);
+		
+		switch (subject) {
+		  case 'D'   : $(".subject").text("데이터베이스");
+		               break;
+		  case 'A'   : $(".subject").text("전자계산기 구조");
+		               break;
+		  case 'O'  : $(".subject").text("운영체제");
+		               break;
+		  case 'S'  : $(".subject").text("소프트웨어 공학");
+          				break;
+		  default    : $(".subject").text("데이터 통신");
+		               break;
+		}
+		
+		$(".code").text(numCode);
+		
+		//submit용
 		$("#test_submit").click(function(){
 			var answer = $("input[name=answer]:checked").val();
 			var correct = $("input[name=correct]").val();
@@ -85,6 +106,15 @@
 		right: -35px;
 		top: 5px;
 	}
+	span.subject{
+		font-size: 17px;
+		font-weight: bold;
+		color:#ccc; 
+	}
+	p.code{
+		font-weight: bold;
+		color:#A3918F;
+	}
 	form{
 		position: relative;
 	}
@@ -140,7 +170,8 @@
 	<form action="singletest" method="post" id="wsm_testForm">
 		<div class="container_wrap">
 				<div class="question_wrap">
-					<p>${list.get(1).questionCode}</p>
+					<span class="subject"></span>
+					<p class="code">${list.get(1).questionCode}</p>
 					<p>${list.get(1).questionTitle}</p>
 					<c:if test="${list.get(1).picture.equals('')==false}">
   						<img src="displayFile?filename=${list.get(1).picture }">
