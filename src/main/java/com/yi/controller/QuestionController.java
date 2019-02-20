@@ -122,9 +122,9 @@ private static final Logger logger = LoggerFactory.getLogger(QuestionController.
 	}
 	
 	//json으로 과목별 문제select 보내는 메소드 - 사용 할 거임
-		@ResponseBody
-		@RequestMapping(value="listBySubjectJson", method=RequestMethod.GET)
-		public ResponseEntity<List<QuestionVO>> listBySubjectJson(String subject){
+	@ResponseBody
+	@RequestMapping(value="subjecttest/{subject}", method=RequestMethod.GET)
+	public ResponseEntity<List<QuestionVO>> listBySubjectJson(@PathVariable("subject") String subject){
 			ResponseEntity<List<QuestionVO>> entity = null;
 			
 			try {
@@ -137,7 +137,7 @@ private static final Logger logger = LoggerFactory.getLogger(QuestionController.
 			}
 			
 			return entity;
-		}
+	}
 	
 	@RequestMapping(value="{questionCode}", method=RequestMethod.PUT)
 	public ResponseEntity<String> update(@PathVariable("questionCode") String questionCode,@RequestBody QuestionVO vo){

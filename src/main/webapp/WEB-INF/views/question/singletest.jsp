@@ -7,6 +7,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+<link href="${pageContext.request.contextPath}/resources/css/radiobutton.css" rel="stylesheet"  type="text/css">
 <script>
 	$(function(){
 		
@@ -68,7 +69,7 @@
 <style>
 	div.question_wrap{
 		width:800px;
-		margin:20px auto;
+		margin:30px auto; 
 		border:1px solid #ccc;
 		padding: 30px 20px;  
 	}
@@ -82,7 +83,7 @@
 		width:300px;
 		position: absolute;
 		right: -35px;
-		top: 25px;
+		top: 5px;
 	}
 	form{
 		position: relative;
@@ -131,56 +132,6 @@
 	.pagination .wsm_active_a{
 		color:#A3918F;
 	}
-	/*라디오버튼 css*/
-	.container {
-	  display: block;
-	  position: relative;
-	  padding-left: 35px;
-	  margin-bottom: 12px;
-	  cursor: pointer;
-	  font-size: 12px;
-	  -webkit-user-select: none;
-	  -moz-user-select: none;
-	  -ms-user-select: none;
-	  user-select: none;
-	}
-	
-	.container input {
-	  position: absolute;
-	  opacity: 0;
-	  cursor: pointer;
-	}
-	.checkmark {
-	  position: absolute;
-	  top: 0;
-	  left: 0;
-	  height: 15px;
-	  width: 15px;
-	  background-color: #eee;
-	  border-radius: 50%;
-	}
-	.container:hover input ~ .checkmark {
-	  background-color: #ccc;
-	}
-	.container input:checked ~ .checkmark {
-	  background-color: #F28683;  
-	}
-	.checkmark:after {
-	  content: "";
-	  position: absolute;
-	  display: none;
-	}
-	.container input:checked ~ .checkmark:after {
-	  display: block;
-	}
-	.container .checkmark:after {
-	 	top: 4.5px;
-		left: 4.5px;
-		width: 6px;
-		height: 6px; 
-		border-radius: 50%;
-		background: white;
-	}
 </style>
 </head>
 <body>
@@ -194,12 +145,7 @@
 					<c:if test="${list.get(1).picture.equals('')==false}">
   						<img src="displayFile?filename=${list.get(1).picture }">
   					</c:if>
-					<%-- <p><input type="radio" name='answer' value='1' class="answer"> <label> ${list.get(1).choice1} </label></p>
-					<p><input type="radio" name='answer' value='2' class="answer"> <label> ${list.get(1).choice2} </label></p>
-					<p><input type="radio" name='answer' value='3' class="answer"> <label> ${list.get(1).choice3} </label></p>
-					<p><input type="radio" name='answer' value='4' class="answer"> <label> ${list.get(1).choice4} </label></p> --%>
-					<!-- 라디오22 -->
-					
+					<br>
 					<label class="container"> &nbsp; ${list.get(1).choice1}
 					  <input type="radio" name="answer" value='1'>
 					  <span class="checkmark"></span>
