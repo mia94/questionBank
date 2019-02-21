@@ -10,7 +10,12 @@
 <link href="${pageContext.request.contextPath}/resources/css/radiobutton.css" rel="stylesheet"  type="text/css">
 <script>
 	$(function(){
-		
+		//test용
+		/* var x = document.getElementsByClassName("container");
+		var i;
+		for (i = 0; i < x.length; i++) {
+		  console.log(x[i]);
+		} */
 		//번호, 과목 display용
 		var code = $(".code").text();
 		var numCode = code.substring(7,10);
@@ -33,7 +38,7 @@
 		
 		$(".code").text(year+"년도 "+round+"회  "+numCode+"번");
 		
-		//submit용
+		//submit용(insert)
 		$("#test_submit").click(function(){
 			var answer = $("input[name=answer]:checked").val();
 			var correct = $("input[name=correct]").val();
@@ -41,7 +46,7 @@
 				$("#correct_true").show();
 				$("#correct_false").hide();
 				$(".question_wrap").css("background-color","#DAE9FF");
-				$("input[name=answer]").attr("readonly","readonly");
+				$("input[name=answer]").attr("readonly","readonly");//안먹히는 중
 				$("input[name=pass]").val(true);
 			}else{
 				$("#correct_false").show();
@@ -49,6 +54,9 @@
 				$(".question_wrap").css("background-color","#FFEDED");
 				$("input[name=answer]").attr("readonly","readonly");
 				$("input[name=pass]").val(false);
+				//정답display
+				var x = document.getElementsByClassName("container");//보기 span태그 4개 배열로 가져오기
+				x[correct-1].style.color = "#F28683";
 			}
 		})
 		//다음버튼 이미지 클릭시 다음랜덤 문제로 넘어감

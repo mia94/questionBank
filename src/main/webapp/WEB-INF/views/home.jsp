@@ -7,10 +7,10 @@
 	/*bx slider 파트*/
 	.main_banner_wrap{
 		height: 263px;
-		position: relative;\
+		position: relative;
 		width:100%;
 		height: 447px;
-		margin:20px auto;
+		margin:10px auto;
 		border-radius: 10px;
 	}
 	#main_banner{
@@ -44,7 +44,7 @@
 	.home_container2{
 		width:100%;
 		height: 210px;  
-		margin:20px auto;
+		margin:5px auto;
 	}
 	.home_container2 article{  
 		width:295px;
@@ -73,8 +73,14 @@
 	.home_container3{
 		width:100%;
 		height:400px;
-		background-color: #F3C2BA; /* 연핑크 */
 		margin-bottom: 40px;
+		border:1px solid #A3918F; 
+	}
+	.home_container3 div{
+		height: 400px;
+	}
+	.home_container3 div:first-child{
+		background-color:#A3918F;
 	}
 	.home_container>div#color1{
 		background-color:#5B4149;/* 진갈색  */
@@ -130,7 +136,12 @@
 	</div>
 	
 	<div class="home_container3">
-	
+		<div class="col-sm-5">
+		
+		</div>
+		<div class="col-sm-7"> 
+		
+		</div>
 	</div>
 	
 	<script>
