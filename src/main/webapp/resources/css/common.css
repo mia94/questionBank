@@ -25,6 +25,7 @@
 		position: absolute;
 		top:5px;
 		right: 10px;
+		font-family: 'Jua', sans-serif; 
 	}
 	header h1#wsm_logo{
 		width:100%;
