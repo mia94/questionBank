@@ -15,6 +15,8 @@
 		var code = $(".code").text();
 		var numCode = code.substring(7,10);
 		var subject = code.substr(1,1);
+		var year = code.substr(2,4);
+		var round = code.substr(6,1);
 		
 		switch (subject) {
 		  case 'D'   : $(".subject").text("데이터베이스");
@@ -29,7 +31,7 @@
 		               break;
 		}
 		
-		$(".code").text(numCode);
+		$(".code").text(year+"년도 "+round+"회  "+numCode+"번");
 		
 		//submit용
 		$("#test_submit").click(function(){
@@ -47,9 +49,13 @@
 				$("input[name=pass]").val(false);
 			}
 		})
-		
+		//다음버튼 이미지 클릭시 다음랜덤 문제로 넘어감
 		$("img[alt*=next]").click(function(){
 			$("#wsm_testForm").submit();
+		})
+		//이전버튼 이미지 클릭시 history한칸 앞으로
+		$("img[alt*=before]").click(function(){
+			
 		})
 		
 		//카운트용
@@ -206,7 +212,7 @@
 				</div>
 		</div>
 		<button type="button" id="test_submit">정답확인</button>
-		<img src="${pageContext.request.contextPath}/resources/upload/before.png" alt="before">
+		<%-- <a href="#"><img src="${pageContext.request.contextPath}/resources/upload/before.png" alt="before"></a> --%>
 		<a href="#"><img src="${pageContext.request.contextPath}/resources/upload/next.png" alt="next"></a>
 	</form>
 	

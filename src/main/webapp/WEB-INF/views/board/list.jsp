@@ -12,12 +12,19 @@
 		margin: 0 auto;
 	}
 	table{
-		width:700px;
+		width:900px;
 		margin-left: 100px;
 		margin-top: 70px;
 	}
+	table tr{
+		border: 0.5px solid #ddd;
+	}
+	table th{
+		background-color: #A3918F;  
+		color:#F6EFEC; 
+	}
 	table td, table th{
-		padding: 5px 10px; 
+		padding: 5px 10px;
 	}
 </style>
 </head>

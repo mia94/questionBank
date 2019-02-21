@@ -7,13 +7,13 @@
 	  font-family: Arial;
 	  width:250px;
 	}
-	.custom-select select {
+	.custom-select select { 
 	  display: none; /*hide original SELECT element: */
 	}
 	.select-selected {
 	  background-color: #A3918F; 
 	  font-size: 14px;
-	  font-family: 'Righteous', cursive;
+	  font-family: 'Righteous', 'Jua'; 
 	}
 	
 	/* Style the arrow inside the select element: */

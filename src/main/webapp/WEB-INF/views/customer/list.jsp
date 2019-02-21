@@ -23,9 +23,24 @@
 	table tr{
 		border: 0.5px solid #ddd;
 	}
+	table th{
+		background-color: #A3918F;  
+		color:#F6EFEC; 
+	}
 	table td, table th{
 		padding: 5px 10px;
 		text-align: right;
+	}
+	td button{
+		width:35px;
+		padding: 3px;
+		background-color: #A3918F;
+		color:#F6EFEC; 
+		border: none;
+		font-size: 12px;
+	}
+	td button:hover{
+		background-color: #5B4149;
 	}
 </style>
 </head>
@@ -43,6 +58,7 @@
 		        <th>id</th>
 		        <th>email</th>
 		        <th>employee</th>
+		        <th>관리</th>
 		      </tr>
 		    </thead>
 		    <tbody>
@@ -53,6 +69,10 @@
 						<td>${item.id }</td>
 						<td>${item.email }</td>
 						<td>${item.employee }</td>
+						<td>
+							<button>수정</button>
+							<button>삭제</button>
+						</td>
 					</tr>
 				</c:forEach>
 		    </tbody>
