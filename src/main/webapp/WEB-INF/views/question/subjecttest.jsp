@@ -55,7 +55,6 @@
 	
 	<jsp:include page="../include/header.jsp"></jsp:include>
 	
-	<form action="result" method="post" id="wsm_testForm">
 		<div class="custom-select">
 			<select name="subject" id="subject">
 				<option value="0"> Select Subject </option>
@@ -90,12 +89,13 @@
 					  <input type="radio" name="answer" value='4' >
 					  <span class="checkmark"></span>
 					</label>
-					<p><input type="hidden" name='correct' value='${item.correct}'></p>
+					<input type="hidden" name='correct' value='${item.correct}'>
+					<input type="hidden" name='customer' value='${login.customerCode}'>
+					<input type="hidden" name='questionCode' value='${item.questionCode}'>
 				</div>
 			</c:forEach>
 		</div>
 		<button type="submit" id="test_submit">제출하기</button>
-	</form>
 	
 	<div class="text-center">
 		<ul class="pagination">
@@ -116,7 +116,7 @@
 		<div class="question_wrap">
 			<p>{{questionCode}}</p>
 			<p>{{questionTitle}}</p>
-				{{#ifCond picture}}
+				{{#ifCond picture}} 
 
 				{{else}}
     				<img src="displayFile?filename={{picture}}">
@@ -138,7 +138,9 @@
 					  <input type="radio" name="answer" value='4' >
 					  <span class="checkmark"></span>
 					</label>
-			<p><input type="hidden" name='correct' value='{{correct}}'></p>
+			<input type="hidden" name='correct' value='{{correct}}'>
+			<input type="hidden" name='customer' value='{{login.customerCode}}'>
+			<input type="hidden" name='question' value='{{questionCode}}'>
 		</div>
 	{{/each}}
 	</script>
@@ -175,8 +177,43 @@
 	<script src="${pageContext.request.contextPath}/resources/js/select.js"></script>
 	<script>
 		$(function(){
+			//과목선택시 문제리스트 해당과목에 맞게 출력
 			$(".select-items div").click(function(){
 				getList();
+			})
+			
+			//라디오버튼 선택시 insert, 답안변경시 update처리
+			$("input[name=answer]").on("click",function(){
+				//값 넘겨주기(resulttest_code는 자동, customer(코드), answer, correct, spendTime, pass, question(코드))
+				var customer = $("input[name=customer]").val();
+				var answer = $("input[name=answer]:checked").val();
+				var correct = $("input[name=correct]").val();
+				var pass = false;
+				if(correct==answer){ //정답이면 pass로 바꾸기
+					pass = true;
+				}
+				var question = $("input[name*=question]").val();
+				var spendTime = 0;//아직처리못함
+
+				//@RequestBody를 사용했기때문에
+				var jsonBody = {answer:answer, correct:correct, pass:pass, spendTime:spendTime};
+				//@RequestBody를 사용했으면headers, JSON.stringify를 반드시 사용해야함
+				$.ajax({
+					url:"${pageContext.request.contextPath}/question/subjecttest/"+customer+"/"+question,
+					type:"post",
+					headers:{
+						"Content-Type":"application/json",
+						"X-HTTP-Method-Override":"POST"
+					},
+					data:JSON.stringify(jsonBody),/*JSON.stringify는 {bno:bno, replyer:replyer, replytext:replytext}이런 스트링으로 변환*/
+					dataType:"text",/*String으로 반환되면 객체가 아니기때문에 json이 아닌 text로 받아야함*/
+					success:function(json){
+						console.log(json);
+						if(json=="success"){
+							alert("등록하였습니다.");
+						}
+					}
+				})
 			})
 		})
 	</script>

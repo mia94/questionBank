@@ -70,7 +70,7 @@
 		select *
 		from question
 		where subject=#{subject}
-		order by rand()
+		order by substring(question_code from 7 for 3)
 	</select>
 </mapper>
 
