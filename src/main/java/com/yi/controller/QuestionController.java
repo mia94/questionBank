@@ -100,6 +100,7 @@ private static final Logger logger = LoggerFactory.getLogger(QuestionController.
 		List<QuestionVO> list = service.selectBySubject("D");//외부에서 값 받기!
 		
 		PageMaker pageMaker = new PageMaker();
+		cri.setPerPageNum(1);
 		pageMaker.setCri(cri);
 		pageMaker.setTotalCount(service.totalCount(2018,3));
 		

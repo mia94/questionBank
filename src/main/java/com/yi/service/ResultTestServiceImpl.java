@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.yi.domain.CustomerVO;
 import com.yi.domain.ResultTestVO;
+import com.yi.domain.TestScroeDTO;
 import com.yi.persistence.ResultTestDao;
 
 @Service
@@ -43,6 +44,18 @@ public class ResultTestServiceImpl implements ResultTestService {
 	@Override
 	public void updateResultTest(ResultTestVO resultTestVo) {
 		dao.updateResultTest(resultTestVo);
+	}
+
+	@Override
+	public TestScroeDTO selectScore(String customerCode, int year, int round) {
+		// TODO Auto-generated method stub
+		return dao.selectScore(customerCode, year, round);
+	}
+
+	@Override
+	public int selectMaxCode() {
+		// TODO Auto-generated method stub
+		return dao.selectMaxCode();
 	}
 
 }

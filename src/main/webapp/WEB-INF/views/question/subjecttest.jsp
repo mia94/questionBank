@@ -8,6 +8,39 @@
 <link href="${pageContext.request.contextPath}/resources/css/radiobutton.css" rel="stylesheet"  type="text/css">
 <link href="${pageContext.request.contextPath}/resources/css/select.css" rel="stylesheet"  type="text/css">
 <title>Insert title here</title>
+<script>
+//카운트용
+	function aahacafeTimer(){
+	    var time = new Date();
+	    var hours = time.getHours();
+	    var mins = time.getMinutes();
+	    var secs = time.getSeconds();
+	    enterTime = hours*3600 + mins*60 + secs;
+	    Timer();
+	}
+	function compTime() {
+	    var count = curTime - enterTime;
+	    hour = parseInt(count/3600);
+	    min = parseInt((count%3600)/60);
+	    min = ((min < 10) ? "0" : "") + min;
+	    sec = (count%3600) % 60;
+	    sec = ((sec < 10) ? "0" : "") + sec;
+	    document.all["counter"].innerHTML = hour + ":" + min + ":" + sec;
+	    $("#spendTime").val(count);//초단위로 걸린시간 val에 입력
+	    window.setTimeout(Timer,1000);
+	}
+	
+	function Timer(){
+	    var time = new Date();
+	    var hours = time.getHours(); 
+	    var mins = time.getMinutes(); 
+	    var secs = time.getSeconds(); 
+	    curTime = hours*3600 + mins*60 + secs;
+	    compTime();
+	}
+	
+	window.onload = aahacafeTimer;
+</script>
 <style>
 @import url('https://fonts.googleapis.com/css?family=Jua');
 	div.question_wrap{
@@ -18,6 +51,12 @@
 	}
 	section{
 		position: relative;
+	}
+	#counter{
+		width:300px;
+		position: absolute;
+		right: 105px;
+		top: -20px;
 	}
 	.custom-select {
 	  float: right;
@@ -54,7 +93,7 @@
 <body>
 	
 	<jsp:include page="../include/header.jsp"></jsp:include>
-	
+		<div id="counter" style='font-size:12pt'></div>
 		<div class="custom-select">
 			<select name="subject" id="subject">
 				<option value="0"> Select Subject </option>
@@ -68,6 +107,8 @@
 		<div class="container_wrap">
 			<c:forEach var="item" items="${list }">
 				<div class="question_wrap">
+					<input type="hidden" name='isChecked' value='false'>
+					<input type="hidden" name='thisCode' value=''>
 					<p>${item.questionCode}</p>
 					<p>${item.questionTitle}</p>
 					<c:if test="${item.picture.equals('')==false}">
@@ -114,6 +155,8 @@
 	<script id="template1" type="text/x-handlebars-template"> 
 	{{#each.}}
 		<div class="question_wrap">
+			<input type="hidden" name='isChecked' value='false'>
+			<input type="hidden" name='thisCode' value=''>
 			<p>{{questionCode}}</p>
 			<p>{{questionTitle}}</p>
 				{{#ifCond picture}} 
@@ -184,36 +227,76 @@
 			
 			//라디오버튼 선택시 insert, 답안변경시 update처리
 			$("input[name=answer]").on("click",function(){
-				//값 넘겨주기(resulttest_code는 자동, customer(코드), answer, correct, spendTime, pass, question(코드))
-				var customer = $("input[name=customer]").val();
-				var answer = $("input[name=answer]:checked").val();
-				var correct = $("input[name=correct]").val();
-				var pass = false;
-				if(correct==answer){ //정답이면 pass로 바꾸기
-					pass = true;
-				}
-				var question = $("input[name*=question]").val();
-				var spendTime = 0;//아직처리못함
-
-				//@RequestBody를 사용했기때문에
-				var jsonBody = {answer:answer, correct:correct, pass:pass, spendTime:spendTime};
-				//@RequestBody를 사용했으면headers, JSON.stringify를 반드시 사용해야함
-				$.ajax({
-					url:"${pageContext.request.contextPath}/question/subjecttest/"+customer+"/"+question,
-					type:"post",
-					headers:{
-						"Content-Type":"application/json",
-						"X-HTTP-Method-Override":"POST"
-					},
-					data:JSON.stringify(jsonBody),/*JSON.stringify는 {bno:bno, replyer:replyer, replytext:replytext}이런 스트링으로 변환*/
-					dataType:"text",/*String으로 반환되면 객체가 아니기때문에 json이 아닌 text로 받아야함*/
-					success:function(json){
-						console.log(json);
-						if(json=="success"){
-							alert("등록하였습니다.");
-						}
+				//만약 이미 선택했던 답안이 있을 경우 insert문이 아닌 update문으로 처리
+				var isChecked = $(this).closest("div").children("input[name=isChecked]").val();
+				if(isChecked=='true'){
+					alert("이미체크된 문제");
+					//체크된 보기 표시 변경
+					$(this).closest("div").children("span").css("background-color","#eee");//뒤에나오는 css가 덮어씌운댔는데ㅠㅠㅠ왜 안되는고양고양
+					$(this).next("span").css("background-color","#F28683");
+					
+					//update처리
+					var customer = $("input[name=customer]").val();
+					var answer = $("input[name=answer]:checked").val();
+					var correct = $(this).closest("div").children("input[name=correct]").val();
+					var pass = false;
+					if(correct==answer){ //정답이면 pass로 바꾸기
+						pass = true;
 					}
-				})
+					var question = $(this).closest("div").children("input[name*=question]").val();
+					var spendTime = 0;//아직처리못함
+					
+					var jsonBody = {answer:answer, correct:correct, pass:pass, spendTime:spendTime};
+					//수정은 동일한 주소 put으로 보내기
+					$.ajax({
+						url:"${pageContext.request.contextPath}/question/subjecttest/"+insertCode,//thisCode input창에서 수정할 code 값 받아오기
+						type:"put",
+						headers:{
+							"Content-Type":"application/json",
+							"X-HTTP-Method-Override":"POST"
+						},
+						data:JSON.stringify(jsonBody),/*JSON.stringify는 {bno:bno, replyer:replyer, replytext:replytext}이런 스트링으로 변환*/
+						dataType:"text",/*String으로 반환되면 객체가 아니기때문에 json이 아닌 text로 받아야함*/
+						success:function(json){
+							console.log(json);
+							if(json=="success"){
+								alert("수정하였습니다.");// 확인용, 나중에 변경할 것
+							}
+						}
+					})
+				}else{
+					//선택한 보기 라디오버튼 색 변경 & isChecked 값 true로 변경
+					$(this).next().css("background-color","#F28683");
+					$(this).closest("div").children("input[name=isChecked]").val('true');
+					//값 넘겨주기(resulttest_code는 자동, customer(코드), answer, correct, spendTime, pass, question(코드))
+					var customer = $("input[name=customer]").val();
+					var answer = $("input[name=answer]:checked").val();
+					var correct = $(this).closest("div").children("input[name=correct]").val();
+					var pass = false;
+					if(correct==answer){ //정답이면 pass로 바꾸기
+						pass = true;
+					}
+					var question = $(this).closest("div").children("input[name*=question]").val();
+					var spendTime = 0;//아직처리못함
+	
+					//@RequestBody를 사용했기때문에
+					var jsonBody = {answer:answer, correct:correct, pass:pass, spendTime:spendTime};
+					//@RequestBody를 사용했으면headers, JSON.stringify를 반드시 사용해야함
+					$.ajax({
+						url:"${pageContext.request.contextPath}/question/subjecttest/"+customer+"/"+question,
+						type:"post",
+						headers:{
+							"Content-Type":"application/json",
+							"X-HTTP-Method-Override":"POST"
+						},
+						data:JSON.stringify(jsonBody),/*JSON.stringify는 {bno:bno, replyer:replyer, replytext:replytext}이런 스트링으로 변환*/
+						dataType:"text",/*String으로 반환되면 객체가 아니기때문에 json이 아닌 text로 받아야함*/
+						success:function(json){
+							console.log(json);
+							$(this).closest("div").children("input[name*=thisCode]").val(json);
+						}
+					})
+				}
 			})
 		})
 	</script>

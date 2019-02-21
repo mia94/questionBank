@@ -61,6 +61,27 @@ public class ResultTestController {
 		logger.info("subjecttestresult 후 ------------"+vo);
 		try {
 			service.insertResultTest(vo);
+			int code = service.selectMaxCode();
+			entity = new ResponseEntity<String>(code+"", HttpStatus.OK);
+		} catch (Exception e) {
+			e.printStackTrace();
+			entity = new ResponseEntity<String>(e.getMessage(),HttpStatus.BAD_REQUEST);//400에러
+		}
+		return entity;
+	}
+	
+	//ajax용 과목별 update
+	@ResponseBody
+	@RequestMapping(value="subjecttest/{insertCode}", method=RequestMethod.PUT)
+	public ResponseEntity<String> subjecttestupdate(@RequestBody ResultTestVO vo, @PathVariable("insertCode") String insertCode){
+		logger.info("subjecttestupdate 전 ------------"+vo);
+		ResponseEntity<String> entity = null;
+		
+		vo.setResultTestCode(Integer.parseInt(insertCode));
+		
+		logger.info("subjecttestupdate 후 ------------"+vo);
+		try {
+			service.updateResultTest(vo);
 			entity = new ResponseEntity<String>("success", HttpStatus.OK);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -70,3 +91,23 @@ public class ResultTestController {
 	}
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
