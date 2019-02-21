@@ -39,12 +39,14 @@
 			var correct = $("input[name=correct]").val();
 			if(answer==correct){
 				$("#correct_true").show();
-				$(".question_wrap").css("background-color","#DAE9FF")
+				$("#correct_false").hide();
+				$(".question_wrap").css("background-color","#DAE9FF");
 				$("input[name=answer]").attr("readonly","readonly");
 				$("input[name=pass]").val(true);
 			}else{
 				$("#correct_false").show();
-				$(".question_wrap").css("background-color","#FFEDED")
+				$("#correct_true").hide();
+				$(".question_wrap").css("background-color","#FFEDED");
 				$("input[name=answer]").attr("readonly","readonly");
 				$("input[name=pass]").val(false);
 			}

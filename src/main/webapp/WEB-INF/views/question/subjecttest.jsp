@@ -249,7 +249,7 @@
 					var jsonBody = {answer:answer, correct:correct, pass:pass, spendTime:spendTime};
 					//수정은 동일한 주소 put으로 보내기
 					$.ajax({
-						url:"${pageContext.request.contextPath}/question/subjecttest/"+insertCode,//thisCode input창에서 수정할 code 값 받아오기
+						url:"${pageContext.request.contextPath}/question/subjecttest/"+customer+"/"+question,
 						type:"put",
 						headers:{
 							"Content-Type":"application/json",

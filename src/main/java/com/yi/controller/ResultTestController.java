@@ -72,16 +72,23 @@ public class ResultTestController {
 	
 	//ajax용 과목별 update
 	@ResponseBody
-	@RequestMapping(value="subjecttest/{insertCode}", method=RequestMethod.PUT)
-	public ResponseEntity<String> subjecttestupdate(@RequestBody ResultTestVO vo, @PathVariable("insertCode") String insertCode){
+	@RequestMapping(value="subjecttest/{customer}/{question}", method=RequestMethod.PUT)
+	public ResponseEntity<String> subjecttestupdate(@RequestBody ResultTestVO vo, @PathVariable("customer") String customer,@PathVariable("question") String question){
 		logger.info("subjecttestupdate 전 ------------"+vo);
 		ResponseEntity<String> entity = null;
 		
-		vo.setResultTestCode(Integer.parseInt(insertCode));
+		CustomerVO cvo = new CustomerVO();
+		cvo.setCustomerCode(customer);
+		
+		QuestionVO qvo = new QuestionVO();
+		qvo.setQuestionCode(question);
+		
+		vo.setCustomer(cvo);
+		vo.setQuestion(qvo);
 		
 		logger.info("subjecttestupdate 후 ------------"+vo);
 		try {
-			service.updateResultTest(vo);
+			service.updateByCustomerAndQuestion(vo);
 			entity = new ResponseEntity<String>("success", HttpStatus.OK);
 		} catch (Exception e) {
 			e.printStackTrace();

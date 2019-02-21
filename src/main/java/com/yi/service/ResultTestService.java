@@ -18,4 +18,6 @@ public interface ResultTestService {
 	public TestScroeDTO selectScore(String customerCode, int year, int round);
 	//maxNum구하기
 	public int selectMaxCode();
+	//고객번호와 문제번호를 이용하여 update
+	public void updateByCustomerAndQuestion(ResultTestVO resultTestVo);
 }

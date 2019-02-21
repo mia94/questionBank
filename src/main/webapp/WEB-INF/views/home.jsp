@@ -43,20 +43,32 @@
 	/*홈 화면 파트*/
 	.home_container2{
 		width:100%;
-		height: 330px;
+		height: 210px;  
 		margin:20px auto;
 	}
-	.home_container2 article{
-		width:220px;
-		height:300px;
+	.home_container2 article{  
+		width:295px;
+		height:200px;
 		float:left;
-		margin:10px;
+		margin:2px;
 		background-color:#A3918F;/* 코코아 */
+		position: relative;
+		transition:all 1s;
+	}
+	.home_container2 article:hover{
+		background-color:#5B4149;
 	}
 	.home_container2 img{
-		width:80px;
-		margin-left: 75px;
-		margin-top: 40px;
+		width:70px;
+		margin-left: 60px;
+		margin-top: 60px;
+	}
+	.home_container2 article div{
+		color:#F6EFEC; 
+		width:120px;
+		position: absolute;
+		right: 20px;
+		top: 60px; 
 	}
 	.home_container3{
 		width:100%;
@@ -101,15 +113,19 @@
 	<div class="home_container2">
 		<article>
 			<img src="${pageContext.request.contextPath}/resources/upload/solve.png">
+			<div>클릭하면<br>문제풀러가기</div>
 		</article>
 		<article>
 			<img src="${pageContext.request.contextPath}/resources/upload/phone.png">
+			<div>모바일<br>어쩌구저쩌구 소개</div>
 		</article>
 		<article>
 			<img src="${pageContext.request.contextPath}/resources/upload/incorrect.png">
+			<div>틀린문제<br>다시풀러가기</div>
 		</article>
 		<article>
 			<img src="${pageContext.request.contextPath}/resources/upload/timer.png">
+			<div>문제풀리는데<br>걸리는 시간 측정가능</div>
 		</article>
 	</div>
 	

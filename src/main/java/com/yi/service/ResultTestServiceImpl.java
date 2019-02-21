@@ -58,4 +58,10 @@ public class ResultTestServiceImpl implements ResultTestService {
 		return dao.selectMaxCode();
 	}
 
+	@Override
+	public void updateByCustomerAndQuestion(ResultTestVO resultTestVo) {
+		// TODO Auto-generated method stub
+		dao.updateByCustomerAndQuestion(resultTestVo);
+	}
+
 }

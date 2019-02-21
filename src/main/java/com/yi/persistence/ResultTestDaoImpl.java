@@ -67,6 +67,12 @@ public class ResultTestDaoImpl implements ResultTestDao{
 		return sqlSession.selectOne(namespace+".selectMaxCode");
 	}
 
+	@Override
+	public void updateByCustomerAndQuestion(ResultTestVO resultTestVo) {
+		// TODO Auto-generated method stub
+		sqlSession.update(namespace+".updateByCustomerAndQuestion", resultTestVo);
+	}
+
 	
 
 }

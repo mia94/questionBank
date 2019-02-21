@@ -139,14 +139,13 @@
 	<script id="template1" type="text/x-handlebars-template"> 
 	{{#each.}}
 		<div class="question_wrap">
-			<p>{{questionCode}}</p>
+			<p class="code">{{questionCode}}</p>
 			<p>{{questionTitle}}</p>
 				{{#ifCond picture}}
 
 				{{else}}
     				<img src="displayFile?filename={{picture}}">
 				{{/ifCond}}
-			<br>
 					<label class="container"> &nbsp; {{choice1}}
 					  <input type="radio" name="answer" value='1'>
 					  <span class="checkmark"></span>

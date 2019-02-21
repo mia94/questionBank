@@ -68,6 +68,13 @@
 		where customer=#{customerCode} and substring(question from 3 for 4)=#{year} and substring(question from 7 for 1)=#{round}
 		order by substring(question from 7 for 3)
 	</select> -->
+	
+	<!-- 고객코드와 문제번호로 update -->
+	<update id="updateByCustomerAndQuestion">
+		UPDATE resulttest
+		SET answer=#{answer}, correct=#{correct}, spendTime=#{spendTime}, pass=#{pass}
+		where customer=#{customer.customerCode} and question=#{question.questionCode}
+	</update>
 </mapper>
 
 
