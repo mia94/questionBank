@@ -44,4 +44,9 @@ public class BoardServiceImpl implements BoardService {
 		dao.deleteBoard(boardVo);
 	}
 
+	@Override
+	public void viewCount(int bno) {
+		dao.viewCount(bno);
+	}
+
 }

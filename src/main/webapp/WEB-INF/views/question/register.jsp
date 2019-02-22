@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,8 +9,10 @@
 <link href="${pageContext.request.contextPath}/resources/css/register_select.css" rel="stylesheet"  type="text/css">
 <style>
 	.form_container{
-		 width:900px;
-		 margin: 30px auto;
+		 width:1000px;
+		 margin: 50px auto; 
+		 border:1px solid #ccc;
+		 padding: 10px 40px; 
 	}
 	.form_container h2{
 		font-family: 'Righteous', 'Jua';
@@ -144,8 +147,11 @@
 		  		</select>
 	  		</div>
 	  		<div class="custom-select">
-		  		<select name="number" id="selectNumber">
+		  		<select name="number">
 		  			<option value="">번호</option>
+		  			<c:forEach var="cnt" begin="1" end="100" step="1">
+		  				<option value='${cnt}'>${cnt}</option>
+		  			</c:forEach>
 		  		</select>
 	  		</div>
 	  	</p> 
@@ -192,14 +198,6 @@
 	  	</p> 
 	  </form>
 	</div>
-	
-	<script>
-	$(function(){
-		for(var i=1;i<101;i++){
-			$("#selectNumber").append("<option value='"+i+"'> "+i+" </option>");
-		}
-	})
-	</script>
 	
 	<script src="${pageContext.request.contextPath}/resources/js/select.js"></script>
 	
