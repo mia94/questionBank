@@ -229,6 +229,7 @@
 			$("input[name=answer]").on("click",function(){
 				//만약 이미 선택했던 답안이 있을 경우 insert문이 아닌 update문으로 처리
 				var isChecked = $(this).closest("div").children("input[name=isChecked]").val();
+				var codeNum = $(this).closest("div").children("input[name*=thisCode]").val();
 				if(isChecked=='true'){
 					alert("이미체크된 문제");
 					//체크된 보기 표시 변경

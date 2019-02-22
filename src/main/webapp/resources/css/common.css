@@ -44,14 +44,14 @@
 	}
 	.navbar .navbar-brand{
 		color:#F28683;
-		font-family: 'Righteous', cursive;
+		font-family: 'Righteous', 'Jua';
 	}
-	.navbar .wsm_nav_a{
+	.navbar .wsm_nav_a{ 
 		color:#A3918F;
-		font-family: 'Righteous', cursive;
+		font-family: 'Righteous', 'Jua'; 
 	}
 	.navbar .dropdown-menu{
-		font-family: 'Righteous', cursive;
+		font-family: 'Righteous', 'Jua';
 		font-size: 13px;
 	}
 	.nav>li>a:focus, .nav>li>a:hover{

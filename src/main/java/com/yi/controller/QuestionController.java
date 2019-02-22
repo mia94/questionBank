@@ -49,7 +49,9 @@ private static final Logger logger = LoggerFactory.getLogger(QuestionController.
 	@RequestMapping(value="register", method=RequestMethod.POST)
 	public String registerPost(QuestionVO vo, String number,MultipartFile pictureFile){
 		logger.info("QuestionVO create------------POST");
-		
+		//정답률, 상태는 입력없이 기본 0값/정상처리
+		vo.setState("정상");
+		vo.setCorrectRate(0);
 		//사진파일 경로 저장
 		String picture = pictureFile.getOriginalFilename();
 		if(picture.equals("")==false) {
