@@ -233,7 +233,7 @@
 				if(isChecked=='true'){
 					alert("이미체크된 문제");
 					//체크된 보기 표시 변경
-					$(this).closest("div").children("span").css("background-color","#eee !important;");//뒤에나오는 css가 덮어씌운댔는데ㅠㅠㅠ왜 안되는고양고양 !important도 안됨
+					$(this).closest("div").find("span").css("background-color","#eee");//뒤에나오는 css가 덮어씌운댔는데ㅠㅠㅠ왜 안되는고양고양 !important도 안됨
 					$(this).next("span").css("background-color","#F28683");
 					
 					//update처리
