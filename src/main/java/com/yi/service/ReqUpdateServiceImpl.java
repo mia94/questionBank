@@ -44,4 +44,10 @@ public class ReqUpdateServiceImpl implements ReqUpdateService {
 		return dao.selectByCode(ReqUpdateCode);
 	}
 
+	@Override
+	public List<ReqUpdateVO> selectByAll() {
+		// TODO Auto-generated method stub
+		return dao.selectByAll();
+	}
+
 }

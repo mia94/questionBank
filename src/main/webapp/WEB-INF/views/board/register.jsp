@@ -15,7 +15,16 @@
 	<jsp:include page="../include/header.jsp"></jsp:include>
 	
 	<div class="board_container">
-		
+		<form action="register" method="post">
+			<p>
+				<label>제목</label>
+				<input type="text">
+			</p>
+			<p>
+				<label>내용</label>
+				<textarea rows="5" cols="80"></textarea>
+			</p>
+		</form>
 	</div>
 	
 

@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -23,13 +24,25 @@
 	}
 	table tr{
 		border: 0.5px solid #ddd;
+		height: 35px;
 	}
 	table th{
 		background-color: #A3918F;  
 		color:#F6EFEC; 
+		text-align: center;
 	}
 	table td, table th{
 		padding: 5px 10px;
+	}
+	table td:first-child, table th:first-child,table td:last-child, table th:last-child{
+		text-align: center;
+		font-size: 12px; 
+	}
+	table td:first-child, table th:first-child{
+		width:20px;
+	}
+	table td:last-child, table th:last-child{
+		width:150px; 
 	}
 </style>
 </head>
@@ -38,38 +51,31 @@
 	<jsp:include page="../include/header.jsp"></jsp:include>
 	
 	<div class="board_container">
-		<button id="register">write</button>
+
 		<table>
 		    <thead>
 		      <tr>
 		        <th>no</th>
-		        <th>Title</th>
-		        <th>writer</th>
-		        <th>regdate</th>
-		        <th>viewcnt</th>
+		        <th>문제</th>
+		        <th>content</th>
+		        <th>작성자</th>
+		        <th>게시날짜</th>
 		      </tr>
 		    </thead>
 		    <tbody>
 		     	<c:forEach var="item" items="${list }">
 					<tr>
-						<td>${item.boardCode }</td>
-						<td>${item.boardTitle }</td>
-						<td>${item.writer.customername }</td>
-						<td>${item.regdate }</td>
-						<td>${item.viewcnt }</td>
+						<td>${item.reqCode }</td>
+						<td>${item.question.questionCode }</td>
+						<td>${item.content }</td>
+						<td>${item.writer.customerCode }</td>
+						<td><fmt:formatDate value="${item.regdate }" pattern="yyyy.MM.dd hh:mm:ss"/></td>
 					</tr>
 				</c:forEach>
 		    </tbody>
 		  </table>
 	</div>
 	
-	<script>
-		$(function(){
-			$("#register").click(function(){
-				location.href="${pageContext.request.contextPath}/board/register"
-			})
-		})
-	</script>
 	
 	<jsp:include page="../include/footer.jsp"></jsp:include>
 

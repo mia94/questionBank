@@ -48,6 +48,7 @@
 		          <li><a href="#">Menu3</a></li>
 		        </ul>
 		      </li>
+		      <li><a href="${pageContext.request.contextPath}/reqUpdate/list" class="wsm_nav_a">Request</a></li>
 		      <li><a href="${pageContext.request.contextPath}/board/list" class="wsm_nav_a">Board</a></li>
 		    </ul>
 		    <ul class="nav navbar-nav navbar-right">

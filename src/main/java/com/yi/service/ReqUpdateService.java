@@ -5,6 +5,7 @@ import java.util.List;
 import com.yi.domain.ReqUpdateVO;
 
 public interface ReqUpdateService {
+	public List<ReqUpdateVO> selectByAll();
 	public List<ReqUpdateVO> selectByQuestionCode(String questionCode);
 	public void insert(ReqUpdateVO vo);
 	public void update(ReqUpdateVO vo);

@@ -46,4 +46,10 @@ public class ReqUpdateDaoImpl implements RequpdateDao {
 		return sqlSession.selectOne(namespace+".selectByCode", ReqUpdateCode);
 	}
 
+	@Override
+	public List<ReqUpdateVO> selectByAll() {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList(namespace+".selectByAll");
+	}
+
 }
