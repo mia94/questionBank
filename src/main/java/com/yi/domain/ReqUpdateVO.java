@@ -1,5 +1,7 @@
 package com.yi.domain;
 
+import java.util.Date;
+
 public class ReqUpdateVO {
 	private int reqCode;
 	private QuestionVO question;
@@ -8,6 +10,8 @@ public class ReqUpdateVO {
 	private int reqCorrect;
 	private String state;
 	private CustomerVO writer;
+	private Date regdate;
+	private Date moddate;
 	
 	public int getReqCode() {
 		return reqCode;
@@ -50,6 +54,18 @@ public class ReqUpdateVO {
 	}
 	public void setWriter(CustomerVO writer) {
 		this.writer = writer;
+	}
+	public Date getRegdate() {
+		return regdate;
+	}
+	public void setRegdate(Date regdate) {
+		this.regdate = regdate;
+	}
+	public Date getModdate() {
+		return moddate;
+	}
+	public void setModdate(Date moddate) {
+		this.moddate = moddate;
 	}
 	
 	@Override

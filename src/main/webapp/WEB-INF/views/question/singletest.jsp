@@ -245,17 +245,65 @@
 	<!-- 문제에 대한 건의사항 -->
 	
 	<div id="reqUpdate_container">
-		<table>
+		<table id="reqUpdate_table">
 			<tr>
 				<td>문제코드</td>
 				<td>변경사유</td>
 				<td>요청정답</td>
 				<td>글쓴이</td>
+				<td>게시 날짜</td>
 			</tr>
 		</table>
 	</div>
 	
+	<script id="template1" type="text/x-handlebars-template"> 
+		<tr>
+			<td>문제코드</td>
+			<td>변경사유</td>
+			<td>요청정답</td>
+			<td>글쓴이</td>
+			<td>게시 날짜</td>
+		</tr>
+	{{#each.}}
+		<tr>
+			<td>{{question}}</td>
+			<td>{{content}}</td>
+			<td>{{oriCorrect}}</td>
+			<td>{{writer}}</td>
+			<td>{{moddate}}</td>
+		</tr>
+	{{/each}}
+	</script>
 	
+	<script>
+	Handlebars.registerHelper("tempDate", function(value){
+		var date = new Date(value);
+		var year = date.getFullYear();
+		var month = date.getMonth()+1;
+		var day = date.getDate();
+		
+		return year+"."+month+"."+day
+	})
+	
+	var question = ${list.get(1).questionCode};
+	
+	function getPageList(){
+		$.ajax({
+			url:"${pageContext.request.contextPath}/reqUpdate/"+question,
+			type:"get",
+			dataType:"json",
+			success:function(json){
+				console.log(json);
+				$("#reqUpdate_table").empty();//테이블 안 비우기
+			
+			var source = $("#template1").html();
+			var f = Handlebars.compile(source);
+			var result = f(json.list);
+			$(".timeline").append(result);
+			}
+		})
+	}
+	</script>
 	
 	<jsp:include page="../include/footer.jsp"></jsp:include>
 </body>

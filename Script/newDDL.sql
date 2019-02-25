@@ -134,7 +134,9 @@ CREATE TABLE questionbank.reqUpdate (
 	ori_correct TINYINT     NOT NULL COMMENT '기존정답', -- 기존정답
 	req_correct TINYINT     NULL     COMMENT '요청정답', -- 요청정답
 	state       VARCHAR(30) NULL     COMMENT '정정전/수정완료', -- 상태
-	writer      CHAR(4)     NOT NULL COMMENT '회원코드' -- 회원코드
+	writer      CHAR(4)     NOT NULL COMMENT '회원코드', -- 회원코드
+	regdate     TIMESTAMP   NOT NULL DEFAULT now() COMMENT '게시날짜', -- 게시날짜
+	moddate     TIMESTAMP   NOT NULL DEFAULT now() COMMENT '수정날짜' -- 수정날짜
 )
 COMMENT '정정요구';
 

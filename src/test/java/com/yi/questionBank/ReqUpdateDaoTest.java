@@ -54,17 +54,10 @@ public class ReqUpdateDaoTest {
 	public void test03update() {
 		ReqUpdateVO vo = new ReqUpdateVO();
 		
-		QuestionVO qvo = new QuestionVO();
-		qvo.setQuestionCode("QD20183001");
-		
-		vo.setQuestion(qvo);
 		vo.setContent("답이 틀린 것 같아요");
 		vo.setReqCorrect(1);
 		vo.setOriCorrect(2);
 		
-		CustomerVO cvo = new CustomerVO();
-		cvo.setCustomerCode("C001");
-		vo.setWriter(cvo);
 		vo.setState("수정");
 		vo.setReqCode(2);
 		
