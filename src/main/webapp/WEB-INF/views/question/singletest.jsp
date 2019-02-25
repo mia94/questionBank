@@ -8,6 +8,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 <link href="${pageContext.request.contextPath}/resources/css/radiobutton.css" rel="stylesheet"  type="text/css">
+<link href="${pageContext.request.contextPath}/resources/css/register_select.css" rel="stylesheet"  type="text/css">
 <script>
 	$(function(){
 		//test용
@@ -118,8 +119,8 @@
 	}
 	#counter{
 		width:300px;
-		position: absolute;
-		right: -35px;
+		position: absolute; 
+		right: -75px; 
 		top: 5px;
 	}
 	span.subject{
@@ -181,7 +182,30 @@
 	/*-------------------------------------------------------reqUpdate 부분*/
 	#reqUpdate_container{
 		width:900px; 
-		margin:30px auto;
+		margin:70px auto 40px;
+	}
+	#reqUpdate_form{
+		width:850px;
+		margin: 0 auto;
+		position: relative;
+	}
+	#reqUpdate_container #reqUpdate_form label{
+		width:80px; 
+		float: left; 
+		color:#A3918F; 
+	}
+	#reqUpdate_container #reqUpdate_form button{
+		background-color: #F6EFEC;
+		color:#5B4149;
+		border:2px solid #A3918F;
+		border-radius: 3px;
+		padding: 3px;
+		font-size: 12px;
+		width:60px;
+		height:60px;
+		position: absolute;
+		bottom: 5px; 
+		right: 30px; 
 	}
 	#reqUpdate_container table{
 		border-collapse: collapse;
@@ -245,6 +269,25 @@
 	<!-- 문제에 대한 건의사항 -->
 	
 	<div id="reqUpdate_container">
+		<div id="reqUpdate_form">
+			<p>
+				<label>요청정답</label>
+				<div class="custom-select">
+					<select name="reqCorrect">
+						<option value="">선택안함</option>
+						<option value="1">1</option>
+						<option value="2">2</option>
+						<option value="3">3</option>
+						<option value="4">4</option>
+					</select>
+				</div>
+			</p>
+			<p>
+				<label>변경사유</label>
+				<textarea rows="3" cols="90"></textarea>
+				<button id="reqUpdate_register">write</button> 
+			</p>
+		</div>
 		<table id="reqUpdate_table">
 			<tr>
 				<td>문제코드</td>
@@ -253,8 +296,50 @@
 				<td>글쓴이</td>
 				<td>게시 날짜</td>
 			</tr>
+			<tr>
+				<td colspan="5">등록된 게시글이 없습니다.</td>
+			</tr>
 		</table>
 	</div>
+	
+	<script>
+	$(function(){
+		getPageList();
+		
+		$("#reqUpdate_register").click(function(){
+			//수정요청 작성시
+			var reqCorrect = $("select").val();
+			var content = $("textarea").val();
+			var question = "${list.get(1).questionCode}"; 
+			var oriCorrect = "${list.get(1).correct}";
+			var state = "요청";
+			var writer = "${login.customerCode}";
+			
+			//@RequestBody를 사용했기때문에
+			var jsonBody = {reqCorrect:reqCorrect, content:content, questionCode:question, oriCorrect:oriCorrect,state:state, customerCode:writer};
+			//@RequestBody를 사용했으면headers, JSON.stringify를 반드시 사용해야함
+			$.ajax({
+				url:"${pageContext.request.contextPath}/reqUpdate/register",
+				type:"post",
+				headers:{
+					"Content-Type":"application/json",
+					"X-HTTP-Method-Override":"POST"
+				},
+				data:JSON.stringify(jsonBody),/*JSON.stringify는 {bno:bno, replyer:replyer, replytext:replytext}이런 스트링으로 변환*/
+				dataType:"text",/*String으로 반환되면 객체가 아니기때문에 json이 아닌 text로 받아야함*/
+				success:function(json){
+					console.log(json);
+					if(json=="success"){
+						alert("등록하였습니다.");
+						getPageList();
+						$("textarea").text("");
+					}
+				}
+			})
+		})
+		
+	})
+	</script>
 	
 	<script id="template1" type="text/x-handlebars-template"> 
 		<tr>
@@ -264,15 +349,22 @@
 			<td>글쓴이</td>
 			<td>게시 날짜</td>
 		</tr>
-	{{#each.}}
-		<tr>
-			<td>{{question}}</td>
-			<td>{{content}}</td>
-			<td>{{oriCorrect}}</td>
-			<td>{{writer}}</td>
-			<td>{{moddate}}</td>
-		</tr>
-	{{/each}}
+		{{#ifCond list}} 
+			<tr>
+				<td colspan="5">등록된 게시글이 없습니다.</td>
+			</tr>
+		{{else}}
+    		{{#each.}}
+				<tr>
+					<td>{{question}}</td>
+					<td>{{content}}</td>
+					<td>{{oriCorrect}}</td>
+					<td>{{writer}}</td>
+					<td>{{tempDate moddate}}</td>
+				</tr>
+			{{/each}}
+		{{/ifCond}}
+	
 	</script>
 	
 	<script>
@@ -285,7 +377,14 @@
 		return year+"."+month+"."+day
 	})
 	
-	var question = ${list.get(1).questionCode};
+	Handlebars.registerHelper('ifCond', function(v1, options) {
+			if(v1 == '' || v1==null) {  
+			   return options.fn(this);
+			}
+			return options.inverse(this);
+		})
+	
+	var question = "${list.get(1).questionCode}";
 	
 	function getPageList(){
 		$.ajax({
@@ -299,11 +398,13 @@
 			var source = $("#template1").html();
 			var f = Handlebars.compile(source);
 			var result = f(json.list);
-			$(".timeline").append(result);
+			$("#reqUpdate_table").append(result);
 			}
 		})
 	}
 	</script>
+	
+	<script src="${pageContext.request.contextPath}/resources/js/select.js"></script>
 	
 	<jsp:include page="../include/footer.jsp"></jsp:include>
 </body>

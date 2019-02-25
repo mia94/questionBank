@@ -35,7 +35,7 @@ public class ReqUpdateDaoTest {
 		ReqUpdateVO vo = new ReqUpdateVO();
 		
 		QuestionVO qvo = new QuestionVO();
-		qvo.setQuestionCode("QD20183001");
+		qvo.setQuestionCode("QD20183010");
 		
 		vo.setQuestion(qvo);
 		vo.setContent("답이 틀린 것 같아요");
@@ -50,7 +50,7 @@ public class ReqUpdateDaoTest {
 		service.insert(vo);
 	}
 	
-	@Test
+	//@Test
 	public void test03update() {
 		ReqUpdateVO vo = new ReqUpdateVO();
 		
@@ -64,7 +64,7 @@ public class ReqUpdateDaoTest {
 		service.update(vo);
 	}
 	
-	@Test
+	//@Test
 	public void test04selectByCode() {
 		ReqUpdateVO vo = service.selectByCode(2);
 		Assert.assertNotNull(vo);

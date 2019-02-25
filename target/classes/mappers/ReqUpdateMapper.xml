@@ -7,14 +7,14 @@
 	<select id="selectByQuestionCode" resultType="ReqUpdateVO">
 		SELECT *
 		FROM requpdate
-		where question=#{questionCode}
+		where question=#{question}
 		order by req_code desc
 	</select>
 	
 	<insert id="insert">
 		INSERT INTO requpdate
 		(question, content, ori_correct, req_correct, state, writer, regdate, moddate)
-		VALUES(#{question.questionCode}, #{content}, #{oriCorrect}, #{reqCorrect}, #{state}, #{writer.customerCode}, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP)
+		VALUES(#{questionCode}, #{content}, #{oriCorrect}, #{reqCorrect}, #{state}, #{customerCode}, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP)
 	</insert>
 	
 	<update id="update">
