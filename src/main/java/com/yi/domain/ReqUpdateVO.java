@@ -1,13 +1,13 @@
 package com.yi.domain;
 
-public class ReqUpdate {
+public class ReqUpdateVO {
 	private int reqCode;
 	private QuestionVO question;
 	private String content;
 	private int oriCorrect;
 	private int reqCorrect;
 	private String state;
-	private CustomerVO customer;
+	private CustomerVO writer;
 	
 	public int getReqCode() {
 		return reqCode;
@@ -45,18 +45,20 @@ public class ReqUpdate {
 	public void setState(String state) {
 		this.state = state;
 	}
-	public CustomerVO getCustomer() {
-		return customer;
+	public CustomerVO getWriter() {
+		return writer;
 	}
-	public void setCustomer(CustomerVO customer) {
-		this.customer = customer;
+	public void setWriter(CustomerVO writer) {
+		this.writer = writer;
 	}
 	
 	@Override
 	public String toString() {
-		return "ReqUpdate [reqCode=" + reqCode + ", question=" + question + ", content=" + content + ", oriCorrect="
-				+ oriCorrect + ", reqCorrect=" + reqCorrect + ", state=" + state + ", customer=" + customer + "]";
+		return "ReqUpdateVO [reqCode=" + reqCode + ", question=" + question + ", content=" + content + ", oriCorrect="
+				+ oriCorrect + ", reqCorrect=" + reqCorrect + ", state=" + state + ", writer=" + writer + "]";
 	}
+
 	
+
 	
 }

@@ -105,7 +105,7 @@
 <title>Insert title here</title>
 <style>
 	div.question_wrap{
-		width:800px;
+		width:900px; 
 		margin:30px auto; 
 		border:1px solid #ccc;
 		padding: 30px 20px;  
@@ -178,6 +178,22 @@
 	.pagination .wsm_active_a{
 		color:#A3918F;
 	}
+	/*-------------------------------------------------------reqUpdate 부분*/
+	#reqUpdate_container{
+		width:900px; 
+		margin:30px auto;
+	}
+	#reqUpdate_container table{
+		border-collapse: collapse;
+		width:900px; 
+		font-size: 12px;
+	}
+	table tr{
+		border: 0.5px solid #ddd;
+	}
+	table td{
+		padding: 5px 10px;
+	}
 </style>
 </head>
 <body>
@@ -225,6 +241,19 @@
 		<%-- <a href="#"><img src="${pageContext.request.contextPath}/resources/upload/before.png" alt="before"></a> --%>
 		<a href="#"><img src="${pageContext.request.contextPath}/resources/upload/next.png" alt="next"></a>
 	</form>
+	
+	<!-- 문제에 대한 건의사항 -->
+	
+	<div id="reqUpdate_container">
+		<table>
+			<tr>
+				<td>문제코드</td>
+				<td>변경사유</td>
+				<td>요청정답</td>
+				<td>글쓴이</td>
+			</tr>
+		</table>
+	</div>
 	
 	
 	
