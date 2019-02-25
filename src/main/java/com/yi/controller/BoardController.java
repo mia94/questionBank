@@ -32,6 +32,11 @@ private static final Logger logger = LoggerFactory.getLogger(BoardController.cla
 		model.addAttribute("list", list);
 	}
 	
+	@RequestMapping(value="register", method=RequestMethod.GET)
+	public void register() {
+		logger.info("BoardVO register------------GET");
+	}
+	
 	@RequestMapping(value="register", method=RequestMethod.POST)
 	public ResponseEntity<String> register(@RequestBody BoardVO vo){
 		ResponseEntity<String> entity = null;

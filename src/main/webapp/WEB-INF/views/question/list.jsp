@@ -21,6 +21,7 @@
 	section{
 		position: relative;
 	}
+	/*-------------------------------------------------연도회차 select*/
 	.custom-select,button#test_select{
 		float: left;
 		margin-top: 30px;
@@ -39,6 +40,13 @@
 		font-size: 16px;
 		line-height: 16px;
 	}
+	/*----------------------------------------------------------검색, search*/
+	.search_form{
+		clear:both;
+		width:800px;
+		margin: 0 auto;
+	}
+	/*----------------------------------------------------------문제 리스트*/
 	.container_wrap{
 		margin-top: 40px;
 		clear: both;
@@ -72,7 +80,7 @@
 <body>
 	<jsp:include page="../include/header.jsp"></jsp:include>
 	
-	<div class="custom-select">
+	<!-- <div class="custom-select">
 		<select name="year" id="year">
 			<option value="0"> Select Year </option>
 			<option value="2018"> 2018 </option>
@@ -86,8 +94,18 @@
 			<option value="2"> 2 </option>
 		</select>
 	</div>
+	<button id="test_select">선택</button> -->
 	
-	<button id="test_select">선택</button>
+	<div class="search_form">
+		<p>
+			<label>문제코드</label>
+			<input type="text">
+		</p>
+		<p>
+			<label>제목</label>
+			<input type="text">
+		</p>
+	</div>
 	
 	<form action="result" method="post" id="wsm_testForm">
 		<div class="container_wrap">

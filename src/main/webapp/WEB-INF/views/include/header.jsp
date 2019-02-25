@@ -34,7 +34,8 @@
 		      <li><a href="#"></a></li>
 		      <li class="dropdown"><a class="dropdown-toggle wsm_nav_a" data-toggle="dropdown" href="#">Question<span class="caret"></span></a>
 		        <ul class="dropdown-menu">
-		          <li><a href="${pageContext.request.contextPath}/question/list">모의고사</a></li>
+		          <li><a href="${pageContext.request.contextPath}/question/list">문제리스트</a></li>
+		          <li><a href="${pageContext.request.contextPath}/question/moketest">모의고사</a></li>
 		          <li><a href="${pageContext.request.contextPath}/question/subjecttest">과목별 문제풀기</a></li>
 		          <li><a href="${pageContext.request.contextPath}/question/singletest">랜덤문제</a></li>
 		          <li><a href="${pageContext.request.contextPath}/question/register">문제 추가</a></li>

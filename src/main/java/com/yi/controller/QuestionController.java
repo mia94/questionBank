@@ -71,8 +71,8 @@ private static final Logger logger = LoggerFactory.getLogger(QuestionController.
 		
 	}
 	//jsp로 가는 메소드
-	@RequestMapping(value="list", method=RequestMethod.GET)
-	public void list(Criteria cri,Model model){
+	@RequestMapping(value="moketest", method=RequestMethod.GET)
+	public void moketest(Criteria cri,Model model){
 		System.out.println("cri===========:"+cri);
 		List<QuestionVO> list = service.selectByYearAndRound(2018, 3, cri);///////연도와 회차 외부에서 받기!!!!
 		
@@ -84,6 +84,21 @@ private static final Logger logger = LoggerFactory.getLogger(QuestionController.
 		model.addAttribute("pageMaker", pageMaker);
 		model.addAttribute("cri", cri);
 	}
+	
+	//jsp로 가는 메소드
+		@RequestMapping(value="list", method=RequestMethod.GET)
+		public void list(Criteria cri,Model model){
+			System.out.println("cri===========:"+cri);
+			List<QuestionVO> list = service.selectByYearAndRound(2018, 3, cri);///////연도와 회차 외부에서 받기!!!!
+			
+			PageMaker pageMaker = new PageMaker();
+			pageMaker.setCri(cri);
+			pageMaker.setTotalCount(service.totalCount(2018,3));
+			
+			model.addAttribute("list", list);
+			model.addAttribute("pageMaker", pageMaker);
+			model.addAttribute("cri", cri);
+		}
 	
 	//랜덤으로 한문제씩
 	@RequestMapping(value="singletest", method=RequestMethod.GET)

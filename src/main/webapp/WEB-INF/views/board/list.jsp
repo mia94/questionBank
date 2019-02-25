@@ -7,14 +7,19 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 <style>
-	.list_container{
+	.board_container{
 		width:900px;
-		margin: 0 auto;
+		margin: 100px auto 30px;  
+		position: relative;
+	}
+	.board_container button{
+		position: absolute;
+		right: 0px; 
+		top:-25px; 
 	}
 	table{
 		width:900px;
-		margin-left: 100px;
-		margin-top: 70px;
+		margin-top: 30px;
 	}
 	table tr{
 		border: 0.5px solid #ddd;
@@ -33,6 +38,7 @@
 	<jsp:include page="../include/header.jsp"></jsp:include>
 	
 	<div class="board_container">
+		<button id="register">write</button>
 		<table class="">
 		    <thead>
 		      <tr>
@@ -56,6 +62,14 @@
 		    </tbody>
 		  </table>
 	</div>
+	
+	<script>
+		$(function(){
+			$("#register").click(function(){
+				location.href="${pageContext.request.contextPath}/board/register"
+			})
+		})
+	</script>
 	
 	<jsp:include page="../include/footer.jsp"></jsp:include>
 
