@@ -97,7 +97,7 @@
 		box-shadow: inset 0px 0px 10px rgba(0,0,0,0.3); 
 	}
 	/* submit 버튼 */
-	button#registerQ{
+	button#registerQ, button.registerQ{
 		border: none;
 		background: white;
 		margin-left:20px;
@@ -184,20 +184,71 @@
 	  	</p>
 	  	<p class="wsm_questionreg">
 	  		<label>상태</label>
-	  		<div class="checks"> <input type="radio" name="correct" class="ex_rd2" value="정상"> <label for="ex_rd2">정상</label> </div>
-	  		<div class="checks"> <input type="radio" name="correct" class="ex_rd2" value="요청"> <label for="ex_rd2">요청</label> </div>
-	  		<div class="checks"> <input type="radio" name="correct" class="ex_rd2" value="보류"> <label for="ex_rd2">보류</label> </div>
-	  		<div class="checks"> <input type="radio" name="correct" class="ex_rd2" value="오류"> <label for="ex_rd2">오류</label> </div>
+	  		<div class="checks"> <input type="radio" name="state" class="ex_rd2" value="정상"> <label for="ex_rd2">정상</label> </div>
+	  		<div class="checks"> <input type="radio" name="state" class="ex_rd2" value="요청"> <label for="ex_rd2">요청</label> </div>
+	  		<div class="checks"> <input type="radio" name="state" class="ex_rd2" value="보류"> <label for="ex_rd2">보류</label> </div>
+	  		<div class="checks"> <input type="radio" name="state" class="ex_rd2" value="오류"> <label for="ex_rd2">오류</label> </div>
 	  	</p> 
 	  	<p class="wsm_questionreg">
 	  		<label>사진 / 예문</label>
 	  		<input type="file" name="pictureFile">
 	  	</p>
 	  	<p>
-	        <button type="submit" id="registerQ">Submit</button>
+	        <button type="button" class="registerQ" data-toggle="modal" data-target="#myModal">Submit</button>
 	  	</p> 
 	  </form>
+	  
+	  <!-- Modal -->
+	  <div class="modal fade" id="myModal" role="dialog">
+	    <div class="modal-dialog">
+	    
+	      <!-- Modal content-->
+	      <div class="modal-content">
+	        <div class="modal-header">
+	          <button type="button" class="close" data-dismiss="modal">&times;</button>
+	          <h4 class="modal-title">추가하는 문제 내용을 확인해주세요</h4>
+	        </div>
+	        <div class="modal-body">
+	          <div class="check_question">
+	          	
+	          </div>
+	        </div>
+	        <div class="modal-footer">
+	          <button type="submit" id="registerQ" class="btn btn-default">Submit</button>
+	          <button type="button" class="registerQ" data-dismiss="modal">Close</button>
+	        </div>
+	      </div>
+	      
+	    </div>
+	  </div>
 	</div>
+	
+	<script>
+		$(".registerQ").click(function(){
+			var year = $("select[name=year]").val();
+			var round = $("select[name=round]").val();
+			var subject = $("select[name=subject]").val();
+			var number = $("select[name=number]").val();
+			
+			var questionTitle = $("input[name=questionTitle]").val();
+			var choice1 = $("input[name=choice1]").val();
+			var choice2 = $("input[name=choice2]").val();
+			var choice3 = $("input[name=choice3]").val();
+			var choice4 = $("input[name=choice4]").val();
+			
+			var correct = $("input[name=correct]").val();
+			var state = $("input[name=state]").val();
+			//받아온 값 디스플레이
+			$(".check_question").append("<p>"+year+"년 "+round+"회 "+number+"번"+"</p>");
+			$(".check_question").append("<p>"+questionTitle+"</p>");
+			$(".check_question").append("<p> ① :"+choice1+"</p>");
+			$(".check_question").append("<p> ② :"+choice2+"</p>");
+			$(".check_question").append("<p> ③ :"+choice3+"</p>");
+			$(".check_question").append("<p> ④ :"+choice4+"</p>");
+			$(".check_question").append("<p> 정답 :"+correct+"</p>");
+			$(".check_question").append("<p> 상태 :"+state+"</p>");
+		})
+	</script>
 	
 	<script src="${pageContext.request.contextPath}/resources/js/select.js"></script>
 	
