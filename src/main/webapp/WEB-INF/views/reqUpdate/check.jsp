@@ -150,6 +150,13 @@
 	table td{
 		padding: 5px 10px;
 	}
+	/*--------------------------------------------------삭제버튼*/ 
+	button.delReq{
+		background-color: white;
+		color:#A3918F;
+		border:1px solid #A3918F;
+		padding: 2px;
+	}
 </style>
 </head>
 <body>
@@ -226,19 +233,28 @@
 			<td>요청정답</td>
 			<td>글쓴이</td>
 			<td>게시 날짜</td>
+			<td></td>
 		</tr>
-		{{#ifCond question.questionCode}} 
+		{{#ifCond content}} 
 			<tr>
 				<td colspan="5">등록된 게시글이 없습니다.</td>
 			</tr>
 		{{else}}
     		{{#each.}}
-				<tr>
+				<tr> 
 					<td>{{question.questionCode}}</td>
 					<td>{{content}}</td>
 					<td>{{oriCorrect}}</td>
-					<td>{{writer.customerCode}}</td> 
+					<td>{{writer.customerCode}}</td>
 					<td>{{tempDate moddate}}</td>
+					{{#ifWriter writer.customerCode}} 
+						<td>
+							<button class="delReq">삭제</button>
+							<input type="hidden" value="{{reqCode}}" class="reqCode">
+						</td>
+					{{else}}
+    					<td></td>
+					{{/ifWriter}}
 				</tr>
 			{{/each}}
 		{{/ifCond}}
@@ -256,6 +272,13 @@
 	
 	Handlebars.registerHelper('ifCond', function(v1, options) {
 			if(v1 == '') {  
+			   return options.fn(this);
+			}
+			return options.inverse(this);
+		})
+	
+	Handlebars.registerHelper('ifWriter', function(v1, options) {
+			if(v1 == '${login.customerCode}') {  
 			   return options.fn(this);
 			}
 			return options.inverse(this);
