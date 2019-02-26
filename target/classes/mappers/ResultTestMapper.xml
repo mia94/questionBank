@@ -75,6 +75,13 @@
 		SET answer=#{answer}, correct=#{correct}, spendTime=#{spendTime}, pass=#{pass}
 		where customer=#{customer.customerCode} and question=#{question.questionCode}
 	</update>
+	
+	<!-- 고객별 오답문제 list출력 -->
+	<select id="selectIncorrectQuestionByCustomer" resultMap="mapResultTestVO">
+		select *
+		from resulttest
+		where customer=#{customerCode} and pass='0'
+	</select>
 </mapper>
 
 

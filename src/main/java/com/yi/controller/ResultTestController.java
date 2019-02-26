@@ -1,5 +1,8 @@
 package com.yi.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +19,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.yi.domain.CustomerVO;
 import com.yi.domain.QuestionVO;
 import com.yi.domain.ResultTestVO;
+import com.yi.service.QuestionService;
 import com.yi.service.ResultTestService;
 
 @Controller
@@ -25,6 +29,8 @@ public class ResultTestController {
 	
 	@Autowired
 	private ResultTestService service;
+	@Autowired
+	private QuestionService qService;
 	
 	@RequestMapping(value="result", method=RequestMethod.POST)
 	public String addAnswer(ResultTestVO vo) {
@@ -96,7 +102,23 @@ public class ResultTestController {
 		}
 		return entity;
 	}
-
+	
+	//오답다시풀기 문제 리스트
+	@RequestMapping(value="/incorrect", method=RequestMethod.GET)
+	public void selectIncorrect(String customerCode, Model model){
+		logger.info("selectIncorrect ------------"+customerCode);
+		List<ResultTestVO> resultList = service.selectIncorrectQuestionByCustomer(customerCode);
+		System.out.println(resultList);
+		List<QuestionVO> list = new ArrayList<>();
+		
+		for(int i=0;i<resultList.size();i++) {
+			QuestionVO qvo = qService.selectByNO(resultList.get(i).getQuestion());
+			list.add(qvo);
+		}
+		
+		System.out.println(list);
+		model.addAttribute("list", list);
+	}
 }
 
 

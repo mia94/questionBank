@@ -73,6 +73,12 @@ public class ResultTestDaoImpl implements ResultTestDao{
 		sqlSession.update(namespace+".updateByCustomerAndQuestion", resultTestVo);
 	}
 
+	@Override
+	public List<ResultTestVO> selectIncorrectQuestionByCustomer(String customerCode) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList(namespace+".selectIncorrectQuestionByCustomer", customerCode);
+	}
+
 	
 
 }

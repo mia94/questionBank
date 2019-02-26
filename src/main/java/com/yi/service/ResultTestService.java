@@ -20,4 +20,6 @@ public interface ResultTestService {
 	public int selectMaxCode();
 	//고객번호와 문제번호를 이용하여 update
 	public void updateByCustomerAndQuestion(ResultTestVO resultTestVo);
+	//고객별 오답노트 리스트
+	public List<ResultTestVO> selectIncorrectQuestionByCustomer(String customerCode);
 }

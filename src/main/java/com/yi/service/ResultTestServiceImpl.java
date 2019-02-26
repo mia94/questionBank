@@ -64,4 +64,10 @@ public class ResultTestServiceImpl implements ResultTestService {
 		dao.updateByCustomerAndQuestion(resultTestVo);
 	}
 
+	@Override
+	public List<ResultTestVO> selectIncorrectQuestionByCustomer(String customerCode) {
+		// TODO Auto-generated method stub
+		return dao.selectIncorrectQuestionByCustomer(customerCode);
+	}
+
 }
