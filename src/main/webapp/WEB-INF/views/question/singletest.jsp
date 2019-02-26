@@ -46,13 +46,13 @@
 			if(answer==correct){
 				$("#correct_true").show();
 				$("#correct_false").hide();
-				$(".question_wrap").css("background-color","#DAE9FF");
+				$(".question_wrap").css("background-color","rgba(218,233,255,0.4)");  
 				$("input[name=answer]").attr("readonly","readonly");//안먹히는 중
 				$("input[name=pass]").val(true);
 			}else{
 				$("#correct_false").show();
-				$("#correct_true").hide();
-				$(".question_wrap").css("background-color","#FFEDED");
+				$("#correct_true").hide(); 
+				$(".question_wrap").css("background-color","rgba(255,237,237,0.4)");
 				$("input[name=answer]").attr("readonly","readonly");
 				$("input[name=pass]").val(false);
 				//정답display
@@ -64,7 +64,7 @@
 		$("img[alt*=next]").click(function(){
 			var customerCode = $("input[name=customerCode]").val();
 			if(customerCode==""){
-				alert("로그인창으로 이동합니다.");
+				alert("로그인창으로 이동합니다."); 
 				location.href="${pageContext.request.contextPath}/user/login";
 			}else{
 				$("#wsm_testForm").submit();
@@ -318,7 +318,7 @@
 			var writer = "${login.customerCode}";
 			
 			//@RequestBody를 사용했기때문에
-			var jsonBody = {reqCorrect:reqCorrect, content:content, questionCode:question, oriCorrect:oriCorrect,state:state, customerCode:writer};
+			var jsonBody = {reqCorrect:reqCorrect, content:content, question:{questionCode:question}, oriCorrect:oriCorrect,state:state, writer:{customerCode:writer}};
 			//@RequestBody를 사용했으면headers, JSON.stringify를 반드시 사용해야함
 			$.ajax({
 				url:"${pageContext.request.contextPath}/reqUpdate/register",
@@ -351,17 +351,17 @@
 			<td>글쓴이</td>
 			<td>게시 날짜</td>
 		</tr>
-		{{#ifCond list}} 
+		{{#ifCond question}} 
 			<tr>
 				<td colspan="5">등록된 게시글이 없습니다.</td>
 			</tr>
 		{{else}}
     		{{#each.}}
-				<tr>
-					<td>{{question}}</td>
+				<tr> 
+					<td>{{question.questionCode}}</td>
 					<td>{{content}}</td>
 					<td>{{oriCorrect}}</td>
-					<td>{{writer}}</td>
+					<td>{{writer.customerCode}}</td>
 					<td>{{tempDate moddate}}</td>
 				</tr>
 			{{/each}}
@@ -380,7 +380,7 @@
 	})
 	
 	Handlebars.registerHelper('ifCond', function(v1, options) {
-			if(v1 == '' || v1==null) {  
+			if(v1 == ''||v1==null) {  
 			   return options.fn(this);
 			}
 			return options.inverse(this);
@@ -399,7 +399,7 @@
 			
 			var source = $("#template1").html();
 			var f = Handlebars.compile(source);
-			var result = f(json.list);
+			var result = f(json);
 			$("#reqUpdate_table").append(result);
 			}
 		})

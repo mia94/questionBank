@@ -96,7 +96,7 @@ public class ReqUpdateController {
 		QuestionVO vo = new QuestionVO();
 		vo.setQuestionCode(question);
 		vo = qService.selectByNO(vo);
-		logger.info("check================== controller vo = "+vo);
+
 		model.addAttribute("vo", vo);
 	}
 	

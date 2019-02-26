@@ -30,10 +30,10 @@
 		order by req_code desc
 	</select>
 	
-	<insert id="insert">
+	<insert id="insert" parameterType="ReqUpdateVO">
 		INSERT INTO requpdate
 		(question, content, ori_correct, req_correct, state, writer, regdate, moddate)
-		VALUES(#{questionCode}, #{content}, #{oriCorrect}, #{reqCorrect}, #{state}, #{customerCode}, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP)
+		VALUES(#{question.questionCode}, #{content}, #{oriCorrect}, #{reqCorrect}, #{state}, #{writer.customerCode}, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP)
 	</insert>
 	
 	<update id="update">

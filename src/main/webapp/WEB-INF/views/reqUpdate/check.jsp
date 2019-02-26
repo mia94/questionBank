@@ -46,13 +46,13 @@
 			if(answer==correct){
 				$("#correct_true").show();
 				$("#correct_false").hide();
-				$(".question_wrap").css("background-color","#DAE9FF");
+				$(".question_wrap").css("background-color","rgba(218,233,255,0.4)");
 				$("input[name=answer]").attr("readonly","readonly");//안먹히는 중
 				$("input[name=pass]").val(true);
 			}else{
 				$("#correct_false").show();
 				$("#correct_true").hide();
-				$(".question_wrap").css("background-color","#FFEDED");
+				$(".question_wrap").css("background-color","rgba(255,237,237,0.4)");
 				$("input[name=answer]").attr("readonly","readonly");
 				$("input[name=pass]").val(false);
 				//정답display
@@ -139,29 +139,6 @@
 		width:900px; 
 		margin:70px auto 40px;
 	}
-	#reqUpdate_form{
-		width:850px;
-		margin: 0 auto;
-		position: relative;
-	}
-	#reqUpdate_container #reqUpdate_form label{
-		width:80px; 
-		float: left; 
-		color:#A3918F; 
-	}
-	#reqUpdate_container #reqUpdate_form button{
-		background-color: #F6EFEC;
-		color:#5B4149;
-		border:2px solid #A3918F;
-		border-radius: 3px;
-		padding: 3px;
-		font-size: 12px;
-		width:60px;
-		height:60px;
-		position: absolute;
-		bottom: 5px; 
-		right: 30px; 
-	}
 	#reqUpdate_container table{
 		border-collapse: collapse;
 		width:900px; 
@@ -222,25 +199,6 @@
 	<!-- 문제에 대한 건의사항 -->
 	
 	<div id="reqUpdate_container">
-		<div id="reqUpdate_form">
-			<p>
-				<label>요청정답</label>
-				<div class="custom-select">
-					<select name="reqCorrect">
-						<option value="">선택안함</option>
-						<option value="1">1</option>
-						<option value="2">2</option>
-						<option value="3">3</option>
-						<option value="4">4</option>
-					</select>
-				</div>
-			</p>
-			<p>
-				<label>변경사유</label>
-				<textarea rows="3" cols="90"></textarea>
-				<button id="reqUpdate_register">write</button> 
-			</p>
-		</div>
 		<table id="reqUpdate_table">
 			<tr>
 				<td>문제코드</td>
@@ -255,9 +213,73 @@
 		</table>
 	</div>
 	
-
+	<script>
+		$(function(){
+			getPageList();
+		})
+	</script>
 	
-
+	<script id="template1" type="text/x-handlebars-template"> 
+		<tr>
+			<td>문제코드</td>
+			<td>변경사유</td>
+			<td>요청정답</td>
+			<td>글쓴이</td>
+			<td>게시 날짜</td>
+		</tr>
+		{{#ifCond question.questionCode}} 
+			<tr>
+				<td colspan="5">등록된 게시글이 없습니다.</td>
+			</tr>
+		{{else}}
+    		{{#each.}}
+				<tr>
+					<td>{{question.questionCode}}</td>
+					<td>{{content}}</td>
+					<td>{{oriCorrect}}</td>
+					<td>{{writer.customerCode}}</td> 
+					<td>{{tempDate moddate}}</td>
+				</tr>
+			{{/each}}
+		{{/ifCond}}
+	</script>
+	
+	<script>
+	Handlebars.registerHelper("tempDate", function(value){
+		var date = new Date(value);
+		var year = date.getFullYear();
+		var month = date.getMonth()+1;
+		var day = date.getDate();
+		
+		return year+"."+month+"."+day
+	})
+	
+	Handlebars.registerHelper('ifCond', function(v1, options) {
+			if(v1 == '') {  
+			   return options.fn(this);
+			}
+			return options.inverse(this);
+		})
+	
+	var question = "${vo.questionCode}";
+	
+	function getPageList(){
+		$.ajax({
+			url:"${pageContext.request.contextPath}/reqUpdate/"+question,
+			type:"get",
+			dataType:"json",
+			success:function(json){
+				console.log(json);
+				$("#reqUpdate_table").empty();//테이블 안 비우기
+			
+				var source = $("#template1").html();
+				var f = Handlebars.compile(source);
+				var result = f(json);
+				$("#reqUpdate_table").append(result);
+			}
+		})
+	}
+	</script>
 
 	
 	
