@@ -62,11 +62,13 @@
 		})
 		//다음버튼 이미지 클릭시 다음랜덤 문제로 넘어감
 		$("img[alt*=next]").click(function(){
-			$("#wsm_testForm").submit();
-		})
-		//이전버튼 이미지 클릭시 history한칸 앞으로
-		$("img[alt*=before]").click(function(){
-			
+			var customerCode = $("input[name=customerCode]").val();
+			if(customerCode==""){
+				alert("로그인창으로 이동합니다.");
+				location.href="${pageContext.request.contextPath}/user/login";
+			}else{
+				$("#wsm_testForm").submit();
+			}
 		})
 		
 		//카운트용
