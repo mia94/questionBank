@@ -9,6 +9,7 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 <link href="${pageContext.request.contextPath}/resources/css/radiobutton.css" rel="stylesheet"  type="text/css">
 <link href="${pageContext.request.contextPath}/resources/css/register_select.css" rel="stylesheet"  type="text/css">
+<link href="${pageContext.request.contextPath}/resources/css/singleAndCheck.css" rel="stylesheet"  type="text/css">
 <script>
 	$(function(){
 		//test용
@@ -107,85 +108,14 @@
 </script>
 <title>Insert title here</title>
 <style>
-	div.question_wrap{
-		width:900px; 
-		margin:30px auto; 
-		border:1px solid #ccc;
-		padding: 30px 20px;  
-	}
-	section{
-		position: relative;
-	}
-	.container_wrap{
-		margin-top: 40px;
-	}
+	/*----------------------------------------카운터*/
 	#counter{
 		width:300px;
 		position: absolute; 
 		right: -75px; 
 		top: 5px;
 	}
-	span.subject{
-		font-size: 17px;
-		font-weight: bold;
-		color:#ccc; 
-	}
-	p.code{
-		font-weight: bold;
-		color:#A3918F;
-	}
-	form{
-		position: relative;
-	}
-	form img[alt*=before], form img[alt*=next]{
-		width:50px;
-	}
-	form img[alt*=before]{
-		position: absolute;
-		left: 70px;
-		top:120px;
-	}
-	form img[alt*=next]{
-		position: absolute;
-		right: 75px;
-		top:120px;
-	} 
-	div.answerSheet{
-		width: 200px;
-		height:400px;
-		background-color: #eee;
-		position: fixed;
-		top: 50px;  
-		right: 50px; 
-	}
-	form #test_submit{
-		border: none;
-		background: white;
-		font-size: 16px;
-		font-family: 'Jua', sans-serif;
-		color:#A3918F;
-		float: right;
-		padding-right: 200px;
-	}
-	#correct_true, #correct_false{
-		display: none;
-		position: absolute;
-		right: 230px;
-		bottom: 20px;
-		font-family: 'Jua', sans-serif;
-	}
-	.pagination>.active>.wsm_active_a{
-		background-color: #A3918F;
-		border:1px solid #A3918F;
-	}
-	.pagination .wsm_active_a{
-		color:#A3918F;
-	}
 	/*-------------------------------------------------------reqUpdate 부분*/
-	#reqUpdate_container{
-		width:900px; 
-		margin:70px auto 40px;
-	}
 	#reqUpdate_form{
 		width:850px;
 		margin: 0 auto;
@@ -214,19 +144,7 @@
 		width:900px; 
 		font-size: 12px;
 	}
-	table tr{
-		border: 0.5px solid #ddd;
-	}
-	table td{
-		padding: 5px 10px;
-	}
-	/*--------------------------------------------------삭제버튼*/ 
-	button.delReq{
-		background-color: white;
-		color:#A3918F;
-		border:1px solid #A3918F;
-		padding: 2px;
-	}
+
 </style>
 </head>
 <body>
