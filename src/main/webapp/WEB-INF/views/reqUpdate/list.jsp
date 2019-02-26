@@ -18,6 +18,7 @@
 		right: 0px; 
 		top:-25px; 
 	}
+	/*-----------------------------------------------테이블 스타일*/
 	table{
 		width:900px;
 		margin-top: 30px;
@@ -25,6 +26,9 @@
 	table tr{
 		border: 0.5px solid #ddd;
 		height: 35px;
+	}
+	table tr:hover{ 
+		background-color: rgba(243,194,186,0.15);   
 	}
 	table th{
 		background-color: #A3918F;  
@@ -34,15 +38,21 @@
 	table td, table th{
 		padding: 5px 10px;
 	}
-	table td:first-child, table th:first-child,table td:last-child, table th:last-child{
+	table td:first-child, table th:first-child,table td:last-child, table th:last-child, table .question_field, table .writer_field{
 		text-align: center;
 		font-size: 12px; 
 	}
-	table td:first-child, table th:first-child{
+	table td:first-child, table th:first-child{ 
 		width:20px;
 	}
-	table td:last-child, table th:last-child{
-		width:150px; 
+	table .question_field, table .writer_field, table .state_field{
+		width:130px;
+	}
+	table .date_field{
+		width:150px;
+	}
+	table .state_field{
+		width:80px; 
 	}
 </style>
 </head>
@@ -56,26 +66,37 @@
 		    <thead>
 		      <tr>
 		        <th>no</th>
-		        <th>문제</th>
+		        <th class="question_field">문제</th>
 		        <th>content</th>
-		        <th>작성자</th>
-		        <th>게시날짜</th>
+		        <th class="writer_field">작성자</th>
+		        <th class="date_field">게시날짜</th>
+		        <th>처리상태</th>
 		      </tr>
 		    </thead>
 		    <tbody>
 		     	<c:forEach var="item" items="${list }">
 					<tr>
 						<td>${item.reqCode }</td>
-						<td>${item.question.questionCode }</td>
+						<td class="question_field">${item.question.questionCode }</td>
 						<td>${item.content }</td>
-						<td>${item.writer.customerCode }</td>
-						<td><fmt:formatDate value="${item.regdate }" pattern="yyyy.MM.dd hh:mm:ss"/></td>
+						<td class="writer_field">${item.writer.customerCode }</td>
+						<td class="date_field"><fmt:formatDate value="${item.regdate }" pattern="yyyy.MM.dd hh:mm:ss"/></td>
+						<td class="state_field">${item.state }</td>
 					</tr>
 				</c:forEach>
 		    </tbody>
 		  </table>
 	</div>
 	
+	<script>
+		$(function(){
+			$("tr").click(function(){
+				var questionCode = $(this).children(".question_field").text();
+				//해당문제나타나는 페이지로 이동하기
+				location.href="${pageContext.request.contextPath}/reqUpdate/check?question="+questionCode;
+			})
+		})
+	</script>
 	
 	<jsp:include page="../include/footer.jsp"></jsp:include>
 

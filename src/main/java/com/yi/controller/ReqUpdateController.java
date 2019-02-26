@@ -1,11 +1,18 @@
 package com.yi.controller;
 
+import java.io.FileInputStream;
+import java.io.InputStream;
 import java.util.List;
 
+import javax.annotation.Resource;
+
+import org.apache.commons.io.IOUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,8 +22,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.yi.domain.QuestionVO;
 import com.yi.domain.ReqUpdateVO;
+import com.yi.service.QuestionService;
 import com.yi.service.ReqUpdateService;
+import com.yi.util.MediaUtils;
 
 @Controller
 @RequestMapping("/reqUpdate/*")
@@ -26,6 +36,11 @@ public class ReqUpdateController {
 	
 	@Autowired
 	private ReqUpdateService service;
+	@Autowired
+	private QuestionService qService;
+	
+	@Resource(name="uploadPath")
+	private String uploadPath;
 	
 	//전체 리스트보기(단독메뉴용)
 	@RequestMapping(value="list", method=RequestMethod.GET)
@@ -72,6 +87,47 @@ public class ReqUpdateController {
 			entity = new ResponseEntity<>(HttpStatus.BAD_REQUEST);//List<ReqUpdateVO>로 보내야 하나, 보낼수없을때는HttpStatus만 보냄
 		}
 		return entity;
+	}
+	
+	//문의글 클릭시 해당문제 확인, 수정가능한 페이지로 이동하기
+	@RequestMapping(value="check", method=RequestMethod.GET)
+	public void check(String question, Model model) {
+		logger.info("check================== controller"+question);
+		QuestionVO vo = new QuestionVO();
+		vo.setQuestionCode(question);
+		vo = qService.selectByNO(vo);
+		logger.info("check================== controller vo = "+vo);
+		model.addAttribute("vo", vo);
+	}
+	
+	@ResponseBody
+	@RequestMapping("/displayFile")
+	public ResponseEntity<byte[]> displayFile(String filename, Model model){
+		 ResponseEntity<byte[]> entity = null;
+		 logger.info("displayFile : "+ filename);
+		 try {
+			 try {
+				 String format = filename.substring(filename.lastIndexOf(".")+1);
+					String picture = filename.substring(filename.lastIndexOf("/"));
+					MediaType mType = MediaUtils.getMediaType(format);
+					
+					HttpHeaders headers = new HttpHeaders();
+					InputStream in = null;
+					in = new FileInputStream(uploadPath+"/"+picture);
+					headers.setContentType(mType);
+					
+					entity = new ResponseEntity<byte[]>(IOUtils.toByteArray(in), headers, HttpStatus.CREATED);
+					in.close();
+			} catch (StringIndexOutOfBoundsException e) {
+				return null;
+			}
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+			entity = new ResponseEntity<byte[]>(HttpStatus.BAD_REQUEST);
+		}
+		 return entity;
 	}
 	
 	

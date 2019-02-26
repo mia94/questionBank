@@ -4,13 +4,26 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.yi.mapper.ReqUpdate">
 	
-	<select id="selectByAll" resultType="ReqUpdateVO">
+	<resultMap type="ReqUpdateVO" id="mapResultUpdateVO">
+		<id column="req_code" property="reqCode"/>
+		<result column="writer" property="writer.customerCode"/>
+		<result column="question" property="question.questionCode"/>
+		<result column="content" property="content"/>
+		<result column="oriCorrect" property="oriCorrect"/>
+		<result column="reqCorrect" property="reqCorrect"/>
+		<result column="state" property="state"/>
+		<result column="regdate" property="regdate"/>
+		<result column="moddate" property="moddate"/>
+		<result column="req_code" property="reqCode"/>
+	</resultMap>
+	
+	<select id="selectByAll" resultMap="mapResultUpdateVO">
 		SELECT *
 		FROM requpdate
 		order by req_code desc
 	</select>
 	
-	<select id="selectByQuestionCode" resultType="ReqUpdateVO">
+	<select id="selectByQuestionCode" resultMap="mapResultUpdateVO">
 		SELECT *
 		FROM requpdate
 		where question=#{question}
