@@ -332,9 +332,9 @@
 				success:function(json){
 					console.log(json);
 					if(json=="success"){
+						$("textarea").val("");
 						alert("등록하였습니다.");
 						getPageList();
-						$("textarea").text("");
 					}
 				}
 			})
@@ -351,7 +351,7 @@
 			<td>글쓴이</td>
 			<td>게시 날짜</td>
 		</tr>
-		{{#ifCond question}} 
+		{{#ifCond content}} 
 			<tr>
 				<td colspan="5">등록된 게시글이 없습니다.</td>
 			</tr>
@@ -380,7 +380,7 @@
 	})
 	
 	Handlebars.registerHelper('ifCond', function(v1, options) {
-			if(v1 == ''||v1==null) {  
+			if(v1 == '') {  
 			   return options.fn(this);
 			}
 			return options.inverse(this);

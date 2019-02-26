@@ -22,8 +22,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.yi.domain.CustomerVO;
 import com.yi.domain.QuestionVO;
 import com.yi.domain.ReqUpdateVO;
+import com.yi.service.CustomerService;
 import com.yi.service.QuestionService;
 import com.yi.service.ReqUpdateService;
 import com.yi.util.MediaUtils;
@@ -38,6 +40,8 @@ public class ReqUpdateController {
 	private ReqUpdateService service;
 	@Autowired
 	private QuestionService qService;
+	@Autowired
+	private CustomerService cService;
 	
 	@Resource(name="uploadPath")
 	private String uploadPath;
@@ -76,7 +80,9 @@ public class ReqUpdateController {
 	public ResponseEntity<String> register(@RequestBody ReqUpdateVO vo){
 		logger.info("list==================수정요청등록 controller"+vo);
 		ResponseEntity<String> entity = null;
-		
+		CustomerVO cvo = cService.selectByNo(vo.getWriter());
+		vo.setWriter(cvo);
+		System.out.println(vo);
 		try {
 			service.insert(vo);
 			logger.info("list==================수정요청등록 controller :::");
