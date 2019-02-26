@@ -350,6 +350,7 @@
 			<td>요청정답</td>
 			<td>글쓴이</td>
 			<td>게시 날짜</td>
+			<td></td>
 		</tr>
 		{{#ifCond content}} 
 			<tr>
@@ -363,10 +364,15 @@
 					<td>{{oriCorrect}}</td>
 					<td>{{writer.customerCode}}</td>
 					<td>{{tempDate moddate}}</td>
+					{{#ifWriter writer.customerCode}} 
+						<td><button>삭제</button></td>
+					{{else}}
+    					<td></td>
+					{{/ifWriter}}
 				</tr>
 			{{/each}}
 		{{/ifCond}}
-	
+
 	</script>
 	
 	<script>
@@ -381,6 +387,13 @@
 	
 	Handlebars.registerHelper('ifCond', function(v1, options) {
 			if(v1 == '') {  
+			   return options.fn(this);
+			}
+			return options.inverse(this);
+		})
+		
+	Handlebars.registerHelper('ifWriter', function(v1, options) {
+			if(v1 == '${login.customerCode}') {  
 			   return options.fn(this);
 			}
 			return options.inverse(this);
