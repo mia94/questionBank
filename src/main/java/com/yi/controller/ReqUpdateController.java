@@ -106,6 +106,14 @@ public class ReqUpdateController {
 		model.addAttribute("vo", vo);
 	}
 	
+	//삭제클릭시 해당 reqUpdate삭제하기
+	@ResponseBody
+	@RequestMapping(value="/{reqCode}", method=RequestMethod.DELETE)
+	public void deleteReqUpdate(@PathVariable("reqCode")int reqCode) {
+		logger.info("deleteReqUpdate================== controller"+reqCode);
+		service.delete(reqCode);
+	}
+	
 	@ResponseBody
 	@RequestMapping("/displayFile")
 	public ResponseEntity<byte[]> displayFile(String filename, Model model){

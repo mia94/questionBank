@@ -220,6 +220,13 @@
 	table td{
 		padding: 5px 10px;
 	}
+	/*--------------------------------------------------삭제버튼*/ 
+	button.delReq{
+		background-color: white;
+		color:#A3918F;
+		border:1px solid #A3918F;
+		padding: 2px;
+	}
 </style>
 </head>
 <body>
@@ -340,6 +347,23 @@
 			})
 		})
 		
+		$(document).on("click",".delReq",function(){
+			alert("삭제확인용");
+			var reqCode = $(this).next(".reqCode").val();
+			$.ajax({
+				url:"${pageContext.request.contextPath}/reqUpdate/"+reqCode,
+				type:"delete",
+				dataType:"text",
+				success:function(json){
+					console.log(json);
+					if(json == "success"){
+						alert("삭제되었습니다.");
+					}
+					getPageList();
+				}
+			})
+		})
+		
 	})
 	</script>
 	
@@ -365,7 +389,10 @@
 					<td>{{writer.customerCode}}</td>
 					<td>{{tempDate moddate}}</td>
 					{{#ifWriter writer.customerCode}} 
-						<td><button>삭제</button></td>
+						<td>
+							<button class="delReq">삭제</button>
+							<input type="hidden" value="{{reqCode}}" class="reqCode">
+						</td>
 					{{else}}
     					<td></td>
 					{{/ifWriter}}
