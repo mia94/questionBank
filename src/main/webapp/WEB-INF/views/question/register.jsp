@@ -17,7 +17,24 @@
 	.form_container h2{
 		font-family: 'Righteous', 'Jua';
 	}
-	.wsm_questionreg{
+	/*테이블 변경 후*/
+	table{
+		border-collapse: collapse;
+		width:920px;
+	}
+	table tr{
+		height: 40px;
+	}
+	table td{
+		border:1px solid #eee;
+	}
+	table td:first-child{
+		width:150px;
+		text-align: right;
+		padding-right: 20px;
+	}
+	/*테이블로 변경하기 전*/
+	/* .wsm_questionreg{
 		margin-top: 10px;
 	}
 	.wsm_questionreg label{
@@ -36,66 +53,7 @@
 	}
 	input[type=radio]{
 		margin: 0 15px; 
-	}
-	/*라디오 버튼*/
-	.checks {
-		position: relative;
-		display: inline-block;
-		width:70px; 
-	} 
-	.checks input[type="radio"] { 
-		position: absolute; 
-		width: 1px; 
-		height: 1px; 
-		padding: 0; 
-		margin: -1px; 
-		overflow: hidden; 
-		clip:rect(0,0,0,0); 
-		border: 0; 
-	} 
-	.checks label{
-		font-size: 12px;
-	}
-	.checks input[type="radio"] + label { 
-		display: inline-block; 
-		position: relative; 
-		padding-left: 30px; 
-		cursor: pointer; 
-		-webkit-user-select: none; 
-		-moz-user-select: none; 
-		-ms-user-select: none; 
-	} 
-	.checks input[type="radio"] + label:before { 
-		content: ''; 
-		position: absolute; 
-		left: 0; 
-		top: 2px; 
-		width: 15px; 
-		height: 15px; 
-		text-align: center; 
-		background: #fafafa; 
-		border: 1px solid #cacece; 
-		border-radius: 100%; 
-		box-shadow: 0px 1px 2px rgba(0,0,0,0.05), inset 0px -15px 10px -12px rgba(0,0,0,0.05); 
-	} 
-	.checks input[type="radio"] + label:active:before, .checks input[type="radio"]:checked + label:active:before { 
-		box-shadow: 0 1px 2px rgba(0,0,0,0.05), inset 0px 1px 3px rgba(0,0,0,0.1); 
-	} 
-	.checks input[type="radio"]:checked + label:before { 
-		background: #E9ECEE; 
-		border-color: #adb8c0; 
-	} 
-	.checks input[type="radio"]:checked + label:after { 
-		content: ''; 
-		position: absolute; 
-		top: 1px; 
-		left: 5px; 
-		width: 13px; 
-		height: 13px; 
-		background: #99a1a7; 
-		border-radius: 100%; 
-		box-shadow: inset 0px 0px 10px rgba(0,0,0,0.3); 
-	}
+	} */
 	/* submit 버튼 */
 	button#registerQ, button.registerQ{
 		border: none;
@@ -114,10 +72,7 @@
 	<div class="form_container">
 	  <h2>문제 추가</h2>
 	  <form  action="register" method="post" enctype="multipart/form-data">
-	  	<!-- <p class="wsm_questionreg">
-	  		<label>questionCode</label>
-	  		<input type="text" name="questionCode">
-	  	</p> -->
+
 	  	<p class="wsm_questionreg">
 	  		<div class="custom-select">
 		  		<select name="year"> 
@@ -155,7 +110,53 @@
 		  		</select>
 	  		</div>
 	  	</p> 
-	  	<p class="wsm_questionreg">
+	  	
+	  	<table>
+	  		<tr>
+	  			<td>문제</td>
+	  			<td><input type="text" name="questionTitle"></td>
+	  		</tr>
+	  		<tr>
+	  			<td>보기1</td>
+	  			<td><input type="text" name="choice1"></td>
+	  		</tr>
+	  		<tr>
+	  			<td>보기2</td>
+	  			<td><input type="text" name="choice2"></td>
+	  		</tr>
+	  		<tr>
+	  			<td>보기3</td>
+	  			<td><input type="text" name="choice3"></td>
+	  		</tr>
+	  		<tr>
+	  			<td>보기4</td>
+	  			<td><input type="text" name="choice4"></td>
+	  		</tr>
+	  		<tr>
+	  			<td>정답</td>
+	  			<td>
+	  				<input type="radio" name="correct" class="ex_rd2" value="1"> 1
+	  				<input type="radio" name="correct" class="ex_rd2" value="2"> 2
+	  				<input type="radio" name="correct" class="ex_rd2" value="3"> 3
+	  				<input type="radio" name="correct" class="ex_rd2" value="4"> 4
+	  			</td>
+	  		</tr>
+	  		<tr>
+	  			<td>상태</td>
+	  			<td>
+	  				<input type="radio" name="state" class="ex_rd2" value="정상"> 정상
+	  				<input type="radio" name="state" class="ex_rd2" value="요청"> 요청
+	  				<input type="radio" name="state" class="ex_rd2" value="보류"> 보류 
+	  				<input type="radio" name="state" class="ex_rd2" value="오류"> 오류
+	  			</td>
+	  		</tr>
+	  		<tr>
+	  			<td>사진 / 예문</td>
+	  			<td><input type="file" name="pictureFile" id="file"></td>
+	  		</tr>
+	  	</table>
+	  	
+	  	<!-- <p class="wsm_questionreg">
 	  		<label>문제</label>
 	  		<input type="text" name="questionTitle">
 	  	</p>
@@ -177,22 +178,22 @@
 	  	</p>
 	  	<p class="wsm_questionreg">
 	  		<label>정답</label>
-	  		<div class="checks"> <input type="radio" name="correct" class="ex_rd2" value="1"> <label for="ex_rd2">1</label> </div>
-	  		<div class="checks"> <input type="radio" name="correct" class="ex_rd2" value="2"> <label for="ex_rd2">2</label> </div>
-	  		<div class="checks"> <input type="radio" name="correct" class="ex_rd2" value="3"> <label for="ex_rd2">3</label> </div>
-	  		<div class="checks"> <input type="radio" name="correct" class="ex_rd2" value="4"> <label for="ex_rd2">4</label> </div>
+	  		<input type="radio" name="correct" class="ex_rd2" value="1"> 1
+	  		<input type="radio" name="correct" class="ex_rd2" value="2"> 2
+	  		<input type="radio" name="correct" class="ex_rd2" value="3"> 3
+	  		<input type="radio" name="correct" class="ex_rd2" value="4"> 4
 	  	</p>
 	  	<p class="wsm_questionreg">
 	  		<label>상태</label>
-	  		<div class="checks"> <input type="radio" name="state" class="ex_rd2" value="정상"> <label for="ex_rd2">정상</label> </div>
-	  		<div class="checks"> <input type="radio" name="state" class="ex_rd2" value="요청"> <label for="ex_rd2">요청</label> </div>
-	  		<div class="checks"> <input type="radio" name="state" class="ex_rd2" value="보류"> <label for="ex_rd2">보류</label> </div>
-	  		<div class="checks"> <input type="radio" name="state" class="ex_rd2" value="오류"> <label for="ex_rd2">오류</label> </div>
+	  		<input type="radio" name="state" class="ex_rd2" value="정상"> 정상
+	  		<input type="radio" name="state" class="ex_rd2" value="요청"> 요청
+	  		<input type="radio" name="state" class="ex_rd2" value="보류"> 보류
+	  		<input type="radio" name="state" class="ex_rd2" value="오류"> 오류
 	  	</p> 
 	  	<p class="wsm_questionreg">
 	  		<label>사진 / 예문</label>
 	  		<input type="file" name="pictureFile">
-	  	</p>
+	  	</p> -->
 	  	<p>
 	        <button type="button" class="registerQ" data-toggle="modal" data-target="#myModal">Submit</button>
 	  	</p> 
@@ -210,7 +211,7 @@
 	        </div>
 	        <div class="modal-body">
 	          <div class="check_question">
-	          	
+	          	<!-- 모달 내용, 제이쿼리에서 해결 -->
 	          </div>
 	        </div>
 	        <div class="modal-footer">
@@ -238,13 +239,28 @@
 			
 			var correct = $("input[name=correct]").val();
 			var state = $("input[name=state]").val();
+			//입력되지 않은 값 있을 시 안내창 띄우기
+			if(year==""||round==""||subject==""||number==""||questionTitle==""||choice1==""||choice2==""||choice3==""||choice4==""||correct==""||state==""){
+				$(".check_question").append("<p> 사진을 제외한 모든 값은 필수입력입니다.</p>");
+				return;
+			}
 			//받아온 값 디스플레이
 			$(".check_question").append("<p>"+year+"년 "+round+"회 "+number+"번"+"</p>");
 			$(".check_question").append("<p>"+questionTitle+"</p>");
-			$(".check_question").append("<p> ① :"+choice1+"</p>");
-			$(".check_question").append("<p> ② :"+choice2+"</p>");
-			$(".check_question").append("<p> ③ :"+choice3+"</p>");
-			$(".check_question").append("<p> ④ :"+choice4+"</p>");
+			//사진 미리보기
+			var reader = new FileReader();
+			reader.onload = function(e){
+				var $img = $("<img>");
+				$img.attr("src", e.target.result);
+				$(".check_question").append($img);
+			}
+			var file = $("#file")[0].files[0];
+			reader.readAsDataURL(file)
+			
+			$(".check_question").append("<p> ① "+choice1+"</p>");
+			$(".check_question").append("<p> ② "+choice2+"</p>");
+			$(".check_question").append("<p> ③ "+choice3+"</p>");
+			$(".check_question").append("<p> ④ "+choice4+"</p>");
 			$(".check_question").append("<p> 정답 :"+correct+"</p>");
 			$(".check_question").append("<p> 상태 :"+state+"</p>");
 		})

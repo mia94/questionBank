@@ -129,9 +129,10 @@
 				<td>요청정답</td>
 				<td>글쓴이</td>
 				<td>게시 날짜</td>
+				<td>처리 상태</td>
 			</tr>
 			<tr>
-				<td colspan="5">등록된 게시글이 없습니다.</td>
+				<td colspan="6">등록된 게시글이 없습니다.</td>
 			</tr>
 		</table>
 	</div>
@@ -139,6 +140,23 @@
 	<script>
 		$(function(){
 			getPageList();
+			
+			$(document).on("click",".delReq",function(){
+				confirm("삭제하시겠습니까?");
+				var reqCode = $(this).next(".reqCode").val();
+				$.ajax({
+					url:"${pageContext.request.contextPath}/reqUpdate/"+reqCode,
+					type:"delete",
+					dataType:"text",
+					success:function(json){
+						console.log(json);
+						if(json == "success"){
+							alert("삭제되었습니다.");
+						}
+						getPageList();
+					}
+				})
+			})
 		})
 	</script>
 	
@@ -149,11 +167,12 @@
 			<td>요청정답</td>
 			<td>글쓴이</td>
 			<td>게시 날짜</td>
+			<td>처리상태</td>
 			<td></td>
 		</tr>
 		{{#ifCond content}} 
 			<tr>
-				<td colspan="5">등록된 게시글이 없습니다.</td>
+				<td colspan="7">등록된 게시글이 없습니다.</td>
 			</tr>
 		{{else}}
     		{{#each.}}
@@ -163,6 +182,7 @@
 					<td>{{oriCorrect}}</td>
 					<td>{{writer.customerCode}}</td>
 					<td>{{tempDate moddate}}</td>
+					<td>{{state}}</td>
 					{{#ifWriter writer.customerCode}} 
 						<td>
 							<button class="delReq">삭제</button>
