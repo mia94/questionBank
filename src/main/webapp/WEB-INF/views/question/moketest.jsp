@@ -10,6 +10,15 @@
 <link href="${pageContext.request.contextPath}/resources/css/radiobutton.css" rel="stylesheet"  type="text/css">
 <link href="${pageContext.request.contextPath}/resources/css/select.css" rel="stylesheet"  type="text/css">
 <title>Insert title here</title>
+<script>
+	$(function(){
+		/* var code = document.getElementsByClassName("code");//code클래스에 든 값 배열로 다 가져오기
+		for(var i=0;i<code.length;i++){
+			var numCode = code[i].text().substring(7,10);
+			code[i].html(numCode);
+		} */
+	})
+</script>
 <style>
 @import url('https://fonts.googleapis.com/css?family=Jua');
 	div.question_wrap{
@@ -93,7 +102,7 @@
 		<div class="container_wrap">
 			<c:forEach var="item" items="${list }">
 				<div class="question_wrap">
-					<p>${item.questionCode}</p>
+					<p class="code">${item.questionCode}</p>
 					<p>${item.questionTitle}</p>
 					<c:if test="${item.picture.equals('')==false}">
   						<img src="displayFile?filename=${item.picture }">

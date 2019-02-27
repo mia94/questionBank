@@ -39,7 +39,7 @@
 		color:white;
 		font-family: 'Righteous', 'Jua';  
 	}
-	table tr:last-child{
+	table tr.file_tr{
 		height: 140px;
 	}
 	table textarea{
@@ -66,6 +66,10 @@
 		font-size: 20px;
 		font-family: 'Righteous', cursive;  
 		color:#A3918F;
+	}
+	button#registerQ{
+		margin-bottom: 20px;
+		padding: 18px;
 	}
 </style>
 </head>
@@ -120,6 +124,13 @@
 	  			<!-- <td><input type="text" name="questionTitle"></td> -->
 	  			<td><textarea name="questionTitle"></textarea></td>
 	  		</tr>
+	  		<tr class="file_tr">
+	  			<td>사진 / 예문</td>
+	  			<td>
+	  				<input type="file" name="pictureFile" id="file">
+	  				<div id="file_display"></div>
+	  			</td>
+	  		</tr>
 	  		<tr>
 	  			<td>보기1</td>
 	  			<td><input type="text" name="choice1"></td>
@@ -152,13 +163,6 @@
 	  				<input type="radio" name="state" class="ex_rd2" value="요청"> 요청
 	  				<input type="radio" name="state" class="ex_rd2" value="보류"> 보류 
 	  				<input type="radio" name="state" class="ex_rd2" value="오류"> 오류
-	  			</td>
-	  		</tr>
-	  		<tr>
-	  			<td>사진 / 예문</td>
-	  			<td>
-	  				<input type="file" name="pictureFile" id="file">
-	  				<div id="file_display"></div>
 	  			</td>
 	  		</tr>
 	  	</table>
