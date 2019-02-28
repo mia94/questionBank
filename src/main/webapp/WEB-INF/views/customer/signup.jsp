@@ -29,6 +29,9 @@
 		color:#A3918F;
 		font-family: 'Jua', sans-serif;
 	}
+	.signup_container #password_check_msg{
+		display: none;
+	}
 	.signup_container>button{
 		border: none;
 		background: white;
@@ -65,6 +68,7 @@
 			<p>
 				<label>PW CHECK</label>
 				<input type="password" name="password_check" placeholder="동일하게 입력하세요">
+				<span id="password_check_msg">일치</span>
 			</p>
 			<p>
 				<label>EMAIL</label>
@@ -78,6 +82,16 @@
 		//아이디 중복확인
 		$("#id_check").click(function(){
 			
+		})
+		//비밀번호 일치확인
+		$("input[name=password_check]").change(function(){
+			var ori_password = $("input[name=password]").val();
+			var check_password = $("input[name=password_check]").val();
+			if(ori_password==check_password){
+				$("#password_check_msg").show();
+			}else{
+				$("#password_check_msg").hide();
+			}
 		})
 		//가입버튼 누르기
 		$("#submit").click(function(){
