@@ -14,6 +14,17 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 <script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script> 
+<script>
+	$(function(){
+		$(".question_menu").click(function(){
+			if('${login == null }'==true){
+				alert("로그인이 필요한 메뉴입니다."); 
+				location.href="${pageContext.request.contextPath}/user/login";
+				return false;
+			}
+		})
+	})
+</script>
 </head>
 <body>
 
@@ -34,12 +45,12 @@
 		      <li><a href="#"></a></li>
 		      <li class="dropdown"><a class="dropdown-toggle wsm_nav_a" data-toggle="dropdown" href="#">Question<span class="caret"></span></a>
 		        <ul class="dropdown-menu">
-		          <li><a href="${pageContext.request.contextPath}/question/list">문제리스트</a></li>
-		          <li><a href="${pageContext.request.contextPath}/question/moketest">모의고사</a></li>
-		          <li><a href="${pageContext.request.contextPath}/question/subjecttest">과목별 문제풀기</a></li>
-		          <li><a href="${pageContext.request.contextPath}/question/singletest">랜덤문제</a></li>
-		          <li><a href="${pageContext.request.contextPath}/question/incorrect?customerCode=${login.customerCode}">오답다시풀기</a></li>
-		          <li><a href="${pageContext.request.contextPath}/question/register">문제 추가</a></li>
+		          <li><a href="${pageContext.request.contextPath}/question/list" class="question_menu">문제리스트</a></li>
+		          <li><a href="${pageContext.request.contextPath}/question/moketest" class="question_menu">모의고사</a></li>
+		          <li><a href="${pageContext.request.contextPath}/question/subjecttest" class="question_menu">과목별 문제풀기</a></li>
+		          <li><a href="${pageContext.request.contextPath}/question/singletest" class="question_menu">랜덤문제</a></li>
+		          <li><a href="${pageContext.request.contextPath}/question/incorrect?customerCode=${login.customerCode}" class="question_menu">오답다시풀기</a></li>
+		          <li><a href="${pageContext.request.contextPath}/question/register" class="question_menu">문제 추가</a></li>
 		        </ul>
 		      </li>
 		      <li class="dropdown"><a class="dropdown-toggle wsm_nav_a" data-toggle="dropdown" href="#">Customer<span class="caret"></span></a>
