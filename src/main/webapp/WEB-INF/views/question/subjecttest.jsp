@@ -72,7 +72,7 @@
 		top: 50px; 
 		right: 50px; 
 	}
-	form #test_submit{
+	#test_submit{ 
 		border: none;
 		background: white;
 		font-size: 16px;
@@ -299,6 +299,11 @@
 					})
 				}
 			})
+			
+			//값 선택시 session에 저장
+			/* $("input[name=answer]").on("click",function(){
+				
+			}) */
 		})
 	</script>
 	<jsp:include page="../include/footer.jsp"></jsp:include>

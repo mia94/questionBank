@@ -75,12 +75,37 @@
 		height:400px;
 		margin-bottom: 40px;
 		border:1px solid #A3918F; 
+		position: relative;
 	}
-	.home_container3 div{
+	.home_container3>div{
 		height: 400px;
 	}
-	.home_container3 div:first-child{
-		background-color:#A3918F;
+	.home_container3>div:first-child{
+		background-color:#444;
+		position: relative;
+	}
+	.home_container3>div:first-child div{
+		width:290px; 
+		text-align: center;
+		color:white;
+		position: absolute;
+		left: 0;
+		top:150px;
+	}
+	.home_container3>div:last-child{
+		position: relative;
+	}
+	.home_container3>div:last-child div{
+		width:300px;
+		position: absolute;
+		right:200px;s
+		top:150px;
+	}
+	.home_container3>img{
+		width:333px;
+		position: absolute;
+		top: 0;
+		left: 300px;
 	}
 	.home_container>div#color1{
 		background-color:#5B4149;/* 진갈색  */
@@ -137,11 +162,16 @@
 	
 	<div class="home_container3">
 		<div class="col-sm-5">
-		
+			<div>
+				<p>블라블라 설명<br>마우스올리면<br>이미지 옆으로 밀기</p>
+			</div>
 		</div>
 		<div class="col-sm-7"> 
-		
+			<div>
+				<p>블라블라 설명<br>마우스올리면<br>이미지 옆으로 밀기</p>
+			</div>
 		</div>
+		<img src="${pageContext.request.contextPath}/resources/upload/career_bg.jpg">
 	</div>
 	
 	<script>

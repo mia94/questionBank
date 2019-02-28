@@ -70,40 +70,47 @@
 				<label>EMAIL</label>
 				<input type="text" name="email"> 
 			</p>
-			<button type="submit"><span>Sign Up</span></button>
+			<button type="button" id="submit"><span>Sign Up</span></button>
 		</div>		
 	</form>
 	<script>
-	//이름 한글 확인(한글 2-5자리 수)
-	var name = $("input[name=customerName]").val();
-	var reg = /^[가-힣]{2,5}$/;
-	var nameResult = reg.test(email);
-	if(nameResult){
-		
-	}else{
-		
-	}
-	//아이디 중복확인
-	//비밀번호 확인 (특수문자, 문자, 숫자 포함 형태의 8-15자리)
-	var password = $("input[name=password]").val();
-	var reg = /^.*(?=^.{8,15}$)(?=.*\d)(?=.*[a-zA-Z])(?=.*[!@#$%^&+=]).*$/;
-	var pwResult = reg.test(email);
-	if(pwResult){
-		
-	}else{
-		
-	}
-	//이메일 규격 확인
-	var email = $("input[name=email]").val();
-	var reg = /^\w{5,12}@[a-z]{2,10}[\.][a-z]{2,3}[\.]?[a-z]{0,2}$/;
+	$(function(){
+		//아이디 중복확인
+		$("#id_check").click(function(){
+			
+		})
+		//가입버튼 누르기
+		$("#submit").click(function(){
+			//이름 한글 확인(한글 2-5자리 수)
+			var name = $("input[name=customerName]").val();
+			var reg = /^[가-힣]{2,5}$/;
+			var nameResult = reg.test(name);
+			if(!nameResult){
+				alert("이름은 2~5자리의 한글로만 입력해주세요");
+				return false;	
+			}
+			
+			//비밀번호 확인 (특수문자, 문자, 숫자 포함 형태의 8-15자리)
+			var password = $("input[name=password]").val();
+			var reg = /^.*(?=^.{8,15}$)(?=.*\d)(?=.*[a-zA-Z])(?=.*[!@#$%^&+=]).*$/;
+			var pwResult = reg.test(password);
+			if(!pwResult){
+				alert("비밀번호는 8~15자리의 영문,숫자,특수문자로 이루어져야 합니다.");
+				return false;
+			}
+			//이메일 규격 확인
+			var email = $("input[name=email]").val();
+			var reg = /^\w{5,12}@[a-z]{2,10}[\.][a-z]{2,3}[\.]?[a-z]{0,2}$/;
+			
+			var emailResult = reg.test(email);
+			
+			if(!emailResult){
+				alert("이메일을 다시 입력해주세요.");
+				return false;
+			}
+		})
+	})
 	
-	var emailResult = reg.test(email);
-	
-	if(emailResult){
-		
-	}else{
-		
-	}
 	</script>
 	<jsp:include page="../include/footer.jsp"></jsp:include>
 
