@@ -226,7 +226,7 @@
 			})
 			
 			//라디오버튼 선택시 insert, 답안변경시 update처리
-			$("input[name=answer]").on("click",function(){
+			/* $("input[name=answer]").on("click",function(){
 				//만약 이미 선택했던 답안이 있을 경우 insert문이 아닌 update문으로 처리
 				var isChecked = $(this).closest("div").children("input[name=isChecked]").val();
 				var codeNum = $(this).closest("div").children("input[name*=thisCode]").val();
@@ -256,8 +256,8 @@
 							"Content-Type":"application/json",
 							"X-HTTP-Method-Override":"POST"
 						},
-						data:JSON.stringify(jsonBody),/*JSON.stringify는 {bno:bno, replyer:replyer, replytext:replytext}이런 스트링으로 변환*/
-						dataType:"text",/*String으로 반환되면 객체가 아니기때문에 json이 아닌 text로 받아야함*/
+						data:JSON.stringify(jsonBody),//JSON.stringify는 {bno:bno, replyer:replyer, replytext:replytext}이런 스트링으로 변환
+						dataType:"text",//String으로 반환되면 객체가 아니기때문에 json이 아닌 text로 받아야함
 						success:function(json){
 							console.log(json);
 							if(json=="success"){
@@ -290,20 +290,35 @@
 							"Content-Type":"application/json",
 							"X-HTTP-Method-Override":"POST"
 						},
-						data:JSON.stringify(jsonBody),/*JSON.stringify는 {bno:bno, replyer:replyer, replytext:replytext}이런 스트링으로 변환*/
-						dataType:"text",/*String으로 반환되면 객체가 아니기때문에 json이 아닌 text로 받아야함*/
+						data:JSON.stringify(jsonBody),//JSON.stringify는 {bno:bno, replyer:replyer, replytext:replytext}이런 스트링으로 변환
+						dataType:"text",//String으로 반환되면 객체가 아니기때문에 json이 아닌 text로 받아야함
 						success:function(json){
 							console.log(json);
 							$(this).closest("div").children("input[name*=thisCode]").val(json);
 						}
 					})
 				}
-			})
+			}) */
 			
 			//값 선택시 session에 저장
-			/* $("input[name=answer]").on("click",function(){
+			$("input[name=answer]").on("click",function(){
+				//선택한 보기 라디오버튼 색 변경 & isChecked 값 true로 변경
+				$(this).next().css("background-color","#F28683");
+				$(this).closest("div").children("input[name=isChecked]").val('true');
+				//값 넘겨주기(resulttest_code는 자동, customer(코드), answer, correct, spendTime, pass, question(코드))
+				var customer = $("input[name=customer]").val();
+				var answer = $("input[name=answer]:checked").val();
+				var correct = $(this).closest("div").children("input[name=correct]").val();
+				var pass = false;
+				if(correct==answer){ //정답이면 pass로 바꾸기
+					pass = true;
+				}
+				var question = $(this).closest("div").children("input[name*=question]").val();
+				var spendTime = 0;//아직처리못함
 				
-			}) */
+				//받은 값을 배열에 저장해서 보내기
+				
+			})
 		})
 	</script>
 	<jsp:include page="../include/footer.jsp"></jsp:include>

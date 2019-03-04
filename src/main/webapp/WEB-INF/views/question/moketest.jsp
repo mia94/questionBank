@@ -23,7 +23,7 @@
 @import url('https://fonts.googleapis.com/css?family=Jua');
 	div.question_wrap{
 		width:800px;
-		margin:0px auto;
+		margin-left:50px;
 		border:1px solid #ccc;
 		padding: 15px 20px;  
 	}
@@ -36,7 +36,7 @@
 		margin-bottom: 20px;
 	}
 	.custom-select:first-child{ 
-		margin-left: 300px;
+		margin-left: 150px;
 	}
 	button#test_select{ 
 		height: 37px;
@@ -68,6 +68,36 @@
 		color:#A3918F;
 		float: right;
 		padding-right: 200px;
+	}
+	aside{
+		width:170px; 
+		height: 566px;
+		position: fixed;
+		top:190px; 
+		right: 330px;  
+	}
+	aside article{
+		width:34px; 
+		height: 26px;
+		border: 0.5px solid #F6EFEC; 
+		float: left;
+		text-align: center;
+		font-size: 12px;
+		line-height: 26px;
+		color:#A3918F; 
+	}
+	aside div{
+		width:170px;
+		height: 40px;
+		line-height:40px;
+		text-align: center;
+		margin-top: 2px;
+		background-color: #A3918F;
+		color:white; 
+		border-radius:5px;
+		position: absolute;
+		bottom: 0;
+		left: 0;
 	}
 	.pagination>.active>.wsm_active_a{
 		background-color: #A3918F;
@@ -129,6 +159,16 @@
 		</div>
 		<button type="submit" id="test_submit">제출하기</button>
 	</form>
+	
+	<aside>
+		<c:forEach var="i" begin="1" end="100" step="1">
+			<article>
+				${i}
+			</article>
+		</c:forEach>
+		<div>제출하기</div>
+	</aside>
+	
 		<div class="text-center">
 			<ul class="pagination">
 				<c:if test="${pageMaker.prev }">
@@ -177,11 +217,21 @@
 	</script>
 	
 	<script>
-  	
  		$(function(){
   			$("#test_select").click(function(){
   				getList();
   			});
+  			
+  			//라디오버튼 클릭 시(정답체크시)
+  			$(document).on("click","input[type=radio]",function(){
+  				//체크한 라디오버튼 배경색주기
+  				$(this).next().css("background-color","#F28683");
+  				//체크한 문제는 article에 표시
+  				var code = $(this).closest("div").children(".code").text();
+  				var num = code.substring(7,10);//번호 출력
+  				var index = num-1;
+  				document.getElementsByTagName( 'article' )[index].style.backgroundColor = "#F6EFEC"; 
+  			})
   		}) 	
  	
  	</script>
@@ -214,6 +264,7 @@
 				}
 			})
 		}
+		
 	</script>
 	
 	<jsp:include page="../include/footer.jsp"></jsp:include>
