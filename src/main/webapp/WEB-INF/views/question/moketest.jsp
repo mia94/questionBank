@@ -172,13 +172,13 @@
 		<div class="text-center">
 			<ul class="pagination">
 				<c:if test="${pageMaker.prev }">
-					<li><a href="${pageContext.request.contextPath}/question/list?page=${pageMaker.startPage-1}">&laquo;</a></li>
+					<li><a href="${pageContext.request.contextPath}/question/moketest?page=${pageMaker.startPage-1}">&laquo;</a></li>
 				</c:if>
 				<c:forEach begin="${pageMaker.startPage }" end="${pageMaker.endPage }" var="idx">
-					<li ${pageMaker.cri.page == idx ? 'class="active"': ''} ><a href="${pageContext.request.contextPath}/question/list?page=${idx}" class="wsm_active_a">${idx}</a></li>
+					<li ${pageMaker.cri.page == idx ? 'class="active"': ''} ><a href="${pageContext.request.contextPath}/question/moketest?page=${idx}" class="wsm_active_a">${idx}</a></li>
 				</c:forEach>
 				<c:if test="${pageMaker.next }">
-					<li><a href="${pageContext.request.contextPath}/question/list?page=${pageMaker.endPage+1}">&raquo;</a></li>
+					<li><a href="${pageContext.request.contextPath}/question/moketest?page=${pageMaker.endPage+1}">&raquo;</a></li>
 				</c:if>
 			</ul>
 		</div>
