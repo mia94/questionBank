@@ -78,7 +78,7 @@
 	
 	<div class="form_container">
 	  <h2>문제 추가</h2>
-	  <form  action="register" method="post" enctype="multipart/form-data">
+	  <form  action="register" method="post" enctype="multipart/form-data" id="register_form">
 
 	  	<p class="wsm_questionreg">
 	  		<div class="custom-select">
@@ -101,7 +101,7 @@
 	  		<div class="custom-select">
 		  		<select name="subject">
 		  			<option value="">과목</option>
-		  			<option value="D">데이터통신</option>
+		  			<option value="D">데이터베이스</option>
 		  			<option value="A">전자계산기 구조</option>
 		  			<option value="O">운영체제</option>
 		  			<option value="S">소프트웨어 공학</option>
@@ -236,6 +236,7 @@
 	</div>
 	
 	<script>
+	$(function(){
 		//파일 선택시 현재창에 display
 		$("#file").change(function(){
 			$("#file_display").empty();
@@ -249,7 +250,7 @@
 			var file = $(this)[0].files[0];
 			reader.readAsDataURL(file)
 		})
-	
+		//입력 후 submit 클릭시
 		$(".registerQ").click(function(){
 			var year = $("select[name=year]").val();
 			var round = $("select[name=round]").val();
@@ -294,6 +295,14 @@
 			$(".check_question").append("<p> 정답 :"+correct+"</p>");
 			$(".check_question").append("<p> 상태 :"+state+"</p>");
 		})
+		
+		//모달창에서 확인 후 submit버튼 클릭
+		$("#registerQ").click(function(){
+			alert("문제추가가 완료되었습니다.");
+			$("#register_form").submit();
+		})
+	})
+		
 	</script>
 	
 	<script src="${pageContext.request.contextPath}/resources/js/select.js"></script>
