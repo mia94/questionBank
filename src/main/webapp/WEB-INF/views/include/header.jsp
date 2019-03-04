@@ -9,7 +9,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.1/handlebars.js"></script>
 <title>Wooooo's QuestionBank</title>
-<link href="${pageContext.request.contextPath}/resources/css/common.css" rel="stylesheet"  type="text/css">
+<link href="${pageContext.request.contextPath}/resources/css/common.css?x" rel="stylesheet"  type="text/css">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
@@ -34,13 +34,13 @@
 			<c:if test="${login != null }">
 				<p class="welcome_text">${login.customerName} ( ${login.id} )님, 반갑습니다.</p><!-- ${login.id},${login.customerName},${login.employee }불러오기 가능 -->
 			</c:if> 
-			<h1 id="wsm_logo"><a href="${pageContext.request.contextPath}">Wooooo's QuestionBank</a></h1>  
+			<h1 id="wsm_logo"><a href="${pageContext.request.contextPath}">Wooooo's QuestionBank</a></h1>
 		</div>
 		<c:if test="${login.employee}">
 			<nav class="navbar">
 			  <div class="container-fluid">
 			    <div class="navbar-header">
-			      <a class="navbar-brand" href="${pageContext.request.contextPath}">Wooooo's Home</a>
+			      <a class="navbar-brand" href="${pageContext.request.contextPath}">Wooooo's Home</a> 
 			    </div>
 			    <ul class="nav navbar-nav">
 			      <li><a href="#"></a></li>

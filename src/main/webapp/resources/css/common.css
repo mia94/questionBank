@@ -2,6 +2,7 @@
 
 @import url('https://fonts.googleapis.com/css?family=Luckiest+Guy|Righteous');
 @import url('https://fonts.googleapis.com/css?family=Jua');
+@import url('https://fonts.googleapis.com/css?family=Fredericka+the+Great');
 
 @media all and (min-width:768px){
 	*{
@@ -35,7 +36,7 @@
 		top:30px;
 	}
 	header h1 a, header h1 a:hover{
-		font-family: 'Luckiest Guy', cursive;
+		font-family: 'Fredericka the Great', cursive;
 		color:#5B4149;
 		text-decoration: none;
 	}

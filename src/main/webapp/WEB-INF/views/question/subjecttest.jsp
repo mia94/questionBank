@@ -138,6 +138,7 @@
 		</div>
 		<button type="submit" id="test_submit">제출하기</button>
 	
+	<%-- 과목에 페이지가 필요없을듯?? 
 	<div class="text-center">
 		<ul class="pagination">
 			<c:if test="${pageMaker.prev }">
@@ -150,7 +151,7 @@
 				<li><a href="${pageContext.request.contextPath}/question/subjectlist?page=${pageMaker.endPage+1}">&raquo;</a></li>
 			</c:if>
 		</ul>
-	</div>
+	</div> --%>
 	
 	<script id="template1" type="text/x-handlebars-template"> 
 	{{#each.}}
@@ -223,6 +224,36 @@
 			//과목선택시 문제리스트 해당과목에 맞게 출력
 			$(".select-items div").click(function(){
 				getList();
+			})
+			
+			//문제코드를 저장한 배열
+			var qArray = new Array();
+			for(var j=0;j<20;j++){
+				qArray[j] = document.getElementsByClassName("code")[j].innerHTML;
+			}
+			//정답을 저장할 배열(길이20) 선언, 초기에 모두 0으로 값 입력
+			var aArray = new Array();
+			for(var i=0;i<20;i++){
+				aArray[i]=0;
+			}
+			
+			//값 선택시 배열에 저장
+			$("input[name=answer]").on("click",function(){
+				//선택한 보기 라디오버튼 색 변경 & isChecked 값 true로 변경
+				$(this).next().css("background-color","#F28683");
+				//값 넘겨주기(resulttest_code는 자동, customer(코드), answer, correct, spendTime, pass, question(코드))
+				var customer = $("input[name=customer]").val();
+				var answer = $("input[name=answer]:checked").val();
+				var correct = $(this).closest("div").children("input[name=correct]").val();
+				var pass = false;
+				if(correct==answer){ //정답이면 pass로 바꾸기
+					pass = true;
+				}
+				var question = $(this).closest("div").children("input[name*=question]").val();
+				var spendTime = 0;//아직처리못함
+				
+				//받은 값을 배열에 저장해서 보내기
+				
 			})
 			
 			//라디오버튼 선택시 insert, 답안변경시 update처리
@@ -299,26 +330,6 @@
 					})
 				}
 			}) */
-			
-			//값 선택시 session에 저장
-			$("input[name=answer]").on("click",function(){
-				//선택한 보기 라디오버튼 색 변경 & isChecked 값 true로 변경
-				$(this).next().css("background-color","#F28683");
-				$(this).closest("div").children("input[name=isChecked]").val('true');
-				//값 넘겨주기(resulttest_code는 자동, customer(코드), answer, correct, spendTime, pass, question(코드))
-				var customer = $("input[name=customer]").val();
-				var answer = $("input[name=answer]:checked").val();
-				var correct = $(this).closest("div").children("input[name=correct]").val();
-				var pass = false;
-				if(correct==answer){ //정답이면 pass로 바꾸기
-					pass = true;
-				}
-				var question = $(this).closest("div").children("input[name*=question]").val();
-				var spendTime = 0;//아직처리못함
-				
-				//받은 값을 배열에 저장해서 보내기
-				
-			})
 		})
 	</script>
 	<jsp:include page="../include/footer.jsp"></jsp:include>

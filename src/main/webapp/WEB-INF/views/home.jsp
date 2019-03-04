@@ -127,7 +127,7 @@
 			<!-- bx슬라이더, section은 main.js에 넣어야함, css는 필요없음 -->
 			<div>
 				<a href="#"><img src="${pageContext.request.contextPath}/resources/upload/main.jpg" alt=""></a>
-				<h1>1 Page</h1>
+				<h1>1 page</h1>
 			</div>
 			<div>
 				<a href="#"><img src="${pageContext.request.contextPath}/resources/upload/main2.png" alt=""></a>
