@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -72,14 +72,36 @@
 		top: 50px; 
 		right: 50px; 
 	}
+	aside {
+		width:240px;
+		height:180px; 
+		position: fixed;
+		right: 270px;  
+		top: 280px;
+	}
+	aside article{
+		width:30px;  
+		height: 25px;
+		float: left;
+		text-align: center;
+		border:0.3px solid #F6EFEC;
+		font-size: 12px;
+		color:#A3918F;
+		line-height: 25px;
+	}
 	#test_submit{ 
-		border: none;
+		border: 3px solid #A3918F;
+		border-radius:5px; 
+		padding:5px;
+		width:240px;
+		text-align:center;
 		background: white;
 		font-size: 16px;
 		font-family: 'Jua', sans-serif;
 		color:#A3918F;
-		float: right;
-		padding-right: 200px;
+		position: absolute;
+		bottom: 0;
+		left: 0;
 	}
 	.pagination>.active>.wsm_active_a{
 		background-color: #A3918F;
@@ -136,7 +158,17 @@
 				</div>
 			</c:forEach>
 		</div>
-		<button type="submit" id="test_submit">제출하기</button>
+		<aside>
+			<c:forEach var="i" begin="1" end="20" step="1">
+				<article>
+					${i}
+				</article>
+				<article class="answer_article">
+					
+				</article>
+			</c:forEach>
+			<button type="submit" id="test_submit">제출하기</button>
+		</aside>
 	
 	<%-- 과목에 페이지가 필요없을듯?? 
 	<div class="text-center">
@@ -157,8 +189,7 @@
 	{{#each.}}
 		<div class="question_wrap">
 			<input type="hidden" name='isChecked' value='false'>
-			<input type="hidden" name='thisCode' value=''>
-			<p>{{questionCode}}</p>
+			<p class='code'>{{questionCode}}</p>
 			<p>{{questionTitle}}</p>
 				{{#ifCond picture}} 
 
@@ -228,9 +259,9 @@
 			
 			//문제코드를 저장한 배열
 			var qArray = new Array();
-			for(var j=0;j<20;j++){
+			/* for(var j=0;j<20;j++){
 				qArray[j] = document.getElementsByClassName("code")[j].innerHTML;
-			}
+			} */
 			//정답을 저장할 배열(길이20) 선언, 초기에 모두 0으로 값 입력
 			var aArray = new Array();
 			for(var i=0;i<20;i++){
@@ -238,12 +269,28 @@
 			}
 			
 			//값 선택시 배열에 저장
-			$("input[name=answer]").on("click",function(){
-				//선택한 보기 라디오버튼 색 변경 & isChecked 값 true로 변경
+			$(document).on("click","input[name=answer]",function(){
+				//선택한 보기 라디오버튼 색 변경
 				$(this).next().css("background-color","#F28683");
+				//선택한 번호 답안지에 기입
+				var answer = $(this).val();
+				var thisDiv = $(this).closest("div");//현재 div
+				var check = thisDiv.children("input[name=answer]").val();
+				alert(check);
+				var questionDiv = document.getElementsByClassName("question_wrap");//div 배열
+				var index = -1;
+				/* alert(thisDiv); */
+				for(var i=0;i<20;i++){
+					if(thisDiv == questionDiv[i]){
+						index = i;//i는 현재div의 인덱스
+					}
+				}
+				/* alert(index); */
+				document.getElementsByClassName("answer_article")[index].style.backgroundColor = 'red';
+				
+				
 				//값 넘겨주기(resulttest_code는 자동, customer(코드), answer, correct, spendTime, pass, question(코드))
 				var customer = $("input[name=customer]").val();
-				var answer = $("input[name=answer]:checked").val();
 				var correct = $(this).closest("div").children("input[name=correct]").val();
 				var pass = false;
 				if(correct==answer){ //정답이면 pass로 바꾸기
