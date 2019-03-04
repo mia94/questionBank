@@ -10,4 +10,7 @@ INSERT INTO questionbank.customer
 values
 ('C001', '홍길동', 'honggil', '11112222', 'hong@test.com', 0),
 ('C002', '배수지', 'suzy94', '22221111', 'suzy94@test.co.kr', 0),
-('C003', '라리사', 'lalalalisa', '22223333', 'lisa@test.com', 0);
+('C003', '라리사', 'lalalalisa', '22223333', 'lisa@test.com', 0),
+('E001', '우선미', 'E001', '22221111', 'mia94@test.com', 1),
+('E002', '나직원', 'E002', '22221111', 'emp02@test.co.kr', 1),
+('E003', '직원임', 'E003', '22223333', 'e003@test.com', 1);
