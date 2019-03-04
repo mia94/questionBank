@@ -218,19 +218,35 @@
 	
 	<script>
  		$(function(){
+			//연도,회차 선택시 해당 리스트 불러오기
   			$("#test_select").click(function(){
   				getList();
   			});
+			//문제코드를 저장한 배열
+			var qArray = new Array();
+			for(var j=0;j<10;j++){//백개까지 안되는중ㅠㅠ페이지넘어갈때 새로 추가해줘야함....멘붕
+				qArray[j] = document.getElementsByClassName("code")[j].innerHTML;
+			}
+			//정답을 저장할 배열(길이100) 선언, 초기에 모두 0으로 값 입력
+			var aArray = new Array();
+			for(var i=0;i<100;i++){
+				aArray[i]=0;
+			}
   			
   			//라디오버튼 클릭 시(정답체크시)
   			$(document).on("click","input[type=radio]",function(){
   				//체크한 라디오버튼 배경색주기
   				$(this).next().css("background-color","#F28683");
   				//체크한 문제는 article에 표시
-  				var code = $(this).closest("div").children(".code").text();
+  				var code = $(this).closest("div").children(".code").text();//questionCode풀네임
   				var num = code.substring(7,10);//번호 출력
   				var index = num-1;
   				document.getElementsByTagName( 'article' )[index].style.backgroundColor = "#F6EFEC"; 
+  				//체크한 정답 배열에 저장
+  				qArray[index]=code;//해당 인덱스 qArray에 문제코드 저장
+  				var value = $(this).val();//선택한 정답
+  				aArray[index]=value;//선택한 정답 정답배열 해당index에 넣기
+  				
   			})
   		}) 	
  	
