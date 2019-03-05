@@ -274,19 +274,19 @@
 				$(this).next().css("background-color","#F28683");
 				//선택한 번호 답안지에 기입
 				var answer = $(this).val();
-				var thisDiv = $(this).closest("div");//현재 div
-				var check = thisDiv.children("input[name=answer]").val();
+				var thisDiv = $(this).closest(".question_wrap");//현재 div
+				var check = thisDiv.index();
 				alert(check);
-				var questionDiv = document.getElementsByClassName("question_wrap");//div 배열
+				/* var questionDiv = document.getElementsByClassName("question_wrap");//div 배열
 				var index = -1;
-				/* alert(thisDiv); */
 				for(var i=0;i<20;i++){
-					if(thisDiv == questionDiv[i]){
+					if(Object.is(thisDiv,questionDiv[i])){
 						index = i;//i는 현재div의 인덱스
 					}
-				}
-				/* alert(index); */
-				document.getElementsByClassName("answer_article")[index].style.backgroundColor = 'red';
+				} */
+				//document.getElementsByClassName("answer_article")[check].style.backgroundColor = 'red';
+				
+				$(".answer_article").eq(check).text(answer); 
 				
 				
 				//값 넘겨주기(resulttest_code는 자동, customer(코드), answer, correct, spendTime, pass, question(코드))

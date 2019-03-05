@@ -12,11 +12,7 @@
 <title>Insert title here</title>
 <script>
 	$(function(){
-		/* var code = document.getElementsByClassName("code");//code클래스에 든 값 배열로 다 가져오기
-		for(var i=0;i<code.length;i++){
-			var numCode = code[i].text().substring(7,10);
-			code[i].html(numCode);
-		} */
+		makeArray();
 	})
 </script>
 <style>
@@ -175,7 +171,8 @@
 					<li><a href="${pageContext.request.contextPath}/question/moketest?page=${pageMaker.startPage-1}">&laquo;</a></li>
 				</c:if>
 				<c:forEach begin="${pageMaker.startPage }" end="${pageMaker.endPage }" var="idx">
-					<li ${pageMaker.cri.page == idx ? 'class="active"': ''} ><a href="${pageContext.request.contextPath}/question/moketest?page=${idx}" class="wsm_active_a">${idx}</a></li>
+					<%-- <li ${pageMaker.cri.page == idx ? 'class="active"': ''} ><a href="${pageContext.request.contextPath}/question/moketest?page=${idx}" class="wsm_active_a">${idx}</a></li> --%>
+					<li ${pageMaker.cri.page == idx ? 'class="active"': ''} ><a href="#" class="wsm_active_a">${idx}</a></li>
 				</c:forEach>
 				<c:if test="${pageMaker.next }">
 					<li><a href="${pageContext.request.contextPath}/question/moketest?page=${pageMaker.endPage+1}">&raquo;</a></li>
@@ -218,20 +215,17 @@
 	
 	<script>
  		$(function(){
+ 			//페이지 선택시 ajax를 이용하여 넘어가도록 처리하기
+ 			$(".wsm_active_a").click(function(){
+ 				var num = $(this).text();
+ 				getPageList(num);
+ 			})
+ 			
 			//연도,회차 선택시 해당 리스트 불러오기
   			$("#test_select").click(function(){
-  				getList();
+  				getPageList(1)
+  				makeArray();
   			});
-			//문제코드를 저장한 배열
-			var qArray = new Array();
-			for(var j=0;j<10;j++){//백개까지 안되는중ㅠㅠ페이지넘어갈때 새로 추가해줘야함....멘붕
-				qArray[j] = document.getElementsByClassName("code")[j].innerHTML;
-			}
-			//정답을 저장할 배열(길이100) 선언, 초기에 모두 0으로 값 입력
-			var aArray = new Array();
-			for(var i=0;i<100;i++){
-				aArray[i]=0;
-			}
   			
   			//라디오버튼 클릭 시(정답체크시)
   			$(document).on("click","input[type=radio]",function(){
@@ -253,6 +247,7 @@
  	</script>
 	
 	<script>
+		/* page처리가 ajax아닐때 쓴 함수 
 		function getList(){
 			var year = $("#year").val();
 			var round = $("#round").val();
@@ -279,8 +274,66 @@
 
 				}
 			})
+		} */
+		
+		//페이지 ajax처리하기
+		function getPageList(page){
+			var year = $("#year").val();
+			var round = $("#round").val();
+			
+			Handlebars.registerHelper('ifCond', function(v1, options) {
+				if(v1 === "" || v1 === null) {
+				   return options.fn(this);
+				}
+				return options.inverse(this);
+			})
+			
+			$.ajax({
+				url:"${pageContext.request.contextPath}/question/listJson/"+year+"/"+round+"/"+page,
+				type:"get",
+				dataType:"json",
+				success:function(json){
+					console.log(json);
+					$(".container_wrap").empty(); 
+				
+				var source = $("#template1").html();
+				var f = Handlebars.compile(source);
+				var result = f(json.list);
+				$(".container_wrap").append(result);
+
+				}
+			})
 		}
 		
+		//배열 길이와 기초값 저장해두는 함수
+		function makeArray(){
+			//문제코드를 저장한 배열
+			var qArray = new Array();
+			//첫코드에서 연도와 회차 빼오기
+			var code = $(".code").text();
+			var yearRound = code.substr(2,5);
+			
+			for(var j=0;j<100;j++){
+				var str = "00"+(j+1);
+				str = str.slice(-3);
+				if(j<20){
+					aArray[j]="QD"+yearRound+str;
+				}else if(i<40){
+					aArray[j]="QA"+yearRound+str;
+				}else if(i<60){
+					aArray[j]="QO"+yearRound+str;
+				}else if(i<80){
+					aArray[j]="QS"+yearRound+str;
+				}else{
+					aArray[j]="QC"+year+round+str;
+				}
+			}
+			//정답을 저장할 배열(길이100) 선언, 초기에 모두 0으로 값 입력
+			var aArray = new Array();
+			for(var i=0;i<100;i++){
+				aArray[i]=0;
+			}
+		}
 	</script>
 	
 	<jsp:include page="../include/footer.jsp"></jsp:include>

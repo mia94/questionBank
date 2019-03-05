@@ -74,7 +74,7 @@
 				<label>EMAIL</label>
 				<input type="text" name="email"> 
 			</p>
-			<button type="button" id="submit"><span>Sign Up</span></button>
+			<button type="submit" id="submit"><span>Sign Up</span></button>
 		</div>		
 	</form>
 	<script>
@@ -94,8 +94,9 @@
 			}
 		})
 		//가입버튼 누르기
-		$("#submit").click(function(){
-			//이름 한글 확인(한글 2-5자리 수)
+		/* $("#submit").click(function(){
+			alert("가입이 완료되었습니다.");
+			/* //이름 한글 확인(한글 2-5자리 수)
 			var name = $("input[name=customerName]").val();
 			var reg = /^[가-힣]{2,5}$/;
 			var nameResult = reg.test(name);
@@ -121,8 +122,8 @@
 			if(!emailResult){
 				alert("이메일을 다시 입력해주세요.");
 				return false;
-			}
-		})
+			} */
+		}) */
 	})
 	
 	</script>

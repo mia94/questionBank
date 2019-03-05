@@ -2,7 +2,9 @@ package com.yi.controller;
 
 import java.io.FileInputStream;
 import java.io.InputStream;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 
@@ -141,6 +143,31 @@ private static final Logger logger = LoggerFactory.getLogger(QuestionController.
 		try {
 			List<QuestionVO> list = service.selectByYearAndRound(year, round, cri);
 			entity = new ResponseEntity<>(list, HttpStatus.OK);
+		} catch (Exception e) {
+			e.printStackTrace();
+			entity = new ResponseEntity<>(HttpStatus.BAD_REQUEST);//List<QuestionVO>로 보내야 하나, 보낼수없을때는HttpStatus만 보냄
+		}
+		
+		return entity;
+	}
+	
+	//page를 ajax로 처리하는 list
+	@ResponseBody
+	@RequestMapping(value="listJson/{year}/{round}/{page}", method=RequestMethod.GET)
+	public ResponseEntity<Map<String, Object>> listJsonPage(Criteria cri,@PathVariable("year") int year, @PathVariable("round") int round, @PathVariable("page") int page){
+		ResponseEntity<Map<String, Object>> entity = null;
+		
+		try {
+			cri.setPage(page);
+			List<QuestionVO> list = service.selectByYearAndRound(year, round, cri);
+			//페이지정보
+			PageMaker pageMaker = new PageMaker();
+			pageMaker.setCri(cri);
+			//리스트정보와 페이지정보를 같이 보내기위해 map에 저장
+			HashMap<String, Object> map = new HashMap<>();
+			map.put("list", list);
+			map.put("pageMaker", pageMaker);
+			entity = new ResponseEntity<>(map, HttpStatus.OK);
 		} catch (Exception e) {
 			e.printStackTrace();
 			entity = new ResponseEntity<>(HttpStatus.BAD_REQUEST);//List<QuestionVO>로 보내야 하나, 보낼수없을때는HttpStatus만 보냄

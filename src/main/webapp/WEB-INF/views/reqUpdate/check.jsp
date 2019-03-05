@@ -73,6 +73,9 @@
 		width:900px; 
 		font-size: 12px;
 	}
+	#modify_btn{
+		margin-left: 150px; 
+	}
 </style>
 </head>
 <body>
@@ -117,6 +120,7 @@
 				</div>
 		</div>
 		<button type="button" id="test_submit">정답확인</button>
+		<button type="button" id="modify_btn">수정</button>
 	</form>
 	
 	<!-- 문제에 대한 건의사항 -->
