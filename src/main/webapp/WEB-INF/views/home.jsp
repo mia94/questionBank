@@ -1,5 +1,5 @@
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ page session="false" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <html>
 <head>
 <title>Wooooo's QuestionBank</title> 
@@ -7,10 +7,10 @@
 	/*bx slider 파트*/
 	.main_banner_wrap{
 		height: 263px;
-		position: relative;\
+		position: relative;
 		width:100%;
 		height: 447px;
-		margin:20px auto;
+		margin:10px auto;
 		border-radius: 10px;
 	}
 	#main_banner{
@@ -43,26 +43,69 @@
 	/*홈 화면 파트*/
 	.home_container2{
 		width:100%;
-		height: 330px;
-		margin:20px auto;
+		height: 210px;  
+		margin:5px auto;
 	}
-	.home_container2 article{
-		width:220px;
-		height:300px;
+	.home_container2 article{  
+		width:295px;
+		height:200px;
 		float:left;
-		margin:10px;
+		margin:2px;
 		background-color:#A3918F;/* 코코아 */
+		position: relative;
+		transition:all 1s;
+	}
+	.home_container2 article:hover{
+		background-color:#5B4149;
 	}
 	.home_container2 img{
-		width:80px;
-		margin-left: 75px;
-		margin-top: 40px;
+		width:70px;
+		margin-left: 60px;
+		margin-top: 60px;
+	}
+	.home_container2 article div{
+		color:#F6EFEC; 
+		width:120px;
+		position: absolute;
+		right: 20px;
+		top: 60px; 
 	}
 	.home_container3{
 		width:100%;
 		height:400px;
-		background-color: #F3C2BA; /* 연핑크 */
 		margin-bottom: 40px;
+		border:1px solid #A3918F; 
+		position: relative;
+	}
+	.home_container3>div{
+		height: 400px;
+	}
+	.home_container3>div:first-child{
+		background-color:#444;
+		position: relative;
+	}
+	.home_container3>div:first-child div{
+		width:290px; 
+		text-align: center;
+		color:white;
+		position: absolute;
+		left: 0;
+		top:150px;
+	}
+	.home_container3>div:last-child{
+		position: relative;
+	}
+	.home_container3>div:last-child div{
+		width:300px;
+		position: absolute;
+		right:200px;s
+		top:150px;
+	}
+	.home_container3>img{
+		width:333px;
+		position: absolute;
+		top: 0;
+		left: 300px;
 	}
 	.home_container>div#color1{
 		background-color:#5B4149;/* 진갈색  */
@@ -84,7 +127,7 @@
 			<!-- bx슬라이더, section은 main.js에 넣어야함, css는 필요없음 -->
 			<div>
 				<a href="#"><img src="${pageContext.request.contextPath}/resources/upload/main.jpg" alt=""></a>
-				<h1>1 Page</h1>
+				<h1>1 page</h1>
 			</div>
 			<div>
 				<a href="#"><img src="${pageContext.request.contextPath}/resources/upload/main2.png" alt=""></a>
@@ -101,20 +144,34 @@
 	<div class="home_container2">
 		<article>
 			<img src="${pageContext.request.contextPath}/resources/upload/solve.png">
+			<div>클릭하면<br>문제풀러가기</div>
 		</article>
 		<article>
 			<img src="${pageContext.request.contextPath}/resources/upload/phone.png">
+			<div>모바일<br>어쩌구저쩌구 소개</div>
 		</article>
 		<article>
 			<img src="${pageContext.request.contextPath}/resources/upload/incorrect.png">
+			<div>틀린문제<br>다시풀러가기</div>
 		</article>
 		<article>
 			<img src="${pageContext.request.contextPath}/resources/upload/timer.png">
+			<div>문제풀리는데<br>걸리는 시간 측정가능</div>
 		</article>
 	</div>
 	
 	<div class="home_container3">
-	
+		<div class="col-sm-5">
+			<div>
+				<p>블라블라 설명<br>마우스올리면<br>이미지 옆으로 밀기</p>
+			</div>
+		</div>
+		<div class="col-sm-7"> 
+			<div>
+				<p>블라블라 설명<br>마우스올리면<br>이미지 옆으로 밀기</p>
+			</div>
+		</div>
+		<img src="${pageContext.request.contextPath}/resources/upload/career_bg.jpg">
 	</div>
 	
 	<script>

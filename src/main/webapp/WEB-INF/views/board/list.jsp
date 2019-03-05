@@ -7,17 +7,29 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 <style>
-	.list_container{
+	.board_container{
 		width:900px;
-		margin: 0 auto;
+		margin: 100px auto 30px;  
+		position: relative;
+	}
+	.board_container button{
+		position: absolute;
+		right: 0px; 
+		top:-25px; 
 	}
 	table{
-		width:700px;
-		margin-left: 100px;
-		margin-top: 70px;
+		width:900px;
+		margin-top: 30px;
+	}
+	table tr{
+		border: 0.5px solid #ddd;
+	}
+	table th{
+		background-color: #A3918F;  
+		color:#F6EFEC; 
 	}
 	table td, table th{
-		padding: 5px 10px; 
+		padding: 5px 10px;
 	}
 </style>
 </head>
@@ -26,7 +38,8 @@
 	<jsp:include page="../include/header.jsp"></jsp:include>
 	
 	<div class="board_container">
-		<table class="">
+		<button id="register">write</button>
+		<table>
 		    <thead>
 		      <tr>
 		        <th>no</th>
@@ -49,6 +62,14 @@
 		    </tbody>
 		  </table>
 	</div>
+	
+	<script>
+		$(function(){
+			$("#register").click(function(){
+				location.href="${pageContext.request.contextPath}/board/register"
+			})
+		})
+	</script>
 	
 	<jsp:include page="../include/footer.jsp"></jsp:include>
 

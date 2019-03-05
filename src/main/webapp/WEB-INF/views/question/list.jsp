@@ -21,6 +21,7 @@
 	section{
 		position: relative;
 	}
+	/*-------------------------------------------------연도회차 select*/
 	.custom-select,button#test_select{
 		float: left;
 		margin-top: 30px;
@@ -39,6 +40,7 @@
 		font-size: 16px;
 		line-height: 16px;
 	}
+	/*----------------------------------------------------------문제 리스트*/
 	.container_wrap{
 		margin-top: 40px;
 		clear: both;
@@ -72,7 +74,7 @@
 <body>
 	<jsp:include page="../include/header.jsp"></jsp:include>
 	
-	<div class="custom-select">
+	<!-- <div class="custom-select">
 		<select name="year" id="year">
 			<option value="0"> Select Year </option>
 			<option value="2018"> 2018 </option>
@@ -86,8 +88,7 @@
 			<option value="2"> 2 </option>
 		</select>
 	</div>
-	
-	<button id="test_select">선택</button>
+	<button id="test_select">선택</button> -->
 	
 	<form action="result" method="post" id="wsm_testForm">
 		<div class="container_wrap">
@@ -139,14 +140,13 @@
 	<script id="template1" type="text/x-handlebars-template"> 
 	{{#each.}}
 		<div class="question_wrap">
-			<p>{{questionCode}}</p>
+			<p class="code">{{questionCode}}</p>
 			<p>{{questionTitle}}</p>
 				{{#ifCond picture}}
 
 				{{else}}
     				<img src="displayFile?filename={{picture}}">
 				{{/ifCond}}
-			<br>
 					<label class="container"> &nbsp; {{choice1}}
 					  <input type="radio" name="answer" value='1'>
 					  <span class="checkmark"></span>

@@ -32,6 +32,12 @@
 		WHERE board_code=#{boardCode}
 	</delete>
 	
+	<update id="viewCount">
+	 	UPDATE tbl_board
+		SET viewcnt=viewcnt+1
+		WHERE bno=#{bno}
+	 </update>
+	
 </mapper>
 
 

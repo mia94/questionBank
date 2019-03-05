@@ -71,6 +71,7 @@
 		from question
 		where subject=#{subject}
 		order by rand()
+		Limit 20
 	</select>
 </mapper>
 

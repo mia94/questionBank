@@ -2,6 +2,7 @@
 
 @import url('https://fonts.googleapis.com/css?family=Luckiest+Guy|Righteous');
 @import url('https://fonts.googleapis.com/css?family=Jua');
+@import url('https://fonts.googleapis.com/css?family=Fredericka+the+Great');
 
 @media all and (min-width:768px){
 	*{
@@ -35,7 +36,7 @@
 		top:30px;
 	}
 	header h1 a, header h1 a:hover{
-		font-family: 'Luckiest Guy', cursive;
+		font-family: 'Fredericka the Great', cursive;
 		color:#5B4149;
 		text-decoration: none;
 	}
@@ -44,14 +45,14 @@
 	}
 	.navbar .navbar-brand{
 		color:#F28683;
-		font-family: 'Righteous', cursive;
+		font-family: 'Righteous', 'Jua';
 	}
-	.navbar .wsm_nav_a{
+	.navbar .wsm_nav_a{ 
 		color:#A3918F;
-		font-family: 'Righteous', cursive;
+		font-family: 'Righteous', 'Jua'; 
 	}
 	.navbar .dropdown-menu{
-		font-family: 'Righteous', cursive;
+		font-family: 'Righteous', 'Jua';
 		font-size: 13px;
 	}
 	.nav>li>a:focus, .nav>li>a:hover{
@@ -127,8 +128,25 @@
 		font-family: 'Luckiest Guy', cursive;
 		color:#5B4149;
 	}
+	header h1 a, header h1 a:hover{
+		font-family: 'Luckiest Guy', cursive;
+		color:#5B4149;
+		text-decoration: none;
+	}
 	.navbar{
 		background-color: #f4efec;
+	}
+	.navbar .navbar-brand{
+		color:#F28683;
+		font-family: 'Righteous', cursive;
+	}
+	.navbar .wsm_nav_a{
+		color:#A3918F;
+		font-family: 'Righteous', cursive;
+	}
+	.navbar .dropdown-menu{
+		font-family: 'Righteous', cursive;
+		font-size: 13px;
 	}
 	section{
 		width:100%;

@@ -2,7 +2,9 @@ package com.yi.controller;
 
 import java.io.FileInputStream;
 import java.io.InputStream;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 
@@ -46,10 +48,13 @@ private static final Logger logger = LoggerFactory.getLogger(QuestionController.
 		logger.info("QuestionVO create------------GET");
 	}
 	
+	//문제추가
 	@RequestMapping(value="register", method=RequestMethod.POST)
 	public String registerPost(QuestionVO vo, String number,MultipartFile pictureFile){
 		logger.info("QuestionVO create------------POST");
-		
+		//정답률, 상태는 입력없이 기본 0값/정상처리
+		vo.setState("정상");
+		vo.setCorrectRate(0);
 		//사진파일 경로 저장
 		String picture = pictureFile.getOriginalFilename();
 		if(picture.equals("")==false) {
@@ -66,11 +71,10 @@ private static final Logger logger = LoggerFactory.getLogger(QuestionController.
 		System.out.println(vo);
 		
 		return "redirect:/question/register";
-		
-	}
+	}	
 	//jsp로 가는 메소드
-	@RequestMapping(value="list", method=RequestMethod.GET)
-	public void list(Criteria cri,Model model){
+	@RequestMapping(value="moketest", method=RequestMethod.GET)
+	public void moketest(Criteria cri,Model model){
 		System.out.println("cri===========:"+cri);
 		List<QuestionVO> list = service.selectByYearAndRound(2018, 3, cri);///////연도와 회차 외부에서 받기!!!!
 		
@@ -83,6 +87,21 @@ private static final Logger logger = LoggerFactory.getLogger(QuestionController.
 		model.addAttribute("cri", cri);
 	}
 	
+	//jsp로 가는 메소드
+		@RequestMapping(value="list", method=RequestMethod.GET)
+		public void list(Criteria cri,Model model){
+			System.out.println("cri===========:"+cri);
+			List<QuestionVO> list = service.selectByYearAndRound(2018, 3, cri);///////연도와 회차 외부에서 받기!!!!
+			
+			PageMaker pageMaker = new PageMaker();
+			pageMaker.setCri(cri);
+			pageMaker.setTotalCount(service.totalCount(2018,3));
+			
+			model.addAttribute("list", list);
+			model.addAttribute("pageMaker", pageMaker);
+			model.addAttribute("cri", cri);
+		}
+	
 	//랜덤으로 한문제씩
 	@RequestMapping(value="singletest", method=RequestMethod.GET)
 	public void singleTest(Criteria cri,Model model){
@@ -93,13 +112,14 @@ private static final Logger logger = LoggerFactory.getLogger(QuestionController.
 			model.addAttribute("cri", cri);
 	}
 	
-	//과목별 문제
+	//과목별 문제 : 라디오선택 시 바로 insert되는 controller
 	@RequestMapping(value="subjecttest", method=RequestMethod.GET)
 	public void subjecttest(Criteria cri,Model model){
 		logger.info("subjecttest get------------");
 		List<QuestionVO> list = service.selectBySubject("D");//외부에서 값 받기!
 		
 		PageMaker pageMaker = new PageMaker();
+		cri.setPerPageNum(1);
 		pageMaker.setCri(cri);
 		pageMaker.setTotalCount(service.totalCount(2018,3));
 		
@@ -107,6 +127,12 @@ private static final Logger logger = LoggerFactory.getLogger(QuestionController.
 		model.addAttribute("pageMaker", pageMaker);
 		model.addAttribute("cri", cri);
 	}
+	
+	//과목별 문제 : 라디오 선택시 session에 값 저장
+	public void subjecttestSession() {
+		logger.info("subjecttestSession ------------");
+	}
+	//과목별 문제 : 제출하기 선택시 session에 저장된 값 모두 insert
 		
 	//json을 보내는 메소드 - list.jsp에서 사용
 	@ResponseBody
@@ -117,6 +143,31 @@ private static final Logger logger = LoggerFactory.getLogger(QuestionController.
 		try {
 			List<QuestionVO> list = service.selectByYearAndRound(year, round, cri);
 			entity = new ResponseEntity<>(list, HttpStatus.OK);
+		} catch (Exception e) {
+			e.printStackTrace();
+			entity = new ResponseEntity<>(HttpStatus.BAD_REQUEST);//List<QuestionVO>로 보내야 하나, 보낼수없을때는HttpStatus만 보냄
+		}
+		
+		return entity;
+	}
+	
+	//page를 ajax로 처리하는 list
+	@ResponseBody
+	@RequestMapping(value="listJson/{year}/{round}/{page}", method=RequestMethod.GET)
+	public ResponseEntity<Map<String, Object>> listJsonPage(Criteria cri,@PathVariable("year") int year, @PathVariable("round") int round, @PathVariable("page") int page){
+		ResponseEntity<Map<String, Object>> entity = null;
+		
+		try {
+			cri.setPage(page);
+			List<QuestionVO> list = service.selectByYearAndRound(year, round, cri);
+			//페이지정보
+			PageMaker pageMaker = new PageMaker();
+			pageMaker.setCri(cri);
+			//리스트정보와 페이지정보를 같이 보내기위해 map에 저장
+			HashMap<String, Object> map = new HashMap<>();
+			map.put("list", list);
+			map.put("pageMaker", pageMaker);
+			entity = new ResponseEntity<>(map, HttpStatus.OK);
 		} catch (Exception e) {
 			e.printStackTrace();
 			entity = new ResponseEntity<>(HttpStatus.BAD_REQUEST);//List<QuestionVO>로 보내야 하나, 보낼수없을때는HttpStatus만 보냄

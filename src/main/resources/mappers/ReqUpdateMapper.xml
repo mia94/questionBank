@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yi.mapper.ReqUpdate">
+	
+	<resultMap type="ReqUpdateVO" id="mapResultUpdateVO">
+		<id column="req_code" property="reqCode"/>
+		<result column="writer" property="writer.customerCode"/>
+		<result column="question" property="question.questionCode"/>
+		<result column="content" property="content"/>
+		<result column="oriCorrect" property="oriCorrect"/>
+		<result column="reqCorrect" property="reqCorrect"/>
+		<result column="state" property="state"/>
+		<result column="regdate" property="regdate"/>
+		<result column="moddate" property="moddate"/>
+		<result column="req_code" property="reqCode"/>
+	</resultMap>
+	
+	<select id="selectByAll" resultMap="mapResultUpdateVO">
+		SELECT *
+		FROM requpdate
+		order by req_code desc
+	</select>
+	
+	<select id="selectByQuestionCode" resultMap="mapResultUpdateVO">
+		SELECT *
+		FROM requpdate
+		where question=#{question}
+		order by req_code desc
+	</select>
+	
+	<insert id="insert" parameterType="ReqUpdateVO">
+		INSERT INTO requpdate
+		(question, content, ori_correct, req_correct, state, writer, regdate, moddate)
+		VALUES(#{question.questionCode}, #{content}, #{oriCorrect}, #{reqCorrect}, #{state}, #{writer.customerCode}, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP)
+	</insert>
+	
+	<update id="update">
+		UPDATE requpdate
+		SET content=#{content}, ori_correct=#{oriCorrect}, req_correct=#{reqCorrect}, state=#{state}, moddate=CURRENT_TIMESTAMP
+		WHERE req_code=#{reqCode}
+	</update>
+	
+	<delete id="delete">
+		DELETE FROM requpdate
+		WHERE req_code=#{reqCode}
+	</delete>
+	
+	<select id="selectByCode" resultType="ReqUpdateVO">
+		SELECT *
+		FROM requpdate
+		where req_code=#{reqCode}
+	</select>
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

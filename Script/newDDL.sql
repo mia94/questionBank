@@ -65,6 +65,9 @@ ALTER TABLE questionbank.reply
 			reply_code -- 댓글코드
 		);
 
+ALTER TABLE questionbank.reply
+	MODIFY COLUMN reply_code INT(11) NOT NULL AUTO_INCREMENT COMMENT '댓글코드';
+
 -- 시험 결과
 CREATE TABLE questionbank.resulttest (
 	resultTest_code INT(11)  NOT NULL COMMENT '결과시험코드', -- 결과시험코드
@@ -73,7 +76,7 @@ CREATE TABLE questionbank.resulttest (
 	correct         INT(11)  NULL     COMMENT '답(100)', -- 답(1)
 	spendTime       INT(11)  NULL     COMMENT '걸린 시간', -- 한문제당 걸린 시간
 	pass            TINYINT  NOT NULL COMMENT '합격여부(60점)', -- 정답여부
-	question_code   CHAR(10) NULL     COMMENT '문제코드' -- 문제코드
+	question        CHAR(10) NULL     COMMENT '문제코드' -- 문제코드
 )
 COMMENT '시험 결과';
 
@@ -83,6 +86,9 @@ ALTER TABLE questionbank.resulttest
 		PRIMARY KEY (
 			resultTest_code -- 결과시험코드
 		);
+
+ALTER TABLE questionbank.resulttest
+	MODIFY COLUMN resultTest_code INT(11) NOT NULL AUTO_INCREMENT COMMENT '결과시험코드';
 
 -- 과목(5과목 20문제)
 CREATE TABLE questionbank.subject (
@@ -116,6 +122,33 @@ ALTER TABLE questionbank.board
 		PRIMARY KEY (
 			board_code -- 게시글코드
 		);
+
+ALTER TABLE questionbank.board
+	MODIFY COLUMN board_code INT(11) NOT NULL AUTO_INCREMENT COMMENT '게시글코드';
+
+-- 정정요구
+CREATE TABLE questionbank.reqUpdate (
+	req_code    INT(11)     NOT NULL COMMENT '정정요구코드', -- 정정요구코드
+	question    CHAR(10)    NOT NULL COMMENT '문제', -- 문제
+	content     TEXT        NOT NULL COMMENT '변경사유', -- 변경사유
+	ori_correct TINYINT     NOT NULL COMMENT '기존정답', -- 기존정답
+	req_correct TINYINT     NULL     COMMENT '요청정답', -- 요청정답
+	state       VARCHAR(30) NULL     COMMENT '정정전/수정완료', -- 상태
+	writer      CHAR(4)     NOT NULL COMMENT '회원코드', -- 회원코드
+	regdate     TIMESTAMP   NOT NULL DEFAULT now() COMMENT '게시날짜', -- 게시날짜
+	moddate     TIMESTAMP   NOT NULL DEFAULT now() COMMENT '수정날짜' -- 수정날짜
+)
+COMMENT '정정요구';
+
+-- 정정요구
+ALTER TABLE questionbank.reqUpdate
+	ADD CONSTRAINT PK_reqUpdate -- 정정요구 기본키
+		PRIMARY KEY (
+			req_code -- 정정요구코드
+		);
+
+ALTER TABLE questionbank.reqUpdate
+	MODIFY COLUMN req_code INT(11) NOT NULL AUTO_INCREMENT COMMENT '정정요구코드';
 
 -- 건의사항 댓글
 ALTER TABLE questionbank.reply
@@ -183,8 +216,28 @@ ALTER TABLE questionbank.question
 ALTER TABLE questionbank.resulttest
 	ADD CONSTRAINT FK_question_TO_resulttest -- 문제(1) -> 시험 결과
 		FOREIGN KEY (
-			question_code -- 문제코드
+			question -- 문제코드
 		)
 		REFERENCES questionbank.question ( -- 문제(1)
 			question_code -- 문제코드
+		);
+
+-- 정정요구
+ALTER TABLE questionbank.reqUpdate
+	ADD CONSTRAINT FK_question_TO_reqUpdate -- 문제(1) -> 정정요구
+		FOREIGN KEY (
+			question -- 문제
+		)
+		REFERENCES questionbank.question ( -- 문제(1)
+			question_code -- 문제코드
+		);
+
+-- 정정요구
+ALTER TABLE questionbank.reqUpdate
+	ADD CONSTRAINT FK_customer_TO_reqUpdate -- 회원 -> 정정요구
+		FOREIGN KEY (
+			writer -- 회원코드
+		)
+		REFERENCES questionbank.customer ( -- 회원
+			customer_code -- 회원코드
 		);

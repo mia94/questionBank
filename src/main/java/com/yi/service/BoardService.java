@@ -11,4 +11,6 @@ public interface BoardService {
 	public void insertBoard(BoardVO boardVo);
 	public void updateBoard(BoardVO boardVo);
 	public void deleteBoard(BoardVO boardVo);
+	
+	public void viewCount(int bno);
 }

@@ -26,11 +26,10 @@
 	.mypage_container button{
 		border: none;
 		background: white;
-		margin-left:120px;
-		padding-top:20px;
 		font-size: 20px;
-		font-family: 'Righteous', cursive; 
+		font-family: 'Righteous', 'Jua';
 		color:#A3918F;
+		margin:10px;
 	}
 	.mypage_container button:hover{
 		color:5B4149;
@@ -64,6 +63,7 @@
 			</p>
 			
 			<button type="submit"><span>Modify</span></button>
+			<button type="button"><span>탈퇴하기</span></button>
 		</div>		
 	</form>
 	
