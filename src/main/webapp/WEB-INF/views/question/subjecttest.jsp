@@ -1,3 +1,7 @@
+<%@page import="com.yi.domain.CustomerVO"%>
+<%@page import="com.yi.domain.ResultTestVO"%>
+<%@page import="java.util.List"%>
+<%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -8,8 +12,15 @@
 <link href="${pageContext.request.contextPath}/resources/css/radiobutton.css" rel="stylesheet"  type="text/css">
 <link href="${pageContext.request.contextPath}/resources/css/select.css" rel="stylesheet"  type="text/css">
 <title>Insert title here</title>
+<% 
+	List<ResultTestVO> list = new ArrayList<>();
+	session.setAttribute("list", list);
+%>
 <script>
-//카운트용
+	//결과 넘기는 용 전역변수
+	var qArray = new Array();//문제코드를 저장한 배열
+	var aArray = new Array();//정답을 저장할 배열
+	//카운트용
 	function aahacafeTimer(){
 	    var time = new Date();
 	    var hours = time.getHours();
@@ -294,7 +305,25 @@
 				var spendTime = 0;//아직처리못함
 				
 				//받은 값을 배열에 저장해서 보내기
-				
+				//@RequestBody를 사용했기때문에
+					var jsonBody = {answer:answer, correct:correct, pass:pass, spendTime:spendTime};
+					//@RequestBody를 사용했으면headers, JSON.stringify를 반드시 사용해야함
+					$.ajax({
+						url:"${pageContext.request.contextPath}/question/subjecttest/"+customer+"/"+question,
+						type:"post",
+						headers:{
+							"Content-Type":"application/json",
+							"X-HTTP-Method-Override":"POST"
+						},
+						data:JSON.stringify(jsonBody),//JSON.stringify는 {bno:bno, replyer:replyer, replytext:replytext}이런 스트링으로 변환
+						dataType:"text",//String으로 반환되면 객체가 아니기때문에 json이 아닌 text로 받아야함
+						success:function(json){
+							console.log(json);
+							$(this).closest("div").children("input[name*=thisCode]").val(json);
+						}
+					})
+				//제출
+				//arraylist에있는 insert후에 session값 지우기
 			})
 			
 			//라디오버튼 선택시 insert, 답안변경시 update처리

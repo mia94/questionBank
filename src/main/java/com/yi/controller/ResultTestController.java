@@ -5,6 +5,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +22,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.yi.domain.CustomerVO;
+import com.yi.domain.LoginDTO;
 import com.yi.domain.QuestionVO;
 import com.yi.domain.ResultTestVO;
 import com.yi.service.CustomerService;
@@ -58,7 +61,7 @@ public class ResultTestController {
 	//ajax용 과목별 insert
 	@ResponseBody
 	@RequestMapping(value="subjecttest/{customer}/{question}", method=RequestMethod.POST)
-	public ResponseEntity<String> subjecttestresult(@RequestBody ResultTestVO vo, @PathVariable("customer") String customer,@PathVariable("question") String question){
+	public void subjecttestresult(HttpServletRequest request,@RequestBody ResultTestVO vo, @PathVariable("customer") String customer,@PathVariable("question") String question){
 		logger.info("subjecttestresult 전 ------------"+vo);
 		ResponseEntity<String> entity = null;
 		
@@ -71,15 +74,15 @@ public class ResultTestController {
 		vo.setCustomer(cvo);
 		vo.setQuestion(qvo);
 		logger.info("subjecttestresult 후 ------------"+vo);
-		try {
-			service.insertResultTest(vo);
-			int code = service.selectMaxCode();
-			entity = new ResponseEntity<String>(code+"", HttpStatus.OK);
-		} catch (Exception e) {
-			e.printStackTrace();
-			entity = new ResponseEntity<String>(e.getMessage(),HttpStatus.BAD_REQUEST);//400에러
+		
+		//LoginDTO loginVo = (LoginDTO) request.getSession().getAttribute("login");
+		
+		List<ResultTestVO> list = (List<ResultTestVO>) request.getSession().getAttribute("list");
+		if(list==null) {
+			list = new ArrayList<>();
 		}
-		return entity;
+		list.add(vo);
+		logger.info("list ------------"+list.size());
 	}
 	
 	//ajax용 과목별 update
