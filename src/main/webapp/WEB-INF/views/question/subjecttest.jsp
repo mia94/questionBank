@@ -89,6 +89,9 @@
 		color:#A3918F;
 		line-height: 25px;
 	}
+	aside article.answer_article{
+		color:#F28683; 
+	}
 	#test_submit{ 
 		border: 3px solid #A3918F;
 		border-radius:5px; 
@@ -276,15 +279,6 @@
 				var answer = $(this).val();
 				var thisDiv = $(this).closest(".question_wrap");//현재 div
 				var check = thisDiv.index();
-				alert(check);
-				/* var questionDiv = document.getElementsByClassName("question_wrap");//div 배열
-				var index = -1;
-				for(var i=0;i<20;i++){
-					if(Object.is(thisDiv,questionDiv[i])){
-						index = i;//i는 현재div의 인덱스
-					}
-				} */
-				//document.getElementsByClassName("answer_article")[check].style.backgroundColor = 'red';
 				
 				$(".answer_article").eq(check).text(answer); 
 				

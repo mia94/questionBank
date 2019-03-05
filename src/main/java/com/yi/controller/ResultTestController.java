@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.yi.domain.CustomerVO;
@@ -118,6 +119,17 @@ public class ResultTestController {
 		
 		System.out.println(list);
 		model.addAttribute("list", list);
+	}
+	
+	//모의고사
+	@ResponseBody
+	@RequestMapping(value="resultMokeTest", method=RequestMethod.POST)
+	public void insertResultMokeTest(@RequestParam(value="aArray[]") List<String> aArray, @RequestParam(value="qArray[]")List<String> qArray,@RequestParam(value="customerCode") String customerCode) {
+		logger.info("insertResultMokeTest ------------aArray: "+aArray);
+		logger.info("insertResultMokeTest ------------qArray: "+qArray);
+		logger.info("insertResultMokeTest ------------customerCode "+customerCode);
+		
+		
 	}
 }
 

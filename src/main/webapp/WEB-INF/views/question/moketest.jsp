@@ -11,7 +11,11 @@
 <link href="${pageContext.request.contextPath}/resources/css/select.css" rel="stylesheet"  type="text/css">
 <title>Insert title here</title>
 <script>
+	//전역변수선언
+	var qArray = new Array();//문제코드를 저장한 배열
+	var aArray = new Array();//정답을 저장할 배열
 	$(function(){
+		//기초값 설정
 		makeArray();
 	})
 </script>
@@ -56,14 +60,11 @@
 		top: 50px; 
 		right: 50px; 
 	}
-	form #test_submit{
-		border: none;
-		background: white;
-		font-size: 16px;
-		font-family: 'Jua', sans-serif;
-		color:#A3918F;
-		float: right;
-		padding-right: 200px;
+ 	form #test_submit{
+ 		width:170px;
+		border: none; 
+		background: none;
+		color:white;
 	}
 	aside{
 		width:170px; 
@@ -153,17 +154,18 @@
 				</div>
 			</c:forEach>
 		</div>
-		<button type="submit" id="test_submit">제출하기</button>
+		
+		<aside>
+			<c:forEach var="i" begin="1" end="100" step="1">
+				<article>
+					${i}
+				</article>
+			</c:forEach>
+			<div><button type="button" id="test_submit">제출하기</button></div>
+		</aside>
 	</form>
 	
-	<aside>
-		<c:forEach var="i" begin="1" end="100" step="1">
-			<article>
-				${i}
-			</article>
-		</c:forEach>
-		<div>제출하기</div>
-	</aside>
+	
 	
 		<div class="text-center">
 			<ul class="pagination">
@@ -242,6 +244,23 @@
   				aArray[index]=value;//선택한 정답 정답배열 해당index에 넣기
   				
   			})
+  			
+  			$("#test_submit").click(function(){
+  				alert(aArray);
+  				alert(qArray);
+  				var allData = {"aArray":aArray , "qArray":qArray, "customerCode":'${login.customerCode}'};
+  				//ajax 의 data 값에 배열(Array)을 넘기기 위해서는 세팅값을 바꿔주어야 한다
+  				//jQuery.ajaxSettings.traditional = true;
+
+  				$.ajax({
+  					url:"${pageContext.request.contextPath}/question/resultMokeTest",
+  					type:"post",
+  					data:allData,
+  					success:function(json){
+  						
+  					}
+  				})
+  			})
   		}) 	
  	
  	</script>
@@ -307,29 +326,29 @@
 		
 		//배열 길이와 기초값 저장해두는 함수
 		function makeArray(){
-			//문제코드를 저장한 배열
-			var qArray = new Array();
 			//첫코드에서 연도와 회차 빼오기
 			var code = $(".code").text();
 			var yearRound = code.substr(2,5);
-			
+			var str = 0;
+			var subjArr = ["QD","QA","QO","QS","QC"];
 			for(var j=0;j<100;j++){
-				var str = "00"+(j+1);
+				str = "00"+(j+1);
 				str = str.slice(-3);
-				if(j<20){
-					aArray[j]="QD"+yearRound+str;
+				qArray[j] = subjArr[parseInt(j/20)]+yearRound+str;
+				/* if(j<20){
+					qArray[j]="QD"+yearRound+str;
 				}else if(i<40){
-					aArray[j]="QA"+yearRound+str;
-				}else if(i<60){
-					aArray[j]="QO"+yearRound+str;
+					qArray[j]="QA"+yearRound+str;
+				}else if(i<60 ){
+					qArray[j]="QO"+yearRound+str;
 				}else if(i<80){
-					aArray[j]="QS"+yearRound+str;
+					qArray[j]="QS"+yearRound+str;
 				}else{
-					aArray[j]="QC"+year+round+str;
-				}
+					qArray[j]="QC"+year+round+str;
+				} */
 			}
+			console.log(qArray);
 			//정답을 저장할 배열(길이100) 선언, 초기에 모두 0으로 값 입력
-			var aArray = new Array();
 			for(var i=0;i<100;i++){
 				aArray[i]=0;
 			}

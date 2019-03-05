@@ -48,6 +48,7 @@ private static final Logger logger = LoggerFactory.getLogger(QuestionController.
 		logger.info("QuestionVO create------------GET");
 	}
 	
+	//문제추가
 	@RequestMapping(value="register", method=RequestMethod.POST)
 	public String registerPost(QuestionVO vo, String number,MultipartFile pictureFile){
 		logger.info("QuestionVO create------------POST");
@@ -70,8 +71,7 @@ private static final Logger logger = LoggerFactory.getLogger(QuestionController.
 		System.out.println(vo);
 		
 		return "redirect:/question/register";
-		
-	}
+	}	
 	//jsp로 가는 메소드
 	@RequestMapping(value="moketest", method=RequestMethod.GET)
 	public void moketest(Criteria cri,Model model){
