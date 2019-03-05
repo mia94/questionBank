@@ -22,7 +22,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.yi.domain.CustomerVO;
-import com.yi.domain.LoginDTO;
 import com.yi.domain.QuestionVO;
 import com.yi.domain.ResultTestVO;
 import com.yi.service.CustomerService;
@@ -58,18 +57,18 @@ public class ResultTestController {
 		return "redirect:/question/singletest";
 	}	
 	
-	//ajax용 과목별 insert
+	//ajax용 과목별테스트 라디오버튼 클릭시 하나씩 리스트에 담기
 	@ResponseBody
 	@RequestMapping(value="subjecttest/{customer}/{question}", method=RequestMethod.POST)
 	public void subjecttestresult(HttpServletRequest request,@RequestBody ResultTestVO vo, @PathVariable("customer") String customer,@PathVariable("question") String question){
-		logger.info("subjecttestresult 전 ------------"+vo);
-		ResponseEntity<String> entity = null;
 		
 		CustomerVO cvo = new CustomerVO();
 		cvo.setCustomerCode(customer);
+		cvo = cService.selectByNo(cvo);
 		
 		QuestionVO qvo = new QuestionVO();
 		qvo.setQuestionCode(question);
+		qvo = qService.selectByNO(qvo);
 		
 		vo.setCustomer(cvo);
 		vo.setQuestion(qvo);
@@ -83,6 +82,21 @@ public class ResultTestController {
 		}
 		list.add(vo);
 		logger.info("list ------------"+list.size());
+	}
+	
+	//과목별 테스트 submit클릭시 20문제 모두 insert하기
+	@ResponseBody
+	@RequestMapping(value="subjecttestResult", method=RequestMethod.POST)
+	public void insertSubjectTest(HttpServletRequest request) {
+		//arraylist에있는 값 insert후에 session값 지우기
+		List<ResultTestVO> list = (List<ResultTestVO>) request.getSession().getAttribute("list");
+		logger.info("insertSubjectTest ------------list:"+list);
+		
+		for(int i=0;i<list.size();i++) {
+			service.insertResultTest(list.get(i));
+		}
+		
+		request.getSession().removeAttribute("list");
 	}
 	
 	//ajax용 과목별 update
@@ -133,9 +147,6 @@ public class ResultTestController {
 	@ResponseBody
 	@RequestMapping(value="resultMokeTest", method=RequestMethod.POST)
 	public void insertResultMokeTest(@RequestParam(value="aArray[]") List<String> aArray, @RequestParam(value="qArray[]")List<String> qArray,@RequestParam(value="customerCode") String customerCode) {
-		logger.info("insertResultMokeTest ------------aArray: "+aArray.size());
-		logger.info("insertResultMokeTest ------------qArray: "+qArray.size());
-		logger.info("insertResultMokeTest ------------customerCode "+customerCode);
 		
 		//고객찾기
 		CustomerVO cvo = new CustomerVO();
