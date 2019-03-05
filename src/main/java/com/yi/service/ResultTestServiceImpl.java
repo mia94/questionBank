@@ -1,6 +1,7 @@
 package com.yi.service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -68,6 +69,12 @@ public class ResultTestServiceImpl implements ResultTestService {
 	public List<ResultTestVO> selectIncorrectQuestionByCustomer(String customerCode) {
 		// TODO Auto-generated method stub
 		return dao.selectIncorrectQuestionByCustomer(customerCode);
+	}
+
+	@Override
+	public void insertBatchResultTest(Map<String, Object> map) {
+		// TODO Auto-generated method stub
+		dao.insertBatchResultTest(map);
 	}
 
 }

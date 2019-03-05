@@ -1,6 +1,7 @@
 package com.yi.service;
 
 import java.util.List;
+import java.util.Map;
 
 import com.yi.domain.CustomerVO;
 import com.yi.domain.ResultTestVO;
@@ -22,4 +23,6 @@ public interface ResultTestService {
 	public void updateByCustomerAndQuestion(ResultTestVO resultTestVo);
 	//고객별 오답노트 리스트
 	public List<ResultTestVO> selectIncorrectQuestionByCustomer(String customerCode);
+	//batch insert
+	public void insertBatchResultTest(Map<String, Object> map);
 }

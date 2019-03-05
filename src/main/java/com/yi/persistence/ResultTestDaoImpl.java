@@ -79,6 +79,12 @@ public class ResultTestDaoImpl implements ResultTestDao{
 		return sqlSession.selectList(namespace+".selectIncorrectQuestionByCustomer", customerCode);
 	}
 
+	@Override
+	public void insertBatchResultTest(Map<String, Object> map) {
+		// TODO Auto-generated method stub
+		sqlSession.insert(namespace+".insertBatchResultTest", map);
+	}
+
 	
 
 }

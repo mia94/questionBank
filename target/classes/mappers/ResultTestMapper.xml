@@ -39,10 +39,21 @@
 		where customer=#{customerCode}
 	</select>
 	
-	<insert id="insertResultTest">
+	<!-- 하나씩 하는 insert  -->
+	<insert id="insertResultTest" parameterType="ResultTestVO" useGeneratedKeys="true" keyProperty="resultTest_code">
 		INSERT INTO resulttest
 		(customer, answer, correct, spendTime, pass, question)
 		VALUES(#{customer.customerCode}, #{answer}, #{correct}, #{spendTime}, #{pass}, #{question.questionCode})
+	</insert>
+	
+	<!-- Batch이용 insert -->
+	<insert id="insertBatchResultTest" parameterType="map">
+		INSERT INTO resulttest
+		(customer, answer, correct, spendTime, pass, question)
+		VALUES
+		<foreach item="ResultTestVO" index="index" collection="list" open="" separator="," close="">
+		(#{ResultTestVO.customer.customerCode}, #{ResultTestVO.answer}, #{ResultTestVO.correct}, #{ResultTestVO.spendTime}, #{ResultTestVO.pass}, #{ResultTestVO.question.questionCode})
+		</foreach>
 	</insert>
 	
 	<delete id="deleteResultTest">

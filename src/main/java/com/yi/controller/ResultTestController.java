@@ -1,7 +1,9 @@
 package com.yi.controller;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -20,6 +22,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.yi.domain.CustomerVO;
 import com.yi.domain.QuestionVO;
 import com.yi.domain.ResultTestVO;
+import com.yi.service.CustomerService;
 import com.yi.service.QuestionService;
 import com.yi.service.ResultTestService;
 
@@ -32,6 +35,8 @@ public class ResultTestController {
 	private ResultTestService service;
 	@Autowired
 	private QuestionService qService;
+	@Autowired
+	private CustomerService cService;
 	
 	@RequestMapping(value="result", method=RequestMethod.POST)
 	public String addAnswer(ResultTestVO vo) {
@@ -125,11 +130,43 @@ public class ResultTestController {
 	@ResponseBody
 	@RequestMapping(value="resultMokeTest", method=RequestMethod.POST)
 	public void insertResultMokeTest(@RequestParam(value="aArray[]") List<String> aArray, @RequestParam(value="qArray[]")List<String> qArray,@RequestParam(value="customerCode") String customerCode) {
-		logger.info("insertResultMokeTest ------------aArray: "+aArray);
-		logger.info("insertResultMokeTest ------------qArray: "+qArray);
+		logger.info("insertResultMokeTest ------------aArray: "+aArray.size());
+		logger.info("insertResultMokeTest ------------qArray: "+qArray.size());
 		logger.info("insertResultMokeTest ------------customerCode "+customerCode);
 		
+		//고객찾기
+		CustomerVO cvo = new CustomerVO();
+		cvo.setCustomerCode(customerCode);
+		CustomerVO newCvo = cService.selectByNo(cvo);
+		//문제찾기
+		QuestionVO qvo = new QuestionVO();
 		
+		List<ResultTestVO> list = new ArrayList<>();//batch에 사용할 배열
+		for(int i=0;i<100;i++) {
+			ResultTestVO vo = new ResultTestVO();
+			//해당문제정보찾기
+			qvo.setQuestionCode(qArray.get(i));
+			QuestionVO newQvo = qService.selectByNO(qvo);
+			
+			//값 입력
+			vo.setCustomer(newCvo);
+			vo.setQuestion(newQvo);
+			vo.setAnswer(Integer.parseInt(aArray.get(i)));
+			vo.setSpendTime(0);//아직해결X
+			
+			vo.setCorrect(newQvo.getCorrect());
+			boolean pass = false;
+			if(vo.getAnswer()==vo.getCorrect()) {
+				pass=true;
+			}
+			vo.setPass(pass);
+			logger.info("insertResultMokeTest ------------vo "+vo);
+			list.add(vo);
+		}
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("list", list);
+		logger.info("insertResultMokeTest ------------list "+list);
+		service.insertBatchResultTest(map);
 	}
 }
 
