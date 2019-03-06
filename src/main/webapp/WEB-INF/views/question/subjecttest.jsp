@@ -333,6 +333,7 @@
 						}
 					})
 				}else{
+					//추가
 					//@RequestBody를 사용했으면headers, JSON.stringify를 반드시 사용해야함
 					$.ajax({
 						url:"${pageContext.request.contextPath}/question/subjecttest/"+customer+"/"+question,
@@ -358,7 +359,7 @@
 					type:"post",
 					dataType:"json",
 					success:function(json){
-
+						//제출 후 결과페이지로 이동하기
 					}
 				})
 			})
