@@ -25,10 +25,22 @@
 		float: left;
 	}
 	#main_container div.chart article{
-		clear:both;
+		clear:both; 
+		width:300px; 
+	}
+	#main_container div.chart article table{
+		border-collapse: collapse;
 		width:300px;
-		height: 100px;
+		text-align: center;
+		font-size: 12px;
+	}
+	#main_container div.chart article table tr:hover{
 		background-color: #eee;
+	}
+	#main_container div.chart article table td{
+		border:1px solid #eee;
+		width:100px;
+		height: 22px;
 	}
 	#main_container div#score{
 		width:100px;
@@ -57,21 +69,18 @@
 				<table>
 					<tr>
 						<td>문제</td>
-						<td>정답</td>
 						<td>입력한 답</td>
+						<td>정답</td>
 					</tr>
-					<c:forEach var="item" items="${list}">
+					<c:forEach var="item" items="${list}" varStatus="status">
 						<tr>
-							<td></td>
-							<td></td>
-							<td></td>
+							<td>${status.count }번</td>
+							<td class="td_answer">${item.answer }</td>
+							<td class="td_correct">${item.correct }</td>
 						</tr>
+						<input type="hidden" value="${item.question.questionCode }">
 					</c:forEach>
 				</table>
-			
-				<c:forEach var="item" items="${list}">
-					${item.answer }
-				</c:forEach>
 			</article>
 		</div>
 		<div id="score">
@@ -97,7 +106,44 @@
       chart.draw(data, options);
     }
   </script>
-	
+		
 	<jsp:include page="../include/footer.jsp"></jsp:include>
+	
+	<script>
+		$(function(){
+			//오답 배경색으로 표시
+			for(var i=0;i<20;i++){
+				var answer = $(".td_answer").eq(i).text();
+				var correct = $(".td_correct").eq(i).text();
+				if(answer!=correct){ 
+					$("tr").eq(i+1).css("backgroundColor","#F3C2BA"); 
+				}
+			}
+			//tr클릭 시 해당 문제가 있는 페이지로 이동
+			$("tr").click(function(){
+				var questionCode = $(this).next().val();
+				location.href="${pageContext.request.contextPath}/reqUpdate/check?question="+questionCode;
+			})
+		})
+	</script>
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
