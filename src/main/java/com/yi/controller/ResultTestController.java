@@ -14,6 +14,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -57,7 +58,7 @@ public class ResultTestController {
 		return "redirect:/question/singletest";
 	}	
 	
-	//ajax용 과목별테스트 라디오버튼 클릭시 하나씩 리스트에 담기
+	// 추가 : ajax용 과목별테스트 라디오버튼 클릭시 하나씩 리스트에 담기
 	@ResponseBody
 	@RequestMapping(value="subjecttest/{customer}/{question}", method=RequestMethod.POST)
 	public void subjecttestresult(HttpServletRequest request,@RequestBody ResultTestVO vo, @PathVariable("customer") String customer,@PathVariable("question") String question){
@@ -82,7 +83,7 @@ public class ResultTestController {
 		logger.info("list 사이즈------------"+list.size());
 	}
 	
-	//ajax용 과목별테스트 라디오버튼 클릭시 하나씩 리스트에 담기
+	// 수정 : ajax용 과목별테스트 라디오버튼 클릭시 하나씩 리스트에 담기
 		@ResponseBody
 		@RequestMapping(value="subjecttest/{customer}/{question}", method=RequestMethod.PUT)
 		public void subjecttestModify(HttpServletRequest request,@RequestBody ResultTestVO vo, @PathVariable("customer") String customer,@PathVariable("question") String question){
@@ -111,43 +112,50 @@ public class ResultTestController {
 	//과목별 테스트 submit클릭시 20문제 모두 insert하기
 	@ResponseBody
 	@RequestMapping(value="subjecttestResult", method=RequestMethod.POST)
-	public void insertSubjectTest(HttpServletRequest request) {
+	public void insertSubjectTest(HttpServletRequest request,Model model) {
 		//arraylist에있는 값 insert후에 session값 지우기
 		List<ResultTestVO> list = (List<ResultTestVO>) request.getSession().getAttribute("list");
 		logger.info("insertSubjectTest ------------list:"+list);
-		
 		for(int i=0;i<list.size();i++) {
 			service.insertResultTest(list.get(i));
 		}
-		request.getSession().removeAttribute("list");
+		logger.info("insertSubjectTest 완료");
+	}
+	//과목별 점수
+	@RequestMapping(value="score", method=RequestMethod.GET)
+	public String subjectTestScore(HttpServletRequest request,Model model) {
+		logger.info("subjectTestScore ------------");
+		List<ResultTestVO> list = (List<ResultTestVO>) request.getSession().getAttribute("list");
+		int score = 0;
+		for(int i=0;i<20;i++) {
+			if(list.get(i).getAnswer()==list.get(i).getCorrect()) {
+				score += 5;
+			}
+		}
+		logger.info("Score ------------:"+score);
+		//모델에 점수 실어보내기
+		model.addAttribute("score", score);
+		logger.info("list ------------:"+list.size());
+		//세션안에 지우기
+		//request.getSession().removeAttribute("list");
+		//request.getSession().removeAttribute("score");
+		return "redirect:/question/subjectScore";
 	}
 	
-	//ajax용 과목별 update
-/*	@ResponseBody
-	@RequestMapping(value="subjecttest/{customer}/{question}", method=RequestMethod.PUT)
-	public ResponseEntity<String> subjecttestupdate(@RequestBody ResultTestVO vo, @PathVariable("customer") String customer,@PathVariable("question") String question){
-		logger.info("subjecttestupdate 전 ------------"+vo);
-		ResponseEntity<String> entity = null;
-		
-		CustomerVO cvo = new CustomerVO();
-		cvo.setCustomerCode(customer);
-		
-		QuestionVO qvo = new QuestionVO();
-		qvo.setQuestionCode(question);
-		
-		vo.setCustomer(cvo);
-		vo.setQuestion(qvo);
-		
-		logger.info("subjecttestupdate 후 ------------"+vo);
-		try {
-			service.updateByCustomerAndQuestion(vo);
-			entity = new ResponseEntity<String>("success", HttpStatus.OK);
-		} catch (Exception e) {
-			e.printStackTrace();
-			entity = new ResponseEntity<String>(e.getMessage(),HttpStatus.BAD_REQUEST);//400에러
-		}
-		return entity;
-	}*/
+	@RequestMapping(value="subjectScore", method=RequestMethod.GET)
+	public void subjectScorePage(HttpServletRequest request,@ModelAttribute("score") int score) {//request 파라미터명 명시해주기
+		logger.info("subjectScorePage ------------"+score); 
+		List<ResultTestVO> list = (List<ResultTestVO>) request.getSession().getAttribute("list");
+		logger.info("list ------------:"+list.size());
+	}
+	
+	//모의고사 score
+	@RequestMapping(value="moketestScore", method=RequestMethod.GET)
+	public String mokeScore() {
+		return "redirect:/question/mokeScore";
+	}
+	
+	//모의고사 mokeScore.jsp로 이동
 	
 	//오답다시풀기 문제 리스트
 	@RequestMapping(value="/incorrect", method=RequestMethod.GET)

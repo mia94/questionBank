@@ -360,8 +360,10 @@
 					dataType:"json",
 					success:function(json){
 						//제출 후 결과페이지로 이동하기
+						location.href="${pageContext.request.contextPath}/question/score";
 					}
 				})
+				location.href="${pageContext.request.contextPath}/question/score";
 			})
 			
 			//라디오버튼 선택시 insert, 답안변경시 update처리

@@ -265,7 +265,7 @@
   					type:"post",
   					data:allData,
   					success:function(json){
-  						
+  						location.href="${pageContext.request.contextPath}/question/moketestScore";
   					}
   				})
   			})
