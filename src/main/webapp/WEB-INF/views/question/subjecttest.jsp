@@ -284,15 +284,25 @@
 			
 			//값 선택시 배열에 저장
 			$(document).on("click","input[name=answer]",function(){
+				//처음선택한정답인지 수정한 정답인지 판별하기
+				//만약 이미 선택했던 답안이 있을 경우 insert문이 아닌 update문으로 처리
+				var isChecked = $(this).closest("div").children("input[name=isChecked]").val();
+				var codeNum = $(this).closest("div").children("input[name*=thisCode]").val();
+				if(isChecked=='true'){
+					//체크된 보기 표시 변경
+					$(this).closest("div").find("span").css("background-color","#eee");
+					$(this).next("span").css("background-color","#F28683");
+				}
 				//선택한 보기 라디오버튼 색 변경
 				$(this).next().css("background-color","#F28683");
+				//isChecked값 변경
+				$(this).closest("div").children("input[name=isChecked]").val('true');
 				//선택한 번호 답안지에 기입
 				var answer = $(this).val();
 				var thisDiv = $(this).closest(".question_wrap");//현재 div
 				var check = thisDiv.index();
 				
 				$(".answer_article").eq(check).text(answer); 
-				
 				
 				//값 넘겨주기(resulttest_code는 자동, customer(코드), answer, correct, spendTime, pass, question(코드))
 				var customer = $("input[name=customer]").val();
@@ -303,10 +313,26 @@
 				}
 				var question = $(this).closest("div").children("input[name*=question]").val();
 				var spendTime = 0;//아직처리못함
-				
 				//받은 값을 배열에 저장해서 보내기
 				//@RequestBody를 사용했기때문에
-					var jsonBody = {answer:answer, correct:correct, pass:pass, spendTime:spendTime};
+				var jsonBody = {answer:answer, correct:correct, pass:pass, spendTime:spendTime};
+				//수정,추가 ajax 다르게
+				if(isChecked=='true'){
+					//수정일 경우 put으로 보내기
+					$.ajax({
+						url:"${pageContext.request.contextPath}/question/subjecttest/"+customer+"/"+question,
+						type:"put",
+						headers:{
+							"Content-Type":"application/json",
+							"X-HTTP-Method-Override":"POST"
+						},
+						data:JSON.stringify(jsonBody),
+						dataType:"text",
+						success:function(json){
+							console.log(json);
+						}
+					})
+				}else{
 					//@RequestBody를 사용했으면headers, JSON.stringify를 반드시 사용해야함
 					$.ajax({
 						url:"${pageContext.request.contextPath}/question/subjecttest/"+customer+"/"+question,
@@ -319,9 +345,10 @@
 						dataType:"text",//String으로 반환되면 객체가 아니기때문에 json이 아닌 text로 받아야함
 						success:function(json){
 							console.log(json);
-							$(this).closest("div").children("input[name*=thisCode]").val(json);
 						}
 					})
+				}
+					
 			})
 			//제출
 			//arraylist에있는 insert후에 session값 지우기

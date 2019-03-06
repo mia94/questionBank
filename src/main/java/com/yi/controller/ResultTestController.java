@@ -72,17 +72,41 @@ public class ResultTestController {
 		
 		vo.setCustomer(cvo);
 		vo.setQuestion(qvo);
-		logger.info("subjecttestresult 후 ------------"+vo);
-		
-		//LoginDTO loginVo = (LoginDTO) request.getSession().getAttribute("login");
+		logger.info("subjecttestresult vo ------------"+vo);
 		
 		List<ResultTestVO> list = (List<ResultTestVO>) request.getSession().getAttribute("list");
 		if(list==null) {
 			list = new ArrayList<>();
 		}
 		list.add(vo);
-		logger.info("list ------------"+list.size());
+		logger.info("list 사이즈------------"+list.size());
 	}
+	
+	//ajax용 과목별테스트 라디오버튼 클릭시 하나씩 리스트에 담기
+		@ResponseBody
+		@RequestMapping(value="subjecttest/{customer}/{question}", method=RequestMethod.PUT)
+		public void subjecttestModify(HttpServletRequest request,@RequestBody ResultTestVO vo, @PathVariable("customer") String customer,@PathVariable("question") String question){
+			
+			CustomerVO cvo = new CustomerVO();
+			cvo.setCustomerCode(customer);
+			cvo = cService.selectByNo(cvo);
+			
+			QuestionVO qvo = new QuestionVO();
+			qvo.setQuestionCode(question);
+			qvo = qService.selectByNO(qvo);
+			
+			vo.setCustomer(cvo);
+			vo.setQuestion(qvo);
+			logger.info("수정 vo ------------"+vo);
+			
+			List<ResultTestVO> list = (List<ResultTestVO>) request.getSession().getAttribute("list");
+			if(list.contains(vo)) {
+				logger.info("list ------------전"+list.get(list.indexOf(vo)).getAnswer());
+				list.set(list.indexOf(vo), vo);
+				logger.info("list ------------후"+list.get(list.indexOf(vo)).getAnswer());
+			}
+			logger.info("list 사이즈------------"+list.size());
+		}
 	
 	//과목별 테스트 submit클릭시 20문제 모두 insert하기
 	@ResponseBody
@@ -95,12 +119,11 @@ public class ResultTestController {
 		for(int i=0;i<list.size();i++) {
 			service.insertResultTest(list.get(i));
 		}
-		
 		request.getSession().removeAttribute("list");
 	}
 	
 	//ajax용 과목별 update
-	@ResponseBody
+/*	@ResponseBody
 	@RequestMapping(value="subjecttest/{customer}/{question}", method=RequestMethod.PUT)
 	public ResponseEntity<String> subjecttestupdate(@RequestBody ResultTestVO vo, @PathVariable("customer") String customer,@PathVariable("question") String question){
 		logger.info("subjecttestupdate 전 ------------"+vo);
@@ -124,7 +147,7 @@ public class ResultTestController {
 			entity = new ResponseEntity<String>(e.getMessage(),HttpStatus.BAD_REQUEST);//400에러
 		}
 		return entity;
-	}
+	}*/
 	
 	//오답다시풀기 문제 리스트
 	@RequestMapping(value="/incorrect", method=RequestMethod.GET)
@@ -138,7 +161,6 @@ public class ResultTestController {
 			QuestionVO qvo = qService.selectByNO(resultList.get(i).getQuestion());
 			list.add(qvo);
 		}
-		
 		System.out.println(list);
 		model.addAttribute("list", list);
 	}

@@ -100,6 +100,31 @@ public class QuestionVO {
 	public void setNum(int num) {
 		this.num = num;
 	}
+	
+	
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((questionCode == null) ? 0 : questionCode.hashCode());
+		return result;
+	}
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		QuestionVO other = (QuestionVO) obj;
+		if (questionCode == null) {
+			if (other.questionCode != null)
+				return false;
+		} else if (!questionCode.equals(other.questionCode))
+			return false;
+		return true;
+	}
 	@Override
 	public String toString() {
 		return "QuestionVO [questionCode=" + questionCode + ", questionTitle=" + questionTitle + ", choice1=" + choice1

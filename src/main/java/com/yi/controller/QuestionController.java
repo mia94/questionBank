@@ -127,12 +127,6 @@ private static final Logger logger = LoggerFactory.getLogger(QuestionController.
 		model.addAttribute("pageMaker", pageMaker);
 		model.addAttribute("cri", cri);
 	}
-	
-	//과목별 문제 : 라디오 선택시 session에 값 저장
-	public void subjecttestSession() {
-		logger.info("subjecttestSession ------------");
-	}
-	//과목별 문제 : 제출하기 선택시 session에 저장된 값 모두 insert
 		
 	//json을 보내는 메소드 - list.jsp에서 사용
 	@ResponseBody
