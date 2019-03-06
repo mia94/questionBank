@@ -149,9 +149,10 @@ public class ResultTestController {
 		logger.info("list ------------:"+list.size());
 	}
 	
-	//모의고사 score
+	//모의고사 score================================================================3/6하는중
 	@RequestMapping(value="moketestScore", method=RequestMethod.GET)
-	public String mokeScore() {
+	public String mokeScore(@ModelAttribute("score") int score) {
+		logger.info("mokeScore ------------"+score);
 		return "redirect:/question/mokeScore";
 	}
 	
@@ -176,7 +177,7 @@ public class ResultTestController {
 	//모의고사
 	@ResponseBody
 	@RequestMapping(value="resultMokeTest", method=RequestMethod.POST)
-	public void insertResultMokeTest(@RequestParam(value="aArray[]") List<String> aArray, @RequestParam(value="qArray[]")List<String> qArray,@RequestParam(value="customerCode") String customerCode) {
+	public void insertResultMokeTest(HttpServletRequest request,@RequestParam(value="aArray[]") List<String> aArray, @RequestParam(value="qArray[]")List<String> qArray,@RequestParam(value="customerCode") String customerCode) {
 		
 		//고객찾기
 		CustomerVO cvo = new CustomerVO();
@@ -186,6 +187,8 @@ public class ResultTestController {
 		QuestionVO qvo = new QuestionVO();
 		
 		List<ResultTestVO> list = new ArrayList<>();//batch에 사용할 배열
+		//점수 구하는 용
+		int score = 0;
 		for(int i=0;i<100;i++) {
 			ResultTestVO vo = new ResultTestVO();
 			//해당문제정보찾기
@@ -202,6 +205,7 @@ public class ResultTestController {
 			boolean pass = false;
 			if(vo.getAnswer()==vo.getCorrect()) {
 				pass=true;
+				score += 1;
 			}
 			vo.setPass(pass);
 			logger.info("insertResultMokeTest ------------vo "+vo);
@@ -210,6 +214,7 @@ public class ResultTestController {
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("list", list);
 		logger.info("insertResultMokeTest ------------list "+list);
+		logger.info("Score ------------list "+score);
 		service.insertBatchResultTest(map);
 	}
 }

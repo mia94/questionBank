@@ -24,11 +24,11 @@
 		height:500px;
 		float: left;
 	}
-	#main_container div.chart article{
+	#main_container div.chart article{ 
 		clear:both; 
 		width:300px; 
 	}
-	#main_container div.chart article table{
+	#main_container div.chart article table{ 
 		border-collapse: collapse;
 		width:300px;
 		text-align: center;
@@ -38,9 +38,9 @@
 		background-color: #eee;
 	}
 	#main_container div.chart article table td{
-		border:1px solid #eee;
+		border:1px solid #A3918F;
 		width:100px;
-		height: 22px;
+		height: 23px;  
 	}
 	#main_container div#score{
 		width:100px;
