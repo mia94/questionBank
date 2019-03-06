@@ -181,7 +181,7 @@
 					
 				</article>
 			</c:forEach>
-			<button type="submit" id="test_submit">제출하기</button>
+			<button type="button" id="test_submit">제출하기</button>
 		</aside>
 	
 	<%-- 과목에 페이지가 필요없을듯?? 
@@ -322,8 +322,18 @@
 							$(this).closest("div").children("input[name*=thisCode]").val(json);
 						}
 					})
-				//제출
-				//arraylist에있는 insert후에 session값 지우기
+			})
+			//제출
+			//arraylist에있는 insert후에 session값 지우기
+			$("#test_submit").click(function(){
+				$.ajax({
+					url:"${pageContext.request.contextPath}/question/subjecttestResult",
+					type:"post",
+					dataType:"json",
+					success:function(json){
+
+					}
+				})
 			})
 			
 			//라디오버튼 선택시 insert, 답안변경시 update처리
