@@ -153,7 +153,7 @@ public class ResultTestController {
 		logger.info("list ------------:"+list.size());
 	}
 	
-	//오답다시풀기 문제 리스트
+	//오답다시풀기 문제 전체 리스트
 	@RequestMapping(value="/incorrect", method=RequestMethod.GET)
 	public void selectIncorrect(String customerCode, Model model){
 		logger.info("selectIncorrect ------------"+customerCode);
@@ -167,6 +167,34 @@ public class ResultTestController {
 		}
 		System.out.println(list);
 		model.addAttribute("list", list);
+	}
+	
+	//오답다시풀기 과목별 문제 리스트(중복제외)
+	@ResponseBody
+	@RequestMapping(value="/incorrect/{customerCode}/{subject}", method=RequestMethod.GET)
+	public ResponseEntity<List<QuestionVO>> selectIncorrectBySubject(@PathVariable("customerCode")String customerCode,@PathVariable("subject") String subject) {
+		logger.info("selectIncorrect 회원------------"+customerCode);
+		logger.info("selectIncorrect 과목------------"+subject);
+		ResponseEntity<List<QuestionVO>> entity = null;
+
+		try {
+			List<String> codeList = service.selectIncorrectQuestionBySubject(customerCode, subject);
+			logger.info("selectIncorrect 문제 list------------"+codeList);
+			List<QuestionVO> list = new ArrayList<>();
+			for(int i=0;i<codeList.size();i++) {
+				QuestionVO vo = new QuestionVO();
+				vo.setQuestionCode(codeList.get(i));
+				vo = qService.selectByNO(vo);
+				list.add(vo);
+			}
+			logger.info("selectIncorrect 문제 list------------"+list);
+			entity = new ResponseEntity<>(list, HttpStatus.OK);
+		} catch (Exception e) {
+			e.printStackTrace();
+			entity = new ResponseEntity<>(HttpStatus.BAD_REQUEST);//List<QuestionVO>로 보내야 하나, 보낼수없을때는HttpStatus만 보냄
+		}
+		
+		return entity;
 	}
 	
 	//모의고사
