@@ -16,18 +16,40 @@
 	#main_container div{
 		float: left;
 	}
-	#main_container #score{
+	#main_container div#barchart_values{
+		width: 600px; 
+		height: 300px;
+	}
+	#main_container div#score_container{
 		width:400px;
+	}
+	#main_container div#score_container h1,#main_container div#score_container p{
+		width:400px;
+		text-align: center;
+		font-weight: bold;
 	}
 </style>
 </head>
 <body>
 	<jsp:include page="../include/header.jsp"></jsp:include>
 	
+	<script>
+		//점수가 60점 이하면 불합격, 이상이면 합격
+		$(function(){
+			var totalScore = $("h1 span").text();
+			if(totalScore<60){
+				$("#isPass").text("불합격입니다.");
+			}else{
+				$("#isPass").text("합격입니다.");
+			}
+		})
+	</script>
+	
 	<div id="main_container">
-		<div id="barchart_values" style="width: 600px; height: 300px;"></div>
-		<div id="score">
-			총점 : ${score }
+		<div id="barchart_values"></div>
+		<div id="score_container">
+			<h1><span>${scoreList[0] }</span> 점</h1>
+			<p id="isPass"></p>
 		</div>
 	</div> 
 	
@@ -37,11 +59,11 @@
 	    function drawChart() {
 	      var data = google.visualization.arrayToDataTable([
 	        ["Element", "Density", { role: "style" } ],
-	        ["데이터베이스", 8, "#5B4149"], 
-	        ["전자계산기 구조", 10, "#F3C2BA"],
-	        ["운영체제", 19, "#F6EFEC"],
-	        ["소프트웨어 공학", 18, "color: #F28683"], 
-	        ["데이터 통신", 20, "color: #A3918F"] 
+	        ["데이터베이스", ${scoreList[1]}, "#5B4149"], 
+	        ["전자계산기 구조", ${scoreList[2]}, "#F3C2BA"],
+	        ["운영체제", ${scoreList[3]}, "#F6EFEC"],
+	        ["소프트웨어 공학", ${scoreList[4]}, "color: #F28683"], 
+	        ["데이터 통신", ${scoreList[5]}, "color: #A3918F"] 
 	      ]);
 	
 	      var view = new google.visualization.DataView(data);

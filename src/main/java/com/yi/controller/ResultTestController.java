@@ -184,6 +184,12 @@ public class ResultTestController {
 		List<ResultTestVO> list = new ArrayList<>();//batch에 사용할 배열
 		//점수 구하는 용
 		int score = 0;
+		//과목별 점수 구하는 용
+		int dScore = 0;
+		int aScore = 0;
+		int oScore = 0;
+		int sScore = 0;
+		int cScore = 0;
 		for(int i=0;i<100;i++) {
 			ResultTestVO vo = new ResultTestVO();
 			//해당문제정보찾기
@@ -201,6 +207,26 @@ public class ResultTestController {
 			if(vo.getAnswer()==vo.getCorrect()) {
 				pass=true;
 				score += 1;
+				logger.info("과목별 Score용 구분:"+newQvo);
+				logger.info("과목별 Score용 구분:"+newQvo.getQuestionCode().substring(0, 2));
+				//과목별 점수 구하기
+				switch(newQvo.getQuestionCode().substring(0, 2)){
+		        case "QD": 
+		        	dScore += 1;
+		            break;
+		        case "QA":
+		        	aScore += 1;
+		            break;
+		        case "QO" :
+		        	oScore += 1;
+		            break;
+		        case "QS":
+		        	sScore += 1;
+		            break;
+		        case "QC" :
+		        	cScore += 1;
+		            break;
+				}
 			}
 			vo.setPass(pass);
 			logger.info("insertResultMokeTest ------------vo "+vo);
@@ -208,10 +234,18 @@ public class ResultTestController {
 		}
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("list", list);
-		logger.info("Score ------------list "+score);
+		
 		//세션에 리스트와 점수담기
+		List<Integer> scoreList = new ArrayList<>();
+		scoreList.add(score);
+		scoreList.add(dScore);
+		scoreList.add(aScore);
+		scoreList.add(oScore);
+		scoreList.add(sScore);
+		scoreList.add(cScore);
+		logger.info("Score ------------list "+scoreList);
 		request.getSession().setAttribute("list", list);
-		request.getSession().setAttribute("score", score);
+		request.getSession().setAttribute("scoreList", scoreList);
 		
 		service.insertBatchResultTest(map);
 		
@@ -220,13 +254,16 @@ public class ResultTestController {
 	@RequestMapping(value="mokeScore", method=RequestMethod.GET)
 	public void moketestScore(HttpServletRequest request, Model model) {
 		logger.info("mokeScore ------------");
-		int score = (int) request.getSession().getAttribute("score");
+		
+		List<Integer> scoreList = (List<Integer>) request.getSession().getAttribute("scoreList");
 		List<ResultTestVO> list = (List<ResultTestVO>) request.getSession().getAttribute("list");
-		model.addAttribute("score", score);
 		model.addAttribute("list", list);
-		//세션에 담긴 값 지우기
-		request.getSession().removeAttribute("score");
-		request.getSession().removeAttribute("list");
+		model.addAttribute("scoreList", scoreList);
+		//과목별 점수 구하기		
+		
+		//세션에 담긴 값 지우기(페이지 새로고침시 에러발생)
+		//request.getSession().removeAttribute("score");
+		//request.getSession().removeAttribute("list");
 	}
 
 }
