@@ -1,5 +1,8 @@
 package com.yi.controller;
 
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.model;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.request;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -14,6 +17,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -168,7 +172,7 @@ public class ResultTestController {
 	//모의고사
 	@ResponseBody
 	@RequestMapping(value="resultMokeTest", method=RequestMethod.POST)
-	public String insertResultMokeTest(HttpServletRequest request,@RequestParam(value="aArray[]") List<String> aArray, @RequestParam(value="qArray[]")List<String> qArray,@RequestParam(value="customerCode") String customerCode) {
+	public void insertResultMokeTest(HttpServletRequest request,@RequestParam(value="aArray[]") List<String> aArray, @RequestParam(value="qArray[]")List<String> qArray,@RequestParam(value="customerCode") String customerCode) {
 		
 		//고객찾기
 		CustomerVO cvo = new CustomerVO();
@@ -204,17 +208,25 @@ public class ResultTestController {
 		}
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("list", list);
-		logger.info("insertResultMokeTest ------------list "+list);
 		logger.info("Score ------------list "+score);
+		//세션에 리스트와 점수담기
+		request.getSession().setAttribute("list", list);
+		request.getSession().setAttribute("score", score);
+		
 		service.insertBatchResultTest(map);
 		
-		return "redirect:/question/mokeScore";
 	}
-	
-	//모의고사 score================================================================3/6하는중
+
 	@RequestMapping(value="mokeScore", method=RequestMethod.GET)
-	public void moketestScore() {
+	public void moketestScore(HttpServletRequest request, Model model) {
 		logger.info("mokeScore ------------");
+		int score = (int) request.getSession().getAttribute("score");
+		List<ResultTestVO> list = (List<ResultTestVO>) request.getSession().getAttribute("list");
+		model.addAttribute("score", score);
+		model.addAttribute("list", list);
+		//세션에 담긴 값 지우기
+		request.getSession().removeAttribute("score");
+		request.getSession().removeAttribute("list");
 	}
 
 }
