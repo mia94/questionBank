@@ -167,6 +167,14 @@
 				//클릭한 과목, 로그인 정보 가져오기
 				var customerCode = '${login.customerCode}';
 				var subject = $(this).children("input[type=hidden]").val();
+				
+				Handlebars.registerHelper('ifCond', function(v1, options) {
+					if(v1 === "" || v1 === null) {
+					   return options.fn(this);
+					}
+					return options.inverse(this);
+				})
+				
 				//ajax
 				$.ajax({
 					url:"${pageContext.request.contextPath}/question/incorrect/"+customerCode+"/"+subject,
