@@ -232,6 +232,7 @@
   			
   			//라디오버튼 클릭 시(정답체크시)
   			$(document).on("click","input[type=radio]",function(){
+  				var isChecked = $(this).closest("div").children("input[name=isChecked]").val(); 
   				if(isChecked=='true'){
 					//체크된 보기 표시 변경
 					$(this).closest("div").find("span").css("background-color","#eee");
