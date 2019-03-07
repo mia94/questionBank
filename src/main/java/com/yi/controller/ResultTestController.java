@@ -149,15 +149,6 @@ public class ResultTestController {
 		logger.info("list ------------:"+list.size());
 	}
 	
-	//모의고사 score================================================================3/6하는중
-	@RequestMapping(value="moketestScore", method=RequestMethod.GET)
-	public String mokeScore(@ModelAttribute("score") int score) {
-		logger.info("mokeScore ------------"+score);
-		return "redirect:/question/mokeScore";
-	}
-	
-	//모의고사 mokeScore.jsp로 이동
-	
 	//오답다시풀기 문제 리스트
 	@RequestMapping(value="/incorrect", method=RequestMethod.GET)
 	public void selectIncorrect(String customerCode, Model model){
@@ -177,7 +168,7 @@ public class ResultTestController {
 	//모의고사
 	@ResponseBody
 	@RequestMapping(value="resultMokeTest", method=RequestMethod.POST)
-	public void insertResultMokeTest(HttpServletRequest request,@RequestParam(value="aArray[]") List<String> aArray, @RequestParam(value="qArray[]")List<String> qArray,@RequestParam(value="customerCode") String customerCode) {
+	public String insertResultMokeTest(HttpServletRequest request,@RequestParam(value="aArray[]") List<String> aArray, @RequestParam(value="qArray[]")List<String> qArray,@RequestParam(value="customerCode") String customerCode) {
 		
 		//고객찾기
 		CustomerVO cvo = new CustomerVO();
@@ -216,7 +207,16 @@ public class ResultTestController {
 		logger.info("insertResultMokeTest ------------list "+list);
 		logger.info("Score ------------list "+score);
 		service.insertBatchResultTest(map);
+		
+		return "redirect:/question/mokeScore";
 	}
+	
+	//모의고사 score================================================================3/6하는중
+	@RequestMapping(value="mokeScore", method=RequestMethod.GET)
+	public void moketestScore() {
+		logger.info("mokeScore ------------");
+	}
+
 }
 
 

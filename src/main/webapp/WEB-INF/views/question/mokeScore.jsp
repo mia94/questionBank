@@ -19,7 +19,7 @@
 	<jsp:include page="../include/header.jsp"></jsp:include>
 	
 	<div id="main_container">
-		
+		moke 점수
 	</div> 
 	
 	<jsp:include page="../include/footer.jsp"></jsp:include>
