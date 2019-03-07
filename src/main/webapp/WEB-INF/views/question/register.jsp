@@ -99,7 +99,7 @@
 		  		</select>
 	  		</div>
 	  		<div class="custom-select">
-		  		<select name="subject">
+		  		<select name="subject" class="subject">
 		  			<option value="">과목</option>
 		  			<option value="D">데이터베이스</option>
 		  			<option value="A">전자계산기 구조</option>
@@ -111,7 +111,7 @@
 	  		<div class="custom-select">
 		  		<select name="number">
 		  			<option value="">번호</option>
-		  			<c:forEach var="cnt" begin="1" end="100" step="1">
+		  			<c:forEach var="cnt" begin="1" end="20" step="1">
 		  				<option value='${cnt}'>${cnt}</option>
 		  			</c:forEach>
 		  		</select>
@@ -166,45 +166,7 @@
 	  			</td>
 	  		</tr>
 	  	</table>
-	  	
-	  	<!-- <p class="wsm_questionreg">
-	  		<label>문제</label>
-	  		<input type="text" name="questionTitle">
-	  	</p>
-	  	<p class="wsm_questionreg">
-	  		<label>보기1</label>
-	  		<input type="text" name="choice1">
-	  	</p>
-	  	<p class="wsm_questionreg">
-	  		<label>보기2</label>
-	  		<input type="text" name="choice2">
-	  	</p>
-	  	<p class="wsm_questionreg">
-	  		<label>보기3</label>
-	  		<input type="text" name="choice3">
-	  	</p>
-	  	<p class="wsm_questionreg">
-	  		<label>보기4</label>
-	  		<input type="text" name="choice4">
-	  	</p>
-	  	<p class="wsm_questionreg">
-	  		<label>정답</label>
-	  		<input type="radio" name="correct" class="ex_rd2" value="1"> 1
-	  		<input type="radio" name="correct" class="ex_rd2" value="2"> 2
-	  		<input type="radio" name="correct" class="ex_rd2" value="3"> 3
-	  		<input type="radio" name="correct" class="ex_rd2" value="4"> 4
-	  	</p>
-	  	<p class="wsm_questionreg">
-	  		<label>상태</label>
-	  		<input type="radio" name="state" class="ex_rd2" value="정상"> 정상
-	  		<input type="radio" name="state" class="ex_rd2" value="요청"> 요청
-	  		<input type="radio" name="state" class="ex_rd2" value="보류"> 보류
-	  		<input type="radio" name="state" class="ex_rd2" value="오류"> 오류
-	  	</p> 
-	  	<p class="wsm_questionreg">
-	  		<label>사진 / 예문</label>
-	  		<input type="file" name="pictureFile">
-	  	</p> -->
+
 	  	<p>
 	        <button type="button" class="registerQ" data-toggle="modal" data-target="#myModal">Submit</button>
 	  	</p> 
@@ -237,6 +199,26 @@
 	
 	<script>
 	$(function(){
+		//과목 선택시 번호 select 리스트 변경
+		$(".subject").change(function(){
+		switch($(".subject").val()){
+		 case 'D' : 
+		     
+		    break;
+		 case 'A' : 
+		         실행문; 
+		    break;
+		 case 'O' : 
+	                  실행문; 
+	    	break;
+	     case 'S' : 
+	                   실행문; 
+	     	break; 
+	     case 'C' : 
+	                    실행문; 
+	    	break; 
+	   	}
+		})
 		//파일 선택시 현재창에 display
 		$("#file").change(function(){
 			$("#file_display").empty();

@@ -14,6 +14,12 @@
 		height: 500px;
 		position: relative;
 	}
+	#main_container>h3{
+		position: absolute;
+		top: 0;
+		left: 0; 
+		z-index: 100;
+	}
 	#main_container div#donutchart{
 		width:600px;
 		height:500px;
@@ -67,6 +73,7 @@
 	<jsp:include page="../include/header.jsp"></jsp:include>
 	
 	<div id="main_container">
+	<h3>과목명</h3>
 		<div id="donutchart"></div>
 		<div class="chart">
 			<article>
