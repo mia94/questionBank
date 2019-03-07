@@ -12,14 +12,31 @@
 <title>Insert title here</title>
 <style>
 @import url('https://fonts.googleapis.com/css?family=Jua');
-	div.question_wrap{
+	div.question_wrap, div#select_subject{
 		width:800px;
-		margin:0px auto;
+		margin: 0 auto;
+	}
+	div.question_wrap{
 		border:1px solid #ccc;
 		padding: 15px 20px;  
 	}
 	section{
 		position: relative;
+	}
+	div#select_subject ul{
+		width:800px;
+		list-style: none; 
+	}
+	div#select_subject ul li{
+		float: left;
+		width:160px;
+		height:40px;
+		border:1px solid #eee;
+		line-height: 40px;
+		text-align: center;
+	}
+	div#select_subject ul li:hover{
+		background-color: #F6EFEC;
 	}
 	/*----------------------------------------------------------문제 리스트*/
 	.container_wrap{
@@ -58,6 +75,15 @@
 	
 	<form action="result" method="post" id="wsm_testForm">
 		<div class="container_wrap">
+		<div id="select_subject">
+			<ul>
+				<li>데이터베이스</li>
+				<li>전자계산기 구조</li>
+				<li>운영체제</li>
+				<li>소프트웨어 공학</li>
+				<li>데이터통신</li>
+			</ul>
+		</div>
 			<c:forEach var="item" items="${list }">
 				<div class="question_wrap">
 					<p>${item.questionCode}</p>
@@ -100,7 +126,11 @@
 				</c:if>
 			</ul>
 		</div>
-	
+	<script>
+		$("select_subject li").click(function(){
+			
+		})
+	</script>
 	<script src="${pageContext.request.contextPath}/resources/js/select.js"></script>
 	
 	<jsp:include page="../include/footer.jsp"></jsp:include>

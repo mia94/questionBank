@@ -24,6 +24,7 @@ public interface ResultTestDao {
 	public void updateByCustomerAndQuestion(ResultTestVO resultTestVo);
 	//고객별 오답노트 리스트
 	public List<ResultTestVO> selectIncorrectQuestionByCustomer(String customerCode);
+	public List<String> selectIncorrectQuestionBySubject(String customerCode, String subject);
 	//batch insert
 	public void insertBatchResultTest(Map<String, Object> map);
 }

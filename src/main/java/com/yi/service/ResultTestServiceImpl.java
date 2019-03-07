@@ -77,4 +77,10 @@ public class ResultTestServiceImpl implements ResultTestService {
 		dao.insertBatchResultTest(map);
 	}
 
+	@Override
+	public List<String> selectIncorrectQuestionBySubject(String customerCode, String subject) {
+		// TODO Auto-generated method stub
+		return dao.selectIncorrectQuestionBySubject(customerCode, subject);
+	}
+
 }

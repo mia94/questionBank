@@ -93,6 +93,14 @@
 		from resulttest
 		where customer=#{customerCode} and pass='0'
 	</select>
+	
+	<!-- 고객별 과목별 오답문제 list출력 -->
+	<select id="selectIncorrectQuestionBySubject" resultType="String">
+		select distinct question
+		from resulttest
+		where customer=#{customerCode} and pass='0' and substring(question,2,1)=#{subject}
+		order by question
+	</select>
 </mapper>
 
 

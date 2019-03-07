@@ -111,7 +111,7 @@
 	  		<div class="custom-select">
 		  		<select name="number">
 		  			<option value="">번호</option>
-		  			<c:forEach var="cnt" begin="1" end="20" step="1">
+		  			<c:forEach var="cnt" begin="1" end="100" step="1">
 		  				<option value='${cnt}'>${cnt}</option>
 		  			</c:forEach>
 		  		</select>
@@ -200,22 +200,24 @@
 	<script>
 	$(function(){
 		//과목 선택시 번호 select 리스트 변경
-		$(".subject").change(function(){
-		switch($(".subject").val()){
-		 case 'D' : 
-		     
+		$(".select-items div").click(function(){
+		switch($(".same-as-selected").text()){
+		 case '데이터베이스' : 
+		    alert("1");
 		    break;
-		 case 'A' : 
-		         실행문; 
+		 case '전자계산기 구조' : 
+			 alert("21");
+			 $("select[name=number]").empty();
+			 $("select[name=number]").html("<option value=''>번호</option>");
 		    break;
-		 case 'O' : 
-	                  실행문; 
+		 case '운영체제' : 
+			 alert("41");
 	    	break;
-	     case 'S' : 
-	                   실행문; 
+	     case '소프트웨어 공학' : 
+	    	 alert("61");
 	     	break; 
-	     case 'C' : 
-	                    실행문; 
+	     case '데이터 통신' : 
+	    	 alert("81");
 	    	break; 
 	   	}
 		})

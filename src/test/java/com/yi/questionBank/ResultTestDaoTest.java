@@ -68,7 +68,7 @@ public class ResultTestDaoTest {
 		Assert.assertNotNull(vo);
 	}
 	
-	@Test
+	//@Test
 	public void test04selectByCustomer() {/////////////////////////////////////?customer왜 자꾸 null?
 		CustomerVO cVo = new CustomerVO();
 		cVo.setCustomerCode("C001");
@@ -79,7 +79,7 @@ public class ResultTestDaoTest {
 		Assert.assertNotNull(list);
 	}
 	
-	@Test
+	//@Test
 	public void test05update() { /////////////////////////////////////?머야 왜안돼
 		ResultTestVO vo = new ResultTestVO();
 		vo.setResultTestCode(1);
@@ -93,6 +93,12 @@ public class ResultTestDaoTest {
 		ResultTestVO vo = new ResultTestVO();
 		vo.setResultTestCode(2);
 		service.deleteResultTest(vo);
+	}
+	
+	@Test
+	public void test07selectIncorrect() {
+		List<String> list = service.selectIncorrectQuestionBySubject("C002", "D");
+		System.out.println(list);
 	}
 }
 

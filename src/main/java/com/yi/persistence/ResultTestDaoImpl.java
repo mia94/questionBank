@@ -85,6 +85,15 @@ public class ResultTestDaoImpl implements ResultTestDao{
 		sqlSession.insert(namespace+".insertBatchResultTest", map);
 	}
 
+	@Override
+	public List<String> selectIncorrectQuestionBySubject(String customerCode, String subject) {
+		// TODO Auto-generated method stub
+		Map<String, Object> map = new HashMap<>();
+		map.put("customerCode", customerCode);
+		map.put("subject",subject);
+		return sqlSession.selectList(namespace+".selectIncorrectQuestionBySubject", map);
+	}
+
 	
 
 }
