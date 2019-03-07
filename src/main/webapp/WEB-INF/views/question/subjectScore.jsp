@@ -15,7 +15,7 @@
 		position: relative;
 	}
 	#main_container div#donutchart{
-		width:700px;
+		width:600px;
 		height:500px;
 		float: left;
 	}
@@ -37,6 +37,9 @@
 	#main_container div.chart article table tr:hover{
 		background-color: #eee;
 	}
+	#main_container div.chart article table tr:first-child:hover{
+		background:none;
+	}
 	#main_container div.chart article table td{
 		border:1px solid #A3918F;
 		width:100px;
@@ -46,9 +49,10 @@
 		width:100px;
 		height:100px;
 		position: absolute;
-		left: 220px;
+		left: 185px;
 		top:200px;
 		text-align: center; 
+		color:#5B4149;
 	}
 	#main_container div#score h4{
 		line-height: 80px;  
@@ -93,13 +97,14 @@
     google.charts.setOnLoadCallback(drawChart);
     function drawChart() {
       var data = google.visualization.arrayToDataTable([
-        ['Score', '100'],
-        ['정답',     11],
-        ['오답',      2]
-      ]);
+        ['Score', '100' ],
+        ['정답률',     ${score }],
+        ['오답률',      100-${score }] 
+      ]); 
 
       var options = {
-        pieHole: 0.4,
+        pieHole: 0.6, 
+        slices: [{color: '#A3918F'},{color: '#F28683'}] 
       };
 
       var chart = new google.visualization.PieChart(document.getElementById('donutchart'));
@@ -116,7 +121,7 @@
 				var answer = $(".td_answer").eq(i).text();
 				var correct = $(".td_correct").eq(i).text();
 				if(answer!=correct){ 
-					$("tr").eq(i+1).css("backgroundColor","#F3C2BA"); 
+					$("tr").eq(i+1).css("backgroundColor","rgba(243,194,186,0.3)"); 
 				}
 			}
 			//tr클릭 시 해당 문제가 있는 페이지로 이동

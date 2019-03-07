@@ -255,8 +255,6 @@
   			})
   			
   			$("#test_submit").click(function(){
-  				alert(aArray);
-  				alert(qArray);
   				var allData = {"aArray":aArray , "qArray":qArray, "customerCode":'${login.customerCode}'};
   				//ajax 의 data 값에 배열(Array)을 넘기기 위해서는 세팅값을 바꿔주어야 한다
   				//jQuery.ajaxSettings.traditional = true;
