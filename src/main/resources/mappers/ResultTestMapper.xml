@@ -72,14 +72,6 @@
 		from resulttest
 	</select>
 	
-	<!-- 고객별, 연도별, 회차별 푼 문제와 맞춘 갯수 구하는 sql -->
-	<!-- <select id="selectScore" resultType="TestScoreDTO">
-		select customer, count(question) as totalQuestion, sum(pass) as correctQuestion,sum(spendTime) as totalSpendTime
-		from resulttest
-		where customer=#{customerCode} and substring(question from 3 for 4)=#{year} and substring(question from 7 for 1)=#{round}
-		order by substring(question from 7 for 3)
-	</select> -->
-	
 	<!-- 고객코드와 문제번호로 update -->
 	<update id="updateByCustomerAndQuestion">
 		UPDATE resulttest
@@ -100,6 +92,15 @@
 		from resulttest
 		where customer=#{customerCode} and pass='0' and substring(question,2,1)=#{subject}
 		order by question
+	</select>
+	
+	<!-- 많이 틀린 문제 과목별 select -->
+	<select id="selectIncorrectTopRank" resultType="String">
+		select question
+		from resulttest
+		where pass='0' and substring(question,2,1)=#{subject}
+		group by question
+		order by count(question) desc
 	</select>
 </mapper>
 

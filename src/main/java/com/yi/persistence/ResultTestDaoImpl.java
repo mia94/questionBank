@@ -52,16 +52,6 @@ public class ResultTestDaoImpl implements ResultTestDao{
 	}
 
 	@Override
-	public TestScroeDTO selectScore(String customerCode, int year, int round) {
-		// TODO Auto-generated method stub
-		Map<String, Object> map = new HashMap<>();
-		map.put("customerCode", customerCode);
-		map.put("round",round);
-		map.put("year", year);
-		return sqlSession.selectOne(namespace+".selectScore",map);
-	}
-
-	@Override
 	public int selectMaxCode() {
 		// TODO Auto-generated method stub
 		return sqlSession.selectOne(namespace+".selectMaxCode");
@@ -92,6 +82,12 @@ public class ResultTestDaoImpl implements ResultTestDao{
 		map.put("customerCode", customerCode);
 		map.put("subject",subject);
 		return sqlSession.selectList(namespace+".selectIncorrectQuestionBySubject", map);
+	}
+
+	@Override
+	public List<String> selectIncorrectTopRank(String subject) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList(namespace+".selectIncorrectTopRank", subject);
 	}
 
 	

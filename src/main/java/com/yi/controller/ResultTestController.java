@@ -293,6 +293,24 @@ public class ResultTestController {
 		//request.getSession().removeAttribute("score");
 		//request.getSession().removeAttribute("list");
 	}
+	
+	//오답랭킹순으로 문제 리스트
+		@RequestMapping(value="/rankIncorrect", method=RequestMethod.GET)
+		public void selectIncorrectByRank(Model model){
+			logger.info("selectIncorrect ------------");
+			List<String> resultList = service.selectIncorrectTopRank("D");
+			System.out.println(resultList);
+			List<QuestionVO> list = new ArrayList<>();
+			
+			for(int i=0;i<resultList.size();i++) {
+				QuestionVO qvo = new QuestionVO();
+				qvo.setQuestionCode(resultList.get(i));
+				qvo = qService.selectByNO(qvo);
+				list.add(qvo);
+			}
+			System.out.println(list);
+			model.addAttribute("list", list);
+		}
 
 }
 
