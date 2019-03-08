@@ -99,7 +99,7 @@
 		  		</select>
 	  		</div>
 	  		<div class="custom-select">
-		  		<select name="subject">
+		  		<select name="subject" class="subject">
 		  			<option value="">과목</option>
 		  			<option value="D">데이터베이스</option>
 		  			<option value="A">전자계산기 구조</option>
@@ -166,45 +166,7 @@
 	  			</td>
 	  		</tr>
 	  	</table>
-	  	
-	  	<!-- <p class="wsm_questionreg">
-	  		<label>문제</label>
-	  		<input type="text" name="questionTitle">
-	  	</p>
-	  	<p class="wsm_questionreg">
-	  		<label>보기1</label>
-	  		<input type="text" name="choice1">
-	  	</p>
-	  	<p class="wsm_questionreg">
-	  		<label>보기2</label>
-	  		<input type="text" name="choice2">
-	  	</p>
-	  	<p class="wsm_questionreg">
-	  		<label>보기3</label>
-	  		<input type="text" name="choice3">
-	  	</p>
-	  	<p class="wsm_questionreg">
-	  		<label>보기4</label>
-	  		<input type="text" name="choice4">
-	  	</p>
-	  	<p class="wsm_questionreg">
-	  		<label>정답</label>
-	  		<input type="radio" name="correct" class="ex_rd2" value="1"> 1
-	  		<input type="radio" name="correct" class="ex_rd2" value="2"> 2
-	  		<input type="radio" name="correct" class="ex_rd2" value="3"> 3
-	  		<input type="radio" name="correct" class="ex_rd2" value="4"> 4
-	  	</p>
-	  	<p class="wsm_questionreg">
-	  		<label>상태</label>
-	  		<input type="radio" name="state" class="ex_rd2" value="정상"> 정상
-	  		<input type="radio" name="state" class="ex_rd2" value="요청"> 요청
-	  		<input type="radio" name="state" class="ex_rd2" value="보류"> 보류
-	  		<input type="radio" name="state" class="ex_rd2" value="오류"> 오류
-	  	</p> 
-	  	<p class="wsm_questionreg">
-	  		<label>사진 / 예문</label>
-	  		<input type="file" name="pictureFile">
-	  	</p> -->
+
 	  	<p>
 	        <button type="button" class="registerQ" data-toggle="modal" data-target="#myModal">Submit</button>
 	  	</p> 
@@ -237,6 +199,28 @@
 	
 	<script>
 	$(function(){
+		//과목 선택시 번호 select 리스트 변경
+		$(".select-items div").click(function(){
+		switch($(".same-as-selected").text()){
+		 case '데이터베이스' : 
+		    alert("1");
+		    break;
+		 case '전자계산기 구조' : 
+			 alert("21");
+			 $("select[name=number]").empty();
+			 $("select[name=number]").html("<option value=''>번호</option>");
+		    break;
+		 case '운영체제' : 
+			 alert("41");
+	    	break;
+	     case '소프트웨어 공학' : 
+	    	 alert("61");
+	     	break; 
+	     case '데이터 통신' : 
+	    	 alert("81");
+	    	break; 
+	   	}
+		})
 		//파일 선택시 현재창에 display
 		$("#file").change(function(){
 			$("#file_display").empty();

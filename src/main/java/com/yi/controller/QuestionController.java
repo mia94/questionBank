@@ -1,12 +1,19 @@
 package com.yi.controller;
 
+import java.io.File;
 import java.io.FileInputStream;
+import java.io.IOException;
 import java.io.InputStream;
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import javax.sql.DataSource;
 
 import org.apache.commons.io.IOUtils;
 import org.slf4j.Logger;
@@ -39,6 +46,8 @@ private static final Logger logger = LoggerFactory.getLogger(QuestionController.
 	
 	@Autowired
 	private QuestionService service;
+	@Autowired
+	private DataSource ds;
 	//기본형은 주입받으려면 servlet-context에 등록된 이름으로 주입
 	@Resource(name="uploadPath")
 	private String uploadPath;
@@ -71,7 +80,60 @@ private static final Logger logger = LoggerFactory.getLogger(QuestionController.
 		System.out.println(vo);
 		
 		return "redirect:/question/register";
+	}
+	
+	//문제추가
+	@RequestMapping(value="registerfile", method=RequestMethod.GET)
+	public void registerfileGet(){
+		logger.info("registerfileGet------------GET");
 	}	
+	
+	//문제추가 파일 업로드, upload파일에 파일먼저 올린 후 올린파일로 insert 수행, 이후 파일 삭제
+	@RequestMapping(value="registerfile", method=RequestMethod.POST)
+	public void registerfilePost(String filePath, HttpServletRequest req) throws IOException{
+		logger.info("registerfilePost------------Post");
+		//파일 upload폴더에 저장
+		//파일생성테스트
+		String uploadPath2 = req.getRealPath("upload");
+		logger.info("req.getRealPath(upload)------------"+uploadPath2);
+		logger.info("uploadPath------------"+uploadPath);
+		logger.info("현재경로1------------"+new File(".").getCanonicalPath());
+		logger.info("현재경로2------------"+new File(".").getPath());
+		String upload = uploadPath + "/new";
+		File dir = new File(upload);
+		dir.mkdirs();
+		
+		String current;
+		try {
+			current = new java.io.File( "." ).getCanonicalPath();
+			 System.out.println("Current dir:"+current);
+			 String currentDir = System.getProperty("user.dir");
+		     System.out.println("Current dir using System:" +currentDir);
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+
+		//insert부분
+		try (Connection con = ds.getConnection();	
+				Statement stmt = con.createStatement()) {
+			String tableName = "question"; 
+			//String filePath = "C:/ProgramData/MySQL/MySQL Server 5.7/Uploads/question201901_5.csv";
+			String sql = String.format("LOAD DATA LOCAL INFILE '%s' IGNORE INTO TABLE %s "
+					+ "character set 'UTF8' "
+					+ "fields TERMINATED by ',' ENCLOSED BY '\"' "
+					+ "LINES TERMINATED BY '\\r\\n' "
+					+ "IGNORE 1 lines "
+					+ "(question_code, question_title, choice1, choice2, choice3, choice4, correct, state, correct_rate, picture,`year`,round, subject)",filePath, tableName);
+			
+			stmt.executeQuery(sql);
+			System.out.println(sql);
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}	
+	}	
+	
 	//jsp로 가는 메소드
 	@RequestMapping(value="moketest", method=RequestMethod.GET)
 	public void moketest(Criteria cri,Model model){
@@ -127,12 +189,6 @@ private static final Logger logger = LoggerFactory.getLogger(QuestionController.
 		model.addAttribute("pageMaker", pageMaker);
 		model.addAttribute("cri", cri);
 	}
-	
-	//과목별 문제 : 라디오 선택시 session에 값 저장
-	public void subjecttestSession() {
-		logger.info("subjecttestSession ------------");
-	}
-	//과목별 문제 : 제출하기 선택시 session에 저장된 값 모두 insert
 		
 	//json을 보내는 메소드 - list.jsp에서 사용
 	@ResponseBody

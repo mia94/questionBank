@@ -48,12 +48,6 @@ public class ResultTestServiceImpl implements ResultTestService {
 	}
 
 	@Override
-	public TestScroeDTO selectScore(String customerCode, int year, int round) {
-		// TODO Auto-generated method stub
-		return dao.selectScore(customerCode, year, round);
-	}
-
-	@Override
 	public int selectMaxCode() {
 		// TODO Auto-generated method stub
 		return dao.selectMaxCode();
@@ -75,6 +69,18 @@ public class ResultTestServiceImpl implements ResultTestService {
 	public void insertBatchResultTest(Map<String, Object> map) {
 		// TODO Auto-generated method stub
 		dao.insertBatchResultTest(map);
+	}
+
+	@Override
+	public List<String> selectIncorrectQuestionBySubject(String customerCode, String subject) {
+		// TODO Auto-generated method stub
+		return dao.selectIncorrectQuestionBySubject(customerCode, subject);
+	}
+
+	@Override
+	public List<String> selectIncorrectTopRank(String subject) {
+		// TODO Auto-generated method stub
+		return dao.selectIncorrectTopRank(subject);
 	}
 
 }

@@ -44,25 +44,25 @@
 			    </div>
 			    <ul class="nav navbar-nav">
 			      <li><a href="#"></a></li>
-			      <li class="dropdown"><a class="dropdown-toggle wsm_nav_a" data-toggle="dropdown" href="#">Question<span class="caret"></span></a>
+			      <li><a href="${pageContext.request.contextPath}/question/moketest" class="wsm_nav_a">모의고사<span class="caret"></a></li>
+			      <li class="dropdown"><a class="dropdown-toggle wsm_nav_a" data-toggle="dropdown" href="#">연습하기<span class="caret"></span></a>
 			        <ul class="dropdown-menu">
 			          <li><a href="${pageContext.request.contextPath}/question/list" class="question_menu">문제리스트</a></li>
-			          <li><a href="${pageContext.request.contextPath}/question/moketest" class="question_menu">모의고사</a></li>
 			          <li><a href="${pageContext.request.contextPath}/question/subjecttest" class="question_menu">과목별 문제풀기</a></li>
 			          <li><a href="${pageContext.request.contextPath}/question/singletest" class="question_menu">랜덤문제</a></li>
 			          <li><a href="${pageContext.request.contextPath}/question/incorrect?customerCode=${login.customerCode}" class="question_menu">오답다시풀기</a></li>
-			          <li><a href="${pageContext.request.contextPath}/question/register" class="question_menu">문제 추가</a></li>
+			          <li><a href="${pageContext.request.contextPath}/question/rankIncorrect" class="question_menu">많이틀린문제</a></li>
 			        </ul>
 			      </li>
-			      <li class="dropdown"><a class="dropdown-toggle wsm_nav_a" data-toggle="dropdown" href="#">Customer<span class="caret"></span></a>
+			      <li class="dropdown"><a class="dropdown-toggle wsm_nav_a" data-toggle="dropdown" href="#">문제추가<span class="caret"></span></a>
 			        <ul class="dropdown-menu">
-			          <li><a href="${pageContext.request.contextPath}/customer/list">List</a></li>
-			          <li><a href="#">Menu2</a></li>
-			          <li><a href="#">Menu3</a></li>
+			          <li><a href="${pageContext.request.contextPath}/question/register" class="question_menu">한문제 추가</a></li>
+			          <li><a href="${pageContext.request.contextPath}/question/registerfile" class="question_menu">문제파일 추가</a></li>
 			        </ul>
 			      </li>
-			      <li><a href="${pageContext.request.contextPath}/reqUpdate/list" class="wsm_nav_a">Request</a></li>
-			      <li><a href="${pageContext.request.contextPath}/board/list" class="wsm_nav_a">Board</a></li>
+			      <li><a href="${pageContext.request.contextPath}/customer/list" class="wsm_nav_a">고객관리</a></li>
+			      <li><a href="${pageContext.request.contextPath}/reqUpdate/list" class="wsm_nav_a">건의사항</a></li>
+			      <li><a href="${pageContext.request.contextPath}/board/list" class="wsm_nav_a">자유게시판</a></li>
 			    </ul>
 			    <ul class="nav navbar-nav navbar-right">
 			      
@@ -87,17 +87,18 @@
 			    </div>
 			    <ul class="nav navbar-nav">
 			      <li><a href="#"></a></li>
-			      <li class="dropdown"><a class="dropdown-toggle wsm_nav_a" data-toggle="dropdown" href="#">Question<span class="caret"></span></a>
+			      <li><a href="${pageContext.request.contextPath}/question/moketest" class="wsm_nav_a">모의고사<span class="caret"></a></li>
+			      <li class="dropdown"><a class="dropdown-toggle wsm_nav_a" data-toggle="dropdown" href="#">연습하기<span class="caret"></span></a>
 			        <ul class="dropdown-menu">
 			          <li><a href="${pageContext.request.contextPath}/question/list" class="question_menu">문제리스트</a></li>
-			          <li><a href="${pageContext.request.contextPath}/question/moketest" class="question_menu">모의고사</a></li>
 			          <li><a href="${pageContext.request.contextPath}/question/subjecttest" class="question_menu">과목별 문제풀기</a></li>
 			          <li><a href="${pageContext.request.contextPath}/question/singletest" class="question_menu">랜덤문제</a></li>
 			          <li><a href="${pageContext.request.contextPath}/question/incorrect?customerCode=${login.customerCode}" class="question_menu">오답다시풀기</a></li>
+			          <li><a href="${pageContext.request.contextPath}/question/rankIncorrect" class="question_menu">많이틀린문제</a></li>
 			        </ul>
 			      </li>
-			      <li><a href="${pageContext.request.contextPath}/reqUpdate/list" class="wsm_nav_a">Request</a></li>
-			      <li><a href="${pageContext.request.contextPath}/board/list" class="wsm_nav_a">Board</a></li>
+			      <li><a href="${pageContext.request.contextPath}/reqUpdate/list" class="wsm_nav_a">건의사항</a></li>
+			      <li><a href="${pageContext.request.contextPath}/board/list" class="wsm_nav_a">자유게시판</a></li> 
 			    </ul>
 			    <ul class="nav navbar-nav navbar-right">
 			      

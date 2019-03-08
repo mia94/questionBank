@@ -16,14 +16,15 @@ public interface ResultTestDao {
 	public void deleteResultTest(ResultTestVO resultTestVo);
 	public void updateResultTest(ResultTestVO resultTestVo);
 	
-	//고객별, 연도별, 회차별 푼 총문제수와 맞춘 갯수 구하기
-	public TestScroeDTO selectScore(String customerCode, int year, int round);
 	//maxNum구하기
 	public int selectMaxCode();
 	//고객번호와 문제번호를 이용하여 update
 	public void updateByCustomerAndQuestion(ResultTestVO resultTestVo);
 	//고객별 오답노트 리스트
 	public List<ResultTestVO> selectIncorrectQuestionByCustomer(String customerCode);
+	public List<String> selectIncorrectQuestionBySubject(String customerCode, String subject);
 	//batch insert
 	public void insertBatchResultTest(Map<String, Object> map);
+	//많이 틀린 문제 select
+	public List<String> selectIncorrectTopRank(String subject);
 }

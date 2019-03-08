@@ -1,6 +1,11 @@
 package com.yi.questionBank;
 
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.List;
+
+import javax.sql.DataSource;
 
 import org.junit.Assert;
 import org.junit.FixMethodOrder;
@@ -21,15 +26,17 @@ public class QuestionDaoTest {
 	
 	@Autowired
 	private QuestionService service;
+	@Autowired
+	private DataSource ds;
 	
-	@Test
+	//@Test
 	public void test01selectByAll() {
 		List<QuestionVO> list = service.selectByAll();
 		System.out.println(list);
 		Assert.assertNotNull(list);
 	}
 	
-	@Test
+	//@Test
 	public void test02selectByNo() { 
 		QuestionVO vo = new QuestionVO();
 		vo.setQuestionCode("QA20183001");
@@ -53,7 +60,7 @@ public class QuestionDaoTest {
 		service.insert(vo);
 	}
 	
-	@Test
+	//@Test
 	public void test04update() {
 		QuestionVO vo = new QuestionVO();
 		vo.setQuestionCode("QA20183002");
@@ -84,6 +91,27 @@ public class QuestionDaoTest {
 		vo.setState("Á¤»ó");
 		vo.setCorrect(4);
 		service.delete(vo);
+	}
+	
+	@Test
+	public void test06upload() {
+		try (Connection con = ds.getConnection();	
+				Statement stmt = con.createStatement()) {
+			String tableName = "question"; 
+			String filePath = "C:/ProgramData/MySQL/MySQL Server 5.7/Uploads/question201901_5.csv";
+			String sql = String.format("LOAD DATA LOCAL INFILE '%s' IGNORE INTO TABLE %s "
+					+ "character set 'UTF8' "
+					+ "fields TERMINATED by ',' ENCLOSED BY '\"' "
+					+ "LINES TERMINATED BY '\\r\\n' "
+					+ "IGNORE 1 lines "
+					+ "(question_code, question_title, choice1, choice2, choice3, choice4, correct, state, correct_rate, picture,`year`,round, subject)",filePath, tableName);
+			
+			stmt.executeQuery(sql);
+			System.out.println(sql);
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}	
 	}
 }
 

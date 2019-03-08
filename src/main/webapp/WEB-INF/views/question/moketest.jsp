@@ -187,6 +187,7 @@
 	<script id="template1" type="text/x-handlebars-template"> 
 	{{#each.}}
 		<div class="question_wrap">
+			<input type="hidden" name='isChecked' value='false'>
 			<p class="code">{{questionCode}}</p>
 			<p>{{questionTitle}}</p>
 				{{#ifCond picture}}
@@ -231,8 +232,16 @@
   			
   			//라디오버튼 클릭 시(정답체크시)
   			$(document).on("click","input[type=radio]",function(){
+  				var isChecked = $(this).closest("div").children("input[name=isChecked]").val(); 
+  				if(isChecked=='true'){
+					//체크된 보기 표시 변경
+					$(this).closest("div").find("span").css("background-color","#eee");
+					$(this).next("span").css("background-color","#F28683");
+				}
   				//체크한 라디오버튼 배경색주기
   				$(this).next().css("background-color","#F28683");
+  				//isChecked값 변경
+				$(this).closest("div").children("input[name=isChecked]").val('true');
   				//체크한 문제는 article에 표시
   				var code = $(this).closest("div").children(".code").text();//questionCode풀네임
   				var num = code.substring(7,10);//번호 출력
@@ -246,8 +255,6 @@
   			})
   			
   			$("#test_submit").click(function(){
-  				alert(aArray);
-  				alert(qArray);
   				var allData = {"aArray":aArray , "qArray":qArray, "customerCode":'${login.customerCode}'};
   				//ajax 의 data 값에 배열(Array)을 넘기기 위해서는 세팅값을 바꿔주어야 한다
   				//jQuery.ajaxSettings.traditional = true;
@@ -257,7 +264,7 @@
   					type:"post",
   					data:allData,
   					success:function(json){
-  						
+  						location.href="${pageContext.request.contextPath}/question/mokeScore";
   					}
   				})
   			})
