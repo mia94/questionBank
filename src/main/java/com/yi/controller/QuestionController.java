@@ -90,29 +90,20 @@ private static final Logger logger = LoggerFactory.getLogger(QuestionController.
 	
 	//문제추가 파일 업로드, upload파일에 파일먼저 올린 후 올린파일로 insert 수행, 이후 파일 삭제
 	@RequestMapping(value="registerfile", method=RequestMethod.POST)
-	public void registerfilePost(String filePath, HttpServletRequest req) throws IOException{
+	public void registerfilePost(MultipartFile filePath, HttpServletRequest req) throws IOException{
 		logger.info("registerfilePost------------Post");
+		logger.info("registerfilePost------------filePath"+filePath);
 		//파일 upload폴더에 저장
-		//파일생성테스트
-		String uploadPath2 = req.getRealPath("upload");
+		String uploadPath2 = req.getRealPath("upload");//파일이 저장될 upload폴더의 경로
 		logger.info("req.getRealPath(upload)------------"+uploadPath2);
-		logger.info("uploadPath------------"+uploadPath);
-		logger.info("현재경로1------------"+new File(".").getCanonicalPath());
-		logger.info("현재경로2------------"+new File(".").getPath());
-		String upload = uploadPath + "/new";
-		File dir = new File(upload);
-		dir.mkdirs();
 		
-		String current;
-		try {
-			current = new java.io.File( "." ).getCanonicalPath();
-			 System.out.println("Current dir:"+current);
-			 String currentDir = System.getProperty("user.dir");
-		     System.out.println("Current dir using System:" +currentDir);
-		} catch (IOException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
+		File dir = new File(uploadPath2);
+		if(dir.exists()==false){//업로드 폴더가 없을때 만들어지도록
+			dir.mkdirs();
 		}
+		
+		//파일 복사 후 저장
+		
 
 		//insert부분
 		try (Connection con = ds.getConnection();	
@@ -131,7 +122,9 @@ private static final Logger logger = LoggerFactory.getLogger(QuestionController.
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
-		}	
+		}
+		
+		//insert완료 후 upload폴더에 복사됐던 파일 삭제
 	}	
 	
 	//jsp로 가는 메소드

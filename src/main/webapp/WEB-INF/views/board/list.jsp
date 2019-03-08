@@ -16,6 +16,11 @@
 		position: absolute;
 		right: 0px; 
 		top:-25px; 
+		background-color: white;
+		border:1px solid #A3918F;
+		color:#A3918F;
+		padding: 5px;
+		margin: 10px;
 	}
 	table{
 		width:900px;
@@ -54,7 +59,7 @@
 					<tr>
 						<td>${item.boardCode }</td>
 						<td>${item.boardTitle }</td>
-						<td>${item.writer.customername }</td>
+						<td>${item.writer.customerid }</td>
 						<td>${item.regdate }</td>
 						<td>${item.viewcnt }</td>
 					</tr>
