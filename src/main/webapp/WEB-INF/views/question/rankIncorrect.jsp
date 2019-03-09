@@ -21,24 +21,23 @@
 	section{
 		position: relative;
 	}
-	/*-------------------------------------------------연도회차 select*/
-	.custom-select,button#test_select{
+	/*------------------------------------------------과목 select*/
+	div#select_subject ul{
+		width:800px;
+		list-style: none; 
+	}
+	div#select_subject ul li{
 		float: left;
-		margin-top: 30px;
-		margin-bottom: 20px;
-	}
-	.custom-select:first-child{ 
-		margin-left: 300px;
-	}
-	button#test_select{ 
-		height: 37px;
-		width:100px;
-		background-color: #F3C2BA; 
-		border:3px solid #F3C2BA;
-		color:#5B4149; 
+		width:160px;
+		height:40px;
+		border:1px solid #F6EFEC;
+		line-height: 40px;
+		text-align: center;
 		font-family: 'Jua', sans-serif; 
-		font-size: 16px;
-		line-height: 16px;
+		color:#A3918F;
+	}
+	div#select_subject ul li:hover{
+		background-color: #F6EFEC;
 	}
 	/*----------------------------------------------------------문제 리스트*/
 	.container_wrap{
@@ -74,23 +73,16 @@
 <body>
 	<jsp:include page="../include/header.jsp"></jsp:include>
 	
-	<!-- <div class="custom-select">
-		<select name="year" id="year">
-			<option value="0"> Select Year </option>
-			<option value="2018"> 2018 </option>
-		</select>
-	</div>
-	
-	<div class="custom-select">
-		<select name="round" id="round">
-			<option value="0"> Select Round </option>
-			<option value="3"> 3 </option>
-			<option value="2"> 2 </option>
-		</select>
-	</div>
-	<button id="test_select">선택</button> -->
-	
 	<form action="result" method="post" id="wsm_testForm">
+		<div id="select_subject">
+			<ul>
+				<li><input type="hidden" value="D">데이터베이스</li>
+				<li><input type="hidden" value="A">전자계산기 구조</li>
+				<li><input type="hidden" value="O">운영체제</li>
+				<li><input type="hidden" value="S">소프트웨어 공학</li>
+				<li><input type="hidden" value="C">데이터통신</li>
+			</ul>
+		</div>
 		<div class="container_wrap">
 			<c:forEach var="item" items="${list }">
 				<div class="question_wrap">
@@ -169,43 +161,36 @@
 	</script>
 	
 	<script>
-  	
- 		$(function(){
-  			$("#test_select").click(function(){
-  				getList();
-  			});
-  		}) 	
- 	
- 	</script>
-	
-	<script>
-		function getList(){
-			var year = $("#year").val();
-			var round = $("#round").val();
-			
-			Handlebars.registerHelper('ifCond', function(v1, options) {
-				if(v1 === "" || v1 === null) {
-				   return options.fn(this);
-				}
-				return options.inverse(this);
-			})
-			
-			$.ajax({
-				url:"${pageContext.request.contextPath}/question/listJson/"+year+"/"+round,
-				type:"get",
-				dataType:"json",
-				success:function(json){
-					console.log(json);
-					$(".container_wrap").empty(); 
+		$(function(){
+			$("#select_subject li").click(function(){
+				//클릭한 과목 정보 가져오기
+				var subject = $(this).children("input[type=hidden]").val();
 				
-				var source = $("#template1").html();
-				var f = Handlebars.compile(source);
-				var result = f(json);
-				$(".container_wrap").append(result);
-
+				Handlebars.registerHelper('ifCond', function(v1, options) {
+					if(v1 === "" || v1 === null) {
+					   return options.fn(this);
+					}
+					return options.inverse(this);
+				})
+				
+				//ajax
+				$.ajax({
+					url:"${pageContext.request.contextPath}/question/rankIncorrect/"+subject,
+					type:"get",
+					dataType:"json",
+					success:function(json){
+						console.log(json);
+						$(".container_wrap").empty(); 
+					
+					var source = $("#template1").html();
+					var f = Handlebars.compile(source);
+					var result = f(json);
+					$(".container_wrap").append(result);
 				}
 			})
-		}
+				
+			})
+		})
 	</script>
 	
 	<jsp:include page="../include/footer.jsp"></jsp:include>
