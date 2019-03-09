@@ -64,20 +64,30 @@
 		    <tbody>
 		     	<c:forEach var="item" items="${list }">
 					<tr>
-						<td>${item.customerCode }</td>
-						<td>${item.customerName }</td>
-						<td>${item.id }</td>
-						<td>${item.email }</td>
-						<td>${item.employee }</td>
+						<td class="customerCode">${item.customerCode }</td>
+						<td class="customerName">${item.customerName }</td>
+						<td class="id">${item.id }</td>
+						<td class="email">${item.email }</td>
+						<td class="employee">${item.employee }</td>
 						<td>
-							<button>수정</button>
-							<button>삭제</button>
+							<button class="modify">수정</button>
+							<button class="delete">삭제</button>
 						</td>
 					</tr>
 				</c:forEach>
 		    </tbody>
 		  </table>
 		</div>
+		
+	<script>
+		$(function(){
+			$(".modify").click(function(){
+				var customerCode = $(this).closest("tr").children(".customerCode").text();
+				//수정창으로 이동
+				location.href="${pageContext.request.contextPath}/member/modify/"+customerCode;
+			})
+		})
+	</script>
 	<jsp:include page="../include/footer.jsp"></jsp:include>
 </body>
 </html>
