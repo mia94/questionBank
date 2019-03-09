@@ -83,7 +83,7 @@
 		<div class="form_container">
 			 <h3>문제추가</h3>
 			 <p>형식이 일치하는 csv파일을 등록해주세요(각 문항은 쉼표(,)로 구분)</p>
-			 <form action="registerfile" method="post">
+			 <form action="registerfile" method="post" enctype="multipart/form-data" >
 				 <div class="upload-btn-wrapper">
 					 <button class="btn">Upload a file</button>
 					 <input type="file">

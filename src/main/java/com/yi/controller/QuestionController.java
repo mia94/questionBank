@@ -92,13 +92,13 @@ private static final Logger logger = LoggerFactory.getLogger(QuestionController.
 	@RequestMapping(value="registerfile", method=RequestMethod.POST)
 	public void registerfilePost(MultipartFile filePath, HttpServletRequest req) throws IOException{
 		logger.info("registerfilePost------------Post");
-		logger.info("registerfilePost------------filePath"+filePath);
+		logger.info("registerfilePost------------filePath"+filePath);//null
 		//파일 upload폴더에 저장
-		String uploadPath2 = req.getRealPath("upload");//파일이 저장될 upload폴더의 경로
+		String uploadPath2 = req.getRealPath("resources/upload");//파일이 저장될 upload폴더의 경로
 		logger.info("req.getRealPath(upload)------------"+uploadPath2);
 		
 		File dir = new File(uploadPath2);
-		if(dir.exists()==false){//업로드 폴더가 없을때 만들어지도록
+		if(dir.exists()==false){//업로드 폴더가 없을때 만들어지도록(완료)
 			dir.mkdirs();
 		}
 		
