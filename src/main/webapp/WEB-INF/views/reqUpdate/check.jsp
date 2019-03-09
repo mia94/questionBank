@@ -73,8 +73,18 @@
 		width:900px; 
 		font-size: 12px;
 	}
+	.question_wrap{
+		position: relative;
+	}
 	#modify_btn{
-		margin-left: 150px; 
+		position: absolute;
+		bottom: 20px;
+		right: 20px;
+		width:120px;
+		background:none;
+		border:none;
+		color:#A3918F;
+		font-family: 'Jua', sans-serif;  
 	}
 </style>
 </head>
@@ -116,11 +126,13 @@
 					<input type="hidden" name='spendTime' value='' id="spendTime">
 					<br>
 					<p>정답 : ${vo.correct} </p>
-
+					<c:if test="${login.employee}">
+						<button type="button" id="modify_btn">문제 수정하러 가기!</button> 
+					</c:if>
 				</div>
 		</div>
 		<button type="button" id="test_submit">정답확인</button>
-		<button type="button" id="modify_btn">수정</button>
+
 	</form>
 	
 	<!-- 문제에 대한 건의사항 -->
@@ -134,9 +146,11 @@
 				<td>글쓴이</td>
 				<td>게시 날짜</td>
 				<td>처리 상태</td>
+				<td></td>
+				<td></td>
 			</tr>
 			<tr>
-				<td colspan="6">등록된 게시글이 없습니다.</td>
+				<td colspan="8">등록된 게시글이 없습니다.</td>
 			</tr>
 		</table>
 	</div>
@@ -173,6 +187,7 @@
 			<td>게시 날짜</td>
 			<td>처리상태</td>
 			<td></td>
+			<td></td>
 		</tr>
 		{{#ifCond content}} 
 			<tr>
@@ -195,6 +210,14 @@
 					{{else}}
     					<td></td>
 					{{/ifWriter}}
+					{{#isEmployee writer.employee}} 
+						<td>
+							<button class="modReq">수정</button>
+							<input type="hidden" value="{{reqCode}}" class="reqCode">
+						</td>
+					{{else}}
+    					<td></td>
+					{{/isEmployee}}
 				</tr>
 			{{/each}}
 		{{/ifCond}}
@@ -222,7 +245,14 @@
 			   return options.fn(this);
 			}
 			return options.inverse(this);
-		})
+	})
+	
+	Handlebars.registerHelper('isEmployee', function(v1, options) {
+			if(v1) {  
+			   return options.fn(this);
+			}
+			return options.inverse(this);
+	})
 	
 	var question = "${vo.questionCode}";
 	
