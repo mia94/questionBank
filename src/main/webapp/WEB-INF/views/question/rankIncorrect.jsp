@@ -16,12 +16,25 @@
 		width:800px;
 		margin:0px auto;
 		border:1px solid #ccc;
-		padding: 15px 20px;  
+		padding: 25px 25px;
 	}
 	section{
 		position: relative;
 	}
+	div#select_subject{
+		margin-top: 30px;
+		padding-top: 30px;
+	}
+	div#select_subject>p{
+		color:#666;
+		font-size: 12px;
+		line-height: 10px;
+	}
 	/*------------------------------------------------과목 select*/
+	div#select_subject{
+		width:800px;
+		margin: 0 auto;
+	}
 	div#select_subject ul{
 		width:800px;
 		list-style: none; 
@@ -75,6 +88,8 @@
 	
 	<form action="result" method="post" id="wsm_testForm">
 		<div id="select_subject">
+			<p> 과목을 선택해주세요</p>
+			<p> 많이 틀린문제의 채점결과는 '나의 학습'에 반영되지 않습니다.</p>
 			<ul>
 				<li><input type="hidden" value="D">데이터베이스</li>
 				<li><input type="hidden" value="A">전자계산기 구조</li>
@@ -107,7 +122,7 @@
 					  <input type="radio" name="answer" value='4' >
 					  <span class="checkmark"></span>
 					</label>
-					<p><input type="hidden" name='correct' value='${item.correct}'></p>
+					<p><input type="hidden" name="correct" value="${item.correct}"></p>
 				</div>
 			</c:forEach>
 		</div>
@@ -155,7 +170,7 @@
 					  <input type="radio" name="answer" value='4' >
 					  <span class="checkmark"></span>
 					</label>
-			<p><input type="hidden" name='correct' value='{{correct}}'></p>
+			<input type="hidden" name="correct" value="{{correct}}">
 		</div>
 	{{/each}}
 	</script>
@@ -190,6 +205,22 @@
 			})
 				
 			})
+			
+		//문제 정답여부 판별
+		$(document).on("click","input[name=answer]",function(){
+			//라디오버튼 색 바꾸기
+			$(this).next().css("background-color","#F28683");
+			//정답판별
+			var answer = $(this).val();
+			var correct = $(this).closest(".question_wrap").children("input[name=correct]").val();
+			if(answer==correct){
+				$(this).closest(".question_wrap").css("background-color","rgba(218,233,255,0.4)");  
+			}else{
+				$(this).closest(".question_wrap").css("background-color","rgba(255,237,237,0.4)");
+				//정답display 아직 처리X
+				
+			}
+		})
 		})
 	</script>
 	
