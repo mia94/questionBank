@@ -159,6 +159,11 @@
 		$(function(){
 			getPageList();
 			
+			$("#modify_btn").click(function(){
+				var questionCode = "${vo.questionCode}";
+				location.href = "${pageContext.request.contextPath}/question/modify?questionCode="+questionCode;
+			})
+			
 			$(document).on("click",".delReq",function(){
 				confirm("삭제하시겠습니까?");
 				var reqCode = $(this).next(".reqCode").val();

@@ -242,6 +242,16 @@ private static final Logger logger = LoggerFactory.getLogger(QuestionController.
 			
 			return entity;
 	}
+	//관리자가 문제 수정창으로 이동하는 용
+	@RequestMapping(value="modify", method=RequestMethod.GET)
+	public void updateget(String questionCode, Model model){
+		ResponseEntity<String> entity = null;
+		QuestionVO vo = new QuestionVO();
+		vo.setQuestionCode(questionCode);
+		vo = service.selectByNO(vo);
+		
+		model.addAttribute("vo", vo);
+	}
 	
 	@RequestMapping(value="{questionCode}", method=RequestMethod.PUT)
 	public ResponseEntity<String> update(@PathVariable("questionCode") String questionCode,@RequestBody QuestionVO vo){
