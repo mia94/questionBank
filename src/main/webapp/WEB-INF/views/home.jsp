@@ -142,28 +142,32 @@
 		<img src="${pageContext.request.contextPath}/resources/upload/cocoa_btn_right.png" alt="이후배너" class="touch_right_btn">
 	</div>
 	<div class="home_container2">
-		<article>
-			<img src="${pageContext.request.contextPath}/resources/upload/solve.png">
-			<div>클릭하면<br>문제풀러가기</div>
-		</article>
+		<a href="${pageContext.request.contextPath}/question/moketest">
+			<article>
+				<img src="${pageContext.request.contextPath}/resources/upload/solve.png">
+				<div>완벽대비<br>모의고사 풀기</div>
+			</article>
+		</a>
 		<article>
 			<img src="${pageContext.request.contextPath}/resources/upload/phone.png">
-			<div>모바일<br>어쩌구저쩌구 소개</div>
+			<div>모바일에서도<br>시험치자</div>
 		</article>
-		<article>
-			<img src="${pageContext.request.contextPath}/resources/upload/incorrect.png">
-			<div>틀린문제<br>다시풀러가기</div>
-		</article>
+		<a href="${pageContext.request.contextPath}/question/rankIncorrect" >
+			<article>
+				<img src="${pageContext.request.contextPath}/resources/upload/incorrect.png">
+				<div>많이틀린문제<br>확인하러 가기</div>
+			</article>
+		</a>
 		<article>
 			<img src="${pageContext.request.contextPath}/resources/upload/timer.png">
-			<div>문제풀리는데<br>걸리는 시간 측정가능</div>
+			<div>나의 풀이시간은<br>얼마일까</div>
 		</article>
 	</div>
 	
 	<div class="home_container3">
 		<div class="col-sm-5">
 			<div>
-				<p>블라블라 설명<br>마우스올리면<br>이미지 옆으로 밀기</p>
+				<p>여기에<br>마우스올리면<br>이미지 옆으로 밀기</p>
 			</div>
 		</div>
 		<div class="col-sm-7"> 

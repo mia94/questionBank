@@ -295,22 +295,49 @@ public class ResultTestController {
 	}
 	
 	//오답랭킹순으로 문제 리스트
-		@RequestMapping(value="/rankIncorrect", method=RequestMethod.GET)
-		public void selectIncorrectByRank(Model model){
-			logger.info("selectIncorrect ------------");
-			List<String> resultList = service.selectIncorrectTopRank("D");
-			System.out.println(resultList);
-			List<QuestionVO> list = new ArrayList<>();
+	@RequestMapping(value="/rankIncorrect", method=RequestMethod.GET)
+	public void selectIncorrectByRank(Model model){
+		logger.info("selectIncorrect ------------");
+		List<String> resultList = service.selectIncorrectTopRank("D");
+		System.out.println(resultList);
+		List<QuestionVO> list = new ArrayList<>();
 			
-			for(int i=0;i<resultList.size();i++) {
-				QuestionVO qvo = new QuestionVO();
-				qvo.setQuestionCode(resultList.get(i));
-				qvo = qService.selectByNO(qvo);
-				list.add(qvo);
-			}
-			System.out.println(list);
-			model.addAttribute("list", list);
+		for(int i=0;i<resultList.size();i++) {
+			QuestionVO qvo = new QuestionVO();
+			qvo.setQuestionCode(resultList.get(i));
+			qvo = qService.selectByNO(qvo);
+			list.add(qvo);
 		}
+		System.out.println(list);
+		model.addAttribute("list", list);
+	}
+	
+	//많이틀린문제 과목별 문제 리스트(중복제외)
+	@ResponseBody
+	@RequestMapping(value="/rankIncorrect/{subject}", method=RequestMethod.GET)
+	public ResponseEntity<List<QuestionVO>> selectIncorrectRankBySubject(@PathVariable("subject") String subject) {
+		logger.info("selectIncorrect 과목------------"+subject);
+		ResponseEntity<List<QuestionVO>> entity = null;
+		
+		try {
+			List<String> codeList = service.selectIncorrectTopRank(subject);
+			logger.info("selectIncorrect 문제 list------------"+codeList);
+			List<QuestionVO> list = new ArrayList<>();
+			for(int i=0;i<codeList.size();i++) {
+				QuestionVO vo = new QuestionVO();
+				vo.setQuestionCode(codeList.get(i));
+				vo = qService.selectByNO(vo);
+				list.add(vo);
+			}
+			logger.info("selectIncorrect 문제 list------------"+list);
+			entity = new ResponseEntity<>(list, HttpStatus.OK);
+		} catch (Exception e) {
+			e.printStackTrace();
+			entity = new ResponseEntity<>(HttpStatus.BAD_REQUEST);//List<QuestionVO>로 보내야 하나, 보낼수없을때는HttpStatus만 보냄
+		}
+			
+		return entity;
+	}
 
 }
 
