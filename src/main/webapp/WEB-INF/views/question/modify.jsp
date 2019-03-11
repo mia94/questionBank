@@ -17,7 +17,6 @@
 	.form_container h2{
 		font-family: 'Righteous', 'Jua';
 	}
-	/*테이블 변경 후*/
 	table{
 		border-collapse: collapse;
 		width:920px;
@@ -84,6 +83,7 @@
 	  		<div class="custom-select">
 		  		<select name="year"> 
 		  			<option value="">출제 연도</option>
+		  			<option value="2019">2019</option>
 			  		<option value="2018">2018</option> 
 			  		<option value="2017">2017</option>
 			  		<option value="2016">2016</option>
@@ -220,9 +220,17 @@
 		    	break; 
 		   	}
 		})
+		//select값 넣어두기
+		var subject = ${vo.subject};
 		
+		var code = "${vo.questionCode}";
+		var number = code.substring(7,10);
+		
+		$("select[name=year]").val(${vo.year}); 
+		$("select[name=round]").val(${vo.round});
 		//라디오버튼 값 넣어두기
-		
+		$('input:radio[name="correct"]').filter('[value="${vo.correct}"]').attr('checked', true);
+		$('input:radio[name="state"]').filter('[value="${vo.state}"]').attr('checked', true); 
 		
 		//파일 선택시 현재창에 display
 		$("#file").change(function(){
@@ -285,7 +293,7 @@
 		
 		//모달창에서 확인 후 submit버튼 클릭
 		$("#registerQ").click(function(){
-			alert("문제추가가 완료되었습니다.");
+			alert("문제수정이 완료되었습니다.");
 			$("#register_form").submit();
 		})
 	})

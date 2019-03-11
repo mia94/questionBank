@@ -2,8 +2,10 @@ package com.yi.controller;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.OutputStream;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -90,9 +92,9 @@ private static final Logger logger = LoggerFactory.getLogger(QuestionController.
 	
 	//문제추가 파일 업로드, upload파일에 파일먼저 올린 후 올린파일로 insert 수행, 이후 파일 삭제
 	@RequestMapping(value="registerfile", method=RequestMethod.POST)
-	public void registerfilePost(MultipartFile filePath, HttpServletRequest req) throws IOException{
+	public void registerfilePost(MultipartFile file, HttpServletRequest req) throws IOException{
 		logger.info("registerfilePost------------Post");
-		logger.info("registerfilePost------------filePath"+filePath);//null
+		logger.info("registerfilePost------------filePath-"+file.getOriginalFilename());//파일 받아옴
 		//파일 upload폴더에 저장
 		String uploadPath2 = req.getRealPath("resources/upload");//파일이 저장될 upload폴더의 경로
 		logger.info("req.getRealPath(upload)------------"+uploadPath2);
@@ -103,8 +105,27 @@ private static final Logger logger = LoggerFactory.getLogger(QuestionController.
 		}
 		
 		//파일 복사 후 저장
-		
+		InputStream inStream = null;
+		OutputStream outStream = null;
 
+		try {
+			inStream = file.getInputStream(); //원본파일
+			logger.info("file.getOriginalFilename()------------"+file.getInputStream());
+			outStream = new FileOutputStream(uploadPath2+"/"+file.getOriginalFilename()); //이동시킬 위치
+			logger.info("uploadPath2+file.getOriginalFilename()------------"+uploadPath2+file);
+			
+			byte[] buffer = new byte[1024];
+			int length;
+			 
+			while ((length = inStream.read(buffer)) > 0){
+			     outStream.write(buffer, 0, length);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			outStream.close();
+		}
+		
 		//insert부분
 		try (Connection con = ds.getConnection();	
 				Statement stmt = con.createStatement()) {
@@ -115,7 +136,7 @@ private static final Logger logger = LoggerFactory.getLogger(QuestionController.
 					+ "fields TERMINATED by ',' ENCLOSED BY '\"' "
 					+ "LINES TERMINATED BY '\\r\\n' "
 					+ "IGNORE 1 lines "
-					+ "(question_code, question_title, choice1, choice2, choice3, choice4, correct, state, correct_rate, picture,`year`,round, subject)",filePath, tableName);
+					+ "(question_code, question_title, choice1, choice2, choice3, choice4, correct, state, correct_rate, picture,`year`,round, subject)",file, tableName);
 			
 			stmt.executeQuery(sql);
 			System.out.println(sql);

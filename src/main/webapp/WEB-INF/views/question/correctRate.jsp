@@ -35,12 +35,14 @@
 	}
 	table tr:first-child{
 		text-align: center;
+		background-color: #A3918F;
 	}
 	table td{
 		border:1px solid #F6EFEC; 
 		height: 40px;
 		padding: 5px;
 		text-align: center; 
+		color:#5B4149;
 	}
 </style>
 </head>

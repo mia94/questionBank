@@ -28,7 +28,7 @@
 	  display: inline-block;
 	  margin: 70px 450px 100px;
 	} 
-	.btn {
+/* 	.btn {
 	  color: #A3918F;
 	  padding: 8px 20px;
 	  border-radius: 8px;
@@ -49,7 +49,7 @@
 		border:none;
 		color: #A3918F; 
 		float: right;
-	}
+	} */
 	.form_container img{
 		width:100%;
 	}
@@ -86,7 +86,7 @@
 			 <form action="registerfile" method="post" enctype="multipart/form-data" >
 				 <div class="upload-btn-wrapper">
 					 <button class="btn">Upload a file</button>
-					 <input type="file">
+					 <input type="file" name="file">
 				 </div>
 				 <button type="submit">등록</button>
 			 </form>
