@@ -12,6 +12,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.yi.domain.CustomerVO;
+import com.yi.domain.RateDTO;
 import com.yi.domain.ResultTestVO;
 import com.yi.domain.TestVO;
 import com.yi.service.CustomerService;
@@ -95,10 +96,16 @@ public class ResultTestDaoTest {
 		service.deleteResultTest(vo);
 	}
 	
-	@Test
+	//@Test
 	public void test07selectIncorrect() {
 		List<String> list = service.selectIncorrectQuestionBySubject("C002", "D");
 		System.out.println(list);
+	}
+	
+	@Test
+	public void test07selectCorrectRate() {
+		RateDTO dto = service.selectCorrectRateBySubject("C002", "D");
+		System.out.println(dto);
 	}
 }
 
