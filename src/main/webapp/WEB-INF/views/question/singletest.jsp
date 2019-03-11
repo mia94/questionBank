@@ -267,7 +267,7 @@
 		})
 		
 		$(document).on("click",".delReq",function(){
-			alert("삭제확인용");
+			confirm("삭제하시겠습니까?");
 			var reqCode = $(this).next(".reqCode").val();
 			$.ajax({
 				url:"${pageContext.request.contextPath}/reqUpdate/"+reqCode,

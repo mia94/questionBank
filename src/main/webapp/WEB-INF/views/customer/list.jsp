@@ -25,11 +25,11 @@
 	}
 	table th{
 		background-color: #A3918F;  
-		color:#F6EFEC; 
+		color:#F6EFEC;
+		padding: 5px 10px; 
 	}
-	table td, table th{
+	table td{
 		padding: 5px 10px;
-		text-align: right;
 	}
 	td button{
 		width:35px;
@@ -53,12 +53,12 @@
 		  <table class="">
 		    <thead>
 		      <tr>
-		        <th>CustomerCode</th>
-		        <th>CustomerName</th>
-		        <th>id</th>
-		        <th>email</th>
-		        <th>employee</th>
-		        <th>관리</th>
+		        <th>회원코드</th>
+		        <th>회원이름</th>
+		        <th>아이디</th>
+		        <th>E-MAIL</th>
+		        <th>관리자여부</th>
+		        <th></th>
 		      </tr>
 		    </thead>
 		    <tbody>
@@ -86,8 +86,99 @@
 				//수정창으로 이동
 				location.href="${pageContext.request.contextPath}/customer/modify?customerCode="+customerCode;
 			})
+			
+			$(".delete").click(function(){
+				var customerCode = $(this).closest("tr").children(".customerCode").text();
+				var customerName = $(this).closest("tr").children(".customerName").text();
+				var id = $(this).closest("tr").children(".id").text();
+				//삭제 확인 창
+				confirm(customerName+"("+id+")"+"회원을 삭제하시겠습니까?");
+				//삭제 실행
+				$.ajax({
+				url:"${pageContext.request.contextPath}/customer/"+customerCode,
+				type:"delete",
+				dataType:"text",
+				success:function(json){
+					console.log(json);
+					if(json == "success"){
+						alert("삭제되었습니다.");
+						//리스트 새로불러와야함
+						getList();
+					}
+				}
+				})
+			})
 		})
+	</script>
+	
+	<script id="template1" type="text/x-handlebars-template"> 
+		<table class="">
+		    <thead>
+		      <tr>
+		        <th>회원코드</th>
+		        <th>회원이름</th>
+		        <th>아이디</th>
+		        <th>E-MAIL</th>
+		        <th>관리자여부</th>
+		        <th></th>
+		      </tr>
+		    </thead>
+		    <tbody>
+		     	{{#each.}}
+					<tr>
+						<td class="customerCode">{{customerCode }}</td>
+						<td class="customerName">{{customerName }}</td>
+						<td class="id">{{id }}</td>
+						<td class="email">{{email }}</td>
+						<td class="employee">{{employee }}</td>
+						<td>
+							<button class="modify">수정</button>
+							<button class="delete">삭제</button>
+						</td>
+					</tr>
+				{{/each}}
+		    </tbody>
+		  </table>
+	</script>
+	
+	<script>
+		function getList(){
+			
+			$.ajax({
+				url:"${pageContext.request.contextPath}/customer/listJson",
+				type:"get",
+				dataType:"json",
+				success:function(json){
+					console.log(json);
+					$(".list_container").empty(); 
+				
+				var source = $("#template1").html();
+				var f = Handlebars.compile(source);
+				var result = f(json);
+				$(".list_container").append(result);
+
+				}
+			})
+		}
 	</script>
 	<jsp:include page="../include/footer.jsp"></jsp:include>
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

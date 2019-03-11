@@ -59,6 +59,7 @@ public class CustomerController {
 		
 		try {
 			List<CustomerVO> list = service.selectByAll();
+			logger.info("listJson------------"+list);
 			entity = new ResponseEntity<>(list, HttpStatus.OK);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -86,6 +87,7 @@ public class CustomerController {
 		return "redirect:/customer/list";
 	}
 	
+	@ResponseBody
 	@RequestMapping(value="{customerCode}", method=RequestMethod.DELETE)
 	public ResponseEntity<String> remove(@PathVariable("customerCode") String customerCode){
 		ResponseEntity<String> entity = null;
