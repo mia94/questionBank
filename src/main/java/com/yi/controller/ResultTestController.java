@@ -25,6 +25,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.yi.domain.CustomerVO;
 import com.yi.domain.LoginDTO;
 import com.yi.domain.QuestionVO;
+import com.yi.domain.RateDTO;
 import com.yi.domain.ResultTestVO;
 import com.yi.service.CustomerService;
 import com.yi.service.QuestionService;
@@ -341,6 +342,21 @@ public class ResultTestController {
 	public void correctRateGet(HttpServletRequest request, Model model) {
 		LoginDTO vo = (LoginDTO) request.getSession().getAttribute("login");
 		logger.info("selectIncorrect 로그인한 고객받아오기------------"+vo);
+		
+		List<RateDTO> list = new ArrayList<>();
+		//과목별 rate모두 받아오기
+		RateDTO dRate = service.selectCorrectRateBySubject(vo.getCustomerCode(), "D");
+		RateDTO aRate = service.selectCorrectRateBySubject(vo.getCustomerCode(), "A");
+		RateDTO oRate = service.selectCorrectRateBySubject(vo.getCustomerCode(), "O");
+		RateDTO sRate = service.selectCorrectRateBySubject(vo.getCustomerCode(), "S");
+		RateDTO cRate = service.selectCorrectRateBySubject(vo.getCustomerCode(), "C");
+		list.add(dRate);
+		list.add(aRate);
+		list.add(oRate);
+		list.add(sRate);
+		list.add(cRate);
+		logger.info("selectIncorrect list------------"+list);
+		model.addAttribute("list", list);
 	}
 
 }
