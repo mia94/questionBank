@@ -9,7 +9,11 @@
 	.signup_container{
 		width:400px;
 		margin: 0px auto;
-		padding-top: 200px;
+		padding-top: 130px;
+	}
+	.signup_container>p>span{ 
+		color:#666;
+		font-size: 12px;
 	}
 	.signup_container label{
 		width: 100px;
@@ -54,25 +58,29 @@
 		<div class="signup_container">
 			<p>
 				<label>NAME</label>
-				<input type="text" name="customerName" placeholder="2-5자리 한글로 입력하세요">
+				<input type="text" name="customerName"><br>
+				<span>2-5자리 한글로 입력하세요.</span>
 			</p>
 			<p>
 				<label>ID</label>
 				<input type="text" name="id">
-				<button type="button" id="id_check">ID중복확인</button>
+				<button type="button" id="id_check">ID중복확인</button><br>
+				<span>아이디 중복확인을 해주세요.</span>
 			</p>
 			<p>
 				<label>PASSWORD</label>
-				<input type="password" name="password" placeholder="8-15자리  입력해주세요">
+				<input type="password" name="password"><br>
+				<span>8-15자리 영어, 숫자, 특수문자로만 입력하세요.</span>
 			</p>
 			<p>
 				<label>PW CHECK</label>
-				<input type="password" name="password_check" placeholder="동일하게 입력하세요">
-				<span id="password_check_msg">일치</span>
+				<input type="password" name="password_check">
+				<span id="password_check_msg">일치</span><br>
+				<span>비밀번호를 한번 더 입력해주세요.</span>
 			</p>
 			<p>
 				<label>EMAIL</label>
-				<input type="text" name="email"> 
+				<input type="text" name="email"><br>
 			</p>
 			<button type="submit" id="submit"><span>Sign Up</span></button>
 		</div>		
