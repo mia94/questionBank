@@ -49,9 +49,20 @@ public class CustomerController {
 	
 	//아이디 중복확인
 	@ResponseBody
-	@RequestMapping(value="checkId", method=RequestMethod.GET)
-	public String checkId() {
-		return "";
+	@RequestMapping(value="checkId/{id}", method=RequestMethod.GET)
+	public int checkId(@PathVariable("id")String id) {
+		
+		int cnt = 0;
+		CustomerVO vo = service.checkId(id);
+		logger.info("checkId------------vo : "+vo);
+		
+		if(vo==null) {
+			cnt = -1;
+		}else {
+			cnt = 1;
+		}
+
+		return cnt;
 	}
 	
 	@RequestMapping(value="list", method=RequestMethod.GET)

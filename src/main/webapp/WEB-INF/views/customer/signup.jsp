@@ -59,7 +59,7 @@
 			<p>
 				<label>ID</label>
 				<input type="text" name="id">
-				<button id="id_check">ID중복확인</button>
+				<button type="button" id="id_check">ID중복확인</button>
 			</p>
 			<p>
 				<label>PASSWORD</label>
@@ -84,19 +84,19 @@
 			 var id = $("input[name='id']").val();
 			 
 			 $.ajax({
-		            url:"${pageContext.request.contextPath}/customer/"+customerCode,
+		            url:"${pageContext.request.contextPath}/customer/checkId/"+id,
 		            type:"get",
-		            data:{"id":id},
 		            dataType:"json",
 		            success:function(data){
 		               console.log(data);
-		               if(data.result == true){
-		                  alert("사용중인 ID입니다.");
+		               if(data>0){
+		            	   alert("사용중인 ID입니다.다른 아이디를 입력해주세요.");
 		               }else{
-		                  alert("ID를 사용할 수 있습니다.");
+		            	   alert("사용가능한 ID입니다.");
 		               }
 		            }
 		         })
+		    
 		})
 		//비밀번호 일치확인
 		$("input[name=password_check]").change(function(){
@@ -137,7 +137,7 @@
 			if(!emailResult){
 				alert("이메일을 다시 입력해주세요.");
 				return false;
-			} */
+			}
 		}) */
 	})
 	
