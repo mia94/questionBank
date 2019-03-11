@@ -109,9 +109,8 @@
 			}
 		})
 		//가입버튼 누르기
-		/* $("#submit").click(function(){
-			alert("가입이 완료되었습니다.");
-			/* //이름 한글 확인(한글 2-5자리 수)
+		$("#submit").click(function(){
+			//이름 한글 확인(한글 2-5자리 수)
 			var name = $("input[name=customerName]").val();
 			var reg = /^[가-힣]{2,5}$/;
 			var nameResult = reg.test(name);
@@ -122,12 +121,19 @@
 			
 			//비밀번호 확인 (특수문자, 문자, 숫자 포함 형태의 8-15자리)
 			var password = $("input[name=password]").val();
-			var reg = /^.*(?=^.{8,15}$)(?=.*\d)(?=.*[a-zA-Z])(?=.*[!@#$%^&+=]).*$/;
+			var reg = /^[a-z0-9!@#$%]{8,15}$/i;
 			var pwResult = reg.test(password);
 			if(!pwResult){
 				alert("비밀번호는 8~15자리의 영문,숫자,특수문자로 이루어져야 합니다.");
 				return false;
 			}
+			
+			//비밀번호 일치, 불일치
+			if($("input[name=password]").val()!=$("input[name=password_check]").val()){
+				alert("비밀번호가 일치하지 않습니다.");
+				return false;
+			}
+			
 			//이메일 규격 확인
 			var email = $("input[name=email]").val();
 			var reg = /^\w{5,12}@[a-z]{2,10}[\.][a-z]{2,3}[\.]?[a-z]{0,2}$/;
@@ -138,7 +144,7 @@
 				alert("이메일을 다시 입력해주세요.");
 				return false;
 			}
-		}) */
+		})
 	})
 	
 	</script>
