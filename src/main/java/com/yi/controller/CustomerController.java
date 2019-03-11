@@ -61,7 +61,23 @@ public class CustomerController {
 		}else {
 			cnt = 1;
 		}
-
+		return cnt;
+	}
+	
+	//비밀번호 일치확인
+	@ResponseBody
+	@RequestMapping(value="checkPasswd", method=RequestMethod.GET)
+	public int checkPasswd(String id, String password) {
+		logger.info("checkPasswd===========id:"+id);
+		logger.info("checkPasswd===========password:"+password);
+		int cnt = 0;
+		
+		CustomerVO vo = service.read(id, password);
+		if(vo==null) {
+			cnt = -1;
+		}else {
+			cnt = 1;
+		}		
 		return cnt;
 	}
 	
