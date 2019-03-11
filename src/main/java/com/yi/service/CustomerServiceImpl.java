@@ -51,4 +51,10 @@ public class CustomerServiceImpl implements CustomerService {
 		return customerDao.selectMaxCustomerCode();
 	}
 
+	@Override
+	public CustomerVO checkId(String id) {
+		// TODO Auto-generated method stub
+		return customerDao.checkId(id);
+	}
+
 }

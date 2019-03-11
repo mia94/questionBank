@@ -81,7 +81,22 @@
 	$(function(){
 		//아이디 중복확인
 		$("#id_check").click(function(){
-			
+			 var id = $("input[name='id']").val();
+			 
+			 $.ajax({
+		            url:"${pageContext.request.contextPath}/customer/"+customerCode,
+		            type:"get",
+		            data:{"id":id},
+		            dataType:"json",
+		            success:function(data){
+		               console.log(data);
+		               if(data.result == true){
+		                  alert("사용중인 ID입니다.");
+		               }else{
+		                  alert("ID를 사용할 수 있습니다.");
+		               }
+		            }
+		         })
 		})
 		//비밀번호 일치확인
 		$("input[name=password_check]").change(function(){

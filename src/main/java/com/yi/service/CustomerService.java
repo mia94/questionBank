@@ -14,4 +14,7 @@ public interface CustomerService {
 	
 	public CustomerVO read(String id, String password);
 	public String selectMaxCustomerCode();
+	
+	//아이디 중복체크 용
+	public CustomerVO checkId(String id);
 }

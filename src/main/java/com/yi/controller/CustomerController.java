@@ -32,6 +32,7 @@ public class CustomerController {
 		logger.info("signupGet ------------");
 	}
 	
+	//가입
 	@RequestMapping(value="signup", method=RequestMethod.POST)
 	public String register(CustomerVO vo){
 		logger.info("CustomerVO create------------"+vo);
@@ -44,6 +45,13 @@ public class CustomerController {
 		vo.setEmployee(false);
 		service.insertCustomer(vo);
 		return "redirect:/user/login";
+	}
+	
+	//아이디 중복확인
+	@ResponseBody
+	@RequestMapping(value="checkId", method=RequestMethod.GET)
+	public String checkId() {
+		return "";
 	}
 	
 	@RequestMapping(value="list", method=RequestMethod.GET)
