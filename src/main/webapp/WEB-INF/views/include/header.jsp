@@ -52,6 +52,7 @@
 			          <li><a href="${pageContext.request.contextPath}/question/singletest" class="question_menu">랜덤문제</a></li>
 			          <li><a href="${pageContext.request.contextPath}/question/incorrect?customerCode=${login.customerCode}" class="question_menu">오답다시풀기</a></li>
 			          <li><a href="${pageContext.request.contextPath}/question/rankIncorrect" class="question_menu">많이틀린문제</a></li>
+			          <li><a href="${pageContext.request.contextPath}/question/correctRate" class="question_menu">나의 과목관리</a></li>
 			        </ul>
 			      </li>
 			      <li class="dropdown"><a class="dropdown-toggle wsm_nav_a" data-toggle="dropdown" href="#">문제추가<span class="caret"></span></a>
@@ -95,6 +96,7 @@
 			          <li><a href="${pageContext.request.contextPath}/question/singletest" class="question_menu">랜덤문제</a></li>
 			          <li><a href="${pageContext.request.contextPath}/question/incorrect?customerCode=${login.customerCode}" class="question_menu">오답다시풀기</a></li>
 			          <li><a href="${pageContext.request.contextPath}/question/rankIncorrect" class="question_menu">많이틀린문제</a></li>
+			          <li><a href="${pageContext.request.contextPath}/question/correctRate" class="question_menu">나의 과목관리</a></li>
 			        </ul>
 			      </li>
 			      <li><a href="${pageContext.request.contextPath}/reqUpdate/list" class="wsm_nav_a">건의사항</a></li>
