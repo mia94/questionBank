@@ -102,6 +102,8 @@
 		group by question
 		order by count(question) desc
 	</select>
+	
+	<!-- 과목별 정답률 select -->
 </mapper>
 
 
