@@ -14,8 +14,8 @@
 	}
 	.board_container button{
 		position: absolute;
-		right: 0px; 
-		top:-25px; 
+		right: -7px;
+		top:-50px;
 		background-color: white;
 		border:1px solid #A3918F;
 		color:#A3918F;
@@ -25,6 +25,7 @@
 	table{
 		width:900px;
 		margin-top: 30px;
+		padding-top: 30px;
 	}
 	table tr{
 		border: 0.5px solid #ddd;

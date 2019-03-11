@@ -38,19 +38,12 @@ private static final Logger logger = LoggerFactory.getLogger(BoardController.cla
 	}
 	
 	@RequestMapping(value="register", method=RequestMethod.POST)
-	public ResponseEntity<String> register(@RequestBody BoardVO vo){
-		ResponseEntity<String> entity = null;
+	public String register(@RequestBody BoardVO vo){
 		logger.info("BoardVO create------------"+vo);
 		
-		try {
-			service.insertBoard(vo);
-			entity = new ResponseEntity<String>("success", HttpStatus.OK);
-		} catch (Exception e) {
-			e.printStackTrace();
-			entity = new ResponseEntity<String>(e.getMessage(),HttpStatus.BAD_REQUEST);//400¿¡·¯
-		}
+		service.insertBoard(vo);
 		
-		return entity; 
+		return "redirect:/board/list";
 	}
 
 }

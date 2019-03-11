@@ -41,12 +41,14 @@
 				<label>내용</label>
 				<textarea rows="10" cols="80" name="content"></textarea>
 			</p>
+			<!-- 히든으로 보내는 나머지 값 -->
+			<input type="hidden" name="writer" value="${login.customerCode }">
+			
 			<button type="button">취소</button>
 			<button type="submit">작성</button>
 		</form>
 	</div>
 	
-
 	
 	<jsp:include page="../include/footer.jsp"></jsp:include>
 
