@@ -136,7 +136,7 @@ private static final Logger logger = LoggerFactory.getLogger(QuestionController.
 					+ "fields TERMINATED by ',' ENCLOSED BY '\"' "
 					+ "LINES TERMINATED BY '\\r\\n' "
 					+ "IGNORE 1 lines "
-					+ "(question_code, question_title, choice1, choice2, choice3, choice4, correct, state, correct_rate, picture,`year`,round, subject)",file, tableName);
+					+ "(question_code, question_title, choice1, choice2, choice3, choice4, correct, state, correct_rate, picture,`year`,round, subject)",uploadPath2+file.getOriginalFilename(), "question");
 			
 			stmt.executeQuery(sql);
 			System.out.println(sql);

@@ -68,19 +68,22 @@ public class CustomerController {
 	}
 
 	
-	@RequestMapping(value="{customerCode}", method=RequestMethod.PUT)
-	public ResponseEntity<String> update(@PathVariable("customerCode") String customerCode,@RequestBody CustomerVO vo){
-		ResponseEntity<String> entity = null;
-		try {
-			vo.setCustomerCode(customerCode);
-			service.updateCustomer(vo);
-			entity = new ResponseEntity<String>("success", HttpStatus.OK);
-		} catch (Exception e) {
-			// TODO: handle exception
-			e.printStackTrace();
-			entity = new ResponseEntity<String>(e.getMessage(), HttpStatus.BAD_REQUEST);
-		}
-		return entity;
+	@RequestMapping(value="modify", method=RequestMethod.GET)
+	public void updateGet(String customerCode, Model model){
+		logger.info("update GET------------");
+		CustomerVO vo = new CustomerVO();
+		vo.setCustomerCode(customerCode);
+		vo = service.selectByNo(vo);
+		logger.info("update GET------------"+vo);
+		model.addAttribute("vo", vo);
+	}
+	
+	@RequestMapping(value="modify", method=RequestMethod.POST)
+	public String updatePost(CustomerVO vo){
+		logger.info("update Post------------"+vo);
+		service.updateCustomer(vo);
+		
+		return "redirect:/customer/list";
 	}
 	
 	@RequestMapping(value="{customerCode}", method=RequestMethod.DELETE)

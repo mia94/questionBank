@@ -84,7 +84,7 @@
 			$(".modify").click(function(){
 				var customerCode = $(this).closest("tr").children(".customerCode").text();
 				//수정창으로 이동
-				location.href="${pageContext.request.contextPath}/member/modify/"+customerCode;
+				location.href="${pageContext.request.contextPath}/customer/modify?customerCode="+customerCode;
 			})
 		})
 	</script>
