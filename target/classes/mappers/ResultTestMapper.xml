@@ -104,6 +104,11 @@
 	</select>
 	
 	<!-- 과목별 정답률 select -->
+	<select id="selectCorrectRateBySubject" resultType="RateDTO">
+		select sum(pass) as correctCount,count(pass) as totalCount, (sum(pass)/count(pass))*100 as rate
+		from resulttest
+		where customer=#{customerCode} and substring(question,2,1)=#{subject}
+	</select>
 </mapper>
 
 
