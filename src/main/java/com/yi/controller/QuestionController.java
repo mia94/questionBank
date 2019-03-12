@@ -252,7 +252,6 @@ public class QuestionController {
 	}
 
 	private String getCellValue(XSSFCell cell) {
-		logger.info("---value -------------" + cell);
 		String value;
 		try {
 			value = cell.toString();

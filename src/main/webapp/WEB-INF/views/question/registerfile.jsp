@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -98,6 +98,7 @@
 				 <button type="submit" id="submit">등록</button>
 			 </form>
 			 <h5>파일 형식 예시 : 2018년 2회차 전자계산기 구조 문제</h5>
+			 <a href="${pageContext.request.contextPath}/resources/upload/question_basic.xlsx" download>파일 다운로드</a>
 		 	<img src="${pageContext.request.contextPath}/resources/upload/patten.png">  
 			 	<table>
 			 		<tr>
@@ -141,6 +142,10 @@
 				$("input").change(function(){
 					$("#submit").show();
 				})
+				
+				/* $("#download").click(function(){
+					confirm("파일을 다운로드 받으시겠습니까?");
+				}) */
 			})
 		</script>
 		
