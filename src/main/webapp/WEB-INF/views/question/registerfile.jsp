@@ -14,6 +14,7 @@
 	.form_container{
 		width:1000px;
 		margin: 50px auto; 
+		position: relative;
 	}
 	.form_container h3,.form_container h5{
 		font-family: 'Righteous', 'Jua';
@@ -28,7 +29,7 @@
 	  display: inline-block;
 	  margin: 70px 450px 100px;
 	} 
-/* 	.btn {
+ 	.btn {
 	  color: #A3918F;
 	  padding: 8px 20px;
 	  border-radius: 8px;
@@ -44,12 +45,18 @@
 	  top: 0;
 	  opacity: 0;
 	}
-	.upload-btn-wrapper button{
-		background: none;
-		border:none;
-		color: #A3918F; 
-		float: right;
-	} */
+	.form_container #submit{
+		background:none;
+		color: #A3918F;
+		border: none;
+		font-family: 'Righteous', 'Jua';
+		font-size: 20px;
+		position: absolute;
+		top: 170px;
+		left: 520px;
+		display: none;
+	}
+	/*------------------------------------------------예시사진과 규칙 테이블*/
 	.form_container img{
 		width:100%;
 	}
@@ -88,7 +95,7 @@
 					 <button class="btn">Upload a file</button>
 					 <input type="file" name="file">
 				 </div>
-				 <button type="submit">등록</button>
+				 <button type="submit" id="submit">등록</button>
 			 </form>
 			 <h5>파일 형식 예시 : 2018년 2회차 전자계산기 구조 문제</h5>
 		 	<img src="${pageContext.request.contextPath}/resources/upload/patten.png">  
@@ -130,8 +137,9 @@
 		
 		<script>
 			$(function(){
-				$("button").click(function(){
-					var file = $("input").val();
+				//input에 값이 들어오면 등록버튼 디스플레이
+				$("input").change(function(){
+					$("#submit").show();
 				})
 			})
 		</script>
