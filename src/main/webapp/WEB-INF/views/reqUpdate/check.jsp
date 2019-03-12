@@ -125,7 +125,7 @@
 					<input type="hidden" name='customerCode' value='${login.customerCode}'>
 					<input type="hidden" name='spendTime' value='' id="spendTime">
 					<br>
-					<p>정답 : ${vo.correct} </p>
+					<p>이 문제의 정답은 ${vo.correct} 번 입니다</p> 
 					<c:if test="${login.employee}">
 						<button type="button" id="modify_btn">문제 수정하러 가기!</button> 
 					</c:if>
@@ -159,11 +159,34 @@
 		$(function(){
 			getPageList();
 			
+			//요청사항 상태수정
+			$(document).on("click",".modReq",function(){
+				alert("확인용");
+				//수정버튼 완료버튼과 취소버튼으로 바꾸기
+				$(this).closest("td").append("<button class='updateReq'>완료</button><button class='cancel'>취소</button>");
+				//처리상태 부분 입력가능한 창으로 바꾸기
+				$(this).closest("tr").children(".req_state").empty();
+				$(this).closest("tr").children(".req_state").append("<input type='text' name='state' size=5>");
+				//수정버튼 숨기기
+				$(this).hide();
+			})
+			
+			//완료클릭시 처리상태 변경
+			
+			//취소클릭시 원래 창으로 돌아오기
+			$(document).on("click",".cancel",function(){
+				alert("취소 확인용");
+				var questionCode = "${vo.questionCode}";
+				location.href = "${pageContext.request.contextPath}/reqUpdate/check?question="+questionCode;
+			})
+			
+			//문제수정하러가기
 			$("#modify_btn").click(function(){
 				var questionCode = "${vo.questionCode}";
 				location.href = "${pageContext.request.contextPath}/question/modify?questionCode="+questionCode;
 			})
 			
+			//요청사항 작성자가 삭제
 			$(document).on("click",".delReq",function(){
 				confirm("삭제하시겠습니까?");
 				var reqCode = $(this).next(".reqCode").val();
@@ -206,7 +229,7 @@
 					<td>{{oriCorrect}}</td>
 					<td>{{writer.customerCode}}</td>
 					<td>{{tempDate moddate}}</td>
-					<td>{{state}}</td>
+					<td class="req_state">{{state}}</td>
 					{{#ifWriter writer.customerCode}} 
 						<td>
 							<button class="delReq">삭제</button>
@@ -215,7 +238,7 @@
 					{{else}}
     					<td></td>
 					{{/ifWriter}}
-					{{#isEmployee writer.employee}} 
+					{{#isEmployee true}}  
 						<td>
 							<button class="modReq">수정</button>
 							<input type="hidden" value="{{reqCode}}" class="reqCode">

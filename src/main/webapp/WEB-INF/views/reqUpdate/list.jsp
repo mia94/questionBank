@@ -13,11 +13,6 @@
 		margin: 100px auto 30px;  
 		position: relative;
 	}
-	.board_container button{
-		position: absolute;
-		right: 0px; 
-		top:-25px; 
-	}
 	/*-----------------------------------------------테이블 스타일*/
 	table{
 		width:900px;
@@ -53,6 +48,9 @@
 	}
 	table .state_field{
 		width:80px; 
+	}
+	table button{
+		z-index: 100;
 	}
 </style>
 </head>
@@ -90,11 +88,13 @@
 	
 	<script>
 		$(function(){
+			
 			$("tr").click(function(){
 				var questionCode = $(this).children(".question_field").text();
 				//해당문제나타나는 페이지로 이동하기
 				location.href="${pageContext.request.contextPath}/reqUpdate/check?question="+questionCode;
 			})
+
 		})
 	</script>
 	

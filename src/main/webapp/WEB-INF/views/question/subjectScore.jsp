@@ -17,8 +17,10 @@
 	#main_container>h3{
 		position: absolute;
 		top: 0;
-		left: 0; 
+		left: 20; 
 		z-index: 100;
+		color:#A3918F;
+		font-family: 'Righteous', 'Jua';
 	}
 	#main_container div#donutchart{
 		width:600px;
@@ -123,6 +125,23 @@
 	
 	<script>
 		$(function(){
+			//과목명 디스플레이
+			var code = $("input[type=hidden]").val();
+			var subject = code.substr(1,1);
+			
+			switch (subject) {
+			  case 'D'   : $("h3").text("데이터베이스");
+			               break;
+			  case 'A'   : $("h3").text("전자계산기 구조");
+			               break;
+			  case 'O'  : $("h3").text("운영체제");
+			               break;
+			  case 'S'  : $("h3").text("소프트웨어 공학");
+	          				break;
+			  default    : $("h3").text("데이터 통신");
+			               break;
+			}
+			
 			//오답 배경색으로 표시
 			for(var i=0;i<20;i++){
 				var answer = $(".td_answer").eq(i).text();
