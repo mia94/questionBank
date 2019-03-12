@@ -17,7 +17,41 @@
 	$(function(){
 		//기초값 설정
 		makeArray();
+		
+		//카운트용
+		function aahacafeTimer(){
+		    var time = new Date();
+		    var hours = time.getHours();
+		    var mins = time.getMinutes();
+		    var secs = time.getSeconds();
+		    enterTime = hours*3600 + mins*60 + secs;
+		    Timer();
+		}
+		function compTime() {
+		    var count = curTime - enterTime;
+		    hour = parseInt(count/3600);
+		    min = parseInt((count%3600)/60);
+		    min = ((min < 10) ? "0" : "") + min;
+		    sec = (count%3600) % 60;
+		    sec = ((sec < 10) ? "0" : "") + sec;
+		    document.all["counter"].innerHTML = hour + ":" + min + ":" + sec;
+		    $("#spendTime").val(count);//초단위로 걸린시간 val에 입력
+		    window.setTimeout(Timer,1000);
+		}
+		
+		function Timer(){
+		    var time = new Date();
+		    var hours = time.getHours(); 
+		    var mins = time.getMinutes(); 
+		    var secs = time.getSeconds(); 
+		    curTime = hours*3600 + mins*60 + secs;
+		    compTime();
+		}
+		
+		window.onload = aahacafeTimer;
 	})
+	
+	
 </script>
 <style>
 @import url('https://fonts.googleapis.com/css?family=Jua');
@@ -68,10 +102,15 @@
 	}
 	aside{
 		width:170px; 
-		height: 566px;
+		height: 596px;
 		position: fixed;
 		top:190px; 
 		right: 330px;  
+	}
+	#counter{
+		width:170px;
+		text-align: right;
+		float: left;
 	}
 	aside article{
 		width:34px; 
@@ -83,7 +122,7 @@
 		line-height: 26px;
 		color:#A3918F; 
 	}
-	aside div{
+	aside div#button_div{
 		width:170px;
 		height: 40px;
 		line-height:40px;
@@ -158,12 +197,13 @@
 		</div>
 		
 		<aside>
+			<div id="counter" style='font-size:12pt'></div>
 			<c:forEach var="i" begin="1" end="100" step="1">
 				<article>
 					${i}
 				</article>
 			</c:forEach>
-			<div><button type="button" id="test_submit">제출하기</button></div>
+			<div id="button_div"><button type="button" id="test_submit">제출하기</button></div>
 		</aside>
 	</form>
 	
