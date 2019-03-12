@@ -161,21 +161,25 @@
 			
 			//요청사항 상태수정
 			$(document).on("click",".modReq",function(){
-				alert("확인용");
+				confirm("처리상태를 수정하시겠습니까?");
 				//수정버튼 완료버튼과 취소버튼으로 바꾸기
 				$(this).closest("td").append("<button class='updateReq'>완료</button><button class='cancel'>취소</button>");
 				//처리상태 부분 입력가능한 창으로 바꾸기
 				$(this).closest("tr").children(".req_state").empty();
-				$(this).closest("tr").children(".req_state").append("<input type='text' name='state' size=5>");
+				$(this).closest("tr").children(".req_state").append("<input type='text' name='state' size=5 class=''>");
 				//수정버튼 숨기기
 				$(this).hide();
 			})
 			
 			//완료클릭시 처리상태 변경
+			$(document).on("click",".updateReq",function(){
+				var state = $(this).closest("tr").children("input").val();
+				alert(state);
+			})
 			
 			//취소클릭시 원래 창으로 돌아오기
 			$(document).on("click",".cancel",function(){
-				alert("취소 확인용");
+				confirm("처리상태 수정작업을 취소 하시겠습니까?");
 				var questionCode = "${vo.questionCode}";
 				location.href = "${pageContext.request.contextPath}/reqUpdate/check?question="+questionCode;
 			})
