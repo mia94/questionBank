@@ -166,15 +166,28 @@
 				$(this).closest("td").append("<button class='updateReq'>완료</button><button class='cancel'>취소</button>");
 				//처리상태 부분 입력가능한 창으로 바꾸기
 				$(this).closest("tr").children(".req_state").empty();
-				$(this).closest("tr").children(".req_state").append("<input type='text' name='state' size=5 class=''>");
+				$(this).closest("tr").children(".req_state").append("<input type='text' name='state' size=5 class='state'>");
 				//수정버튼 숨기기
 				$(this).hide();
 			})
 			
 			//완료클릭시 처리상태 변경
 			$(document).on("click",".updateReq",function(){
-				var state = $(this).closest("tr").children("input").val();
-				alert(state);
+				var state = $(this).closest("tr").find(".state").val();//children은 바로아래만, 자손까지 찾으려면 find사용
+				var reqCode = $(this).closest("tr").find(".reqCode").val();
+				$.ajax({
+					url:"${pageContext.request.contextPath}/reqUpdate/"+reqCode+"/"+state,
+					type:"put",
+					dataType:"text",
+					success:function(json){
+						console.log(json);
+						if(json == "success"){
+							alert("수정되었습니다.");
+						}
+						getPageList();
+					}
+				})
+				
 			})
 			
 			//취소클릭시 원래 창으로 돌아오기
@@ -228,7 +241,10 @@
 		{{else}}
     		{{#each.}}
 				<tr> 
-					<td>{{question.questionCode}}</td>
+					<td>
+						{{question.questionCode}}
+						<input type="hidden" value="{{reqCode}}" class="reqCode">
+					</td>
 					<td>{{content}}</td>
 					<td>{{oriCorrect}}</td>
 					<td>{{writer.customerCode}}</td>

@@ -4,6 +4,9 @@
 <head>
 <title>Wooooo's QuestionBank</title> 
 <style>
+
+@import url('https://fonts.googleapis.com/css?family=Do+Hyeon|Playfair+Display|Song+Myung');
+
 	/*bx slider 파트*/
 	.main_banner_wrap{
 		height: 263px;
@@ -22,9 +25,11 @@
 	}
 	#main_banner h1{
 		position: absolute;
-		top: 40%;
-		left: 45%;
-		color:white;
+		top: 40%; 
+		left: 38%;
+		color:white; 
+		font-size:27px;
+		font-family: 'Playfair Display', 'Song Myung';
 	}
 	.touch_left_btn{
 		position: absolute;
@@ -67,8 +72,10 @@
 		color:#F6EFEC; 
 		width:120px;
 		position: absolute;
-		right: 20px;
-		top: 60px; 
+		right: 30px;
+		top: 75px; 
+		text-align: center;
+		font-family: 'Do Hyeon', sans-serif;
 	}
 	.home_container3{
 		width:100%;
@@ -76,6 +83,7 @@
 		margin-bottom: 40px;
 		border:1px solid #A3918F; 
 		position: relative;
+		font-family: 'Playfair Display', 'Song Myung';
 	}
 	.home_container3>div{
 		height: 400px;
@@ -92,14 +100,17 @@
 		left: 0;
 		top:150px;
 	}
-	.home_container3>div:last-child{
+	.home_container3>div.col-sm-7{
 		position: relative;
 	}
-	.home_container3>div:last-child div{
-		width:300px;
+	.home_container3>div.col-sm-7 div{
+		width:150px;
 		position: absolute;
-		right:200px;s
+		right:180px;
 		top:150px;
+		font-size:30px; 
+		font-family: 'Do Hyeon', sans-serif;
+		color: #444;
 	}
 	.home_container3>img{
 		width:333px;
@@ -127,15 +138,15 @@
 			<!-- bx슬라이더, section은 main.js에 넣어야함, css는 필요없음 -->
 			<div>
 				<a href="#"><img src="${pageContext.request.contextPath}/resources/upload/main.jpg" alt=""></a>
-				<h1>1 page</h1>
+				<h1>Data Processing Engineer</h1>
 			</div>
 			<div>
 				<a href="#"><img src="${pageContext.request.contextPath}/resources/upload/main2.png" alt=""></a>
-				<h1>2 Page</h1>
+				<h1>2019 시험일정</h1>
 			</div>
 			<div>
 				<a href="#"><img src="${pageContext.request.contextPath}/resources/upload/main3.png" alt=""></a>
-				<h1>3 Page</h1> 
+				<h1>The Result of an Examination</h1> 
 			</div>
 		</div>
 		<img src="${pageContext.request.contextPath}/resources/upload/cocoa_btn_left.png" alt="이전배너" class="touch_left_btn"> 
@@ -155,7 +166,7 @@
 		<a href="${pageContext.request.contextPath}/question/rankIncorrect" >
 			<article>
 				<img src="${pageContext.request.contextPath}/resources/upload/incorrect.png">
-				<div>많이틀린문제<br>확인하러 가기</div>
+				<div>많이 틀린문제<br>확인하러 가기</div>
 			</article>
 		</a>
 		<article>
@@ -167,12 +178,12 @@
 	<div class="home_container3">
 		<div class="col-sm-5">
 			<div>
-				<p>여기에<br>마우스올리면<br>이미지 옆으로 밀기</p>
+				<p>정보처리기사<br>응시자격<br>진단하러 가기</p>
 			</div>
 		</div>
 		<div class="col-sm-7"> 
 			<div>
-				<p>블라블라 설명<br>마우스올리면<br>이미지 옆으로 밀기</p>
+				<p>원서접수<br>신청안내</p>
 			</div>
 		</div>
 		<img src="${pageContext.request.contextPath}/resources/upload/career_bg.jpg">
@@ -180,6 +191,11 @@
 	
 	<script>
 	$(function(){
+		//
+		$(".col-sm-5").hover(function(){
+			
+		})
+		
 		/*---Section , bxSlider---*/
 		var $main_banner = $("#main_banner").bxSlider({//반환하는 객체를 받아서 사용
 	  	  	slideWidth: 1200,

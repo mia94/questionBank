@@ -114,6 +114,16 @@ public class ReqUpdateController {
 		service.delete(reqCode);
 	}
 	
+	//수정완료시 해당 reqUpdate수정완료 하기
+		@ResponseBody
+		@RequestMapping(value="/{reqCode}/{state}", method=RequestMethod.PUT)
+		public void modifyReqUpdate(@PathVariable("reqCode")int reqCode,@PathVariable("state") String state) {
+			logger.info("modifyReqUpdate================== controller"+reqCode);
+			ReqUpdateVO vo = service.selectByCode(reqCode);
+			vo.setState(state);
+			service.update(vo);
+		}
+	
 	@ResponseBody
 	@RequestMapping("/displayFile")
 	public ResponseEntity<byte[]> displayFile(String filename, Model model){
