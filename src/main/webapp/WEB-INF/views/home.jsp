@@ -112,6 +112,12 @@
 		font-family: 'Do Hyeon', sans-serif;
 		color: #444;
 	}
+	.home_container3>div.col-sm-7 img{
+		width:230px;
+		position: absolute;
+		right: -10px;
+		top: -70px;
+	}
 	.home_container3>img{
 		width:333px;
 		position: absolute;
@@ -184,6 +190,7 @@
 		<div class="col-sm-7"> 
 			<div>
 				<p>원서접수<br>신청안내</p>
+				<img src="${pageContext.request.contextPath}/resources/upload/dia_black.png">
 			</div>
 		</div>
 		<img src="${pageContext.request.contextPath}/resources/upload/career_bg.jpg">

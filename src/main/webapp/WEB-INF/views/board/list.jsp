@@ -36,8 +36,9 @@
 		color:#F6EFEC; 
 		text-align: center;
 	}
-	table .no{
-		width:40px;
+	table .no, table .viewcnt{
+		width:80px; 
+		text-align: center;
 	}
 	table .title{
 		width:500px;
@@ -48,10 +49,6 @@
 	}
 	table .regdate{
 		width:150px;
-	}
-	table .viewcnt{
-		width:100px;
-		text-align: center;
 	}
 	table td, table th{
 		padding: 5px 10px;
