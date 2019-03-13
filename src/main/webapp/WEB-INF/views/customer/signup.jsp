@@ -144,7 +144,7 @@
 			
 			//이메일 규격 확인
 			var email = $("input[name=email]").val();
-			var reg = /^\w{5,12}@[a-z]{2,10}[\.][a-z]{2,3}[\.]?[a-z]{0,2}$/;
+			var reg = /^\w{4,12}@[a-z]{2,10}[\.][a-z]{2,3}[\.]?[a-z]{0,2}$/;
 			
 			var emailResult = reg.test(email);
 			
@@ -152,6 +152,8 @@
 				alert("이메일을 다시 입력해주세요.");
 				return false;
 			}
+			
+			alert("회원가입을 축하드립니다!");
 		})
 	})
 	
