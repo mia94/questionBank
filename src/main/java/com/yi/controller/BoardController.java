@@ -5,16 +5,15 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.yi.domain.BoardVO;
+import com.yi.domain.CustomerVO;
 import com.yi.service.BoardService;
+import com.yi.service.CustomerService;
 
 @Controller
 @RequestMapping("/board/*")
@@ -24,6 +23,8 @@ private static final Logger logger = LoggerFactory.getLogger(BoardController.cla
 	
 	@Autowired
 	private BoardService service;
+	@Autowired
+	private CustomerService cService;
 	
 	@RequestMapping(value="list", method=RequestMethod.GET)
 	public void list(Model model){
@@ -38,12 +39,39 @@ private static final Logger logger = LoggerFactory.getLogger(BoardController.cla
 	}
 	
 	@RequestMapping(value="register", method=RequestMethod.POST)
-	public String register(@RequestBody BoardVO vo){
-		logger.info("BoardVO create------------"+vo);
+	public String register(BoardVO vo, CustomerVO writer){
+		logger.info("BoardVO create POST------------"+vo);
 		
+		writer = cService.selectByNo(writer);
+		logger.info("BoardVO create POST------------"+writer);
+		vo.setWriter(writer);
 		service.insertBoard(vo);
 		
 		return "redirect:/board/list";
 	}
+	
+	@RequestMapping(value="read", method=RequestMethod.GET)
+	public void readBoard(int boardCode, Model model) {
+		logger.info("readBoard GET------------"+boardCode);
+		BoardVO vo = new BoardVO();
+		vo.setBoardCode(boardCode);
+		vo = service.selectByNo(vo);
+		model.addAttribute("vo", vo);
+	}
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

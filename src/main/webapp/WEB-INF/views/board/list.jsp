@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -33,6 +34,24 @@
 	table th{
 		background-color: #A3918F;  
 		color:#F6EFEC; 
+		text-align: center;
+	}
+	table .no{
+		width:40px;
+	}
+	table .title{
+		width:500px;
+	}
+	table .title a{
+		text-decoration: none;
+		color: black;
+	}
+	table .regdate{
+		width:150px;
+	}
+	table .viewcnt{
+		width:100px;
+		text-align: center;
 	}
 	table td, table th{
 		padding: 5px 10px;
@@ -48,21 +67,21 @@
 		<table>
 		    <thead>
 		      <tr>
-		        <th>no</th>
-		        <th>Title</th>
-		        <th>writer</th>
-		        <th>regdate</th>
-		        <th>viewcnt</th>
+		        <th class="no">no</th>
+		        <th class="title">제목</th>
+		        <th class="writer">글쓴이</th>
+		        <th class="regdate">작성시간</th>
+		        <th class="viewcnt">조회수</th> 
 		      </tr>
 		    </thead>
 		    <tbody>
 		     	<c:forEach var="item" items="${list }">
 					<tr>
-						<td>${item.boardCode }</td>
-						<td>${item.boardTitle }</td>
-						<td>${item.writer.customerid }</td>
-						<td>${item.regdate }</td>
-						<td>${item.viewcnt }</td>
+						<td class="no">${item.boardCode }</td>
+						<td class="title"><a href="${pageContext.request.contextPath}/board/read?boardCode=${item.boardCode }">${item.boardTitle }</a></td>
+						<td class="writer">${item.writer.id}</td> 
+						<td class="regdate"><fmt:formatDate value="${item.regdate }" pattern="yyyy.MM.dd HH:mm:ss" /></td>
+						<td class="viewcnt">${item.viewcnt }</td>
 					</tr>
 				</c:forEach>
 		    </tbody>
@@ -71,6 +90,8 @@
 	
 	<script>
 		$(function(){
+			
+			//글쓰기 버튼
 			$("#register").click(function(){
 				location.href="${pageContext.request.contextPath}/board/register"
 			})
@@ -81,3 +102,18 @@
 
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
