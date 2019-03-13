@@ -258,7 +258,7 @@
 					{{else}}
     					<td></td>
 					{{/ifWriter}}
-					{{#isEmployee true}}  
+					{{#isEmployee '${login.employee}'}}  
 						<td>
 							<button class="modReq">수정</button>
 							<input type="hidden" value="{{reqCode}}" class="reqCode">

@@ -22,17 +22,23 @@
 		border-radius: 5px;
 		border:1px #A3918F solid;
 	}
-	.login_container button{
+	.login_container button,.login_container a{ 
 		border: none;
 		background: white;
-		margin-left:120px;
-		margin-top:20px;
+		margin:20px 10px; 
 		font-size: 20px;
 		font-family: 'Righteous', cursive; 
 		color:#A3918F;
 	}
+	.login_container a{
+		margin-left: 110px;
+	}
+	.login_container a:hover{
+		text-decoration: none;
+		color:#5B4149;
+	}
 	.login_container button:hover{
-		color:5B4149;
+		color:#5B4149;
 	}
 </style>
 </head>
@@ -49,6 +55,7 @@
 				<label>PASSWORD</label>
 				<input type="password" name="password">
 			</p>
+			<a href="${pageContext.request.contextPath}/customer/signup">Sign Up</a>
 			<button type="submit"><span>Login</span></button>
 		</div>		
 	</form>
