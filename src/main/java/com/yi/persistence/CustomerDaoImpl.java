@@ -58,4 +58,10 @@ public class CustomerDaoImpl implements CustomerDao {
 		return sqlSession.selectOne(namespace+".selectMaxCustomerCode");
 	}
 
+	@Override
+	public CustomerVO checkId(String id) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne(namespace+".checkId", id);
+	}
+
 }

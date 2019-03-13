@@ -44,7 +44,7 @@
 			    </div>
 			    <ul class="nav navbar-nav">
 			      <li><a href="#"></a></li>
-			      <li><a href="${pageContext.request.contextPath}/question/moketest" class="wsm_nav_a">모의고사<span class="caret"></a></li>
+			      <li><a href="${pageContext.request.contextPath}/question/moketest" class="wsm_nav_a">모의고사</a></li>
 			      <li class="dropdown"><a class="dropdown-toggle wsm_nav_a" data-toggle="dropdown" href="#">연습하기<span class="caret"></span></a>
 			        <ul class="dropdown-menu">
 			          <li><a href="${pageContext.request.contextPath}/question/list" class="question_menu">문제리스트</a></li>
@@ -52,6 +52,7 @@
 			          <li><a href="${pageContext.request.contextPath}/question/singletest" class="question_menu">랜덤문제</a></li>
 			          <li><a href="${pageContext.request.contextPath}/question/incorrect?customerCode=${login.customerCode}" class="question_menu">오답다시풀기</a></li>
 			          <li><a href="${pageContext.request.contextPath}/question/rankIncorrect" class="question_menu">많이틀린문제</a></li>
+			          <li><a href="${pageContext.request.contextPath}/question/correctRate" class="question_menu">나의 과목관리</a></li>
 			        </ul>
 			      </li>
 			      <li class="dropdown"><a class="dropdown-toggle wsm_nav_a" data-toggle="dropdown" href="#">문제추가<span class="caret"></span></a>
@@ -87,14 +88,14 @@
 			    </div>
 			    <ul class="nav navbar-nav">
 			      <li><a href="#"></a></li>
-			      <li><a href="${pageContext.request.contextPath}/question/moketest" class="wsm_nav_a">모의고사<span class="caret"></a></li>
+			      <li><a href="${pageContext.request.contextPath}/question/moketest" class="wsm_nav_a">모의고사</a></li>
 			      <li class="dropdown"><a class="dropdown-toggle wsm_nav_a" data-toggle="dropdown" href="#">연습하기<span class="caret"></span></a>
 			        <ul class="dropdown-menu">
-			          <li><a href="${pageContext.request.contextPath}/question/list" class="question_menu">문제리스트</a></li>
-			          <li><a href="${pageContext.request.contextPath}/question/subjecttest" class="question_menu">과목별 문제풀기</a></li>
 			          <li><a href="${pageContext.request.contextPath}/question/singletest" class="question_menu">랜덤문제</a></li>
+			          <li><a href="${pageContext.request.contextPath}/question/subjecttest" class="question_menu">과목별 문제풀기</a></li>
 			          <li><a href="${pageContext.request.contextPath}/question/incorrect?customerCode=${login.customerCode}" class="question_menu">오답다시풀기</a></li>
 			          <li><a href="${pageContext.request.contextPath}/question/rankIncorrect" class="question_menu">많이틀린문제</a></li>
+			          <li><a href="${pageContext.request.contextPath}/question/correctRate" class="question_menu">나의 과목관리</a></li>
 			        </ul>
 			      </li>
 			      <li><a href="${pageContext.request.contextPath}/reqUpdate/list" class="wsm_nav_a">건의사항</a></li>

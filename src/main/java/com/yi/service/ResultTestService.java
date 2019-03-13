@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.yi.domain.CustomerVO;
+import com.yi.domain.RateDTO;
 import com.yi.domain.ResultTestVO;
 
 public interface ResultTestService {
@@ -26,4 +27,6 @@ public interface ResultTestService {
 	public void insertBatchResultTest(Map<String, Object> map);
 	//많이 틀린 문제 select
 	public List<String> selectIncorrectTopRank(String subject);
+	//과목별 고객별 정답률
+	public RateDTO selectCorrectRateBySubject(String customerCode, String subject);
 }

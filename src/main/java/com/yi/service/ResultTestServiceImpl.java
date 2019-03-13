@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.yi.domain.CustomerVO;
+import com.yi.domain.RateDTO;
 import com.yi.domain.ResultTestVO;
 import com.yi.domain.TestScroeDTO;
 import com.yi.persistence.ResultTestDao;
@@ -81,6 +82,12 @@ public class ResultTestServiceImpl implements ResultTestService {
 	public List<String> selectIncorrectTopRank(String subject) {
 		// TODO Auto-generated method stub
 		return dao.selectIncorrectTopRank(subject);
+	}
+
+	@Override
+	public RateDTO selectCorrectRateBySubject(String customerCode, String subject) {
+		// TODO Auto-generated method stub
+		return dao.selectCorrectRateBySubject(customerCode, subject);
 	}
 
 }

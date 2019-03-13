@@ -32,6 +32,7 @@ public class CustomerController {
 		logger.info("signupGet ------------");
 	}
 	
+	//가입
 	@RequestMapping(value="signup", method=RequestMethod.POST)
 	public String register(CustomerVO vo){
 		logger.info("CustomerVO create------------"+vo);
@@ -44,6 +45,40 @@ public class CustomerController {
 		vo.setEmployee(false);
 		service.insertCustomer(vo);
 		return "redirect:/user/login";
+	}
+	
+	//아이디 중복확인
+	@ResponseBody
+	@RequestMapping(value="checkId/{id}", method=RequestMethod.GET)
+	public int checkId(@PathVariable("id")String id) {
+		
+		int cnt = 0;
+		CustomerVO vo = service.checkId(id);
+		logger.info("checkId------------vo : "+vo);
+		
+		if(vo==null) {
+			cnt = -1;
+		}else {
+			cnt = 1;
+		}
+		return cnt;
+	}
+	
+	//비밀번호 일치확인
+	@ResponseBody
+	@RequestMapping(value="checkPasswd", method=RequestMethod.GET)
+	public int checkPasswd(String id, String password) {
+		logger.info("checkPasswd===========id:"+id);
+		logger.info("checkPasswd===========password:"+password);
+		int cnt = 0;
+		
+		CustomerVO vo = service.read(id, password);
+		if(vo==null) {
+			cnt = -1;
+		}else {
+			cnt = 1;
+		}		
+		return cnt;
 	}
 	
 	@RequestMapping(value="list", method=RequestMethod.GET)
@@ -59,6 +94,7 @@ public class CustomerController {
 		
 		try {
 			List<CustomerVO> list = service.selectByAll();
+			logger.info("listJson------------"+list);
 			entity = new ResponseEntity<>(list, HttpStatus.OK);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -68,21 +104,25 @@ public class CustomerController {
 	}
 
 	
-	@RequestMapping(value="{customerCode}", method=RequestMethod.PUT)
-	public ResponseEntity<String> update(@PathVariable("customerCode") String customerCode,@RequestBody CustomerVO vo){
-		ResponseEntity<String> entity = null;
-		try {
-			vo.setCustomerCode(customerCode);
-			service.updateCustomer(vo);
-			entity = new ResponseEntity<String>("success", HttpStatus.OK);
-		} catch (Exception e) {
-			// TODO: handle exception
-			e.printStackTrace();
-			entity = new ResponseEntity<String>(e.getMessage(), HttpStatus.BAD_REQUEST);
-		}
-		return entity;
+	@RequestMapping(value="modify", method=RequestMethod.GET)
+	public void updateGet(String customerCode, Model model){
+		logger.info("update GET------------");
+		CustomerVO vo = new CustomerVO();
+		vo.setCustomerCode(customerCode);
+		vo = service.selectByNo(vo);
+		logger.info("update GET------------"+vo);
+		model.addAttribute("vo", vo);
 	}
 	
+	@RequestMapping(value="modify", method=RequestMethod.POST)
+	public String updatePost(CustomerVO vo){
+		logger.info("update Post------------"+vo);
+		service.updateCustomer(vo);
+		
+		return "redirect:/customer/list";
+	}
+	
+	@ResponseBody
 	@RequestMapping(value="{customerCode}", method=RequestMethod.DELETE)
 	public ResponseEntity<String> remove(@PathVariable("customerCode") String customerCode){
 		ResponseEntity<String> entity = null;

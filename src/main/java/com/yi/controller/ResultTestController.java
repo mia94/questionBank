@@ -1,8 +1,5 @@
 package com.yi.controller;
 
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.model;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.request;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -17,7 +14,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -27,7 +23,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.yi.domain.CustomerVO;
+import com.yi.domain.LoginDTO;
 import com.yi.domain.QuestionVO;
+import com.yi.domain.RateDTO;
 import com.yi.domain.ResultTestVO;
 import com.yi.service.CustomerService;
 import com.yi.service.QuestionService;
@@ -125,6 +123,7 @@ public class ResultTestController {
 		}
 		logger.info("insertSubjectTest 완료");
 	}
+	
 	//과목별 점수
 	@RequestMapping(value="score", method=RequestMethod.GET)
 	public String subjectTestScore(HttpServletRequest request,Model model) {
@@ -337,6 +336,28 @@ public class ResultTestController {
 		}
 			
 		return entity;
+	}
+	
+	//개인별, 과목별 rate 페이지로 이동하는 get함수
+	@RequestMapping(value="correctRate", method=RequestMethod.GET)
+	public void correctRateGet(HttpServletRequest request, Model model) {
+		LoginDTO vo = (LoginDTO) request.getSession().getAttribute("login");
+		logger.info("selectIncorrect 로그인한 고객받아오기------------"+vo);
+		
+		List<RateDTO> list = new ArrayList<>();
+		//과목별 rate모두 받아오기
+		RateDTO dRate = service.selectCorrectRateBySubject(vo.getCustomerCode(), "D");
+		RateDTO aRate = service.selectCorrectRateBySubject(vo.getCustomerCode(), "A");
+		RateDTO oRate = service.selectCorrectRateBySubject(vo.getCustomerCode(), "O");
+		RateDTO sRate = service.selectCorrectRateBySubject(vo.getCustomerCode(), "S");
+		RateDTO cRate = service.selectCorrectRateBySubject(vo.getCustomerCode(), "C");
+		list.add(dRate);
+		list.add(aRate);
+		list.add(oRate);
+		list.add(sRate);
+		list.add(cRate);
+		logger.info("selectIncorrect list------------"+list);
+		model.addAttribute("list", list);
 	}
 
 }

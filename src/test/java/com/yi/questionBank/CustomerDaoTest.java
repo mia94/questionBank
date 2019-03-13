@@ -22,7 +22,7 @@ public class CustomerDaoTest {
 	@Autowired
 	private CustomerService service;
 	
-	@Test
+	//@Test
 	public void test01insert() {
 		CustomerVO vo = new CustomerVO();
 		vo.setCustomerCode("C001");
@@ -34,13 +34,13 @@ public class CustomerDaoTest {
 		service.insertCustomer(vo);
 	}
 	
-	@Test
+	//@Test
 	public void test02selectByAll() {
 		List<CustomerVO> list = service.selectByAll();
 		Assert.assertNotNull(list);
 	}
 	
-	@Test
+	//@Test
 	public void test03selectByNo() {
 		CustomerVO vo = new CustomerVO();
 		vo.setCustomerCode("C001");
@@ -65,6 +65,12 @@ public class CustomerDaoTest {
 		CustomerVO vo = new CustomerVO();
 		vo.setCustomerCode("C002");
 		service.deleteCustomer(vo);
+	}
+	
+	@Test
+	public void test06checkId() {
+		CustomerVO vo = service.checkId("E001");
+		System.out.println(vo);
 	}
 	
 }

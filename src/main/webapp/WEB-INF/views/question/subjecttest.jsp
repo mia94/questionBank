@@ -37,7 +37,7 @@
 	    sec = (count%3600) % 60;
 	    sec = ((sec < 10) ? "0" : "") + sec;
 	    document.all["counter"].innerHTML = hour + ":" + min + ":" + sec;
-	    $("#spendTime").val(count);//초단위로 걸린시간 val에 입력
+	    $("#spendTime").val(count);//초단위로 걸린시간 val에 입력, 20문제기 때문에 20으로 나눠주기
 	    window.setTimeout(Timer,1000);
 	}
 	
@@ -63,12 +63,6 @@
 	section{
 		position: relative;
 	}
-	#counter{
-		width:300px;
-		position: absolute;
-		right: 105px;
-		top: -20px;
-	}
 	.custom-select {
 	  float: right;
 	}
@@ -85,10 +79,15 @@
 	}
 	aside {
 		width:240px;
-		height:180px; 
+		height:200px;  
 		position: fixed;
 		right: 270px;  
 		top: 280px;
+	}
+	#counter{
+		width:240px;
+		float: left;
+		text-align: right;
 	}
 	aside article{
 		width:30px;  
@@ -129,7 +128,6 @@
 <body>
 	
 	<jsp:include page="../include/header.jsp"></jsp:include>
-		<div id="counter" style='font-size:12pt'></div>
 		<div class="custom-select">
 			<select name="subject" id="subject">
 				<option value="0"> Select Subject </option>
@@ -169,10 +167,12 @@
 					<input type="hidden" name='correct' value='${item.correct}'>
 					<input type="hidden" name='customer' value='${login.customerCode}'>
 					<input type="hidden" name='questionCode' value='${item.questionCode}'>
+					<input type="hidden" name='spendTime' value='' id="spendTime">
 				</div>
 			</c:forEach>
 		</div>
 		<aside>
+			<div id="counter" style='font-size:12pt'></div>
 			<c:forEach var="i" begin="1" end="20" step="1">
 				<article>
 					${i}
@@ -230,6 +230,7 @@
 			<input type="hidden" name='correct' value='{{correct}}'>
 			<input type="hidden" name='customer' value='{{login.customerCode}}'>
 			<input type="hidden" name='question' value='{{questionCode}}'>
+			<input type="hidden" name='spendTime' value='' id="spendTime">
 		</div>
 	{{/each}}
 	</script>

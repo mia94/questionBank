@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.yi.domain.CustomerVO;
+import com.yi.domain.RateDTO;
 import com.yi.domain.ResultTestVO;
 import com.yi.domain.TestScroeDTO;
 
@@ -88,6 +89,15 @@ public class ResultTestDaoImpl implements ResultTestDao{
 	public List<String> selectIncorrectTopRank(String subject) {
 		// TODO Auto-generated method stub
 		return sqlSession.selectList(namespace+".selectIncorrectTopRank", subject);
+	}
+
+	@Override
+	public RateDTO selectCorrectRateBySubject(String customerCode, String subject) {
+		// TODO Auto-generated method stub
+		Map<String, Object> map = new HashMap<>();
+		map.put("customerCode", customerCode);
+		map.put("subject",subject);
+		return sqlSession.selectOne(namespace+".selectCorrectRateBySubject", map);
 	}
 
 	
