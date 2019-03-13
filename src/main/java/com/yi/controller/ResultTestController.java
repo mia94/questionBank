@@ -123,6 +123,7 @@ public class ResultTestController {
 		}
 		logger.info("insertSubjectTest 완료");
 	}
+	
 	//과목별 점수
 	@RequestMapping(value="score", method=RequestMethod.GET)
 	public String subjectTestScore(HttpServletRequest request,Model model) {

@@ -37,7 +37,7 @@
 	    sec = (count%3600) % 60;
 	    sec = ((sec < 10) ? "0" : "") + sec;
 	    document.all["counter"].innerHTML = hour + ":" + min + ":" + sec;
-	    $("#spendTime").val((count/20));//초단위로 걸린시간 val에 입력, 20문제기 때문에 20으로 나눠주기
+	    $("#spendTime").val(count);//초단위로 걸린시간 val에 입력, 20문제기 때문에 20으로 나눠주기
 	    window.setTimeout(Timer,1000);
 	}
 	
