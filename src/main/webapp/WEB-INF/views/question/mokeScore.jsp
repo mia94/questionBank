@@ -22,11 +22,23 @@
 	}
 	#main_container div#score_container{
 		width:400px;
+		margin-top: 150px;
+		position: relative;
 	}
 	#main_container div#score_container h1,#main_container div#score_container p{
 		width:400px;
 		text-align: center;
+		font-family: 'Jua', sans-serif;
+	}
+	#main_container div#score_container h1 span{
+		font-size: 1.1em;
 		font-weight: bold;
+	}
+	#main_container div#score_container img{
+		width:200px;
+		position: absolute;
+		top:-45px;
+		left: 100px;
 	}
 </style>
 </head>
@@ -48,8 +60,9 @@
 	<div id="main_container">
 		<div id="barchart_values"></div>
 		<div id="score_container">
-			<h1><span>${scoreList[0] }</span> 점</h1>
+			<h1><span>${scoreList[0] }</span>점</h1>
 			<p id="isPass"></p>
+			<img src="${pageContext.request.contextPath}/resources/upload/dia_black.png">
 		</div>
 	</div> 
 	

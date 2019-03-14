@@ -45,12 +45,9 @@ public class ReplyDaoImpl implements ReplyDao {
 	}
 
 	@Override
-	public List<ReplyVO> listPage(Criteria cri, int bno) {
+	public List<ReplyVO> listPage(int bno) {
 		//매개변수를 하나만 보낼 수 밖에 없기때문에 map를 써야함. 타입이 틀리면 최고부모인 Object로 보냄
-		Map<String, Object> map = new HashMap<>();
-		map.put("bno", bno);
-		map.put("cri", cri);
-		return sqlSession.selectList(namespace+".listPage", map);
+		return sqlSession.selectList(namespace+".listPage", bno);
 	}
 
 	@Override

@@ -28,7 +28,6 @@
 		FROM reply
 		where board = #{board.boardCode}
 		order by reply_code desc
-		limit #{cri.pageStart}, #{cri.perPageNum}<!-- 객체를 map에 넣기때문에 이렇게 써줘야함 -->
 	 </select>
 	 
 	 <select id="totalCount" resultType="int">
