@@ -41,9 +41,9 @@ public class ReplyServiceImpl implements ReplyService {
 	}
 
 	@Override
-	public List<ReplyVO> listPage(Criteria cri, int bno) {
+	public List<ReplyVO> listPage(int bno) {
 		// TODO Auto-generated method stub
-		return dao.listPage(cri, bno);
+		return dao.listPage(bno);
 	}
 
 	@Override
